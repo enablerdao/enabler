@@ -5,8 +5,64 @@ import { services, Service } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
-import { ArrowLeft, ExternalLink, BarChart3, Target, CalendarClock } from 'lucide-react';
+import { ArrowLeft, ExternalLink, BarChart3, Target, CalendarClock, CheckCircle2, Activity, LightbulbIcon, Users } from 'lucide-react';
 import { logActivity } from '@/lib/logger';
+
+// SVG diagram components
+const ProcessDiagram = ({ color }: { color: string }) => (
+  <svg className="w-full h-auto max-w-xl mx-auto my-8" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="50" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="110" y="105" textAnchor="middle" fill={color} fontWeight="bold">収集</text>
+    
+    <path d="M170 100 L230 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="230,95 240,100 230,105" fill={color}/>
+    
+    <rect x="240" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="300" y="105" textAnchor="middle" fill={color} fontWeight="bold">分析</text>
+    
+    <path d="M360 100 L420 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="420,95 430,100 420,105" fill={color}/>
+    
+    <rect x="430" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="490" y="105" textAnchor="middle" fill={color} fontWeight="bold">最適化</text>
+    
+    <path d="M550 100 L610 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="610,95 620,100 610,105" fill={color}/>
+    
+    <rect x="620" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="680" y="105" textAnchor="middle" fill={color} fontWeight="bold">結果</text>
+  </svg>
+);
+
+const CycleDiagram = ({ color }: { color: string }) => (
+  <svg className="w-full h-auto max-w-md mx-auto my-8" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="150" fill={`${color}10`} stroke={color} strokeWidth="2" strokeDasharray="8 8"/>
+    
+    <circle cx="200" cy="50" r="40" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="200" y="55" textAnchor="middle" fill={color} fontWeight="bold">計画</text>
+    
+    <circle cx="350" cy="200" r="40" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="350" y="205" textAnchor="middle" fill={color} fontWeight="bold">実行</text>
+    
+    <circle cx="200" cy="350" r="40" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="200" y="355" textAnchor="middle" fill={color} fontWeight="bold">測定</text>
+    
+    <circle cx="50" cy="200" r="40" fill={`${color}20`} stroke={color} strokeWidth="2"/>
+    <text x="50" y="205" textAnchor="middle" fill={color} fontWeight="bold">改善</text>
+    
+    <path d="M229 72 L321 172" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="321,172 330,180 315,182" fill={color}/>
+    
+    <path d="M329 229 L229 321" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="229,321 220,330 217,315" fill={color}/>
+    
+    <path d="M171 329 L79 229" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="79,229 70,220 85,217" fill={color}/>
+    
+    <path d="M71 171 L171 79" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
+    <polygon points="171,79 180,70 182,85" fill={color}/>
+  </svg>
+);
 
 const ServiceDetail = () => {
   const { id } = useParams();
@@ -64,6 +120,15 @@ const ServiceDetail = () => {
     'B': 'bg-brank text-white',
     'C': 'bg-crank text-white',
   };
+
+  const featureIcons = [
+    <CheckCircle2 className="w-5 h-5" />,
+    <Activity className="w-5 h-5" />,
+    <LightbulbIcon className="w-5 h-5" />,
+    <Users className="w-5 h-5" />
+  ];
+  
+  const serviceColor = service.color || '#6366f1';
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -101,23 +166,64 @@ const ServiceDetail = () => {
                 </div>
               </MotionBox>
               
-              <MotionBox delay={200}>
+              {service.features && service.features.length > 0 && (
+                <MotionBox delay={200}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <h2 className="text-xl font-bold mb-6">主な機能</h2>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {service.features.map((feature, index) => (
+                        <div key={index} className="border border-gray-100 rounded-lg p-5 hover:shadow-md transition-all duration-300">
+                          <div className="flex items-center mb-3">
+                            <div className={`p-2 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>
+                              {featureIcons[index % featureIcons.length]}
+                            </div>
+                            <h3 className="font-bold text-gray-800">{feature.title}</h3>
+                          </div>
+                          <p className="text-gray-600 text-sm">{feature.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </MotionBox>
+              )}
+              
+              <MotionBox delay={250}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
-                  <h2 className="text-xl font-bold mb-4">サービスの特徴</h2>
-                  <div className="space-y-4">
-                    <p className="text-gray-700">
-                      {service.nameEn}は、最新技術を活用して{service.nameJp.split('-')[1]?.trim() || 'サービス'}分野における問題解決を目指しています。
-                      革新的なアプローチにより、ユーザー体験を向上させながら、業界標準を変革していきます。
-                    </p>
-                    <p className="text-gray-700">
-                      私たちのチームは、経験豊富な専門家により構成され、常に最高品質のサービスを提供することにコミットしています。
-                      ユーザーフィードバックを大切にし、継続的な改善を行っています。
-                    </p>
+                  <h2 className="text-xl font-bold mb-6">サービスの流れ</h2>
+                  <ProcessDiagram color={serviceColor} />
+                  <div className="grid md:grid-cols-4 gap-4 text-center text-sm mt-4">
+                    <div>
+                      <h3 className="font-bold" style={{ color: serviceColor }}>データ収集</h3>
+                      <p className="text-gray-600">ユーザーデータを安全に収集</p>
+                    </div>
+                    <div>
+                      <h3 className="font-bold" style={{ color: serviceColor }}>AI分析</h3>
+                      <p className="text-gray-600">高度なアルゴリズムで解析</p>
+                    </div>
+                    <div>
+                      <h3 className="font-bold" style={{ color: serviceColor }}>パーソナライズ</h3>
+                      <p className="text-gray-600">個別最適化された提案</p>
+                    </div>
+                    <div>
+                      <h3 className="font-bold" style={{ color: serviceColor }}>価値提供</h3>
+                      <p className="text-gray-600">具体的な成果を実現</p>
+                    </div>
                   </div>
                 </div>
               </MotionBox>
               
               <MotionBox delay={300}>
+                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                  <h2 className="text-xl font-bold mb-6">継続的改善サイクル</h2>
+                  <CycleDiagram color={serviceColor} />
+                  <p className="text-center text-gray-600 mt-4">
+                    {service.nameEn}は継続的な改善を重視しています。ユーザーフィードバックを元に<br />
+                    サービスの品質向上と新機能の開発を行い、常に最高の体験を提供します。
+                  </p>
+                </div>
+              </MotionBox>
+              
+              <MotionBox delay={350}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle">
                   <h2 className="text-xl font-bold mb-4">開発ロードマップ</h2>
                   <div className="space-y-4">

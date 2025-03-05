@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Logo from './Logo';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,11 +40,9 @@ const Navbar = () => {
     <nav className={navbarClasses}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          <a href="#hero" className="flex items-center space-x-2">
-            <span className="text-xl font-display font-bold tracking-tight">
-              Enabler
-            </span>
-          </a>
+          <Link to="/" className="flex items-center space-x-2">
+            <Logo size={scrolled ? 'sm' : 'md'} />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

@@ -25,6 +25,46 @@ export interface Service {
   faqs?: { question: string; answer: string }[];
 }
 
+export interface CompanyInfo {
+  nameJp: string;
+  nameEn: string;
+  description: string;
+  mission: string;
+  vision: string;
+  address: string;
+  email: string;
+  phone: string;
+  established: string;
+  ceo: string;
+  employees: string;
+  socialLinks: {
+    twitter?: string;
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+  };
+}
+
+export const companyInfo: CompanyInfo = {
+  nameJp: "株式会社イノベーションラボ",
+  nameEn: "Innovation Lab, Inc.",
+  description: "私たちは革新的なデジタルプロダクトを通じて、人々の生活をより豊かにすることを目指しています。AIと最新テクノロジーを活用し、社会課題の解決に取り組んでいます。",
+  mission: "テクノロジーの力で、すべての人の可能性を広げる",
+  vision: "誰もが自分らしく生きられる、持続可能でクリエイティブな社会を創造する",
+  address: "〒106-0032 東京都港区六本木6-10-1 六本木ヒルズ森タワー15階",
+  email: "contact@innovation-lab.jp",
+  phone: "03-1234-5678",
+  established: "2018年4月",
+  ceo: "佐藤 健太郎",
+  employees: "58名（2023年12月現在）",
+  socialLinks: {
+    twitter: "https://twitter.com/innovationlab_jp",
+    facebook: "https://facebook.com/innovationlab.jp",
+    instagram: "https://instagram.com/innovationlab_jp",
+    linkedin: "https://linkedin.com/company/innovation-lab-jp"
+  }
+};
+
 export const services: Service[] = [
   {
     id: 1,

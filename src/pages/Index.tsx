@@ -1,53 +1,38 @@
 
-import React, { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
+import React from 'react';
 import Hero from '@/components/Hero';
-import ServicesGrid from '@/components/ServicesGrid';
 import AboutSection from '@/components/AboutSection';
+import ServicesGrid from '@/components/ServicesGrid';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import HeroStats from '@/components/HeroStats';
+import LatestNews from '@/components/LatestNews';
+import PartnerLogos from '@/components/PartnerLogos';
+import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
+import { useEffect } from 'react';
 
 const Index = () => {
-  // Log page view when component mounts
   useEffect(() => {
     logActivity('pageView', { path: '/' });
   }, []);
 
-  // Smooth scroll for anchor links
-  useEffect(() => {
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a');
-      
-      if (anchor && anchor.hash && anchor.hash.startsWith('#')) {
-        e.preventDefault();
-        
-        const targetElement = document.querySelector(anchor.hash);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.getBoundingClientRect().top + window.scrollY - 80, // Account for fixed header
-            behavior: 'smooth'
-          });
-        }
-      }
-    };
-    
-    document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
-  }, []);
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <Navbar />
       <main>
         <Hero />
-        <ServicesGrid />
+        <HeroStats />
         <AboutSection />
+        <ServicesGrid />
+        <Testimonials />
+        <LatestNews />
+        <PartnerLogos />
         <ContactSection />
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 

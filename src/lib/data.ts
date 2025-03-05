@@ -1,3 +1,4 @@
+
 export interface Service {
   id: number;
   rank: 'S' | 'A' | 'B' | 'C';
@@ -684,4 +685,13 @@ export const services: Service[] = [
       },
       { 
         title: 'プロジェクト支援',
-        description: 'プロジェクトを支援するための機能。支援者とプロジェクト
+        description: 'プロジェクトを支援するための機能。支援者とプロジェクトオーナー双方で価値を共有できます。'
+      },
+      { 
+        title: 'プロジェクト評価',
+        description: 'プロジェクトの評価機能。プロジェクトの品質や価値を評価し、他のユーザーに共有できます。'
+      }
+    ],
+    color: '#e91e63'
+  }
+];

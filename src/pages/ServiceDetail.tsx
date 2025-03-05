@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
 import { ArrowLeft, ExternalLink, BarChart3, Target, CalendarClock } from 'lucide-react';
+import { logActivity } from '@/lib/logger';
 
 const ServiceDetail = () => {
   const { id } = useParams();
@@ -20,11 +21,34 @@ const ServiceDetail = () => {
       setService(foundService);
       // Update page title
       document.title = `${foundService.nameEn} | ${foundService.nameJp} - Enabler`;
+      
+      // Log service view
+      logActivity('serviceView', {
+        serviceId: foundService.id,
+        serviceName: foundService.nameEn,
+        additionalData: {
+          rank: foundService.rank,
+          marketSize: foundService.marketSize
+        }
+      });
     } else {
       // Service not found, redirect to services section on home page
       navigate('/#services');
     }
   }, [id, navigate]);
+  
+  // Handle external link click
+  const handleExternalLinkClick = () => {
+    if (service) {
+      logActivity('externalLink', {
+        serviceId: service.id,
+        serviceName: service.nameEn,
+        additionalData: {
+          domain: service.domain
+        }
+      });
+    }
+  };
   
   if (!service) {
     return (
@@ -180,6 +204,7 @@ const ServiceDetail = () => {
                       href={`https://${service.domain}`}
                       target="_blank" 
                       rel="noopener noreferrer"
+                      onClick={handleExternalLinkClick}
                       className="w-full inline-flex items-center justify-center px-4 py-2 rounded-lg bg-enabler-600 text-white font-medium transition-all duration-200 hover:bg-enabler-700 shadow-md hover:shadow-lg"
                     >
                       サービスサイトを見る <ExternalLink size={16} className="ml-2" />

@@ -5,6 +5,7 @@ import { Service } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { logActivity } from '@/lib/logger';
 
 interface ServiceCardProps {
   service: Service;
@@ -28,6 +29,17 @@ const rankTextColorMap = {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const delayBase = 100;
   const staggerDelay = index * 50;
+  
+  const handleExternalLinkClick = () => {
+    logActivity('externalLink', {
+      serviceId: service.id,
+      serviceName: service.nameEn,
+      additionalData: {
+        location: 'service-card',
+        domain: service.domain
+      }
+    });
+  };
   
   return (
     <MotionBox 
@@ -65,6 +77,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             href={`https://${service.domain}`} 
             target="_blank" 
             rel="noopener noreferrer"
+            onClick={handleExternalLinkClick}
             className="text-sm text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
           >
             {service.domain} <ExternalLink size={14} />

@@ -6,8 +6,14 @@ import ServicesGrid from '@/components/ServicesGrid';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { logActivity } from '@/lib/logger';
 
 const Index = () => {
+  // Log page view when component mounts
+  useEffect(() => {
+    logActivity('pageView', { path: '/' });
+  }, []);
+
   // Smooth scroll for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {

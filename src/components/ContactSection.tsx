@@ -2,8 +2,41 @@
 import React from 'react';
 import { MotionBox } from './ui/motion-box';
 import { Send } from 'lucide-react';
+import { logActivity } from '@/lib/logger';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
+  const { toast } = useToast();
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Get form data for logging
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const subject = formData.get('subject') as string;
+    
+    // Log the contact submission
+    logActivity('contactSubmit', {
+      additionalData: {
+        name,
+        email,
+        subject,
+        formLocation: 'home-page'
+      }
+    });
+    
+    // Show success toast
+    toast({
+      title: "お問い合わせありがとうございます",
+      description: "担当者より順次ご連絡いたします。",
+    });
+    
+    // Reset form
+    e.currentTarget.reset();
+  };
+  
   return (
     <section id="contact" className="section-padding">
       <div className="container mx-auto px-6">
@@ -20,7 +53,7 @@ const ContactSection = () => {
         
         <div className="max-w-2xl mx-auto">
           <MotionBox delay={300}>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -29,8 +62,10 @@ const ContactSection = () => {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-enabler-500 focus:border-transparent transition-all duration-200"
                     placeholder="山田 太郎"
+                    required
                   />
                 </div>
                 
@@ -41,8 +76,10 @@ const ContactSection = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-enabler-500 focus:border-transparent transition-all duration-200"
                     placeholder="your-email@example.com"
+                    required
                   />
                 </div>
               </div>
@@ -54,8 +91,10 @@ const ContactSection = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-enabler-500 focus:border-transparent transition-all duration-200"
                   placeholder="お問い合わせの件名"
+                  required
                 />
               </div>
               
@@ -65,9 +104,11 @@ const ContactSection = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={6}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-enabler-500 focus:border-transparent transition-all duration-200"
                   placeholder="お問い合わせ内容をご記入ください"
+                  required
                 ></textarea>
               </div>
               

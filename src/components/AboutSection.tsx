@@ -16,7 +16,7 @@ const AboutSection = () => {
           <div className="bg-white rounded-xl shadow-subtle p-8 md:p-10">
             <MotionBox delay={200}>
               <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">{companyInfo.name}</h3>
+                <h3 className="text-2xl font-bold mb-2">{companyInfo.nameJp}</h3>
                 <p className="text-gray-600">{companyInfo.nameEn}</p>
               </div>
             </MotionBox>
@@ -46,7 +46,7 @@ const AboutSection = () => {
                     <Calendar className="w-5 h-5 text-enabler-600 mt-0.5 mr-3" />
                     <div>
                       <h4 className="font-medium text-gray-700">設立</h4>
-                      <p className="text-gray-600">{companyInfo.founded}</p>
+                      <p className="text-gray-600">{companyInfo.established}</p>
                     </div>
                   </div>
                   

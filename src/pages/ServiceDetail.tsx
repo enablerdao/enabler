@@ -5,7 +5,20 @@ import { services, Service } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
-import { ArrowLeft, ExternalLink, BarChart3, Target, CalendarClock, CheckCircle2, Activity, LightbulbIcon, Users } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  ExternalLink, 
+  BarChart3, 
+  Target, 
+  CalendarClock, 
+  CheckCircle2, 
+  Activity, 
+  LightbulbIcon, 
+  Users, 
+  Sparkles,
+  Compass,
+  MessageCircleHeart
+} from 'lucide-react';
 import { logActivity } from '@/lib/logger';
 
 // SVG diagram components
@@ -129,6 +142,10 @@ const ServiceDetail = () => {
   ];
   
   const serviceColor = service.color || '#6366f1';
+
+  // Mission and vision from service data or defaults
+  const mission = service.mission || "人々の日常をより便利に、より豊かにする革新的なソリューションを提供する";
+  const vision = service.vision || "テクノロジーの力で社会課題を解決し、持続可能な未来を創造する";
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -166,6 +183,26 @@ const ServiceDetail = () => {
                 </div>
               </MotionBox>
               
+              <MotionBox delay={150}>
+                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                  <div className="flex items-center mb-4">
+                    <Compass className="text-enabler-600 mr-3" />
+                    <h2 className="text-xl font-bold">ミッション</h2>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6 italic border-l-4 pl-4 py-2" style={{ borderColor: serviceColor }}>
+                    "{mission}"
+                  </p>
+                  
+                  <div className="flex items-center mb-4">
+                    <Sparkles className="text-enabler-600 mr-3" />
+                    <h2 className="text-xl font-bold">ビジョン</h2>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed italic border-l-4 pl-4 py-2" style={{ borderColor: serviceColor }}>
+                    "{vision}"
+                  </p>
+                </div>
+              </MotionBox>
+              
               {service.features && service.features.length > 0 && (
                 <MotionBox delay={200}>
                   <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
@@ -187,7 +224,53 @@ const ServiceDetail = () => {
                 </MotionBox>
               )}
               
-              <MotionBox delay={250}>
+              {service.useCases && service.useCases.length > 0 && (
+                <MotionBox delay={250}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <h2 className="text-xl font-bold mb-6">活用事例</h2>
+                    <div className="space-y-4">
+                      {service.useCases.map((useCase, index) => (
+                        <div key={index} className="border border-gray-100 rounded-lg p-5">
+                          <h3 className="font-bold text-gray-800 mb-2">{useCase.title}</h3>
+                          <p className="text-gray-600 mb-3">{useCase.description}</p>
+                          {useCase.result && (
+                            <div className="bg-gray-50 p-3 rounded-lg">
+                              <span className="text-sm font-medium text-gray-500">結果:</span>
+                              <p className="text-gray-700">{useCase.result}</p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </MotionBox>
+              )}
+
+              {service.uniquePoints && service.uniquePoints.length > 0 && (
+                <MotionBox delay={280}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <div className="flex items-center mb-6">
+                      <MessageCircleHeart className="text-enabler-600 mr-3" />
+                      <h2 className="text-xl font-bold">他にはない特徴</h2>
+                    </div>
+                    <div className="space-y-4">
+                      {service.uniquePoints.map((point, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="bg-enabler-100 p-2 rounded-full mr-4 mt-1">
+                            <CheckCircle2 className="w-4 h-4 text-enabler-700" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-gray-800">{point.title}</h3>
+                            <p className="text-gray-700">{point.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </MotionBox>
+              )}
+              
+              <MotionBox delay={300}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
                   <h2 className="text-xl font-bold mb-6">サービスの流れ</h2>
                   <ProcessDiagram color={serviceColor} />
@@ -212,7 +295,7 @@ const ServiceDetail = () => {
                 </div>
               </MotionBox>
               
-              <MotionBox delay={300}>
+              <MotionBox delay={350}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
                   <h2 className="text-xl font-bold mb-6">継続的改善サイクル</h2>
                   <CycleDiagram color={serviceColor} />
@@ -223,7 +306,38 @@ const ServiceDetail = () => {
                 </div>
               </MotionBox>
               
-              <MotionBox delay={350}>
+              <MotionBox delay={400}>
+                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                  <h2 className="text-xl font-bold mb-4">よくある質問</h2>
+                  <div className="space-y-6">
+                    {service.faqs && service.faqs.length > 0 ? (
+                      service.faqs.map((faq, index) => (
+                        <div key={index} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                          <h3 className="font-bold text-gray-800 mb-2">{faq.question}</h3>
+                          <p className="text-gray-700">{faq.answer}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <div className="border-b border-gray-100 pb-4">
+                          <h3 className="font-bold text-gray-800 mb-2">このサービスはどんな人向けですか？</h3>
+                          <p className="text-gray-700">{service.nameEn}は{service.targetAudience || '新しい体験や効率化を求めるすべての方'}を対象としています。特に{service.specificAudience || '時間や労力を節約したい方、質の高いサービスを求める方'}におすすめです。</p>
+                        </div>
+                        <div className="border-b border-gray-100 pb-4">
+                          <h3 className="font-bold text-gray-800 mb-2">利用開始までどのくらいの時間がかかりますか？</h3>
+                          <p className="text-gray-700">サインアップから数分で利用開始できます。必要な情報を入力するだけで、すぐにサービスのすべての機能をお使いいただけます。</p>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-gray-800 mb-2">無料トライアルはありますか？</h3>
+                          <p className="text-gray-700">はい、14日間の無料トライアルをご用意しています。クレジットカード情報なしで、すべての機能をお試しいただけます。</p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </MotionBox>
+              
+              <MotionBox delay={450}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle">
                   <h2 className="text-xl font-bold mb-4">開発ロードマップ</h2>
                   <div className="space-y-4">
@@ -243,7 +357,7 @@ const ServiceDetail = () => {
                       </div>
                       <div>
                         <h3 className="font-bold text-gray-800">中期目標</h3>
-                        <p className="text-gray-700">市場シェアの拡大とユーザー基盤の確立</p>
+                        <p className="text-gray-700">{service.midtermGoal || '市場シェアの拡大とユーザー基盤の確立'}</p>
                       </div>
                     </div>
                     
@@ -253,9 +367,17 @@ const ServiceDetail = () => {
                       </div>
                       <div>
                         <h3 className="font-bold text-gray-800">長期目標</h3>
-                        <p className="text-gray-700">業界リーダーとしての地位確立と海外展開</p>
+                        <p className="text-gray-700">{service.longtermGoal || '業界リーダーとしての地位確立と海外展開'}</p>
                       </div>
                     </div>
+
+                    {service.catchphrase && (
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <p className="text-lg font-medium text-center italic" style={{ color: serviceColor }}>
+                          "{service.catchphrase}"
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </MotionBox>
@@ -292,6 +414,13 @@ const ServiceDetail = () => {
                       <p>{service.goal}</p>
                     </div>
                     
+                    {service.launchDate && (
+                      <div>
+                        <h3 className="text-sm font-medium text-gray-500">リリース予定</h3>
+                        <p>{service.launchDate}</p>
+                      </div>
+                    )}
+                    
                     <div>
                       <h3 className="text-sm font-medium text-gray-500">ドメイン</h3>
                       <a 
@@ -316,6 +445,15 @@ const ServiceDetail = () => {
                       サービスサイトを見る <ExternalLink size={16} className="ml-2" />
                     </a>
                   </div>
+
+                  {service.quote && (
+                    <div className="mt-6 pt-4 border-t border-gray-100">
+                      <p className="text-sm italic text-gray-600">"{service.quote}"</p>
+                      {service.quoteAuthor && (
+                        <p className="text-xs text-right text-gray-500 mt-1">— {service.quoteAuthor}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </MotionBox>
             </div>

@@ -1,8 +1,9 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ServiceCardProps {
@@ -69,6 +70,15 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             {service.domain} <ExternalLink size={14} />
           </a>
           <span className="text-xs text-gray-500 mt-2">目標: {service.goal}</span>
+        </div>
+        
+        <div className="mt-4 text-right">
+          <Link 
+            to={`/service/${service.id}`}
+            className="inline-flex items-center text-sm text-enabler-600 hover:text-enabler-700 font-medium transition-colors"
+          >
+            詳細を見る <ArrowRight size={16} className="ml-1" />
+          </Link>
         </div>
       </div>
     </MotionBox>

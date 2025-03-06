@@ -5,6 +5,7 @@ import { sRankServices } from './services-s-rank';
 import { aRankServices } from './services-a-rank';
 import { bRankServices } from './services-b-rank';
 import { cRankServices } from './services-c-rank';
+import { serviceCategories } from './serviceCategories';
 
 // Add domains for services that might not be in the rank files yet
 const additionalDomains = {
@@ -86,4 +87,4 @@ export const services: Service[] = categorizeServices([
   ...cRankServices
 ]);
 
-export { companyInfo };
+export { companyInfo, serviceCategories };

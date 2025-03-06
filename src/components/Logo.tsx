@@ -121,7 +121,7 @@ const Logo: React.FC<LogoProps> = ({
       
       {variant === 'default' && (
         <span className="text-xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 uppercase letter-spacing-wide">
-          INEBLA
+          ENABLER
         </span>
       )}
     </div>

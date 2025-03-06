@@ -30,10 +30,10 @@ const Navbar = () => {
   );
 
   const navLinks = [
-    { name: 'ホーム', href: '#hero' },
-    { name: 'サービス', href: '#services' },
-    { name: '会社情報', href: '#about' },
-    { name: 'お問い合わせ', href: '#contact' },
+    { name: 'Home', href: '#hero' },
+    { name: 'Services', href: '#services' },
+    { name: 'About', href: '#about' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (

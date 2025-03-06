@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -30,7 +29,6 @@ const Logo: React.FC<LogoProps> = ({
   useEffect(() => {
     if (!animated) return;
     
-    // Advanced animation for the logo
     let animationFrame: number;
     let startTime = Date.now();
     
@@ -38,28 +36,23 @@ const Logo: React.FC<LogoProps> = ({
       const elapsed = (Date.now() - startTime) / 1000;
       
       if (circleRef.current) {
-        // Pulse effect with subtle breathing
         const scale = 1 + Math.sin(elapsed * 1.5) * 0.02;
         circleRef.current.setAttribute('r', `${17 * scale}`);
       }
       
       if (pathRef1.current && pathRef2.current) {
-        // Connection points movement - representing data flow
         const offset = Math.sin(elapsed * 2) * 0.6;
         
-        // The "E" shape transforms slightly
         pathRef1.current.setAttribute(
           'd',
           `M12 18L${24 + offset} 18M14 22L${22 + offset * 0.7} 22M16 26L${20 + offset * 0.4} 26`
         );
         
-        // The vertical line pulses with data
         const pulseWidth = 2 + Math.sin(elapsed * 3) * 0.5;
         pathRef2.current.setAttribute('stroke-width', `${pulseWidth}`);
       }
       
       if (pathRef3.current) {
-        // Data point pulsing
         const opacity = 0.7 + Math.sin(elapsed * 4) * 0.3;
         pathRef3.current.setAttribute('opacity', `${opacity}`);
       }
@@ -100,7 +93,6 @@ const Logo: React.FC<LogoProps> = ({
           fill="url(#enablerGradient)" 
           className="transition-all duration-300"
         />
-        {/* "E" shape representing Enabler */}
         <path
           ref={pathRef1}
           d="M12 18L24 18M14 22L22 22M16 26L20 26"
@@ -110,7 +102,6 @@ const Logo: React.FC<LogoProps> = ({
           strokeLinejoin="round"
           filter="url(#glow)"
         />
-        {/* Vertical line representing connection */}
         <path
           ref={pathRef2}
           d="M20 12L20 28"
@@ -120,7 +111,6 @@ const Logo: React.FC<LogoProps> = ({
           strokeLinejoin="round"
           filter="url(#glow)"
         />
-        {/* Data point representing innovation */}
         <path
           ref={pathRef3}
           d="M20 12 A1.5 1.5 0 1 0 20 9 A1.5 1.5 0 1 0 20 12 Z"
@@ -130,8 +120,8 @@ const Logo: React.FC<LogoProps> = ({
       </svg>
       
       {variant === 'default' && (
-        <span className="text-xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-          イネブラ
+        <span className="text-xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 uppercase letter-spacing-wide">
+          INEBLA
         </span>
       )}
     </div>

@@ -24,10 +24,16 @@ const Hero = () => {
         </MotionBox>
         
         <MotionBox delay={300}>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 italic font-medium">
-            「あったらいいな」を超えて、「なくてはならない」へ。
-            テクノロジーで、あなたの日常を変えていく。
-          </p>
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-enabler-800 mb-8 leading-tight max-w-4xl mx-auto">
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-enabler-600 to-enabler-800 bg-clip-text text-transparent">
+                「あったらいいな」を超えて、「なくてはならない」へ。
+              </span>
+              <span className="absolute -bottom-1 left-0 w-full h-1 bg-enabler-500 rounded-full opacity-70"></span>
+            </span>
+            <br />
+            <span className="text-enabler-700">テクノロジーで、あなたの日常を変えていく。</span>
+          </h1>
         </MotionBox>
         
         <MotionBox delay={500}>

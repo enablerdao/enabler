@@ -6,24 +6,24 @@ import { MotionBox } from './ui/motion-box';
 const news = [
   {
     id: 1,
+    title: 'Enabler株式会社、コーポレートサイトをリニューアル',
+    date: `${new Date().getFullYear()}年${new Date().getMonth() + 1}月${new Date().getDate()}日`,
+    excerpt: '本日、Enabler株式会社は使いやすさと視覚的な魅力を向上させた新しいコーポレートサイトを公開しました。ユーザーエクスペリエンスの向上を目指し、サービス内容をより分かりやすく紹介する構成となっています。',
+    category: '企業情報'
+  },
+  {
+    id: 2,
     title: 'TimeDrop、事業シリーズAで10億円調達。国内主要都市へ拡大へ',
     date: '2024年5月15日',
     excerpt: '当日予約アプリ「TimeDrop」を運営する当社は、シリーズAラウンドで総額10億円の資金調達を完了しました。この資金を活用し、サービス提供エリアを国内主要都市へ拡大する予定です。',
     category: 'プレスリリース'
   },
   {
-    id: 2,
+    id: 3,
     title: 'HealthGenius、日本医師会との提携を発表。医療データ連携を強化',
     date: '2024年4月22日',
     excerpt: 'AIヘルスケアサービス「HealthGenius」は日本医師会との戦略的提携を発表しました。個人の健康データを医療機関と安全に共有できる仕組みを構築します。',
     category: 'パートナーシップ'
-  },
-  {
-    id: 3,
-    title: '「StayFlow」が宿泊施設運営の効率化に貢献。導入事例が100件を突破',
-    date: '2024年3月10日',
-    excerpt: '民泊・宿泊施設管理ツール「StayFlow」の導入施設が100件を突破しました。導入施設の運営効率は平均45%向上しています。',
-    category: '実績報告'
   }
 ];
 

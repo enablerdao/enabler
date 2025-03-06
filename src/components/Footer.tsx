@@ -73,22 +73,22 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-4">サービス</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/services?rank=S" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Sランクサービス
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/services?rank=A" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Aランクサービス
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/services?rank=B" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Bランクサービス
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/services?rank=C" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Cランクサービス
                 </a>
               </li>
@@ -104,17 +104,17 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
                   チーム紹介
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
                   採用情報
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/news" className="text-gray-400 hover:text-white transition-colors text-sm">
                   プレスリリース
                 </a>
               </li>
@@ -142,13 +142,13 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row md:items-center">
             <div className="flex space-x-6 mb-4 md:mb-0 md:mr-8">
-              <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
+              <a href="/privacy-policy" className="text-gray-500 hover:text-white transition-colors text-sm">
                 プライバシーポリシー
               </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
+              <a href="/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
                 利用規約
               </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
+              <a href="/sitemap" className="text-gray-500 hover:text-white transition-colors text-sm">
                 サイトマップ
               </a>
             </div>

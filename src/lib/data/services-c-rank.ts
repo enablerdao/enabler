@@ -8,7 +8,7 @@ export const cRankServices: Service[] = [
     nameEn: 'DojoFlow',
     nameJp: '道場フロー - 道場管理',
     marketSize: '約500億円規模',
-    domain: 'dojoflow.io',
+    domain: 'dojoflowapp.com',
     goal: '新規道場導入数5件',
     description: '武道道場のための予約・会員・請求管理システム。トレーニングの進捗管理や大会スケジュールも管理可能。',
     features: [
@@ -76,22 +76,22 @@ export const cRankServices: Service[] = [
       }
     ],
     apiInfo: {
-      endpoint: "https://api.dojoflow.io/v1",
+      endpoint: "https://api.dojoflowapp.com/v1",
       description: "DojoFlowのAPIを使用して、あなたのシステムと連携し、道場管理を自動化することができます。会員、予約、支払い、スケジュールなどのデータにアクセス可能です。",
       authentication: "APIキー認証を使用します。ダッシュボードから発行したAPIキーをHeader「X-API-Key」に設定してリクエストを行ってください。",
       examples: [
         {
           language: "JavaScript",
-          code: `fetch('https://api.dojoflow.io/v1/members', {\n  headers: {\n    'X-API-Key': 'your_api_key_here'\n  }\n})\n.then(response => response.json())\n.then(data => console.log(data));`,
+          code: `fetch('https://api.dojoflowapp.com/v1/members', {\n  headers: {\n    'X-API-Key': 'your_api_key_here'\n  }\n})\n.then(response => response.json())\n.then(data => console.log(data));`,
           description: "会員リスト取得例"
         },
         {
           language: "Python",
-          code: `import requests\n\nheaders = {\n    'X-API-Key': 'your_api_key_here'\n}\n\nresponse = requests.get('https://api.dojoflow.io/v1/schedules', headers=headers)\ndata = response.json()\nprint(data)`,
+          code: `import requests\n\nheaders = {\n    'X-API-Key': 'your_api_key_here'\n}\n\nresponse = requests.get('https://api.dojoflowapp.com/v1/schedules', headers=headers)\ndata = response.json()\nprint(data)`,
           description: "スケジュール取得例"
         }
       ],
-      documentation: "https://docs.dojoflow.io"
+      documentation: "https://docs.dojoflowapp.com"
     },
     testimonials: [
       {

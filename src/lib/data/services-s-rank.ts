@@ -7,7 +7,7 @@ export const sRankServices: Service[] = [
     nameEn: 'PetPals',
     nameJp: 'ペットパルズ - ペットコミュニティ',
     marketSize: '約1000億円',
-    domain: 'petpals.io',
+    domain: 'petpalsapp.com',
     goal: 'アクティブユーザー数1万人',
     description: 'ペット愛好家向けのSNSプラットフォーム。写真共有、イベント情報、専門家アドバイスを提供。',
     features: [
@@ -36,7 +36,7 @@ export const sRankServices: Service[] = [
     nameEn: 'TaskTrust',
     nameJp: 'タスクトラスト - AIタスク管理',
     marketSize: '約3000億円',
-    domain: 'tasktrust.ai',
+    domain: 'tasktrusthq.com',
     goal: '有料プラン契約数500件',
     description: 'AIを活用したタスク管理ツール。タスクの優先順位付け、自動スケジューリング、進捗管理を効率化。',
     features: [
@@ -65,7 +65,7 @@ export const sRankServices: Service[] = [
     nameEn: 'Kireasy',
     nameJp: 'キリージー - 清掃マッチング',
     marketSize: '約2兆円規模',
-    domain: 'kireasy.io',
+    domain: 'enablerhq.com',
     goal: '登録スタッフ数500人突破、初年度清掃実績5,000件以上',
     description: '民泊や宿泊施設のオーナーとプロの清掃スタッフを効率よくつなぐAIマッチングプラットフォーム。清掃スケジュール管理、スタッフ評価システム、自動決済などを搭載し、清掃にかかる手間とコストを大幅に削減します。',
     catchphrase: 'キレイをもっと簡単に。',
@@ -197,7 +197,7 @@ export const sRankServices: Service[] = [
     nameEn: 'StayFlow',
     nameJp: 'ステイフロー - 民泊運営管理',
     marketSize: '約3兆円規模',
-    domain: 'stayflow.io',
+    domain: 'stayflowapp.com',
     goal: '登録ホスト数100件、管理物件数300件達成',
     description: '民泊ホスト向けの総合運営管理プラットフォーム。予約管理、清掃管理、ゲスト対応などを一元化し、業務効率化を実現します。',
     features: [
@@ -282,7 +282,7 @@ export const sRankServices: Service[] = [
     nameEn: 'TimeDrop',
     nameJp: 'タイムドロップ - 当日予約特化型',
     marketSize: '約2兆円規模',
-    domain: 'timedrop.io',
+    domain: 'timedropnow.com',
     goal: '登録施設200件、アプリDL5,000件達成',
     description: '空室を特別価格で提供する当日予約に特化したサービス。宿泊施設の稼働率向上とユーザーの賢い宿泊を実現します。',
     features: [

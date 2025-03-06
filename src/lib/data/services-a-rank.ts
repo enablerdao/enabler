@@ -8,7 +8,7 @@ export const aRankServices: Service[] = [
     nameEn: 'Skillity',
     nameJp: 'スキリティ - スキルシェア',
     marketSize: '約4兆円',
-    domain: 'skillity.io',
+    domain: 'skillityapp.com',
     goal: '登録スキル数500件、ユーザー数300名突破',
     description: '個人のスキルやノウハウを売買できるマーケットプレイス。ビジネス、クリエイティブ、テクノロジーなど多様なカテゴリーを提供。',
     features: [
@@ -37,7 +37,7 @@ export const aRankServices: Service[] = [
     nameEn: 'Unused',
     nameJp: 'アンユーズド - 空間再利用',
     marketSize: '数千億円規模',
-    domain: 'unused.io',
+    domain: 'unusedhub.com',
     goal: 'リストアップ空間数50件達成、初成約10件',
     description: '使われていない空きスペースを一時利用できるプラットフォーム。イベント、撮影、ポップアップストアなどに活用可能。',
     features: [
@@ -66,7 +66,7 @@ export const aRankServices: Service[] = [
     nameEn: 'MatchSense',
     nameJp: 'マッチセンス - AI婚活マッチング',
     marketSize: '約1兆円規模',
-    domain: 'matchsense.io',
+    domain: 'matchsenseapp.com',
     goal: 'マッチング成功事例を20件以上獲得',
     description: 'AIが価値観や生活スタイルを分析し、最適なパートナー候補を紹介。従来のマッチングよりも高い成婚率を実現。',
     features: [
@@ -95,7 +95,7 @@ export const aRankServices: Service[] = [
     nameEn: 'TravelMate',
     nameJp: 'トラベルAI - 旅行コンシェルジュ',
     marketSize: '約110兆円',
-    domain: 'travelai.io',
+    domain: 'travelmatehq.com',
     goal: 'AIレコメンド精度向上、初期フィードバック100件収集',
     description: 'AIが旅行者の好みや予算に合わせたオーダーメイドの旅行プランを提案。地元の穴場スポットや体験も紹介。',
     features: [
@@ -124,7 +124,7 @@ export const aRankServices: Service[] = [
     nameEn: 'Aicademy',
     nameJp: 'アイカデミー - AIパーソナライズ教育',
     marketSize: '約30兆円',
-    domain: 'aicademy.ai',
+    domain: 'getaicademy.com',
     goal: '教育プログラム10件完成、無料体験者500人',
     description: '学習者一人ひとりの理解度や学習スタイルに合わせた教育コンテンツを提供。AIが弱点を分析し効率的な学習をサポート。',
     features: [

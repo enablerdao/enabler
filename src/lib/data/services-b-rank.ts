@@ -8,7 +8,7 @@ export const bRankServices: Service[] = [
     nameEn: 'AIFit',
     nameJp: 'AIフィット - パーソナルジム',
     marketSize: '約10兆円',
-    domain: 'aifit.ai',
+    domain: 'getaifit.com',
     goal: '初回体験トレーニング100件提供',
     description: 'AIが身体データを分析し、最適なトレーニングプランと栄養アドバイスを提供。リアルタイムでフォームチェックも可能。',
     features: [
@@ -37,7 +37,7 @@ export const bRankServices: Service[] = [
     nameEn: 'TaskTrust',
     nameJp: 'タスクトラスト - お手伝いマッチング',
     marketSize: '約75兆円（世界）',
-    domain: 'tasktrust.io',
+    domain: 'tasktrusthq.com',
     goal: '新規マッチング件数100件突破',
     description: '日常の家事や雑用を依頼できるシェアリングサービス。信頼性の高いヘルパーと安全に取引可能。',
     features: [
@@ -66,7 +66,7 @@ export const bRankServices: Service[] = [
     nameEn: 'FoodSaver',
     nameJp: 'フードセーバー - 食品ロスマーケット',
     marketSize: '約6000億円',
-    domain: 'foodsaver.ai',
+    domain: 'foodsavehub.com',
     goal: 'パートナー店舗20件と契約完了',
     description: '飲食店や小売店の余剰食品を特別価格で提供するプラットフォーム。食品ロス削減と消費者の節約を同時に実現。',
     mission: "おいしさを救え、地球も救え。まだ食べられるものを捨てる社会に革命を。",
@@ -138,7 +138,7 @@ export const bRankServices: Service[] = [
     nameEn: 'PetPals',
     nameJp: 'ペットパルズ - ペット預かりサービス',
     marketSize: '数千億円規模',
-    domain: 'petpals.io',
+    domain: 'petpalsapp.com',
     goal: '預かりサービス利用実績50件達成',
     description: '信頼できるペットシッターとペットオーナーをマッチング。安心して愛犬・愛猫を預けられるサービス。',
     features: [
@@ -167,7 +167,7 @@ export const bRankServices: Service[] = [
     nameEn: 'SeniorKnowledge',
     nameJp: 'シニアナレッジ - 高齢者知識共有',
     marketSize: '数百億円規模',
-    domain: 'seniorknowledge.ai',
+    domain: 'myseniorknowledge.com',
     goal: 'コンテンツ投稿数100件、登録ユーザー数200人達成',
     description: 'シニア世代の経験や知識を次世代に伝えるプラットフォーム。オンラインで相談や知恵を共有できるコミュニティ。',
     features: [
@@ -196,7 +196,7 @@ export const bRankServices: Service[] = [
     nameEn: 'EmotionSeed',
     nameJp: 'エモーションシード - 感情共有コミュニティ',
     marketSize: '数百億円規模',
-    domain: 'emotionseed.ai',
+    domain: 'emotionseed.com',
     goal: 'コミュニティメンバー500人突破、投稿数200件',
     description: '日々の感情や気持ちを共有し、共感しあえるオンラインコミュニティ。メンタルヘルスケアにも貢献。',
     features: [
@@ -225,7 +225,7 @@ export const bRankServices: Service[] = [
     nameEn: 'TaskTrust',
     nameJp: 'タスクトラスト - 何でも屋マッチング',
     marketSize: '世界約5000億ドル規模',
-    domain: 'tasktrust.io',
+    domain: 'tasktrusthq.com',
     goal: '新規登録者200名、依頼成立50件',
     description: 'あらゆる仕事やタスクを依頼できるマッチングプラットフォーム。専門家から一般の人まで多様なスキルを活用可能。',
     features: [

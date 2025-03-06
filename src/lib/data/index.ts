@@ -6,6 +6,12 @@ import { aRankServices } from './services-a-rank';
 import { bRankServices } from './services-b-rank';
 import { cRankServices } from './services-c-rank';
 
+// Add domains for services that might not be in the rank files yet
+const additionalDomains = {
+  'Enabliss': 'enablisslife.com',
+  'HealthGenius': 'healthgeniushq.com'
+};
+
 // Assign categories to services
 const categorizeServices = (services: Service[]): Service[] => {
   return services.map(service => {
@@ -56,6 +62,16 @@ const categorizeServices = (services: Service[]): Service[] => {
       case 'FundNest': emoji = '📈'; break;
       case 'EcoStay': emoji = '♻️'; break;
       case 'SeniorKnowledge': emoji = '👵'; break;
+    }
+    
+    // Check if this service needs a domain from additionalDomains
+    if (additionalDomains[service.nameEn as keyof typeof additionalDomains] && !service.domain) {
+      return { 
+        ...service, 
+        category, 
+        emoji, 
+        domain: additionalDomains[service.nameEn as keyof typeof additionalDomains] 
+      };
     }
     
     return { ...service, category, emoji };

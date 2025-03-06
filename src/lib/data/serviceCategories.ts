@@ -1,5 +1,5 @@
 
-import { ServiceCategory } from '../types/service';
+import { Service, ServiceCategory } from '../types/service';
 import { services } from './index';
 
 // Group services by their categories

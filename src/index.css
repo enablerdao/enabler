@@ -87,6 +87,15 @@
   .fade-in-view.visible {
     @apply opacity-100 translate-y-0;
   }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    -webkit-background-clip: text;
+  }
+  
+  .apple-card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md;
+  }
 }
 
 /* Custom scroll behavior */

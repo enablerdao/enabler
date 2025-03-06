@@ -9,9 +9,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Header/Navbar */}
-      <header className="border-b border-gray-100">
+      <header className="bg-white border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="font-bold text-2xl text-gray-900">ENABLER</div>
@@ -26,7 +26,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-white to-gray-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <p className="text-sm text-gray-600 mb-3">株式会社イネブラ | Enabler, Inc.</p>
@@ -52,7 +52,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* StayFlow */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">StayFlow（ステイフロー）</h4>
                 <p className="text-gray-700 mb-4 italic">「ホストの悩みは、もう過去のもの。」</p>
                 <p className="text-gray-600 mb-4">
@@ -71,7 +71,7 @@ const Index = () => {
               </div>
 
               {/* TravelMate */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">TravelMate（トラベルメイト）</h4>
                 <p className="text-gray-700 mb-4 italic">「あなたの旅に、最適な相棒を。」</p>
                 <p className="text-gray-600">
@@ -80,7 +80,7 @@ const Index = () => {
               </div>
 
               {/* TimeDrop */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">TimeDrop（タイムドロップ）</h4>
                 <p className="text-gray-700 mb-4 italic">「お得に泊まる喜びを、もっと手軽に。」</p>
                 <p className="text-gray-600">
@@ -97,7 +97,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* PetPals */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">PetPals（ペットパルズ）</h4>
                 <p className="text-gray-700 mb-4 italic">「信頼できる仲間と、ペットライフをもっと楽しく。」</p>
                 <p className="text-gray-600">
@@ -106,7 +106,7 @@ const Index = () => {
               </div>
 
               {/* Kireasy */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">Kireasy（キリージー）</h4>
                 <p className="text-gray-700 mb-4 italic">「面倒な清掃業務は、AIにお任せ。」</p>
                 <p className="text-gray-600">
@@ -115,7 +115,7 @@ const Index = () => {
               </div>
 
               {/* MatchSense */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">MatchSense（マッチセンス）</h4>
                 <p className="text-gray-700 mb-4 italic">「AIが導く、運命の出会い。」</p>
                 <p className="text-gray-600">
@@ -132,7 +132,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* TaskTrust */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">TaskTrust（タスクトラスト）</h4>
                 <p className="text-gray-700 mb-4 italic">「あなたの『困った』を『よかった』に変える。」</p>
                 <p className="text-gray-600">
@@ -141,7 +141,7 @@ const Index = () => {
               </div>
 
               {/* Skillity */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">Skillity（スキリティ）</h4>
                 <p className="text-gray-700 mb-4 italic">「あなたのスキルが、次の可能性を生み出す。」</p>
                 <p className="text-gray-600">
@@ -150,7 +150,7 @@ const Index = () => {
               </div>
 
               {/* AIcademy */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">AIcademy（AIカデミー）</h4>
                 <p className="text-gray-700 mb-4 italic">「学びがもっと楽しく、深く。」</p>
                 <p className="text-gray-600">
@@ -167,7 +167,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* AIFit */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">AIFit（AIフィット）</h4>
                 <p className="text-gray-700 mb-4 italic">「理想の体をAIがサポート。」</p>
                 <p className="text-gray-600">
@@ -176,7 +176,7 @@ const Index = () => {
               </div>
 
               {/* EmotionSeed */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">EmotionSeed（エモーションシード）</h4>
                 <p className="text-gray-700 mb-4 italic">「あなたの心に寄り添う、居心地のいい場所。」</p>
                 <p className="text-gray-600">
@@ -193,7 +193,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* FoodSaver */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">FoodSaver（フードセーバー）</h4>
                 <p className="text-gray-700 mb-4 italic">「食べて、つながって、未来を救う。」</p>
                 <p className="text-gray-600">
@@ -202,7 +202,7 @@ const Index = () => {
               </div>
 
               {/* SeniorKnowledge */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">SeniorKnowledge（シニアナレッジ）</h4>
                 <p className="text-gray-700 mb-4 italic">「経験を未来への贈り物に。」</p>
                 <p className="text-gray-600">
@@ -219,7 +219,7 @@ const Index = () => {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* DojoFlow */}
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-bold mb-2">DojoFlow（道場フロー）</h4>
                 <p className="text-gray-700 mb-4 italic">「道場運営をもっとスマートに。」</p>
                 <p className="text-gray-600">

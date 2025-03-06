@@ -1,4 +1,3 @@
-
 export interface Service {
   id: number;
   rank: 'S' | 'A' | 'B' | 'C';
@@ -688,50 +687,4 @@ export const services: Service[] = [
     features: [
       { 
         title: '道場一覧',
-        description: '道場をカテゴリー別に整理し、詳細な情報や評価を確認できます。'
-      },
-      { 
-        title: '道場検索',
-        description: 'キーワードで道場を検索し、最適な道場を見つけることができます。'
-      },
-      { 
-        title: '道場管理',
-        description: '道場を管理するための機能。管理者と道場の所有者双方で価値を共有できます。'
-      },
-      { 
-        title: '道場評価',
-        description: '道場の評価機能。道場の品質や価値を評価し、他のユーザーに共有できます。'
-      }
-    ],
-    color: '#000000'
-  },
-  {
-    id: 17,
-    rank: 'C',
-    nameEn: 'TasteFund',
-    nameJp: 'テイストファンド - 食品クラファン',
-    marketSize: '数百億円規模',
-    domain: 'tastefund.io',
-    goal: '初期クラファン成功プロジェクト3件達成',
-    description: '食品特化型のクラウドファンディングプラットフォーム。革新的な食品やレストランのプロジェクトを応援できる。',
-    features: [
-      { 
-        title: 'プロジェクト一覧',
-        description: 'プロジェクトをカテゴリー別に整理し、詳細な情報や評価を確認できます。'
-      },
-      { 
-        title: 'プロジェクト検索',
-        description: 'キーワードでプロジェクトを検索し、最適なプロジェクトを見つけることができます。'
-      },
-      { 
-        title: 'プロジェクト支援',
-        description: 'プロジェクトを支援するための機能。支援者とプロジェクトオーナー双方で価値を共有できます。'
-      },
-      { 
-        title: 'プロジェクト評価',
-        description: 'プロジェクトの評価機能。プロジェクトの品質や価値を評価し、他のユーザーに共有できます。'
-      }
-    ],
-    color: '#e91e63'
-  }
-];
+        description

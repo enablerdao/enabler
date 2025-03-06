@@ -38,6 +38,7 @@ const serviceEditLinks = {
   'TaskTrust': 'https://lovable.dev/projects/10977e27-7b88-4bb8-8066-fae0ab704715',
   'MatchSense': 'https://lovable.dev/projects/1af4d4cb-7101-45cf-b4a0-affd18aa1e0a',
   'TasteFund': 'https://lovable.dev/projects/6eb4455a-e9da-4f39-b6a9-ff5deb8b4565',
+  'StayLife': 'https://lovable.dev/projects/ec89a15a-f2db-4c9a-a8f5-bf77d8c8c11f'
 };
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {

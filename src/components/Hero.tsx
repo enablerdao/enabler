@@ -24,12 +24,6 @@ const Hero = () => {
         </MotionBox>
         
         <MotionBox delay={300}>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-enabler-700 to-enabler-500">
-            テクノロジーで可能性を広げる
-          </h1>
-        </MotionBox>
-        
-        <MotionBox delay={400}>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 italic font-medium">
             「あったらいいな」を超えて、「なくてはならない」へ。
             テクノロジーで、あなたの日常を変えていく。
@@ -37,7 +31,7 @@ const Hero = () => {
         </MotionBox>
         
         <MotionBox delay={500}>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10">
             革新的なデジタルサービスで人々の生活を豊かにし、
             より良い未来を創造するための挑戦を続けています。
           </p>

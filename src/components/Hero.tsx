@@ -2,6 +2,7 @@
 import React from 'react';
 import { MotionBox } from './ui/motion-box';
 import { ChevronDown } from 'lucide-react';
+import FibonacciBackground from './FibonacciBackground';
 
 const Hero = () => {
   return (
@@ -9,8 +10,9 @@ const Hero = () => {
       id="hero" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
     >
-      {/* Background with subtle gradient */}
+      {/* Background with subtle gradient and Fibonacci animation */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10"></div>
+      <FibonacciBackground />
       
       {/* Decorative elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-enabler-100 rounded-full blur-3xl opacity-30 animate-subtle-pulse"></div>
@@ -24,12 +26,12 @@ const Hero = () => {
         </MotionBox>
         
         <MotionBox delay={300}>
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-enabler-800 mb-8 leading-tight max-w-4xl mx-auto">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-enabler-800 mb-8 leading-tight max-w-4xl mx-auto">
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-enabler-600 to-enabler-800 bg-clip-text text-transparent">
                 「あったらいいな」を超えて、「なくてはならない」へ。
               </span>
-              <span className="absolute -bottom-1 left-0 w-full h-1 bg-enabler-500 rounded-full opacity-70"></span>
+              <span className="absolute -bottom-1 left-0 w-full h-1.5 bg-enabler-500 rounded-full opacity-70"></span>
             </span>
             <br />
             <span className="text-enabler-700">テクノロジーで、あなたの日常を変えていく。</span>

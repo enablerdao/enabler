@@ -2,7 +2,7 @@
 import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { Briefcase, MapPin, Mail, Phone, Calendar } from 'lucide-react';
+import { Briefcase, MapPin, Calendar } from 'lucide-react';
 
 const AboutSection = () => {
   return (
@@ -65,24 +65,6 @@ const AboutSection = () => {
                     <div>
                       <h4 className="font-medium text-gray-700">所在地</h4>
                       <p className="text-gray-600">{companyInfo.address}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Mail className="w-5 h-5 text-enabler-600 mt-0.5 mr-3" />
-                    <div>
-                      <h4 className="font-medium text-gray-700">メールアドレス</h4>
-                      <a href={`mailto:${companyInfo.email}`} className="text-enabler-600 hover:underline">
-                        {companyInfo.email}
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Phone className="w-5 h-5 text-enabler-600 mt-0.5 mr-3" />
-                    <div>
-                      <h4 className="font-medium text-gray-700">電話番号</h4>
-                      <p className="text-gray-600">{companyInfo.phone}</p>
                     </div>
                   </div>
                 </div>

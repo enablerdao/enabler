@@ -2,7 +2,7 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
-import ServicesGrid from '@/components/ServicesGrid';
+import ServiceCategories from '@/components/ServiceCategories';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -25,7 +25,7 @@ const Index = () => {
         <Hero />
         <HeroStats />
         <AboutSection />
-        <ServicesGrid />
+        <ServiceCategories />
         <Testimonials />
         <LatestNews />
         <PartnerLogos />

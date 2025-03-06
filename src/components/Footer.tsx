@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { companyInfo } from '@/lib/data';
+import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
 import { Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
 
@@ -17,8 +18,8 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+          <div className="md:col-span-2">
             <div className="mb-4">
               <Logo className="text-white" />
             </div>
@@ -69,69 +70,58 @@ const Footer = () => {
             </div>
           </div>
           
-          <div>
-            <h4 className="text-lg font-bold mb-4">サービス</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="/services?rank=S" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Sランクサービス
-                </a>
-              </li>
-              <li>
-                <a href="/services?rank=A" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Aランクサービス
-                </a>
-              </li>
-              <li>
-                <a href="/services?rank=B" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Bランクサービス
-                </a>
-              </li>
-              <li>
-                <a href="/services?rank=C" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Cランクサービス
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold mb-4">会社情報</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  ミッション・ビジョン
-                </a>
-              </li>
-              <li>
-                <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  チーム紹介
-                </a>
-              </li>
-              <li>
-                <a href="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  採用情報
-                </a>
-              </li>
-              <li>
-                <a href="/news" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  プレスリリース
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold mb-4">お問い合わせ</h4>
-            <address className="not-italic text-gray-400 space-y-2 text-sm">
-              <p>{companyInfo.address}</p>
-              <p>
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">
-                  {companyInfo.email}
-                </a>
-              </p>
-              <p>{companyInfo.phone}</p>
-            </address>
+          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <h4 className="text-lg font-bold mb-4">サービスカテゴリー</h4>
+              <ul className="space-y-2">
+                {Object.entries(categoryInfo).map(([key, value]) => (
+                  <li key={key}>
+                    <a href={`#${key}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                      {value.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-bold mb-4">会社情報</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    ミッション・ビジョン
+                  </a>
+                </li>
+                <li>
+                  <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    チーム紹介
+                  </a>
+                </li>
+                <li>
+                  <a href="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    採用情報
+                  </a>
+                </li>
+                <li>
+                  <a href="/news" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    プレスリリース
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-bold mb-4">お問い合わせ</h4>
+              <address className="not-italic text-gray-400 space-y-2 text-sm">
+                <p>{companyInfo.address}</p>
+                <p>
+                  <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">
+                    {companyInfo.email}
+                  </a>
+                </p>
+                <p>{companyInfo.phone}</p>
+              </address>
+            </div>
           </div>
         </div>
         

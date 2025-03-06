@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
@@ -78,7 +79,14 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
       >
         <div className="flex justify-between items-start mb-4">
-          <ServiceLogo serviceName={service.nameEn} size="sm" />
+          <div className="flex items-center">
+            <ServiceLogo serviceName={service.nameEn} size="sm" />
+            {service.emoji && (
+              <span className="text-xl ml-2" role="img" aria-label={service.nameEn}>
+                {service.emoji}
+              </span>
+            )}
+          </div>
           <span className={cn(
             "inline-block px-2.5 py-1 rounded-full text-xs font-bold", 
             rankColorMap[service.rank],

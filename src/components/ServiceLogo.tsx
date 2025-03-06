@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -25,6 +24,11 @@ const ServiceLogo: React.FC<ServiceLogoProps> = ({
     textColor: string;
     fontFamily: string;
   }> = {
+    'Enabliss': {
+      bgColor: 'bg-sky-100',
+      textColor: 'text-sky-800',
+      fontFamily: 'font-sans font-medium tracking-wide',
+    },
     'PetPals': {
       bgColor: 'bg-amber-100',
       textColor: 'text-amber-800',
@@ -45,11 +49,6 @@ const ServiceLogo: React.FC<ServiceLogoProps> = ({
       textColor: 'text-green-800',
       fontFamily: 'font-display tracking-tight',
     },
-    'StayLife': {
-      bgColor: 'bg-sky-100',
-      textColor: 'text-sky-800',
-      fontFamily: 'font-sans font-medium tracking-wide',
-    }
   };
   
   // Default styling if service not found
@@ -64,6 +63,17 @@ const ServiceLogo: React.FC<ServiceLogoProps> = ({
   // Custom SVG Logos for each service
   const renderLogo = () => {
     switch(serviceName) {
+      case 'Enabliss':
+        return (
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="36" height="36" rx="8" fill="#E0F7FF" />
+            <path d="M12,24 C12,17.4 17.4,12 24,12 C30.6,12 36,17.4 36,24 C36,30.6 30.6,36 24,36 C17.4,36 12,30.6 12,24 Z" fill="#0EA5E9" fillOpacity="0.2" />
+            <path d="M18,24 C18,20.7 20.7,18 24,18 C27.3,18 30,20.7 30,24 C30,27.3 27.3,30 24,30 C20.7,30 18,27.3 18,24 Z" fill="#0EA5E9" fillOpacity="0.4" />
+            <circle cx="24" cy="24" r="3" fill="#0EA5E9" />
+            <path d="M15,15 L33,33" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+            <path d="M33,15 L15,33" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+          </svg>
+        );
       case 'PetPals':
         return (
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,22 +117,6 @@ const ServiceLogo: React.FC<ServiceLogoProps> = ({
             <path d="M30,16 L34,16" stroke="#10B981" strokeWidth="4" strokeLinecap="round" />
             <path d="M24,32 L24,38" stroke="#10B981" strokeWidth="4" strokeLinecap="round" />
             <path d="M18,38 L30,38" stroke="#10B981" strokeWidth="4" strokeLinecap="round" />
-          </svg>
-        );
-      case 'StayLife':
-        return (
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="10" width="40" height="28" rx="4" fill="#E0F7FF" />
-            <path d="M4,18 L44,18" stroke="#0EA5E9" strokeWidth="2" />
-            <circle cx="10" cy="14" r="2" fill="#0EA5E9" />
-            <circle cx="16" cy="14" r="2" fill="#0EA5E9" />
-            <rect x="10" y="22" width="12" height="12" rx="2" fill="#0EA5E9" opacity="0.8" />
-            <rect x="26" y="22" width="12" height="5" rx="1" fill="#0EA5E9" opacity="0.6" />
-            <rect x="26" y="29" width="12" height="5" rx="1" fill="#0EA5E9" opacity="0.6" />
-            <path d="M15,34 L17,34 L16,30 L15,34 Z" fill="#FFFFFF" />
-            <path d="M24,6 L24,10" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" />
-            <path d="M16,6 L16,10" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" />
-            <path d="M32,6 L32,10" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" />
           </svg>
         );
       default:

@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
 import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit } from 'lucide-react';
+import SimpleIllustration from './SimpleIllustration';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);
@@ -82,6 +83,9 @@ const AboutSection = () => {
                   {companyInfo.description}
                   <span className="absolute -right-2 -bottom-2 text-enabler-300 opacity-50">_</span>
                 </p>
+                
+                {/* Added the modern illustration */}
+                <SimpleIllustration className="my-10" />
                 
                 <div className="space-y-4 relative">
                   <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">

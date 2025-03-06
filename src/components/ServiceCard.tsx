@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { ExternalLink, ArrowRight, Star } from 'lucide-react';
+import { ExternalLink, ArrowRight, Star, Edit } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logActivity } from '@/lib/logger';
 
@@ -33,6 +33,14 @@ const rankBorderMap = {
   'C': 'border-crank/20',
 };
 
+// Map for service editing tools
+const serviceEditLinks = {
+  'PetPals': 'https://lovable.dev/projects/0e180acf-b16f-4575-bade-365eb8474690',
+  'TaskTrust': 'https://lovable.dev/projects/10977e27-7b88-4bb8-8066-fae0ab704715',
+  'MatchSense': 'https://lovable.dev/projects/1af4d4cb-7101-45cf-b4a0-affd18aa1e0a',
+  'TasteFund': 'https://lovable.dev/projects/6eb4455a-e9da-4f39-b6a9-ff5deb8b4565',
+};
+
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const delayBase = 100;
   const staggerDelay = index * 50;
@@ -54,6 +62,8 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       serviceName: service.nameEn
     });
   };
+
+  const hasEditLink = serviceEditLinks[service.nameEn as keyof typeof serviceEditLinks];
   
   return (
     <MotionBox 
@@ -123,7 +133,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           <span className="text-xs text-gray-500 mt-2">目標: {service.goal}</span>
         </div>
         
-        <div className="mt-4 text-right">
+        <div className="mt-4 flex justify-between items-center">
           <Link 
             to={`/service/${service.id}`}
             onClick={handleCardClick}
@@ -131,6 +141,17 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           >
             詳細を見る <ArrowRight size={16} className="ml-1" />
           </Link>
+          
+          {hasEditLink && (
+            <a 
+              href={hasEditLink}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors"
+            >
+              編集ツール <Edit size={16} className="ml-1" />
+            </a>
+          )}
         </div>
       </div>
     </MotionBox>

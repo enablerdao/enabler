@@ -1,3 +1,4 @@
+<lov-code>
 export interface Service {
   id: number;
   rank: 'S' | 'A' | 'B' | 'C';
@@ -687,4 +688,3 @@ export const services: Service[] = [
     features: [
       { 
         title: '道場一覧',
-        description

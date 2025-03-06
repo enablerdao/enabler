@@ -1,8 +1,20 @@
 
-import React from 'react';
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import LoadingIndicator from './ui/loading-indicator';
 
 const HeroSection = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="pt-32 pb-24 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative">
       {/* ドラえもん風の背景要素 - 四次元ポケット風の円形 */}
@@ -18,53 +30,94 @@ const HeroSection = () => {
         <div className="w-full h-full border-4 border-blue-400 rounded-full border-dashed opacity-40"></div>
       </motion.div>
       
+      {/* アニメーション付きの小さな雲 - ドラえもんの世界感 */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-24 h-12 bg-white rounded-full opacity-30"
+        animate={{ x: [0, 20, 0], y: [0, -5, 0] }}
+        transition={{ 
+          x: { duration: 20, repeat: Infinity, ease: "easeInOut" },
+          y: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+        }}
+      />
+      
+      <motion.div
+        className="absolute bottom-1/3 right-1/4 w-16 h-8 bg-white rounded-full opacity-20"
+        animate={{ x: [0, -15, 0], y: [0, 8, 0] }}
+        transition={{ 
+          x: { duration: 15, repeat: Infinity, ease: "easeInOut" },
+          y: { duration: 12, repeat: Infinity, ease: "easeInOut" }
+        }}
+      />
+      
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-gray-900 mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            「あったらいいな」を超えて、<br/>
-            <span className="text-gradient bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400">なくてはならない</span>へ。
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto font-light mb-12 leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            <span className="text-blue-500">ど</span>こでもドアを開けるような、
-            <span className="text-blue-500">ら</span>くらく未来を創る、
-            <span className="text-blue-500">え</span>がおあふれる体験を、
-            <span className="text-blue-500">も</span>っと身近に。
-            <span className="text-blue-500">ん</span>なの夢を叶えます。
-          </motion.p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-5 mt-8">
-            <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:shadow-blue-300/50 transition-all duration-300"
+        <AnimatePresence>
+          {isLoading ? (
+            <motion.div 
+              className="flex justify-center items-center min-h-[400px]"
+              exit={{ opacity: 0 }}
             >
-              サービスを見る
-            </motion.button>
-            <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-blue-600 border border-gray-200 font-medium rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+              <LoadingIndicator 
+                variant="propeller" 
+                size="lg" 
+                text="ポケットから取り出し中..."
+                className="gadget-appear"
+              />
+            </motion.div>
+          ) : (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl mx-auto text-center"
             >
-              お問い合わせ
-            </motion.button>
-          </div>
-        </motion.div>
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-gray-900 mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                「あったらいいな」を超えて、<br/>
+                <span className="text-gradient bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400">なくてはならない</span>へ。
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto font-light mb-12 leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                <span className="text-blue-500">ど</span>こでもドアを開けるような、
+                <span className="text-blue-500">ら</span>くらく未来を創る、
+                <span className="text-blue-500">え</span>がおあふれる体験を、
+                <span className="text-blue-500">も</span>っと身近に。
+                <span className="text-blue-500">ん</span>なの夢を叶えます。
+              </motion.p>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-5 mt-8">
+                <motion.button 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.4 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:shadow-blue-300/50 transition-all duration-300"
+                >
+                  サービスを見る
+                </motion.button>
+                <motion.button 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-white text-blue-600 border border-gray-200 font-medium rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  お問い合わせ
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         
         {/* ドラえもんの鈴のような円形の背景要素 */}
         <motion.div 

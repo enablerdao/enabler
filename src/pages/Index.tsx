@@ -1,12 +1,17 @@
 
-import React, { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
+import React from 'react';
+import Hero from '@/components/Hero';
+import AboutSection from '@/components/AboutSection';
+import ServiceCategories from '@/components/ServiceCategories';
+import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import HeroStats from '@/components/HeroStats';
+import LatestNews from '@/components/LatestNews';
+import PartnerLogos from '@/components/PartnerLogos';
+import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
-import { serviceCategories } from '@/lib/data';
-import { MotionBox } from '@/components/ui/motion-box';
-import HeroSection from './index/HeroSection';
-import CategoryServiceList from './index/CategoryServiceList';
+import { useEffect } from 'react';
 
 const Index = () => {
   useEffect(() => {
@@ -17,54 +22,14 @@ const Index = () => {
     <>
       <Navbar />
       <main>
-        <HeroSection />
-
-        <section id="services" className="py-16">
-          <div className="container mx-auto px-6">
-            <MotionBox>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-                ENABLER サービス一覧
-              </h2>
-            </MotionBox>
-
-            <CategoryServiceList 
-              services={serviceCategories['STAY_TRAVEL'] || []}
-              emoji="🌴"
-              title="STAY & TRAVEL"
-            />
-
-            <CategoryServiceList 
-              services={serviceCategories['LIFE_COMMUNITY'] || []}
-              emoji="🏡"
-              title="LIFE & COMMUNITY"
-            />
-
-            <CategoryServiceList 
-              services={serviceCategories['WORK_PRODUCTIVITY'] || []}
-              emoji="💼"
-              title="WORK & PRODUCTIVITY"
-            />
-
-            <CategoryServiceList 
-              services={serviceCategories['HEALTH_WELLNESS'] || []}
-              emoji="🌱"
-              title="HEALTH & WELLNESS"
-            />
-
-            <CategoryServiceList 
-              services={serviceCategories['INVEST_GROW'] || []}
-              emoji="📈"
-              title="INVEST & GROW"
-            />
-
-            <div className="text-center mt-20">
-              <MotionBox delay={500}>
-                <p className="text-xl mb-8">テクノロジーを通じて、あなたがワクワクする未来を一緒に作りませんか？</p>
-                <p className="text-2xl font-medium">あなたの「あったらいいな」は、もうここにあります。</p>
-              </MotionBox>
-            </div>
-          </div>
-        </section>
+        <Hero />
+        <HeroStats />
+        <AboutSection />
+        <ServiceCategories />
+        <Testimonials />
+        <LatestNews />
+        <PartnerLogos />
+        <ContactSection />
       </main>
       <Footer />
     </>

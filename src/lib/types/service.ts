@@ -1,21 +1,16 @@
 export interface Service {
   id: number;
-  rank: string;
+  rank: 'S' | 'A' | 'B' | 'C';
   nameEn: string;
   nameJp: string;
-  marketSize?: string;
-  domain?: string;
-  goal?: string;
-  description: string;
-  features?: {
-    title: string;
-    description: string;
-  }[];
-  color?: string;
+  marketSize: string;
+  domain: string;
+  goal: string;
   category?: ServiceCategory;
   emoji?: string;
-  priority?: number;
-  catchphrase?: string;
+  description?: string;
+  features?: { title: string; description: string }[];
+  color?: string;
   mission?: string;
   vision?: string;
   targetAudience?: string;
@@ -23,21 +18,12 @@ export interface Service {
   midtermGoal?: string;
   longtermGoal?: string;
   launchDate?: string;
+  catchphrase?: string;
   quote?: string;
   quoteAuthor?: string;
-  useCases?: {
-    title: string;
-    description: string;
-    result?: string;
-  }[];
-  uniquePoints?: {
-    title: string;
-    description: string;
-  }[];
-  faqs?: {
-    question: string;
-    answer: string;
-  }[];
+  useCases?: { title: string; description: string; result?: string }[];
+  uniquePoints?: { title: string; description: string }[];
+  faqs?: { question: string; answer: string }[];
   pricing?: PricingPlan[];
   testimonials?: Testimonial[];
   apiInfo?: ApiInfo;

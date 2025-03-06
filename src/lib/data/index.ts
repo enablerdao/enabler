@@ -1,5 +1,5 @@
-import { Service } from './types/service';
-import { serviceCategories, initializeServiceCategories } from './serviceCategories';
+
+import { Service, ServiceCategory } from '../types/service';
 import { companyInfo } from './company';
 import { sRankServices } from './services-s-rank';
 import { aRankServices } from './services-a-rank';
@@ -10,15 +10,6 @@ import { cRankServices } from './services-c-rank';
 const additionalDomains = {
   'Enabliss': 'enablisslife.com',
   'HealthGenius': 'healthgeniushq.com'
-};
-
-// Prioritize certain services to appear at the top of their categories
-const servicePriority = {
-  'StayFlow': 1,
-  'TimeDrop': 2,
-  'PetPals': 1,
-  'Kireasy': 2,
-  'TaskTrust': 1
 };
 
 // Assign categories to services
@@ -73,48 +64,26 @@ const categorizeServices = (services: Service[]): Service[] => {
       case 'SeniorKnowledge': emoji = '👵'; break;
     }
     
-    // Add priority for sorting within categories
-    const priority = servicePriority[service.nameEn as keyof typeof servicePriority] || 99;
-    
     // Check if this service needs a domain from additionalDomains
     if (additionalDomains[service.nameEn as keyof typeof additionalDomains] && !service.domain) {
       return { 
         ...service, 
         category, 
         emoji, 
-        priority,
         domain: additionalDomains[service.nameEn as keyof typeof additionalDomains] 
       };
     }
     
-    return { ...service, category, emoji, priority };
+    return { ...service, category, emoji };
   });
 };
 
-// Combine and sort all services
+// Combine all services
 export const services: Service[] = categorizeServices([
   ...sRankServices,
   ...aRankServices,
   ...bRankServices,
   ...cRankServices
-]).sort((a, b) => {
-  // First sort by rank
-  const rankOrder = { 'S': 0, 'A': 1, 'B': 2, 'C': 3 };
-  const rankDiff = (rankOrder[a.rank as keyof typeof rankOrder] || 99) - 
-                   (rankOrder[b.rank as keyof typeof rankOrder] || 99);
-  
-  if (rankDiff !== 0) return rankDiff;
-  
-  // Then by priority (if set)
-  const aPriority = a.priority || 99;
-  const bPriority = b.priority || 99;
-  if (aPriority !== bPriority) return aPriority - bPriority;
-  
-  // Then by ID
-  return a.id - b.id;
-});
+]);
 
-// Initialize service categories with the sorted services
-initializeServiceCategories(services);
-
-export { companyInfo, serviceCategories };
+export { companyInfo };

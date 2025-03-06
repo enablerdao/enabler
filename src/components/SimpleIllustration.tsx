@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Users, Lightbulb, Rocket, Code } from 'lucide-react';
 
 interface SimpleIllustrationProps {
@@ -7,97 +7,232 @@ interface SimpleIllustrationProps {
 }
 
 const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  
+  useEffect(() => {
+    // アニメーション効果のための要素を取得
+    const svg = svgRef.current;
+    if (!svg) return;
+    
+    // 中央の人物を少しゆっくりと上下に動かす
+    const centralPerson = svg.querySelector('#central-person');
+    if (centralPerson) {
+      centralPerson.animate(
+        [
+          { transform: 'translateY(0)' },
+          { transform: 'translateY(-5px)' },
+          { transform: 'translateY(0)' },
+        ],
+        {
+          duration: 3000,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+        }
+      );
+    }
+    
+    // アイデアバブルを脈打たせる
+    const ideaBubble = svg.querySelector('#idea-bubble');
+    if (ideaBubble) {
+      ideaBubble.animate(
+        [
+          { transform: 'scale(1)', opacity: 1 },
+          { transform: 'scale(1.05)', opacity: 0.9 },
+          { transform: 'scale(1)', opacity: 1 },
+        ],
+        {
+          duration: 2000,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+        }
+      );
+    }
+    
+    // テクノロジーバブルを回転させる
+    const techBubble = svg.querySelector('#tech-bubble');
+    if (techBubble) {
+      techBubble.animate(
+        [
+          { transform: 'rotate(0deg)' },
+          { transform: 'rotate(360deg)' },
+        ],
+        {
+          duration: 20000,
+          iterations: Infinity,
+          easing: 'linear',
+        }
+      );
+    }
+    
+    // コミュニティバブルをわずかに拡大縮小させる
+    const communityBubble = svg.querySelector('#community-bubble');
+    if (communityBubble) {
+      communityBubble.animate(
+        [
+          { transform: 'scale(1)' },
+          { transform: 'scale(1.03)' },
+          { transform: 'scale(1)' },
+        ],
+        {
+          duration: 2500,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+        }
+      );
+    }
+    
+    // 成長バブルを上下に動かす
+    const growthBubble = svg.querySelector('#growth-bubble');
+    if (growthBubble) {
+      growthBubble.animate(
+        [
+          { transform: 'translateY(0)' },
+          { transform: 'translateY(-8px)' },
+          { transform: 'translateY(0)' },
+        ],
+        {
+          duration: 2800,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+        }
+      );
+    }
+    
+    // 接続線をアニメーション化
+    const connectionLines = svg.querySelectorAll('.connection-line');
+    connectionLines.forEach((line, index) => {
+      line.animate(
+        [
+          { strokeDashoffset: 100 },
+          { strokeDashoffset: 0 },
+        ],
+        {
+          duration: 2000 + (index * 200),
+          iterations: Infinity,
+          easing: 'linear',
+        }
+      );
+    });
+    
+  }, []);
+  
   return (
     <div className={`w-full max-w-md mx-auto my-8 ${className}`}>
-      <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Background gradient */}
+      <svg ref={svgRef} viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-lg">
+        {/* 背景グラデーション */}
         <defs>
           <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#E0F2FE" stopOpacity="0.6" />
             <stop offset="100%" stopColor="#BAE6FD" stopOpacity="0.4" />
           </linearGradient>
+          
+          {/* パルス効果のためのフィルター */}
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          
+          {/* 3D効果のためのグラデーション */}
+          <linearGradient id="sphere-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0EA5E9" />
+            <stop offset="100%" stopColor="#0284C7" />
+          </linearGradient>
         </defs>
-        <rect x="0" y="0" width="400" height="300" rx="20" fill="url(#bg-gradient)" />
         
-        {/* Title with better positioning and more space */}
-        <text x="200" y="40" fill="#0369A1" fontFamily="sans-serif" fontSize="16" fontWeight="bold" textAnchor="middle">可能性を広げる社会をつくる</text>
+        {/* 背景 */}
+        <rect x="0" y="0" width="400" height="350" rx="20" fill="url(#bg-gradient)" />
         
-        {/* Central person - representing individual */}
-        <circle cx="200" cy="150" r="40" fill="#0EA5E9" opacity="0.9" />
-        <circle cx="200" cy="150" r="34" fill="#FFFFFF" />
-        <circle cx="200" cy="130" r="12" fill="#0EA5E9" /> {/* head */}
-        <rect x="188" y="145" width="24" height="30" rx="10" fill="#0EA5E9" /> {/* body */}
+        {/* タイトル */}
+        <text x="200" y="40" fill="#0369A1" fontFamily="sans-serif" fontSize="18" fontWeight="bold" textAnchor="middle">可能性を広げる社会をつくる</text>
         
-        {/* Ideas and possibilities - repositioned for better spacing */}
-        <g id="idea-bubble">
-          <circle cx="120" cy="90" r="30" fill="#F97316" opacity="0.7" />
-          <circle cx="120" cy="90" r="24" fill="#FFFFFF" />
-          <path d="M120,80 L120,92 M120,97 L120,97" stroke="#F97316" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="120" cy="78" r="3" fill="#F97316" />
+        {/* 中央の人物 - 個人を表現 */}
+        <g id="central-person">
+          <circle cx="200" cy="150" r="44" fill="#0EA5E9" opacity="0.9" />
+          <circle cx="200" cy="150" r="38" fill="#FFFFFF" />
+          <circle cx="200" cy="130" r="14" fill="url(#sphere-gradient)" /> {/* 頭 */}
+          <rect x="188" y="145" width="24" height="30" rx="10" fill="url(#sphere-gradient)" /> {/* 体 */}
+          <ellipse cx="200" cy="185" rx="14" ry="5" fill="#0EA5E9" opacity="0.2" /> {/* 影 */}
         </g>
         
-        {/* Technology - repositioned */}
-        <g id="tech-bubble">
-          <circle cx="280" cy="90" r="30" fill="#8B5CF6" opacity="0.7" />
-          <circle cx="280" cy="90" r="24" fill="#FFFFFF" />
-          <path d="M270,90 L290,90 M280,80 L280,100" stroke="#8B5CF6" strokeWidth="3" strokeLinecap="round" />
+        {/* アイデア - 位置調整済み */}
+        <g id="idea-bubble" filter="url(#glow)">
+          <circle cx="110" cy="90" r="30" fill="#F97316" opacity="0.7" />
+          <circle cx="110" cy="90" r="24" fill="#FFFFFF" />
+          <path d="M110,80 L110,92 M110,97 L110,97" stroke="#F97316" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="110" cy="78" r="3" fill="#F97316" />
         </g>
         
-        {/* Community - repositioned */}
-        <g id="community-bubble">
-          <circle cx="120" cy="210" r="30" fill="#22C55E" opacity="0.7" />
-          <circle cx="120" cy="210" r="24" fill="#FFFFFF" />
-          <circle cx="113" cy="205" r="6" fill="#22C55E" />
-          <circle cx="127" cy="205" r="6" fill="#22C55E" />
-          <path d="M113,218 Q120,225 127,218" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" />
+        {/* テクノロジー - 位置調整済み */}
+        <g id="tech-bubble" filter="url(#glow)">
+          <circle cx="290" cy="90" r="30" fill="#8B5CF6" opacity="0.7" />
+          <circle cx="290" cy="90" r="24" fill="#FFFFFF" />
+          <path d="M280,90 L300,90 M290,80 L290,100" stroke="#8B5CF6" strokeWidth="3" strokeLinecap="round" />
         </g>
         
-        {/* Growth - repositioned */}
-        <g id="growth-bubble">
-          <circle cx="280" cy="210" r="30" fill="#EF4444" opacity="0.7" />
-          <circle cx="280" cy="210" r="24" fill="#FFFFFF" />
-          <path d="M270,220 L280,200 L290,220" stroke="#EF4444" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        {/* コミュニティ - 位置調整済み */}
+        <g id="community-bubble" filter="url(#glow)">
+          <circle cx="110" cy="210" r="30" fill="#22C55E" opacity="0.7" />
+          <circle cx="110" cy="210" r="24" fill="#FFFFFF" />
+          <circle cx="103" cy="205" r="6" fill="#22C55E" />
+          <circle cx="117" cy="205" r="6" fill="#22C55E" />
+          <path d="M103,218 Q110,225 117,218" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" />
         </g>
         
-        {/* Connection lines - adjusted for new positions */}
-        <path d="M168,127 L128,110" stroke="#F97316" strokeWidth="2" strokeDasharray="4 4" />
-        <path d="M232,127 L272,110" stroke="#8B5CF6" strokeWidth="2" strokeDasharray="4 4" />
-        <path d="M168,173 L128,190" stroke="#22C55E" strokeWidth="2" strokeDasharray="4 4" />
-        <path d="M232,173 L272,190" stroke="#EF4444" strokeWidth="2" strokeDasharray="4 4" />
+        {/* 成長 - 位置調整済み */}
+        <g id="growth-bubble" filter="url(#glow)">
+          <circle cx="290" cy="210" r="30" fill="#EF4444" opacity="0.7" />
+          <circle cx="290" cy="210" r="24" fill="#FFFFFF" />
+          <path d="M280,220 L290,200 L300,220" stroke="#EF4444" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
         
-        {/* Labels with improved positioning */}
-        <text x="120" y="70" fill="#F97316" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">アイデア</text>
-        <text x="280" y="70" fill="#8B5CF6" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">テクノロジー</text>
-        <text x="120" y="240" fill="#22C55E" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">つながり</text>
-        <text x="280" y="240" fill="#EF4444" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">成長</text>
-        <text x="200" y="200" fill="#0EA5E9" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">一人ひとり</text>
+        {/* 接続線 - アニメーション用にクラスと属性を追加 */}
+        <path d="M168,127 L128,110" stroke="#F97316" strokeWidth="2" strokeDasharray="4" className="connection-line" />
+        <path d="M232,127 L272,110" stroke="#8B5CF6" strokeWidth="2" strokeDasharray="4" className="connection-line" />
+        <path d="M168,173 L128,190" stroke="#22C55E" strokeWidth="2" strokeDasharray="4" className="connection-line" />
+        <path d="M232,173 L272,190" stroke="#EF4444" strokeWidth="2" strokeDasharray="4" className="connection-line" />
+        
+        {/* ラベル - より見やすく調整 */}
+        <rect x="95" y="50" width="50" height="20" rx="10" fill="white" opacity="0.8" />
+        <text x="110" y="65" fill="#F97316" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">アイデア</text>
+        
+        <rect x="265" y="50" width="80" height="20" rx="10" fill="white" opacity="0.8" />
+        <text x="290" y="65" fill="#8B5CF6" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">テクノロジー</text>
+        
+        <rect x="95" y="240" width="50" height="20" rx="10" fill="white" opacity="0.8" />
+        <text x="110" y="255" fill="#22C55E" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">つながり</text>
+        
+        <rect x="265" y="240" width="50" height="20" rx="10" fill="white" opacity="0.8" />
+        <text x="290" y="255" fill="#EF4444" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">成長</text>
+        
+        <rect x="175" y="200" width="50" height="20" rx="10" fill="white" opacity="0.8" />
+        <text x="200" y="215" fill="#0EA5E9" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">一人ひとり</text>
       </svg>
       
-      {/* Interactive elements - additional explanation */}
-      <div className="mt-6 grid grid-cols-2 gap-6 text-center text-sm">
-        <div className="flex flex-col items-center">
-          <div className="flex justify-center items-center w-10 h-10 rounded-full bg-orange-100 mb-2">
-            <Lightbulb size={20} className="text-orange-500" />
+      {/* アイコン付き説明テキスト - ホバーエフェクトを追加 */}
+      <div className="mt-8 grid grid-cols-2 gap-6 text-center text-sm">
+        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
+          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-orange-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
+            <Lightbulb size={24} className="text-orange-500" />
           </div>
-          <span className="text-gray-700">新しい発想</span>
+          <span className="text-gray-700 font-medium">新しい発想</span>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="flex justify-center items-center w-10 h-10 rounded-full bg-purple-100 mb-2">
-            <Code size={20} className="text-purple-500" />
+        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
+          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-purple-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
+            <Code size={24} className="text-purple-500" />
           </div>
-          <span className="text-gray-700">テクノロジー</span>
+          <span className="text-gray-700 font-medium">テクノロジー</span>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="flex justify-center items-center w-10 h-10 rounded-full bg-green-100 mb-2">
-            <Users size={20} className="text-green-500" />
+        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
+          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-green-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
+            <Users size={24} className="text-green-500" />
           </div>
-          <span className="text-gray-700">人のつながり</span>
+          <span className="text-gray-700 font-medium">人のつながり</span>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="flex justify-center items-center w-10 h-10 rounded-full bg-red-100 mb-2">
-            <Rocket size={20} className="text-red-500" />
+        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
+          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-red-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
+            <Rocket size={24} className="text-red-500" />
           </div>
-          <span className="text-gray-700">可能性の拡大</span>
+          <span className="text-gray-700 font-medium">可能性の拡大</span>
         </div>
       </div>
     </div>

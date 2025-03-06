@@ -1,5 +1,5 @@
-
-import { Service, ServiceCategory } from '../types/service';
+import { Service } from './types/service';
+import { serviceCategories, initializeServiceCategories } from './serviceCategories';
 import { companyInfo } from './company';
 import { sRankServices } from './services-s-rank';
 import { aRankServices } from './services-a-rank';
@@ -91,7 +91,7 @@ const categorizeServices = (services: Service[]): Service[] => {
   });
 };
 
-// Combine all services and sort by rank and priority
+// Combine and sort all services
 export const services: Service[] = categorizeServices([
   ...sRankServices,
   ...aRankServices,
@@ -114,5 +114,7 @@ export const services: Service[] = categorizeServices([
   return a.id - b.id;
 });
 
-export { companyInfo };
-export { serviceCategories } from './serviceCategories';
+// Initialize service categories with the sorted services
+initializeServiceCategories(services);
+
+export { companyInfo, serviceCategories };

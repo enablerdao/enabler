@@ -1,4 +1,3 @@
-
 import { Service } from '../types/service';
 
 export const bRankServices: Service[] = [
@@ -215,35 +214,6 @@ export const bRankServices: Service[] = [
       { 
         title: '投稿評価',
         description: '投稿の評価機能。投稿の品質や価値を評価し、他のユーザーに共有できます。'
-      }
-    ],
-    color: '#000000'
-  },
-  {
-    id: 15,
-    rank: 'B',
-    nameEn: 'TaskTrust',
-    nameJp: 'タスクトラスト - 何でも屋マッチング',
-    marketSize: '世界約5000億ドル規模',
-    domain: 'tasktrusthq.com',
-    goal: '新規登録者200名、依頼成立50件',
-    description: 'あらゆる仕事やタスクを依頼できるマッチングプラットフォーム。専門家から一般の人まで多様なスキルを活用可能。',
-    features: [
-      { 
-        title: 'スキル一覧',
-        description: 'スキルをカテゴリー別に整理し、詳細な情報や評価を確認できます。'
-      },
-      { 
-        title: 'スキル検索',
-        description: 'キーワードでスキルを検索し、最適なスキルを見つけることができます。'
-      },
-      { 
-        title: 'スキル依頼',
-        description: 'スキルを依頼するための機能。依頼者とスキルの購入者双方で価値を共有できます。'
-      },
-      { 
-        title: 'スキル評価',
-        description: 'スキルの評価機能。スキルの品質や価値を評価し、他のユーザーに共有できます。'
       }
     ],
     color: '#000000'

@@ -5,6 +5,7 @@ import { services, Service } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
+import ServiceLogo from '@/components/ServiceLogo';
 import { 
   ArrowLeft, 
   ExternalLink, 
@@ -166,6 +167,7 @@ const ServiceDetail = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <MotionBox delay={100}>
+                <ServiceLogo serviceName={service.nameEn} size="lg" className="mb-4" />
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">{service.nameEn}</h1>
                 <p className="text-xl text-gray-600 mb-6">{service.nameJp}</p>
                 

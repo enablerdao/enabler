@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
@@ -6,6 +5,7 @@ import { MotionBox } from './ui/motion-box';
 import { ExternalLink, ArrowRight, Star, Edit } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logActivity } from '@/lib/logger';
+import ServiceLogo from './ServiceLogo';
 
 interface ServiceCardProps {
   service: Service;
@@ -33,7 +33,6 @@ const rankBorderMap = {
   'C': 'border-crank/20',
 };
 
-// Map for service editing tools
 const serviceEditLinks = {
   'PetPals': 'https://lovable.dev/projects/0e180acf-b16f-4575-bade-365eb8474690',
   'TaskTrust': 'https://lovable.dev/projects/10977e27-7b88-4bb8-8066-fae0ab704715',
@@ -78,20 +77,18 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
       >
         <div className="flex justify-between items-start mb-4">
-          <div>
-            <span className={cn(
-              "inline-block px-2.5 py-1 rounded-full text-xs font-bold", 
-              rankColorMap[service.rank],
-              rankTextColorMap[service.rank]
-            )}>
-              Rank {service.rank}
-            </span>
-          </div>
-          <span className="text-sm text-gray-500">{service.marketSize}</span>
+          <ServiceLogo serviceName={service.nameEn} size="sm" />
+          <span className={cn(
+            "inline-block px-2.5 py-1 rounded-full text-xs font-bold", 
+            rankColorMap[service.rank],
+            rankTextColorMap[service.rank]
+          )}>
+            Rank {service.rank}
+          </span>
         </div>
         
         <Link to={`/service/${service.id}`} onClick={handleCardClick}>
-          <h3 className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors">{service.nameEn}</h3>
+          <h3 className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors mt-3">{service.nameEn}</h3>
         </Link>
         <p className="text-sm text-gray-600 mb-3">{service.nameJp}</p>
         

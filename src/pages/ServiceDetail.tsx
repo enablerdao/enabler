@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { services, Service } from '@/lib/data';
@@ -18,7 +17,12 @@ import {
   Users, 
   Sparkles,
   Compass,
-  MessageCircleHeart
+  MessageCircleHeart,
+  PlayCircle,
+  Code,
+  Star,
+  DollarSign,
+  MessageSquareQuote
 } from 'lucide-react';
 import { logActivity } from '@/lib/logger';
 
@@ -184,6 +188,194 @@ const ServiceDetail = () => {
                   )}
                 </div>
               </MotionBox>
+              
+              {/* デモビデオセクション - 準備中 */}
+              <MotionBox delay={130}>
+                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8 border border-dashed border-gray-300">
+                  <div className="flex items-center mb-4">
+                    <PlayCircle className="text-gray-400 mr-3" />
+                    <h2 className="text-xl font-bold text-gray-500">サービスデモ動画</h2>
+                    <span className="ml-3 px-2 py-0.5 bg-gray-100 text-gray-500 text-xs font-medium rounded">準備中</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center py-10 text-center">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                      <PlayCircle className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <p className="text-gray-500 mb-2">サービスデモビデオは現在準備中です</p>
+                    <p className="text-gray-400 text-sm">より良いサービス体験のためにコンテンツを作成しています</p>
+                  </div>
+                </div>
+              </MotionBox>
+              
+              {/* プラン・料金セクション */}
+              {service.pricing && service.pricing.length > 0 && (
+                <MotionBox delay={170}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <div className="flex items-center mb-8">
+                      <DollarSign className="text-enabler-600 mr-3" />
+                      <h2 className="text-xl font-bold">プラン・料金</h2>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-3 gap-4">
+                      {service.pricing.map((plan, index) => (
+                        <div key={index} className={`border rounded-lg p-5 relative ${plan.recommended ? 'border-enabler-300 shadow-md' : 'border-gray-200'}`}>
+                          {plan.recommended && (
+                            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-enabler-600 text-white text-xs font-bold py-1 px-3 rounded-full">
+                              おすすめ
+                            </div>
+                          )}
+                          <h3 className="text-lg font-bold mb-2">{plan.name}</h3>
+                          <div className="mb-4">
+                            <span className="text-2xl font-bold">{plan.price}</span>
+                            <span className="text-gray-500 text-sm">/{plan.period}</span>
+                          </div>
+                          <ul className="space-y-2 mb-6">
+                            {plan.features.map((feature, fidx) => (
+                              <li key={fidx} className="flex items-start">
+                                <CheckCircle2 className="w-4 h-4 text-enabler-600 mt-1 mr-2 flex-shrink-0" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <button 
+                            className={`w-full py-2 rounded-lg font-medium ${
+                              plan.recommended 
+                                ? 'bg-enabler-600 text-white hover:bg-enabler-700' 
+                                : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                            } transition-colors`}
+                          >
+                            {plan.buttonText || 'お申し込み'}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </MotionBox>
+              )}
+              
+              {/* デベロッパー・API情報 */}
+              {service.apiInfo && (
+                <MotionBox delay={220}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <div className="flex items-center mb-6">
+                      <Code className="text-enabler-600 mr-3" />
+                      <h2 className="text-xl font-bold">開発者向け情報</h2>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <h3 className="font-bold text-gray-800 mb-2">APIエンドポイント</h3>
+                      <div className="bg-gray-50 p-3 rounded-md font-mono text-sm overflow-x-auto">
+                        {service.apiInfo.endpoint}
+                      </div>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <h3 className="font-bold text-gray-800 mb-2">概要</h3>
+                      <p className="text-gray-700">{service.apiInfo.description}</p>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <h3 className="font-bold text-gray-800 mb-2">認証方法</h3>
+                      <p className="text-gray-700">{service.apiInfo.authentication}</p>
+                    </div>
+                    
+                    {service.apiInfo.examples && service.apiInfo.examples.length > 0 && (
+                      <div>
+                        <h3 className="font-bold text-gray-800 mb-3">コード例</h3>
+                        <div className="space-y-4">
+                          {service.apiInfo.examples.map((example, index) => (
+                            <div key={index} className="border border-gray-100 rounded-lg overflow-hidden">
+                              <div className="bg-gray-50 px-4 py-2 border-b border-gray-100">
+                                <span className="font-medium text-sm">{example.language}</span>
+                                {example.description && (
+                                  <span className="text-xs text-gray-500 ml-2">- {example.description}</span>
+                                )}
+                              </div>
+                              <pre className="bg-gray-900 text-gray-100 p-4 overflow-x-auto text-sm">
+                                <code>{example.code}</code>
+                              </pre>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {service.apiInfo.documentation && (
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <a 
+                          href={service.apiInfo.documentation} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-enabler-600 hover:text-enabler-700 font-medium"
+                        >
+                          詳細なドキュメントを見る <ExternalLink size={14} className="ml-1" />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </MotionBox>
+              )}
+              
+              {/* お客様の声 */}
+              {service.testimonials && service.testimonials.length > 0 && (
+                <MotionBox delay={270}>
+                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
+                    <div className="flex items-center mb-6">
+                      <MessageSquareQuote className="text-enabler-600 mr-3" />
+                      <h2 className="text-xl font-bold">お客様の声</h2>
+                    </div>
+                    
+                    <div className="space-y-6">
+                      {service.testimonials.map((testimonial, index) => (
+                        <div key={index} className="border border-gray-100 rounded-lg p-5">
+                          <div className="flex items-start">
+                            <div className="mr-4">
+                              {testimonial.avatar ? (
+                                <img 
+                                  src={testimonial.avatar} 
+                                  alt={testimonial.author} 
+                                  className="w-12 h-12 rounded-full object-cover"
+                                />
+                              ) : (
+                                <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                                  <span className="text-gray-500 font-bold">
+                                    {testimonial.author.charAt(0)}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-gray-700 mb-3 italic">"{testimonial.content}"</p>
+                              
+                              <div className="flex flex-wrap items-center justify-between">
+                                <div>
+                                  <h4 className="font-bold text-gray-800">{testimonial.author}</h4>
+                                  <p className="text-sm text-gray-600">{testimonial.position}, {testimonial.company}</p>
+                                </div>
+                                
+                                {testimonial.rating && (
+                                  <div className="flex items-center mt-2 sm:mt-0">
+                                    {Array.from({ length: 5 }).map((_, i) => (
+                                      <Star 
+                                        key={i} 
+                                        size={16} 
+                                        className={i < testimonial.rating! 
+                                          ? 'text-amber-400 fill-amber-400' 
+                                          : 'text-gray-300'
+                                        } 
+                                      />
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </MotionBox>
+              )}
               
               <MotionBox delay={150}>
                 <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">

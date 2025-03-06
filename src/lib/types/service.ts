@@ -23,6 +23,41 @@ export interface Service {
   useCases?: { title: string; description: string; result?: string }[];
   uniquePoints?: { title: string; description: string }[];
   faqs?: { question: string; answer: string }[];
+  pricing?: PricingPlan[];
+  testimonials?: Testimonial[];
+  apiInfo?: ApiInfo;
+}
+
+export interface PricingPlan {
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  recommended?: boolean;
+  buttonText?: string;
+}
+
+export interface Testimonial {
+  author: string;
+  position: string;
+  company: string;
+  content: string;
+  rating?: number;
+  avatar?: string;
+}
+
+export interface ApiInfo {
+  endpoint: string;
+  description: string;
+  authentication: string;
+  examples: ApiExample[];
+  documentation?: string;
+}
+
+export interface ApiExample {
+  language: string;
+  code: string;
+  description: string;
 }
 
 export interface CompanyInfo {

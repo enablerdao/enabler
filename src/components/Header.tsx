@@ -22,7 +22,7 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <Logo variant="minimalist" size={scrolled ? 'sm' : 'md'} />
+            <Logo variant="doraemon" size={scrolled ? 'sm' : 'md'} animated={true} />
           </Link>
           <nav className="hidden md:flex space-x-8">
             <Link to="/" className="text-gray-800 hover:text-blue-600 transition-colors text-sm font-medium">ホーム</Link>

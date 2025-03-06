@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { services, Service } from '@/lib/data';
@@ -154,7 +155,7 @@ const ServiceDetail = () => {
                         <div key={index} className="border border-gray-100 rounded-lg p-5 hover:shadow-md transition-all duration-300">
                           <div className="flex items-center mb-3">
                             <div className={`p-2 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>
-                              {CheckCircle2 className="w-4 h-4 text-enabler-600 mt-1 mr-2 flex-shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-enabler-600 mt-1 mr-2 flex-shrink-0" />
                             </div>
                             <h3 className="font-bold text-gray-800">{feature.title}</h3>
                           </div>

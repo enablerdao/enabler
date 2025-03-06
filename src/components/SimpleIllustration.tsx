@@ -207,34 +207,6 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
         <rect x="175" y="200" width="50" height="20" rx="10" fill="white" opacity="0.8" />
         <text x="200" y="215" fill="#0EA5E9" fontFamily="sans-serif" fontSize="14" fontWeight="bold" textAnchor="middle">一人ひとり</text>
       </svg>
-      
-      {/* アイコン付き説明テキスト - ホバーエフェクトを追加 */}
-      <div className="mt-8 grid grid-cols-2 gap-6 text-center text-sm">
-        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
-          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-orange-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
-            <Lightbulb size={24} className="text-orange-500" />
-          </div>
-          <span className="text-gray-700 font-medium">新しい発想</span>
-        </div>
-        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
-          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-purple-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
-            <Code size={24} className="text-purple-500" />
-          </div>
-          <span className="text-gray-700 font-medium">テクノロジー</span>
-        </div>
-        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
-          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-green-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
-            <Users size={24} className="text-green-500" />
-          </div>
-          <span className="text-gray-700 font-medium">人のつながり</span>
-        </div>
-        <div className="flex flex-col items-center transform transition-all duration-300 hover:scale-105">
-          <div className="flex justify-center items-center w-12 h-12 rounded-full bg-red-100 mb-2 shadow-md transition-all duration-300 hover:shadow-lg">
-            <Rocket size={24} className="text-red-500" />
-          </div>
-          <span className="text-gray-700 font-medium">可能性の拡大</span>
-        </div>
-      </div>
     </div>
   );
 };

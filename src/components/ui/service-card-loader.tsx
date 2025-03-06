@@ -17,19 +17,19 @@ const ServiceCardLoader = ({ count = 3 }: ServiceCardLoaderProps) => {
           transition={{ duration: 0.3, delay: index * 0.1 }}
           className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
         >
-          <div className="h-40 bg-gradient-to-r from-blue-50 to-sky-50 animate-pulse" />
+          <div className="h-40 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse" />
           <div className="p-6 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-blue-100 animate-pulse" />
-              <div className="h-6 w-2/3 bg-gray-200 rounded animate-pulse" />
+              <div className="w-10 h-10 rounded-full bg-gray-100 animate-pulse" />
+              <div className="h-6 w-2/3 bg-gray-100 rounded animate-pulse" />
             </div>
             <div className="space-y-2">
-              <div className="h-4 bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 bg-gray-100 rounded animate-pulse w-5/6" />
-              <div className="h-4 bg-gray-100 rounded animate-pulse w-4/6" />
+              <div className="h-4 bg-gray-50 rounded animate-pulse" />
+              <div className="h-4 bg-gray-50 rounded animate-pulse w-5/6" />
+              <div className="h-4 bg-gray-50 rounded animate-pulse w-4/6" />
             </div>
             <div className="pt-2">
-              <div className="h-10 bg-blue-50 rounded-full animate-pulse" />
+              <div className="h-10 bg-gray-50 rounded-full animate-pulse" />
             </div>
           </div>
         </motion.div>

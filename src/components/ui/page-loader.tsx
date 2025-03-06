@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import LoadingIndicator from './loading-indicator';
 
 interface PageLoaderProps {
   isLoading: boolean;
@@ -20,34 +19,36 @@ const PageLoader = ({ isLoading }: PageLoaderProps) => {
       <div className="flex flex-col items-center space-y-6">
         <motion.div
           animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0, -5, 0]
+            opacity: [0.5, 1, 0.5],
+            scale: [0.98, 1, 0.98],
           }}
           transition={{ 
-            duration: 2, 
+            duration: 1.5, 
             repeat: Infinity,
             repeatType: "reverse"
           }}
-          className="relative w-16 h-16 bg-blue-500 rounded-full overflow-hidden"
+          className="w-16 h-16"
         >
-          <div className="absolute bottom-0 w-full h-3/5 bg-white rounded-t-full">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-red-500 rounded-full">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full"></div>
-            </div>
-          </div>
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="20" fill="#F5F5F7" />
+            <path
+              d="M24,14 A10,10 0 0,1 34,24 A10,10 0 0,1 24,34 A10,10 0 0,1 14,24 A10,10 0 0,1 24,14"
+              stroke="#1D1D1F"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray="1 3"
+            />
+            <circle cx="24" cy="24" r="2" fill="#1D1D1F" />
+          </svg>
         </motion.div>
         
-        <div className="flex space-x-2">
-          <LoadingIndicator variant="bell" size="sm" />
-          <motion.p 
-            className="text-lg font-medium text-gray-700"
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            読み込み中...
-          </motion.p>
-          <LoadingIndicator variant="bell" size="sm" />
-        </div>
+        <motion.p 
+          className="text-lg font-medium text-gray-700"
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          読み込み中...
+        </motion.p>
       </div>
     </motion.div>
   );

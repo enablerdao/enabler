@@ -16,38 +16,18 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="pt-32 pb-24 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative">
-      {/* ドラえもん風の背景要素 - 四次元ポケット風の円形 */}
-      <div className="absolute top-20 right-10 w-32 h-32 bg-blue-100 rounded-full opacity-40 blur-xl"></div>
-      <div className="absolute bottom-10 left-10 w-40 h-40 bg-blue-200 rounded-full opacity-30 blur-xl"></div>
+    <section className="pt-32 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden relative">
+      {/* Subtle background elements */}
+      <div className="absolute top-20 right-10 w-32 h-32 bg-blue-50 rounded-full opacity-20 blur-xl"></div>
+      <div className="absolute bottom-10 left-10 w-40 h-40 bg-gray-100 rounded-full opacity-20 blur-xl"></div>
       
-      {/* タケコプター風の小さな要素 */}
       <motion.div 
         className="absolute top-40 right-20 w-16 h-16"
         animate={{ rotate: 360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
       >
-        <div className="w-full h-full border-4 border-blue-400 rounded-full border-dashed opacity-40"></div>
+        <div className="w-full h-full border-4 border-gray-200 rounded-full border-dashed opacity-20"></div>
       </motion.div>
-      
-      {/* アニメーション付きの小さな雲 - ドラえもんの世界感 */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-24 h-12 bg-white rounded-full opacity-30"
-        animate={{ x: [0, 20, 0], y: [0, -5, 0] }}
-        transition={{ 
-          x: { duration: 20, repeat: Infinity, ease: "easeInOut" },
-          y: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-        }}
-      />
-      
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 w-16 h-8 bg-white rounded-full opacity-20"
-        animate={{ x: [0, -15, 0], y: [0, 8, 0] }}
-        transition={{ 
-          x: { duration: 15, repeat: Infinity, ease: "easeInOut" },
-          y: { duration: 12, repeat: Infinity, ease: "easeInOut" }
-        }}
-      />
       
       <div className="container mx-auto px-6 relative z-10">
         <AnimatePresence>
@@ -57,10 +37,10 @@ const HeroSection = () => {
               exit={{ opacity: 0 }}
             >
               <LoadingIndicator 
-                variant="propeller" 
+                variant="default" 
                 size="lg" 
-                text="ポケットから取り出し中..."
-                className="gadget-appear"
+                text="読み込み中..."
+                className="opacity-80"
               />
             </motion.div>
           ) : (
@@ -86,11 +66,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                <span className="text-blue-500">ど</span>こでもドアを開けるような、
-                <span className="text-blue-500">ら</span>くらく未来を創る、
-                <span className="text-blue-500">え</span>がおあふれる体験を、
-                <span className="text-blue-500">も</span>っと身近に。
-                <span className="text-blue-500">ん</span>なの夢を叶えます。
+                革新的なアイデアで、より良い未来を創造します
               </motion.p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-5 mt-8">
@@ -119,9 +95,8 @@ const HeroSection = () => {
           )}
         </AnimatePresence>
         
-        {/* ドラえもんの鈴のような円形の背景要素 */}
         <motion.div 
-          className="absolute -bottom-48 left-1/2 transform -translate-x-1/2 w-[800px] h-[800px] bg-blue-50 rounded-full opacity-30 blur-3xl -z-10"
+          className="absolute -bottom-48 left-1/2 transform -translate-x-1/2 w-[800px] h-[800px] bg-blue-50 rounded-full opacity-20 blur-3xl -z-10"
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         ></motion.div>

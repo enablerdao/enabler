@@ -46,7 +46,7 @@ export interface CompanyInfo {
 }
 
 export const companyInfo: CompanyInfo = {
-  nameJp: "株式会社イネブラー",
+  nameJp: "株式会社イネブラ",
   nameEn: "Enabler, Inc.",
   description: "私たちは革新的なデジタルプロダクトを通じて、人々の生活をより豊かにすることを目指しています。AIと最新テクノロジーを活用し、社会課題の解決に取り組んでいます。",
   mission: "テクノロジーの力で、すべての人の可能性を広げる",

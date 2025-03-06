@@ -72,7 +72,7 @@ const ServicesSection = () => {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-16 h-16">
                           <LogoRenderer 
-                            serviceName={service.title} 
+                            serviceName={service.nameEn} 
                             style={{
                               bgColor: 'bg-gray-100',
                               textColor: 'text-gray-800',
@@ -87,9 +87,9 @@ const ServicesSection = () => {
                     <div className="p-6">
                       <div className="flex items-center space-x-3 mb-3">
                         <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                          <span className="text-gray-600 text-lg font-semibold">{service.title.charAt(0)}</span>
+                          <span className="text-gray-600 text-lg font-semibold">{service.nameEn.charAt(0)}</span>
                         </div>
-                        <h3 className="text-xl font-medium text-gray-900">{service.title}</h3>
+                        <h3 className="text-xl font-medium text-gray-900">{service.nameEn}</h3>
                       </div>
                       <p className="text-gray-600 mb-4">{service.description}</p>
                       <button className="w-full py-2.5 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-full font-medium transition-colors duration-300">

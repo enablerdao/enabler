@@ -135,34 +135,25 @@ const Logo: React.FC<LogoProps> = ({
                 <stop offset="0%" stopColor="#3B82F6" />
                 <stop offset="100%" stopColor="#0EA5E9" />
               </linearGradient>
-              <filter id="glowDoraemon" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="1" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
             </defs>
-            {/* Simplified Doraemon-inspired circle */}
+            {/* Ultra simplified Doraemon-inspired circle */}
             <circle cx="20" cy="20" r="16" fill="url(#doraemonGradient)" />
             
-            {/* Center line - inspired by Doraemon's pocket */}
+            {/* Minimal center pocket */}
             <circle cx="20" cy="22" r="8" fill="white" fillOpacity="0.85" />
             
-            {/* Bell-inspired element */}
-            <circle cx="20" cy="22" r="2" fill="#FDBA74" stroke="#EA580C" strokeWidth="0.3" />
-            <path 
-              d="M18,22 L22,22" 
-              stroke="#EA580C" 
-              strokeWidth="0.3"
-            />
+            {/* Simplified bell */}
+            <circle cx="20" cy="22" r="2" fill="#FDBA74" />
             
-            {/* Simplified whisker-inspired lines */}
+            {/* Minimal lines inspired by whiskers */}
             <path 
-              d="M10,18 L16,18 M10,22 L16,22 M10,26 L16,26" 
+              d="M10,18 L15,18 M10,22 L15,22 M10,26 L15,26" 
               stroke="#3B82F6" 
               strokeWidth="0.8"
               strokeLinecap="round"
             />
             <path 
-              d="M30,18 L24,18 M30,22 L24,22 M30,26 L24,26" 
+              d="M30,18 L25,18 M30,22 L25,22 M30,26 L25,26" 
               stroke="#3B82F6" 
               strokeWidth="0.8"
               strokeLinecap="round"

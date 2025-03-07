@@ -51,7 +51,7 @@ const ServicesSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
                   <motion.div
                     key={service.id}
@@ -66,11 +66,11 @@ const ServicesSection = () => {
                       y: -5,
                       boxShadow: "0 10px 30px -5px rgba(0, 0, 0, 0.1)"
                     }}
-                    className="bg-white rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
+                    className="bg-white rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md border border-gray-100"
                   >
                     <div className="h-40 bg-gradient-to-r from-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16">
+                        <div className="w-20 h-20">
                           <LogoRenderer 
                             serviceName={service.nameEn} 
                             style={{
@@ -85,14 +85,11 @@ const ServicesSection = () => {
                       </div>
                     </div>
                     <div className="p-6">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                          <span className="text-gray-600 text-lg font-semibold">{service.nameEn.charAt(0)}</span>
-                        </div>
+                      <div className="flex items-center space-x-3 mb-4">
                         <h3 className="text-xl font-medium text-gray-900">{service.nameEn}</h3>
                       </div>
-                      <p className="text-gray-600 mb-4">{service.description}</p>
-                      <button className="w-full py-2.5 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-full font-medium transition-colors duration-300">
+                      <p className="text-gray-600 mb-5">{service.description}</p>
+                      <button className="w-full py-2.5 px-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg font-medium transition-colors duration-300">
                         詳細を見る
                       </button>
                     </div>

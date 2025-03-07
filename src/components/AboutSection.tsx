@@ -1,9 +1,8 @@
-
 import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
 import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit } from 'lucide-react';
-import SimpleIllustration from './SimpleIllustration';
+import SimpleIllustration from './simple-illustration';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);

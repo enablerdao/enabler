@@ -10,7 +10,7 @@ import HeroStats from '@/components/HeroStats';
 import LatestNews from '@/components/LatestNews';
 import PartnerLogos from '@/components/PartnerLogos';
 import Testimonials from '@/components/Testimonials';
-import SimpleIllustration from '@/components/SimpleIllustration';
+import SimpleIllustration from '@/components/simple-illustration';
 import { logActivity } from '@/lib/logger';
 import { useEffect } from 'react';
 

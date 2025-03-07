@@ -31,68 +31,79 @@ const Blog = () => {
   const blogPosts: BlogPost[] = [
     {
       id: 1,
-      title: '新たなデジタルサービス「TimeDrop」ベータ版リリースのお知らせ',
-      excerpt: '時間の使い方を革新する新サービス「TimeDrop」のベータ版を限定公開しました。このサービスがもたらす可能性について解説します。',
+      title: 'ウェブサイトを大幅リニューアル！より使いやすく、より美しく',
+      excerpt: '本日、当社のウェブサイトを大幅にリニューアルしました。ユーザー体験の向上とサービス内容の明確化を目指した新デザインについてご紹介します。',
       content: 'Lorem ipsum dolor sit amet...',
       author: '佐藤 健太郎',
-      date: '2023-10-15',
-      category: 'product',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80',
-      tags: ['新サービス', 'TimeDrop', 'ベータ版']
+      date: '2023-06-15',
+      category: 'company',
+      image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80',
+      tags: ['リニューアル', 'ウェブサイト', 'デザイン']
     },
     {
       id: 2,
-      title: '滞在型施設「Enabliss Villa」第一号物件が完成',
-      excerpt: 'テクノロジーと自然が融合した新しいコンセプトの滞在型施設が山梨県に完成しました。デジタルデトックスと創造性を促進する空間設計について。',
+      title: 'StayFlow開発の進捗状況：新機能とこれからの展望',
+      excerpt: '現在開発中のStayFlowサービスの進捗状況をご報告します。ユーザーフィードバックに基づく新機能と今後の展開計画について詳しく解説します。',
       content: 'Lorem ipsum dolor sit amet...',
       author: '山田 優子',
-      date: '2023-09-22',
-      category: 'facility',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      tags: ['Enabliss', '滞在施設', '山梨']
+      date: '2023-06-10',
+      category: 'product',
+      image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=800&q=80',
+      tags: ['StayFlow', '開発状況', '新機能']
     },
     {
       id: 3,
-      title: 'オープンソースコミュニティとの協業プロジェクト始動',
-      excerpt: '当社のプロジェクトをオープンソース化し、外部開発者との協業を開始しました。技術共有がもたらすイノベーションについて考察します。',
+      title: 'AIによる開発革命：Lovableで実現する効率的なウェブ制作',
+      excerpt: 'AIの開発精度が飛躍的に向上し、ウェブ開発の効率化が進んでいます。当社が活用している最新のAIツールと、それによって実現できることをご紹介します。',
       content: 'Lorem ipsum dolor sit amet...',
       author: '田中 誠',
-      date: '2023-08-30',
+      date: '2023-06-05',
       category: 'technology',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
-      tags: ['オープンソース', '技術共有', 'コミュニティ']
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+      tags: ['AI開発', 'Lovable', 'オープンソース']
     },
     {
       id: 4,
-      title: '「テクノロジーと人間性の共存」をテーマにした講演会を開催',
-      excerpt: '当社CEOが登壇した「テクノロジーと人間性」をテーマにした講演会のレポート。デジタル時代における人間中心の設計思想について。',
+      title: 'オープンソースで実現する新しい開発モデル',
+      excerpt: '当社が推進するオープンソースプロジェクトについて。誰でも簡単に参加できる開発モデルと、AIを活用したリクエスト対応システムがもたらす可能性について解説します。',
       content: 'Lorem ipsum dolor sit amet...',
       author: '佐藤 健太郎',
-      date: '2023-08-05',
-      category: 'event',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80',
-      tags: ['講演会', 'イベント', 'テクノロジー哲学']
+      date: '2023-05-20',
+      category: 'technology',
+      image: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=800&q=80',
+      tags: ['オープンソース', 'AI', '開発モデル']
     },
     {
       id: 5,
-      title: '新たな採用方針と働き方改革について',
-      excerpt: '当社の新たな採用方針と、多様な働き方を尊重する組織文化づくりについて紹介します。リモートワークとオフィスワークの最適なブレンドを模索。',
+      title: 'AIツールの比較：2023年6月時点での活用状況',
+      excerpt: '当社が現在活用しているAIツールの比較と実績。繰り返し使用することで高品質な成果物を効率的に生成できるようになった最新事例をご紹介します。',
       content: 'Lorem ipsum dolor sit amet...',
       author: '鈴木 美咲',
-      date: '2023-07-18',
-      category: 'company',
-      image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80',
-      tags: ['採用', '働き方', '組織文化']
+      date: '2023-05-15',
+      category: 'technology',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+      tags: ['AI比較', '開発効率', '事例紹介']
+    },
+    {
+      id: 6,
+      title: '誰でも参加できる：AIを活用したリクエスト対応システムのご案内',
+      excerpt: 'AIを活用して、ユーザーからのリクエストを効率的に処理し、修正・リリースまでを自動化するシステムを構築しました。今後の展望についてご説明します。',
+      content: 'Lorem ipsum dolor sit amet...',
+      author: '高橋 隆',
+      date: '2023-05-10',
+      category: 'product',
+      image: 'https://images.unsplash.com/photo-1642634981793-cc0d2599243e?auto=format&fit=crop&w=800&q=80',
+      tags: ['AI', 'リクエスト対応', '自動化']
     }
   ];
   
   const categories = [
     { id: 'all', name: 'すべて' },
     { id: 'product', name: 'プロダクト' },
-    { id: 'facility', name: '施設情報' },
     { id: 'technology', name: 'テクノロジー' },
+    { id: 'company', name: '会社情報' },
     { id: 'event', name: 'イベント' },
-    { id: 'company', name: '会社情報' }
+    { id: 'facility', name: '施設情報' }
   ];
   
   const filteredPosts = blogPosts

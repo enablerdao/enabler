@@ -24,19 +24,29 @@ const partners = [
     alt: 'Apple logo' 
   },
   { 
-    name: 'IBM', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
-    alt: 'IBM logo' 
-  },
-  { 
     name: 'Meta', 
     logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg',
     alt: 'Meta logo' 
   },
   { 
-    name: 'Sony', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg',
-    alt: 'Sony logo' 
+    name: 'OpenAI', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg',
+    alt: 'OpenAI logo' 
+  },
+  { 
+    name: 'Anthropic', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Anthropic_logo.svg',
+    alt: 'Anthropic logo' 
+  },
+  { 
+    name: 'Supabase', 
+    logo: 'https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png',
+    alt: 'Supabase logo' 
+  },
+  { 
+    name: 'Netlify', 
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Netlify_logo.svg',
+    alt: 'Netlify logo' 
   }
 ];
 

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +12,8 @@ import PointsProgram from "./pages/PointsProgram";
 import TimeDrop from "./pages/TimeDrop";
 import Team from "./pages/Team";
 import Press from "./pages/Press";
+import Sitemap from "./pages/Sitemap";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +32,8 @@ const App = () => (
           <Route path="/timedrop" element={<TimeDrop />} />
           <Route path="/team" element={<Team />} />
           <Route path="/press" element={<Press />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

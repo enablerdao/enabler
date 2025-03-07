@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
@@ -150,15 +149,15 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row md:items-center">
             <div className="flex space-x-6 mb-4 md:mb-0 md:mr-8">
+              <Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
+                利用規約
+              </Link>
               <a href="/privacy-policy" className="text-gray-500 hover:text-white transition-colors text-sm">
                 プライバシーポリシー
               </a>
-              <a href="/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
-                利用規約
-              </a>
-              <a href="/sitemap" className="text-gray-500 hover:text-white transition-colors text-sm">
+              <Link to="/sitemap" className="text-gray-500 hover:text-white transition-colors text-sm">
                 サイトマップ
-              </a>
+              </Link>
             </div>
             
             <button 

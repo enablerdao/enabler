@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import AdminLogs from "./pages/AdminLogs";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import PointsProgram from "./pages/PointsProgram";
 import TimeDrop from "./pages/TimeDrop";
 import Team from "./pages/Team";
@@ -28,6 +30,7 @@ const App = () => (
           <Route path="/service/:id" element={<ServiceDetail />} />
           <Route path="/admin/logs" element={<AdminLogs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/points-program" element={<PointsProgram />} />
           <Route path="/timedrop" element={<TimeDrop />} />
           <Route path="/team" element={<Team />} />

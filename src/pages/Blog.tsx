@@ -171,13 +171,13 @@ const Blog = () => {
               filteredPosts.map((post, index) => (
                 <MotionBox key={post.id} delay={200 + index * 100}>
                   <article className="bg-white rounded-xl overflow-hidden shadow-subtle h-full flex flex-col">
-                    <div className="h-48 overflow-hidden">
+                    <Link to={`/blog/${post.id}`} className="h-48 overflow-hidden block">
                       <img 
                         src={post.image} 
                         alt={post.title} 
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       />
-                    </div>
+                    </Link>
                     
                     <div className="p-6 flex-grow flex flex-col">
                       <div className="flex flex-wrap gap-2 mb-3">
@@ -190,7 +190,9 @@ const Blog = () => {
                       </div>
                       
                       <h2 className="text-xl font-semibold text-gray-800 mb-3 line-clamp-2">
-                        {post.title}
+                        <Link to={`/blog/${post.id}`} className="hover:text-enabler-600 transition-colors">
+                          {post.title}
+                        </Link>
                       </h2>
                       
                       <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">

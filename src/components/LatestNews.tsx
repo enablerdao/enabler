@@ -2,6 +2,7 @@
 import React from 'react';
 import { CalendarDays, ArrowRight } from 'lucide-react';
 import { MotionBox } from './ui/motion-box';
+import { Link } from 'react-router-dom';
 
 const news = [
   {
@@ -34,9 +35,9 @@ const LatestNews = () => {
         <MotionBox>
           <div className="flex justify-between items-center mb-10">
             <h2 className="text-3xl font-bold">最新ニュース</h2>
-            <a href="#" className="text-enabler-600 hover:text-enabler-700 flex items-center gap-1 text-sm font-medium">
+            <Link to="/blog" className="text-enabler-600 hover:text-enabler-700 flex items-center gap-1 text-sm font-medium">
               すべてのニュースを見る <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
         </MotionBox>
 
@@ -54,9 +55,9 @@ const LatestNews = () => {
                   </div>
                   <h3 className="text-lg font-bold mb-3 line-clamp-2">{item.title}</h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.excerpt}</p>
-                  <a href="#" className="text-enabler-600 hover:text-enabler-700 text-sm font-medium flex items-center">
+                  <Link to={`/blog/${item.id}`} className="text-enabler-600 hover:text-enabler-700 text-sm font-medium flex items-center">
                     続きを読む <ArrowRight size={14} className="ml-1 flex-shrink-0" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </MotionBox>

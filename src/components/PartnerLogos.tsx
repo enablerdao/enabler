@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MotionBox } from './ui/motion-box';
 
@@ -32,11 +31,6 @@ const partners = [
     name: 'OpenAI', 
     logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg',
     alt: 'OpenAI logo' 
-  },
-  { 
-    name: 'Anthropic', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Anthropic_logo.svg',
-    alt: 'Anthropic logo' 
   },
   { 
     name: 'Supabase', 

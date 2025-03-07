@@ -1,31 +1,87 @@
 
 import React from 'react';
+import { ArrowRight, Database, BarChart3, LineChart, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ProcessDiagramProps {
   color: string;
 }
 
-export const ProcessDiagram = ({ color }: ProcessDiagramProps) => (
-  <svg className="w-full h-auto max-w-xl mx-auto my-8" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="50" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
-    <text x="110" y="105" textAnchor="middle" fill={color} fontWeight="bold">収集</text>
-    
-    <path d="M170 100 L230 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
-    <polygon points="230,95 240,100 230,105" fill={color}/>
-    
-    <rect x="240" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
-    <text x="300" y="105" textAnchor="middle" fill={color} fontWeight="bold">分析</text>
-    
-    <path d="M360 100 L420 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
-    <polygon points="420,95 430,100 420,105" fill={color}/>
-    
-    <rect x="430" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
-    <text x="490" y="105" textAnchor="middle" fill={color} fontWeight="bold">最適化</text>
-    
-    <path d="M550 100 L610 100" stroke={color} strokeWidth="2" strokeDasharray="5 5"/>
-    <polygon points="610,95 620,100 610,105" fill={color}/>
-    
-    <rect x="620" y="70" width="120" height="60" rx="8" fill={`${color}20`} stroke={color} strokeWidth="2"/>
-    <text x="680" y="105" textAnchor="middle" fill={color} fontWeight="bold">結果</text>
-  </svg>
-);
+export const ProcessDiagram = ({ color }: ProcessDiagramProps) => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
+  };
+
+  const arrowVariants = {
+    hidden: { width: 0, opacity: 0 },
+    visible: { width: "100%", opacity: 1, transition: { duration: 0.3 } }
+  };
+
+  return (
+    <motion.div 
+      className="w-full max-w-xl mx-auto my-8"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+            <Database size={32} color={color} />
+          </div>
+          <span className="font-semibold text-lg" style={{ color }}>収集</span>
+        </motion.div>
+        
+        <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
+          <div className="relative">
+            <ArrowRight className="absolute -top-2 -right-2" size={16} color={color} />
+          </div>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+            <BarChart3 size={32} color={color} />
+          </div>
+          <span className="font-semibold text-lg" style={{ color }}>分析</span>
+        </motion.div>
+        
+        <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
+          <div className="relative">
+            <ArrowRight className="absolute -top-2 -right-2" size={16} color={color} />
+          </div>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+            <LineChart size={32} color={color} />
+          </div>
+          <span className="font-semibold text-lg" style={{ color }}>最適化</span>
+        </motion.div>
+        
+        <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
+          <div className="relative">
+            <ArrowRight className="absolute -top-2 -right-2" size={16} color={color} />
+          </div>
+        </motion.div>
+        
+        <motion.div variants={itemVariants} className="flex flex-col items-center">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+            <Sparkles size={32} color={color} />
+          </div>
+          <span className="font-semibold text-lg" style={{ color }}>結果</span>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};

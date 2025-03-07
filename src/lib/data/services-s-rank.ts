@@ -1,4 +1,3 @@
-
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -30,35 +29,6 @@ export const sRankServices: Service[] = [
       }
     ],
     color: '#673ab7'
-  },
-  {
-    id: 2,
-    rank: 'S',
-    nameEn: 'TaskTrust',
-    nameJp: 'タスクトラスト - AIタスク管理',
-    marketSize: '約3000億円',
-    domain: 'tasktrusthq.com',
-    goal: '有料プラン契約数500件',
-    description: 'AIを活用したタスク管理ツール。タスクの優先順位付け、自動スケジューリング、進捗管理を効率化。',
-    features: [
-      {
-        title: 'タスク優先順位付け',
-        description: 'AIがタスクの重要度を判断し、優先順位を自動で設定します。'
-      },
-      {
-        title: '自動スケジューリング',
-        description: 'タスクの締め切りと所要時間に基づいて、最適なスケジュールを自動で作成します。'
-      },
-      {
-        title: '進捗管理',
-        description: 'タスクの進捗状況をリアルタイムで追跡し、遅延を自動で通知します。'
-      },
-      {
-        title: 'チームコラボレーション',
-        description: 'チームメンバーとタスクを共有し、共同で作業を進めることができます。'
-      }
-    ],
-    color: '#009688'
   },
   {
     id: 3,

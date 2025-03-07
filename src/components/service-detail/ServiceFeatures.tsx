@@ -12,6 +12,7 @@ interface ServiceFeaturesProps {
 export const ServiceFeatures = ({ features, serviceColor }: ServiceFeaturesProps) => {
   if (!features || features.length === 0) return null;
   
+  // Check if this is StayFlow Portfolio
   const isPortfolio = window.location.pathname.includes('StayFlow%20Portfolio');
 
   // Map feature titles to appropriate icons
@@ -41,15 +42,35 @@ export const ServiceFeatures = ({ features, serviceColor }: ServiceFeaturesProps
             {features.map((feature, index) => (
               <div 
                 key={index} 
-                className="border border-gray-100 rounded-lg p-5 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                className="border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="flex items-center mb-3">
-                  <div className={`p-2.5 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>
-                    {getIconForFeature(feature.title)}
+                {feature.images && feature.images.length > 0 && (
+                  <div className="property-images mb-3">
+                    <div className="grid grid-cols-2 gap-1">
+                      {feature.images.map((image, imgIndex) => (
+                        <div 
+                          key={imgIndex} 
+                          className={`${imgIndex === 0 ? 'col-span-2' : 'col-span-1'} h-48 overflow-hidden`}
+                        >
+                          <img 
+                            src={image} 
+                            alt={`${feature.title} - image ${imgIndex + 1}`} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="font-bold text-gray-800">{feature.title}</h3>
+                )}
+                <div className="p-5">
+                  <div className="flex items-center mb-3">
+                    <div className={`p-2.5 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>
+                      {getIconForFeature(feature.title)}
+                    </div>
+                    <h3 className="font-bold text-gray-800">{feature.title}</h3>
+                  </div>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
-                <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
           </div>

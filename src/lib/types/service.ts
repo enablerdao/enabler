@@ -11,6 +11,7 @@ export type ServiceCategory =
 export interface ServiceFeature {
   title: string;
   description: string;
+  images?: string[]; // Added images property
 }
 
 export interface PricingTier {

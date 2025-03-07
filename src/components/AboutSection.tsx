@@ -79,11 +79,6 @@ const AboutSection = () => {
             
             <MotionBox delay={300}>
               <div className="mb-8">
-                <p className="text-gray-700 mb-6 relative">
-                  {companyInfo.description}
-                  <span className="absolute -right-2 -bottom-2 text-enabler-300 opacity-50">_</span>
-                </p>
-                
                 {/* Added the modern illustration */}
                 <SimpleIllustration className="my-10" />
                 
@@ -127,7 +122,6 @@ const AboutSection = () => {
                     <div>
                       <h4 className="font-medium text-gray-700">事業内容</h4>
                       <p className="text-gray-600">{companyInfo.businessActivities}</p>
-                      <p className="text-xs text-gray-400 font-mono mt-1">// その他、宇宙の謎を解明する秘密プロジェクトも進行中</p>
                     </div>
                   </div>
                 </div>
@@ -140,7 +134,6 @@ const AboutSection = () => {
                     <div>
                       <h4 className="font-medium text-gray-700">所在地</h4>
                       <p className="text-gray-600">{companyInfo.address}</p>
-                      <p className="text-xs text-gray-400 italic mt-1">*実際の場所は量子空間内にありますが、郵便物は東京でお受け取りしています</p>
                     </div>
                   </div>
                   

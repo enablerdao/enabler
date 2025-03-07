@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
@@ -133,9 +132,14 @@ const Footer = () => {
               {companyInfo.openSource}
             </p>
           </div>
-          <a href="https://github.com/enabler-jp" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
-            GitHubでプロジェクトを見る →
-          </a>
+          <div className="flex items-center space-x-4">
+            <a href="https://github.com/enablerdao" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
+              GitHubでプロジェクトを見る →
+            </a>
+            <Link to="/points-program" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
+              ポイントプログラムについて →
+            </Link>
+          </div>
         </div>
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">

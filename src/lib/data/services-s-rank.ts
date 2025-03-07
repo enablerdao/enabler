@@ -1,17 +1,19 @@
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
-  // Add StayFlow Portfolio as the first service to make it appear at the top
+  // StayFlow Portfolio
   {
-    id: 0,  // Lower ID to ensure it appears first
+    id: 0,
     rank: 'S',
     nameEn: 'StayFlow Portfolio',
     nameJp: 'ステイフローポートフォリオ - 厳選特別物件',
     marketSize: '約5兆円規模',
     domain: 'portfolio.stayflowapp.com',
-    goal: '特別物件登録数100件、プレミアム利用者1000人達成',
-    disableLinks: true, // Add this property to disable links
-    description: 'ステイフローの中から厳選された特別物件のコレクション。最高級のおもてなしとユニークな体験を提供する特別な宿泊施設をキュレーションしています。',
+    goal: '特別物件登録数3000件達成',
+    disableLinks: true,
+    currentListings: 3, // Current number of listings
+    description: 'ステイフローポートフォリオは、生涯をかけて訪れたいと思う特別な物件のみを厳選して紹介するプラットフォームです。イネブラーチームが開発する独自物件や、既存オーナーの素晴らしい物件を丁寧にキュレーションし、最高級のおもてなしと唯一無二の体験を提供します。',
+    catchphrase: '生涯をかけて訪れたい、特別な場所だけを。',
     features: [
       {
         title: '特別物件厳選',
@@ -31,6 +33,7 @@ export const sRankServices: Service[] = [
       }
     ],
     color: '#D4AF37',  // Gold color for premium feel
+    category: 'STAY_TRAVEL',
     pricing: [
       {
         name: "スタンダードメンバーシップ",
@@ -86,7 +89,9 @@ export const sRankServices: Service[] = [
         content: "世界中の高級ホテルを訪れてきましたが、StayFlow Portfolioのキュレーションは素晴らしいセンスがあります。会員限定イベントも非常に洗練されています。",
         rating: 5
       }
-    ]
+    ],
+    quote: "真に特別な場所は、そこに訪れるだけでなく、そこで過ごす時間そのものが人生を豊かにする。",
+    quoteAuthor: "創設者"
   },
   {
     id: 1,

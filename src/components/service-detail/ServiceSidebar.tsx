@@ -51,6 +51,13 @@ export const ServiceSidebar = ({ service }: ServiceSidebarProps) => {
             <p>{service.goal}</p>
           </div>
           
+          {service.currentListings !== undefined && (
+            <div>
+              <h3 className="text-sm font-medium text-gray-500">現在の掲載数</h3>
+              <p className="font-bold">{service.currentListings}件</p>
+            </div>
+          )}
+          
           {service.launchDate && (
             <div>
               <h3 className="text-sm font-medium text-gray-500">リリース予定</h3>
@@ -68,6 +75,7 @@ export const ServiceSidebar = ({ service }: ServiceSidebarProps) => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
+                onClick={handleExternalLinkClick}
               >
                 {service.domain} <ExternalLink size={14} />
               </a>

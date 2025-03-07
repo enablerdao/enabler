@@ -11,6 +11,8 @@ import AdminLogs from "./pages/AdminLogs";
 import Blog from "./pages/Blog";
 import PointsProgram from "./pages/PointsProgram";
 import TimeDrop from "./pages/TimeDrop";
+import Team from "./pages/Team";
+import Press from "./pages/Press";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/points-program" element={<PointsProgram />} />
           <Route path="/timedrop" element={<TimeDrop />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/press" element={<Press />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -3,7 +3,7 @@ import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, Users, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -96,6 +96,16 @@ const Footer = () => {
                 <li>
                   <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">
                     ポイントプログラム
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/team" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
+                    <Users size={14} className="mr-1" /> チーム紹介
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/press" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
+                    <FileText size={14} className="mr-1" /> プレスリリース
                   </Link>
                 </li>
               </ul>

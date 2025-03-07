@@ -29,9 +29,9 @@ const partners = [
     alt: 'IBM logo' 
   },
   { 
-    name: 'SONY', 
-    logo: '/partners/sony.svg',
-    alt: 'SONY logo' 
+    name: 'Meta', 
+    logo: '/partners/meta.svg',
+    alt: 'Meta logo' 
   }
 ];
 

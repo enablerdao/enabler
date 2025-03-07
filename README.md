@@ -1,69 +1,99 @@
-# Welcome to your Lovable project
 
-## Project info
+# Enabler プロジェクトへようこそ
+
+![Enabler Logo](public/og-image.png)
+
+## プロジェクト情報
 
 **URL**: https://lovable.dev/projects/4b245e83-aa84-4a2d-99f5-95fef360ad75
 
-## How can I edit this code?
+## 現在実装済みの機能
 
-There are several ways of editing your application.
+- サービス一覧表示（S、A、B、Cランク別）
+- サービス詳細ページ（特徴、ロードマップ、プロセス図など）
+- ポイントプログラム詳細ページ
+- アニメーション付きのサービスカード
+- レスポンシブデザイン
+- モジュール化されたコンポーネント構造
+- タイムドロップ機能
+- ブログ機能（基本実装）
 
-**Use Lovable**
+## 開発予定の機能
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4b245e83-aa84-4a2d-99f5-95fef360ad75) and start prompting.
+- ユーザー認証システム
+- 各サービスの詳細なAPIドキュメント
+- ポイント管理ダッシュボード
+- サービス利用統計
+- コミュニティフォーラム
+- 多言語対応（英語・日本語）
+- モバイルアプリ版
 
-Changes made via Lovable will be committed automatically to this repo.
+## 貢献者募集中！
 
-**Use your preferred IDE**
+私たちは常に新しい貢献者を歓迎しています！あなたのスキルや創造性を活かして、このプロジェクトをより良くしませんか？
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Enablerポイントプログラム
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+貢献者への感謝の気持ちとして、「Enablerポイント」を付与しています。このポイントは以下のような貢献に対して発行されます：
 
-Follow these steps:
+- 新機能の実装
+- バグ修正
+- UIデザインの改善
+- ドキュメント作成・翻訳
+- セキュリティ脆弱性の報告
+
+獲得したポイントは将来的に様々な特典や、トークン（暗号資産）への交換が予定されています。
+
+### 貢献方法
+
+1. このリポジトリをフォークする
+2. 機能追加やバグ修正を行う
+3. メインリポジトリにプルリクエストを送信する
+4. レビュー後、変更が採用されるとポイントが付与されます
+
+詳しいポイントプログラムについては[ポイントプログラムページ](https://lovable.dev/projects/4b245e83-aa84-4a2d-99f5-95fef360ad75/points-program)をご覧ください。
+
+## 開発環境のセットアップ
+
+ローカル環境で開発を行うには、以下の手順に従ってください：
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: リポジトリをクローン
+git clone <リポジトリURL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: プロジェクトディレクトリに移動
+cd <プロジェクト名>
 
-# Step 3: Install the necessary dependencies.
+# Step 3: 必要な依存関係をインストール
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: 開発サーバーを起動
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 使用技術
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+このプロジェクトは以下の技術で構築されています：
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Framer Motion
 
-## How can I deploy this project?
+## デプロイ方法
 
-Simply open [Lovable](https://lovable.dev/projects/4b245e83-aa84-4a2d-99f5-95fef360ad75) and click on Share -> Publish.
+[Lovable](https://lovable.dev/projects/4b245e83-aa84-4a2d-99f5-95fef360ad75)から「Share -> Publish」をクリックするだけで簡単にデプロイできます。
 
-## I want to use a custom domain - is that possible?
+## カスタムドメインについて
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+現在、カスタムドメインは直接サポートしていませんが、Netlifyなどのサービスを利用して独自ドメインでデプロイすることができます。詳しくは[カスタムドメインについてのドキュメント](https://docs.lovable.dev/tips-tricks/custom-domain/)をご覧ください。
+
+## コントリビューター
+
+このプロジェクトに貢献してくださった皆様に感謝します！
+
+## ライセンス
+
+このプロジェクトは[MITライセンス](LICENSE)の下で公開されています。

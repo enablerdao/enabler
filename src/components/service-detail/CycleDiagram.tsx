@@ -68,7 +68,7 @@ export const CycleDiagram = ({ color }: CycleDiagramProps) => {
                 style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}>
               <Target size={28} color={color} />
             </div>
-            <span className="font-semibold" style={{ color }}>計画</span>
+            <span className="font-semibold whitespace-nowrap" style={{ color }}>計画</span>
           </div>
         </motion.div>
         
@@ -82,7 +82,7 @@ export const CycleDiagram = ({ color }: CycleDiagramProps) => {
                 style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}>
               <PlayCircle size={28} color={color} />
             </div>
-            <span className="font-semibold" style={{ color }}>実行</span>
+            <span className="font-semibold whitespace-nowrap" style={{ color }}>実行</span>
           </div>
         </motion.div>
         
@@ -96,7 +96,7 @@ export const CycleDiagram = ({ color }: CycleDiagramProps) => {
                 style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}>
               <BarChart2 size={28} color={color} />
             </div>
-            <span className="font-semibold" style={{ color }}>測定</span>
+            <span className="font-semibold whitespace-nowrap" style={{ color }}>測定</span>
           </div>
         </motion.div>
         
@@ -110,7 +110,7 @@ export const CycleDiagram = ({ color }: CycleDiagramProps) => {
                 style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}>
               <RefreshCw size={28} color={color} />
             </div>
-            <span className="font-semibold" style={{ color }}>改善</span>
+            <span className="font-semibold whitespace-nowrap" style={{ color }}>改善</span>
           </div>
         </motion.div>
         

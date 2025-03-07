@@ -36,11 +36,11 @@ export const ProcessDiagram = ({ color }: ProcessDiagramProps) => {
       variants={containerVariants}
     >
       <div className="flex flex-col md:flex-row justify-between items-center">
-        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
-          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-6 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-3`} style={{ backgroundColor: `${color}20` }}>
             <Database size={32} color={color} />
           </div>
-          <span className="font-semibold text-lg" style={{ color }}>収集</span>
+          <span className="font-semibold text-lg whitespace-nowrap" style={{ color }}>収集</span>
         </motion.div>
         
         <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
@@ -49,11 +49,11 @@ export const ProcessDiagram = ({ color }: ProcessDiagramProps) => {
           </div>
         </motion.div>
         
-        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
-          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-6 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-3`} style={{ backgroundColor: `${color}20` }}>
             <BarChart3 size={32} color={color} />
           </div>
-          <span className="font-semibold text-lg" style={{ color }}>分析</span>
+          <span className="font-semibold text-lg whitespace-nowrap" style={{ color }}>分析</span>
         </motion.div>
         
         <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
@@ -62,11 +62,11 @@ export const ProcessDiagram = ({ color }: ProcessDiagramProps) => {
           </div>
         </motion.div>
         
-        <motion.div variants={itemVariants} className="flex flex-col items-center mb-4 md:mb-0">
-          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+        <motion.div variants={itemVariants} className="flex flex-col items-center mb-6 md:mb-0">
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-3`} style={{ backgroundColor: `${color}20` }}>
             <LineChart size={32} color={color} />
           </div>
-          <span className="font-semibold text-lg" style={{ color }}>最適化</span>
+          <span className="font-semibold text-lg whitespace-nowrap" style={{ color }}>最適化</span>
         </motion.div>
         
         <motion.div variants={arrowVariants} className="hidden md:block w-16 h-0.5 mx-2" style={{ backgroundColor: color }}>
@@ -76,10 +76,10 @@ export const ProcessDiagram = ({ color }: ProcessDiagramProps) => {
         </motion.div>
         
         <motion.div variants={itemVariants} className="flex flex-col items-center">
-          <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-opacity-20 bg-${color}-100 mb-3`} style={{ backgroundColor: `${color}20` }}>
+          <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-3`} style={{ backgroundColor: `${color}20` }}>
             <Sparkles size={32} color={color} />
           </div>
-          <span className="font-semibold text-lg" style={{ color }}>結果</span>
+          <span className="font-semibold text-lg whitespace-nowrap" style={{ color }}>結果</span>
         </motion.div>
       </div>
     </motion.div>

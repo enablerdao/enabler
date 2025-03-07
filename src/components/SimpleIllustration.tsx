@@ -97,31 +97,31 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
 
         {/* 中央の要素 - 個人 */}
         <motion.div
-          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
           variants={pulseVariants}
           animate="pulse"
         >
           <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 shadow-lg flex items-center justify-center">
             <Users size={40} color="white" />
           </div>
-          <p className="text-center mt-2 font-medium text-blue-600">一人ひとり</p>
+          <p className="text-center mt-2 font-medium text-blue-600 whitespace-nowrap">一人ひとり</p>
         </motion.div>
 
         {/* アイデア */}
         <motion.div
-          className="absolute left-[20%] top-[30%] transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-[20%] top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-10"
           variants={floatVariants}
           animate="float"
         >
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-300 to-orange-500 shadow-lg flex items-center justify-center">
             <Sparkles size={30} color="white" />
           </div>
-          <p className="text-center mt-2 font-medium text-orange-500">アイデア</p>
+          <p className="text-center mt-2 font-medium text-orange-500 whitespace-nowrap">アイデア</p>
         </motion.div>
 
         {/* テクノロジー */}
         <motion.div
-          className="absolute right-[20%] top-[30%] transform translate-x-1/2 -translate-y-1/2"
+          className="absolute right-[20%] top-[30%] transform translate-x-1/2 -translate-y-1/2 z-10"
           variants={floatVariants}
           animate="float"
           transition={{ delay: 0.5 }}
@@ -129,12 +129,12 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-300 to-purple-500 shadow-lg flex items-center justify-center">
             <Zap size={30} color="white" />
           </div>
-          <p className="text-center mt-2 font-medium text-purple-500">テクノロジー</p>
+          <p className="text-center mt-2 font-medium text-purple-500 whitespace-nowrap">テクノロジー</p>
         </motion.div>
 
         {/* つながり */}
         <motion.div
-          className="absolute left-[20%] bottom-[20%] transform -translate-x-1/2 translate-y-1/2"
+          className="absolute left-[20%] bottom-[20%] transform -translate-x-1/2 translate-y-1/2 z-10"
           variants={floatVariants}
           animate="float"
           transition={{ delay: 1 }}
@@ -142,12 +142,12 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-300 to-green-500 shadow-lg flex items-center justify-center">
             <Users size={30} color="white" />
           </div>
-          <p className="text-center mt-2 font-medium text-green-500">つながり</p>
+          <p className="text-center mt-2 font-medium text-green-500 whitespace-nowrap">つながり</p>
         </motion.div>
 
         {/* 成長 */}
         <motion.div
-          className="absolute right-[20%] bottom-[20%] transform translate-x-1/2 translate-y-1/2"
+          className="absolute right-[20%] bottom-[20%] transform translate-x-1/2 translate-y-1/2 z-10"
           variants={floatVariants}
           animate="float"
           transition={{ delay: 1.5 }}
@@ -155,7 +155,7 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-300 to-red-500 shadow-lg flex items-center justify-center">
             <Rocket size={30} color="white" />
           </div>
-          <p className="text-center mt-2 font-medium text-red-500">成長</p>
+          <p className="text-center mt-2 font-medium text-red-500 whitespace-nowrap">成長</p>
         </motion.div>
 
         {/* 接続線 */}

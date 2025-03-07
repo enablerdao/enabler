@@ -22,10 +22,12 @@ const Index = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <HeroStats />
-        <SimpleIllustration className="my-16" />
+        <div className="py-8">
+          <SimpleIllustration className="my-16" />
+        </div>
         <AboutSection />
         <ServiceCategories />
         <Testimonials />

@@ -43,19 +43,19 @@ const LatestNews = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {news.map((item, index) => (
             <MotionBox key={item.id} delay={index * 100}>
-              <div className="bg-white rounded-xl shadow-subtle overflow-hidden hover:shadow-hover transition-all duration-300">
+              <div className="bg-white rounded-xl shadow-subtle overflow-hidden hover:shadow-hover transition-all duration-300 h-full">
                 <div className="p-6">
-                  <div className="flex items-center mb-3">
-                    <span className="inline-block px-2 py-1 text-xs font-semibold bg-enabler-100 text-enabler-800 rounded-full">{item.category}</span>
-                    <div className="flex items-center text-gray-500 text-sm ml-3">
-                      <CalendarDays size={14} className="mr-1" />
-                      {item.date}
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="inline-block px-2 py-1 text-xs font-semibold bg-enabler-100 text-enabler-800 rounded-full whitespace-nowrap">{item.category}</span>
+                    <div className="flex items-center text-gray-500 text-xs">
+                      <CalendarDays size={14} className="mr-1 flex-shrink-0" />
+                      <span className="whitespace-nowrap">{item.date}</span>
                     </div>
                   </div>
                   <h3 className="text-lg font-bold mb-3 line-clamp-2">{item.title}</h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.excerpt}</p>
                   <a href="#" className="text-enabler-600 hover:text-enabler-700 text-sm font-medium flex items-center">
-                    続きを読む <ArrowRight size={14} className="ml-1" />
+                    続きを読む <ArrowRight size={14} className="ml-1 flex-shrink-0" />
                   </a>
                 </div>
               </div>

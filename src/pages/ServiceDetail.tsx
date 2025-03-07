@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { services, Service } from '@/lib/data';
@@ -83,6 +82,7 @@ const ServiceDetail = () => {
                 mission={mission} 
                 vision={vision}
                 serviceColor={serviceColor}
+                serviceName={service.nameEn} // Pass the service name
               />
               
               {service.features && (

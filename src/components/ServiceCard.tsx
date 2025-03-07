@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
@@ -44,12 +43,10 @@ const serviceEditLinks = {
   'StayLife': 'https://lovable.dev/projects/ec89a15a-f2db-4c9a-a8f5-bf77d8c8c11f'
 };
 
-// Generate a pseudo-random progress value based on service id for demo
 const getServiceProgress = (serviceId: number) => {
   return (serviceId * 17) % 100;
 };
 
-// Generate a pseudo-random ETA based on service id for demo
 const getServiceETA = (serviceId: number) => {
   const options = [
     '10時間後', '1日後', '2日後', '3日後', '明日の午前中', '今週末', '来週月曜日'
@@ -57,7 +54,6 @@ const getServiceETA = (serviceId: number) => {
   return options[serviceId % options.length];
 };
 
-// Generate AI activity status for each service
 const getAIActivityStatus = (serviceId: number) => {
   const activities = [
     'コード生成中', 'データ分析中', '最適化中', 'テスト実行中', 'デプロイ準備中'
@@ -65,7 +61,6 @@ const getAIActivityStatus = (serviceId: number) => {
   return activities[serviceId % activities.length];
 };
 
-// Generate a task list for each service
 const getServiceTasks = (serviceId: number) => {
   const baseTasks = [
     { done: true, text: 'ユーザー認証システム' },
@@ -103,13 +98,11 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
 
   const hasEditLink = serviceEditLinks[service.nameEn as keyof typeof serviceEditLinks];
   
-  // Get service-specific data for the demo
   const progress = getServiceProgress(service.id);
   const eta = getServiceETA(service.id);
   const aiActivity = getAIActivityStatus(service.id);
   const tasks = getServiceTasks(service.id);
 
-  // Special treatment for StayFlow Portfolio
   const isPortfolio = service.nameEn === 'StayFlow Portfolio';
   
   return (
@@ -141,7 +134,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             )}
           </div>
           
-          {/* Moved the rank badge to be on the right side, but slightly lower */}
           <div className="flex flex-col items-end">
             <span className={cn(
               "inline-block px-2.5 py-1 rounded-full text-xs font-bold mt-1", 
@@ -158,7 +150,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </Link>
         <p className="text-sm text-gray-600 mb-3">{service.nameJp}</p>
         
-        {/* AI Progress Indicator */}
         <div className="mb-4">
           <div className="flex justify-between items-center mb-1">
             <div className="text-xs text-gray-600 flex items-center">
@@ -184,7 +175,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           </div>
         </div>
         
-        {/* Next Release ETA */}
         <div className="flex items-center mb-4 bg-gray-50 rounded-md p-2 border border-gray-100">
           <motion.div
             variants={pulseVariants}
@@ -203,7 +193,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           <p className="text-sm text-gray-600 mb-4 line-clamp-3">{service.description}</p>
         )}
         
-        {/* AI-Generated Task Progress */}
         <div className="mb-4">
           <div className="flex items-center mb-2">
             <motion.div
@@ -259,21 +248,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
         
         <div className="flex flex-wrap justify-between items-end mt-auto pt-3 border-t border-gray-100">
-          {service.disableLinks ? (
-            <span className="text-sm text-gray-600 inline-flex items-center gap-1">
-              {service.domain}
-            </span>
-          ) : (
-            <a 
-              href={`https://${service.domain}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={handleExternalLinkClick}
-              className="text-sm text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
-            >
-              {service.domain} <ExternalLink size={14} />
-            </a>
-          )}
+          <span className="text-sm text-gray-600 inline-flex items-center gap-1">
+            {service.domain}
+          </span>
           <span className="text-xs text-gray-500 mt-2">目標: {service.goal}</span>
         </div>
         
@@ -286,28 +263,26 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             詳細を見る <ArrowRight size={16} className="ml-1" />
           </Link>
           
-          {hasEditLink && !service.disableLinks && (
-            <a 
-              href={hasEditLink}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors"
+          {hasEditLink && (
+            <span 
+              className="inline-flex items-center text-sm text-amber-600 font-medium"
             >
               編集ツール <Edit size={16} className="ml-1" />
-            </a>
+            </span>
           )}
         </div>
         
-        {/* Floating AI indicator - moved to the top-right corner */}
-        <motion.div 
-          className="absolute top-2 right-2 text-xs text-enabler-500 flex items-center"
-          variants={fibonacciFloatVariants}
-          animate="float"
-          custom={service.id % 5}
-        >
-          <Loader size={12} className="animate-spin mr-1" />
-          <span className="opacity-75">AI</span>
-        </motion.div>
+        {!isPortfolio && (
+          <motion.div 
+            className="absolute top-2 right-2 text-xs text-enabler-500 flex items-center"
+            variants={fibonacciFloatVariants}
+            animate="float"
+            custom={service.id % 5}
+          >
+            <Loader size={12} className="animate-spin mr-1" />
+            <span className="opacity-75">AI</span>
+          </motion.div>
+        )}
       </div>
     </MotionBox>
   );

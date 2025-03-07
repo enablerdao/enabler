@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
@@ -28,44 +29,32 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {companyInfo.socialLinks.twitter && (
-                <a 
-                  href={companyInfo.socialLinks.twitter} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                <span 
+                  className="text-gray-400 cursor-not-allowed"
                 >
                   <Twitter size={18} />
-                </a>
+                </span>
               )}
               {companyInfo.socialLinks.facebook && (
-                <a 
-                  href={companyInfo.socialLinks.facebook} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                <span 
+                  className="text-gray-400 cursor-not-allowed"
                 >
                   <Facebook size={18} />
-                </a>
+                </span>
               )}
               {companyInfo.socialLinks.instagram && (
-                <a 
-                  href={companyInfo.socialLinks.instagram} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                <span 
+                  className="text-gray-400 cursor-not-allowed"
                 >
                   <Instagram size={18} />
-                </a>
+                </span>
               )}
               {companyInfo.socialLinks.linkedin && (
-                <a 
-                  href={companyInfo.socialLinks.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                <span 
+                  className="text-gray-400 cursor-not-allowed"
                 >
                   <Linkedin size={18} />
-                </a>
+                </span>
               )}
             </div>
           </div>
@@ -76,9 +65,9 @@ const Footer = () => {
               <ul className="space-y-2">
                 {Object.entries(categoryInfo).map(([key, value]) => (
                   <li key={key}>
-                    <a href={`#${key}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    <span className="text-gray-400 cursor-not-allowed text-sm">
                       {value.name}
-                    </a>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -88,9 +77,9 @@ const Footer = () => {
               <h4 className="text-lg font-bold mb-4">会社情報</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <span className="text-gray-400 cursor-not-allowed text-sm">
                     ミッション・ビジョン
-                  </a>
+                  </span>
                 </li>
                 <li>
                   <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">
@@ -114,10 +103,8 @@ const Footer = () => {
               <h4 className="text-lg font-bold mb-4">お問い合わせ</h4>
               <address className="not-italic text-gray-400 space-y-2 text-sm">
                 <p>{companyInfo.address}</p>
-                <p>
-                  <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">
-                    {companyInfo.email}
-                  </a>
+                <p className="text-gray-400">
+                  {companyInfo.email}
                 </p>
                 <p>{companyInfo.phone}</p>
               </address>
@@ -133,9 +120,9 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex items-center space-x-4">
-            <a href="https://github.com/enablerdao" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
+            <span className="text-enabler-400 cursor-not-allowed text-sm font-medium">
               GitHubでプロジェクトを見る →
-            </a>
+            </span>
             <Link to="/points-program" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
               ポイントプログラムについて →
             </Link>
@@ -152,9 +139,9 @@ const Footer = () => {
               <Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
                 利用規約
               </Link>
-              <a href="/privacy-policy" className="text-gray-500 hover:text-white transition-colors text-sm">
+              <Link to="/privacy-policy" className="text-gray-500 hover:text-white transition-colors text-sm">
                 プライバシーポリシー
-              </a>
+              </Link>
               <Link to="/sitemap" className="text-gray-500 hover:text-white transition-colors text-sm">
                 サイトマップ
               </Link>

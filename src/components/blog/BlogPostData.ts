@@ -1,4 +1,5 @@
 
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -24,32 +25,6 @@ export const categories = [
 const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
 export const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: '新たなデジタルサービス「TimeDrop」ベータ版リリースのお知らせ',
-    excerpt: '時間の使い方を革新する新サービス「TimeDrop」のベータ版を限定公開しました。このサービスがもたらす可能性について解説します。',
-    content: `時間の使い方を革新する新サービス「TimeDrop」のベータ版を限定公開しました。
-
-私たちの生活において最も貴重なリソースである「時間」。この時間をより価値あるものにするために、私たちは「TimeDrop」を開発しました。
-
-「TimeDrop」は単なる時間管理アプリではありません。AIがあなたの日常のパターンを学習し、最適な時間の使い方を提案します。また、友人や同僚と時間をシェアする「タイムギフト」機能も搭載。「30分だけこの仕事を手伝って」「子どもを1時間見ていて」といった時間の贈り合いが、デジタル上で簡単にできるようになります。
-
-現在ベータ版では以下の機能を提供しています：
-
-- AI時間分析：あなたの1日の過ごし方を分析し、より良い時間の使い方を提案
-- タイムギフト：家族や友人と時間をシェアする機能
-- フォーカスモード：集中するための最適な環境設定
-- 時間可視化：時間の使い方を視覚的に理解できるダッシュボード
-
-ベータ版へのアクセスをご希望の方は、公式サイトにてウェイティングリストへの登録をお願いします。多くのユーザーからのフィードバックをもとに、正式版へと進化させていく予定です。
-
-テクノロジーで、一人ひとりが自然に可能性を広げられる社会をつくるという私たちのミッションの下、「TimeDrop」がもたらす新しい時間の過ごし方にご期待ください。`,
-    author: '濱田優貴',
-    date: today,
-    category: 'product',
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80',
-    tags: ['新サービス', 'TimeDrop', 'ベータ版']
-  },
   {
     id: 2,
     title: '滞在型施設「Enabliss Villa」第一号物件が完成',
@@ -101,3 +76,4 @@ export const blogPosts: BlogPost[] = [
     tags: ['オープンソース', '技術共有', 'コミュニティ', 'AI革命']
   }
 ];
+

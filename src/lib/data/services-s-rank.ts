@@ -1,3 +1,4 @@
+
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -162,7 +163,6 @@ export const sRankServices: Service[] = [
     domain: 'enablerhq.com',
     goal: '登録スタッフ数500人突破、初年度清掃実績5,000件以上',
     description: '民泊や宿泊施設のオーナーとプロの清掃スタッフを効率よくつなぐAIマッチングプラットフォーム。清掃スケジュール管理、スタッフ評価システム、自動決済などを搭載し、清掃にかかる手間とコストを大幅に削減します。',
-    catchphrase: 'キレイをもっと簡単に。',
     features: [
       {
         title: 'AIマッチング',
@@ -294,7 +294,6 @@ export const sRankServices: Service[] = [
     domain: 'stayflowapp.com',
     goal: '登録ホスト数100件、管理物件数300件達成',
     description: '民泊ホスト向けの総合運営管理プラットフォーム。予約管理、清掃管理、ゲスト対応などを一元化し、業務効率化を実現します。',
-    catchphrase: 'キレイをもっと簡単に。',
     mission: '宿泊施設運営をシンプルにし、ホストが『おもてなし』に集中できる環境を作る。',
     vision: 'テクノロジーの力で、民泊の複雑さをゼロにし、世界中どこでも最高の宿泊体験を実現する。',
     brandStory: 'StayFlowは「面倒」や「手間」を排除し、宿泊施設の運営管理を完全にシームレスにすることで、ホストが本来の価値である『ゲストへのおもてなし』に集中できる世界を目指しています。宿泊施設の業務を「流れるように」スムーズにすることから、『StayFlow』という名前が生まれました。宿泊業界をテクノロジーで変革し、誰もが気軽にホスティングを楽しめる社会を作ります。',

@@ -103,6 +103,7 @@ export interface Service {
   emoji?: string;
   mission?: string;
   vision?: string;
+  brandStory?: string; // Added brandStory property
   targetAudience?: string;
   specificAudience?: string;
   midtermGoal?: string;

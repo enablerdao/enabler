@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Broom, MessageCircle, BarChart } from 'lucide-react';
+import { Calendar, Wrench, MessageCircle, BarChart } from 'lucide-react';
 import { ServiceFeature } from '@/lib/types/service';
 import { MotionBox } from '@/components/ui/motion-box';
 
@@ -15,7 +15,7 @@ export const ServiceFeatures = ({ features, serviceColor }: ServiceFeaturesProps
   // Map feature titles to appropriate icons
   const getIconForFeature = (title: string) => {
     if (title.includes('予約')) return <Calendar className="w-5 h-5" />;
-    if (title.includes('清掃')) return <Broom className="w-5 h-5" />;
+    if (title.includes('清掃')) return <Wrench className="w-5 h-5" />; // Changed from Broom to Wrench
     if (title.includes('ゲスト対応')) return <MessageCircle className="w-5 h-5" />;
     if (title.includes('収支')) return <BarChart className="w-5 h-5" />;
     // Default icon if no match

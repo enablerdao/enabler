@@ -18,13 +18,13 @@ const ConceptNode: React.FC<ConceptNodeProps> = ({ type, icon, label, color, pos
       case 'center':
         return 'absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20';
       case 'topLeft':
-        return 'absolute left-[20%] top-[30%] transform -translate-x-1/2 -translate-y-1/2 z-10';
+        return 'absolute left-[15%] top-[25%] transform -translate-x-1/2 -translate-y-1/2 z-10';
       case 'topRight':
-        return 'absolute right-[20%] top-[30%] transform translate-x-1/2 -translate-y-1/2 z-10';
+        return 'absolute right-[15%] top-[25%] transform translate-x-1/2 -translate-y-1/2 z-10';
       case 'bottomLeft':
-        return 'absolute left-[20%] bottom-[20%] transform -translate-x-1/2 translate-y-1/2 z-10';
+        return 'absolute left-[15%] bottom-[15%] transform -translate-x-1/2 translate-y-1/2 z-10';
       case 'bottomRight':
-        return 'absolute right-[20%] bottom-[20%] transform translate-x-1/2 translate-y-1/2 z-10';
+        return 'absolute right-[15%] bottom-[15%] transform translate-x-1/2 translate-y-1/2 z-10';
       default:
         return '';
     }

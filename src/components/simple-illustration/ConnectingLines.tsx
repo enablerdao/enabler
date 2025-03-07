@@ -15,7 +15,7 @@ const ConnectingLines: React.FC<ConnectingLinesProps> = ({ colors }) => {
   return (
     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" fill="none">
       <motion.path
-        d="M140,150 L200,200"
+        d="M120,125 L200,200"
         stroke={colors.idea}
         strokeWidth="2"
         strokeDasharray="5 5"
@@ -29,7 +29,7 @@ const ConnectingLines: React.FC<ConnectingLinesProps> = ({ colors }) => {
         }}
       />
       <motion.path
-        d="M260,150 L200,200"
+        d="M280,125 L200,200"
         stroke={colors.tech}
         strokeWidth="2"
         strokeDasharray="5 5"
@@ -43,7 +43,7 @@ const ConnectingLines: React.FC<ConnectingLinesProps> = ({ colors }) => {
         }}
       />
       <motion.path
-        d="M140,250 L200,200"
+        d="M120,275 L200,200"
         stroke={colors.community}
         strokeWidth="2"
         strokeDasharray="5 5"
@@ -57,7 +57,7 @@ const ConnectingLines: React.FC<ConnectingLinesProps> = ({ colors }) => {
         }}
       />
       <motion.path
-        d="M260,250 L200,200"
+        d="M280,275 L200,200"
         stroke={colors.growth}
         strokeWidth="2"
         strokeDasharray="5 5"

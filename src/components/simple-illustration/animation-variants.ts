@@ -16,7 +16,7 @@ export const itemVariants = {
     y: 0, 
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
       ease: "easeOut"
     }
   }
@@ -24,19 +24,8 @@ export const itemVariants = {
 
 export const pulseVariants = {
   pulse: {
-    scale: [1, 1.05, 1],
-    opacity: [0.9, 1, 0.9],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
-
-export const floatVariants = {
-  float: {
-    y: [0, -7, 0],
+    scale: [1, 1.03, 1],
+    opacity: [0.95, 1, 0.95],
     transition: {
       duration: 4,
       repeat: Infinity,
@@ -45,8 +34,19 @@ export const floatVariants = {
   }
 };
 
+export const floatVariants = {
+  float: {
+    y: [0, -5, 0],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
 export const spinVariants = {
-  spin: (duration = 30) => ({
+  spin: (duration = 40) => ({
     rotate: 360,
     transition: {
       duration,

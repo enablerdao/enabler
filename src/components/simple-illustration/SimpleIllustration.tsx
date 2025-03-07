@@ -19,12 +19,12 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
       animate="visible"
       variants={containerVariants}
     >
-      <div className="relative w-full h-[400px] rounded-3xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 overflow-hidden shadow-lg">
+      <div className="relative w-full h-[440px] rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100/30 p-6 overflow-hidden shadow-md">
         <IllustrationBackground />
         
         {/* タイトル */}
         <motion.h2
-          className="text-2xl md:text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-8 relative z-10"
+          className="text-2xl md:text-3xl font-bold text-center text-blue-600 mb-10 relative z-10"
           variants={itemVariants}
         >
           可能性を広げる社会をつくる

@@ -1,8 +1,8 @@
 
 export const colors = {
-  primary: "#3B82F6",
-  idea: "#F97316",
-  tech: "#8B5CF6", 
-  community: "#22C55E",
-  growth: "#EF4444"
+  primary: "#5B9CF1",      // ソフトブルー
+  idea: "#F5A26C",         // ソフトオレンジ
+  tech: "#B89CF2",         // ソフトパープル  
+  community: "#7AD188",    // ソフトグリーン
+  growth: "#F08080"        // ソフトレッド
 };

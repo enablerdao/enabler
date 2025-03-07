@@ -5,7 +5,6 @@ import { sRankServices } from './services-s-rank';
 import { aRankServices } from './services-a-rank';
 import { bRankServices } from './services-b-rank';
 import { cRankServices } from './services-c-rank';
-import { newServices } from './services-new';
 
 // Add domains for services that might not be in the rank files yet
 const additionalDomains = {
@@ -23,15 +22,15 @@ const categorizeServices = (services: Service[]): Service[] => {
       category = 'STAY_TRAVEL';
     }
     // LIFE & COMMUNITY category
-    else if (['PetPals', 'Kireasy', 'FoodSaver', 'Unused', 'MatchSense', 'TravelMate', 'LocalBites', 'WeeMeet', 'UrbanCropAI'].includes(service.nameEn)) {
+    else if (['PetPals', 'Kireasy', 'FoodSaver', 'Unused', 'MatchSense', 'TravelMate', 'LocalBites'].includes(service.nameEn)) {
       category = 'LIFE_COMMUNITY';
     }
     // WORK & PRODUCTIVITY category
-    else if (['TaskTrust', 'Aicademy', 'AIFit', 'Skillity', 'DojoFlow', 'DAONico', 'Mojitto'].includes(service.nameEn)) {
+    else if (['TaskTrust', 'Aicademy', 'AIFit', 'Skillity', 'DojoFlow'].includes(service.nameEn)) {
       category = 'WORK_PRODUCTIVITY';
     }
     // HEALTH & WELLNESS category
-    else if (['HealthGenius', 'EmotionSeed', 'Wellstay', 'LifeBuddy', 'Yorisoi'].includes(service.nameEn)) {
+    else if (['HealthGenius', 'EmotionSeed', 'Wellstay'].includes(service.nameEn)) {
       category = 'HEALTH_WELLNESS';
     }
     // INVEST & GROW category
@@ -63,12 +62,6 @@ const categorizeServices = (services: Service[]): Service[] => {
       case 'FundNest': emoji = '📈'; break;
       case 'EcoStay': emoji = '♻️'; break;
       case 'SeniorKnowledge': emoji = '👵'; break;
-      case 'LifeBuddy': emoji = '🧠'; break;
-      case 'WeeMeet': emoji = '👋'; break;
-      case 'DAONico': emoji = '🏛️'; break;
-      case 'UrbanCropAI': emoji = '🌱'; break;
-      case 'Mojitto': emoji = '🎨'; break;
-      case 'Yorisoi': emoji = '🤝'; break;
     }
     
     // Check if this service needs a domain from additionalDomains
@@ -90,8 +83,7 @@ export const services: Service[] = categorizeServices([
   ...sRankServices,
   ...aRankServices,
   ...bRankServices,
-  ...cRankServices,
-  ...newServices
+  ...cRankServices
 ]);
 
 export { companyInfo };

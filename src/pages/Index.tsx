@@ -1,42 +1,37 @@
 
-import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import React from 'react';
+import Hero from '@/components/Hero';
+import AboutSection from '@/components/AboutSection';
+import ServiceCategories from '@/components/ServiceCategories';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import HeroStats from '@/components/HeroStats';
+import LatestNews from '@/components/LatestNews';
+import PartnerLogos from '@/components/PartnerLogos';
+import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import ServicesSection from '@/components/ServicesSection';
-import CallToAction from '@/components/CallToAction';
-import SimpleFooter from '@/components/SimpleFooter';
-import PageLoader from '@/components/ui/page-loader';
+import { useEffect } from 'react';
 
 const Index = () => {
-  const [pageLoading, setPageLoading] = useState(true);
-  
   useEffect(() => {
-    // Track page view
     logActivity('pageView', { path: '/' });
-    
-    // Simulate initial page loading
-    const timer = setTimeout(() => {
-      setPageLoading(false);
-    }, 1500);
-    
-    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      <AnimatePresence>
-        {pageLoading && <PageLoader isLoading={pageLoading} />}
-      </AnimatePresence>
-      
-      <div className="min-h-screen bg-white text-gray-900">
-        <Header />
-        <HeroSection />
-        <ServicesSection />
-        <CallToAction />
-        <SimpleFooter />
-      </div>
+      <Navbar />
+      <main>
+        <Hero />
+        <HeroStats />
+        <AboutSection />
+        <ServiceCategories />
+        <Testimonials />
+        <LatestNews />
+        <PartnerLogos />
+        <ContactSection />
+      </main>
+      <Footer />
     </>
   );
 };

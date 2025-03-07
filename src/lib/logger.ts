@@ -6,6 +6,7 @@ interface LogData {
   path?: string;
   serviceId?: number;
   serviceName?: string;
+  position?: string;
   additionalData?: Record<string, any>;
   timestamp: number;
 }

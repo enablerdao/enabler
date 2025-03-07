@@ -34,8 +34,6 @@ const Navbar = () => {
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
-    { name: 'Points Program', href: '/points-program', isPage: true },
-    { name: 'TimeDrop', href: '/timedrop', isPage: true },
     { name: 'Contact', href: '#contact' },
   ];
 

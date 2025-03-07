@@ -1,3 +1,4 @@
+
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -9,7 +10,7 @@ export const sRankServices: Service[] = [
     marketSize: '約1000億円',
     domain: 'petpalsapp.com',
     goal: 'アクティブユーザー数1万人',
-    description: 'ペット愛好家向けのSNSプラットフォーム。写真共有、イベント情報、専門家アドバイスを提供。',
+    description: 'ペット愛好家向けのコミュニティプラットフォーム。写真共有、イベント情報、専門家アドバイスを提供。',
     features: [
       {
         title: '写真共有',

@@ -33,6 +33,9 @@ const Navbar = () => {
     { name: 'Home', href: '#hero' },
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
+    { name: 'Blog', href: '/blog', isPage: true },
+    { name: 'Company History', href: '/company-history', isPage: true },
+    { name: 'Careers', href: '/careers', isPage: true },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -47,13 +50,23 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-gray-700 hover:text-enabler-600 transition-all duration-200 text-sm font-medium"
-              >
-                {link.name}
-              </a>
+              link.isPage ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-gray-700 hover:text-enabler-600 transition-all duration-200 text-sm font-medium"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-gray-700 hover:text-enabler-600 transition-all duration-200 text-sm font-medium"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </div>
 
@@ -72,19 +85,30 @@ const Navbar = () => {
       <div
         className={cn(
           'md:hidden transition-all duration-300 ease-in-out overflow-hidden bg-white shadow-md',
-          isOpen ? 'max-h-64' : 'max-h-0'
+          isOpen ? 'max-h-96' : 'max-h-0'
         )}
       >
         <div className="container mx-auto px-6 py-4 space-y-4">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="block text-gray-700 hover:text-enabler-600 text-sm font-medium py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
+            link.isPage ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="block text-gray-700 hover:text-enabler-600 text-sm font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block text-gray-700 hover:text-enabler-600 text-sm font-medium py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            )
           ))}
         </div>
       </div>

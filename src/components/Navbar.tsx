@@ -34,6 +34,7 @@ const Navbar = () => {
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
+    { name: 'ポイントプログラム', href: '/points-program', isPage: true },
     { name: 'Contact', href: '#contact' },
   ];
 

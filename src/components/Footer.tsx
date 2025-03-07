@@ -4,6 +4,7 @@ import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
 import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -93,13 +94,13 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    チーム紹介
-                  </a>
+                  <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    ポイントプログラム
+                  </Link>
                 </li>
                 <li>
-                  <a href="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    採用情報
+                  <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    チーム紹介
                   </a>
                 </li>
                 <li>

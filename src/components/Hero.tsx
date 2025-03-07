@@ -29,12 +29,12 @@ const Hero = () => {
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-enabler-800 mb-8 leading-tight max-w-4xl mx-auto">
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-enabler-600 to-enabler-800 bg-clip-text text-transparent">
-                「あったらいいな」を超えて、「なくてはならない」へ。
+                「あったらいいな」を「あってよかった」に。
               </span>
               <span className="absolute -bottom-1 left-0 w-full h-1.5 bg-enabler-500 rounded-full opacity-70"></span>
             </span>
             <br />
-            <span className="text-enabler-700">テクノロジーで、あなたの日常を変えていく。</span>
+            <span className="text-enabler-700">テクノロジーで、あなたの日常をちょっと未来へ近づけます。</span>
           </h1>
         </MotionBox>
         

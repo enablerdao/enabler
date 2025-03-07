@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { services, Service } from '@/lib/data';
@@ -25,13 +26,17 @@ import { ServiceFAQs } from '@/components/service-detail/ServiceFAQs';
 import { ServiceRoadmap } from '@/components/service-detail/ServiceRoadmap';
 
 const ServiceDetail = () => {
-  const { id } = useParams();
+  const { name } = useParams();
   const navigate = useNavigate();
   const [service, setService] = useState<Service | null>(null);
   
   useEffect(() => {
-    const serviceId = parseInt(id || '0');
-    const foundService = services.find(s => s.id === serviceId);
+    if (!name) {
+      navigate('/#services');
+      return;
+    }
+    
+    const foundService = services.find(s => s.nameEn === name);
     
     if (foundService) {
       setService(foundService);
@@ -48,7 +53,7 @@ const ServiceDetail = () => {
     } else {
       navigate('/#services');
     }
-  }, [id, navigate]);
+  }, [name, navigate]);
   
   if (!service) {
     return (

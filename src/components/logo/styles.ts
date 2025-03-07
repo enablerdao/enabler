@@ -38,6 +38,27 @@ export const logoStyles: Record<string, ServiceStyle> = {
     gradient: 'from-green-500 to-emerald-600',
     fibonacciColor: '#10B981',
   },
+  'StayFlow': {
+    bgColor: 'bg-blue-100',
+    textColor: 'text-blue-800',
+    fontFamily: 'font-sans',
+    gradient: 'from-blue-500 to-cyan-600',
+    fibonacciColor: '#0284C7',
+  },
+  'StayFlow Portfolio': {
+    bgColor: 'bg-amber-100',
+    textColor: 'text-amber-800',
+    fontFamily: 'font-serif font-medium',
+    gradient: 'from-amber-500 to-yellow-600',
+    fibonacciColor: '#D4AF37',
+  },
+  'TravelMate': {
+    bgColor: 'bg-green-100',
+    textColor: 'text-green-800',
+    fontFamily: 'font-sans',
+    gradient: 'from-green-500 to-teal-600',
+    fibonacciColor: '#059669',
+  },
 };
 
 // Default styling if service not found

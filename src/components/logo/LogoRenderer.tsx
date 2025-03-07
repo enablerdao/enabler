@@ -25,9 +25,18 @@ interface LogoRendererProps {
 }
 
 const LogoRenderer: React.FC<LogoRendererProps> = ({ serviceName, style, variant }) => {
+  // For services that share the same logo style
+  const normalizeServiceName = (name: string) => {
+    // StayFlow Portfolio uses same logo components as StayFlow
+    if (name === 'StayFlow Portfolio') return 'StayFlow';
+    return name;
+  };
+  
+  const normalizedName = normalizeServiceName(serviceName);
+  
   // For fibonacci variant
   if (variant === 'fibonacci') {
-    switch(serviceName) {
+    switch(normalizedName) {
       case 'Enabliss':
         return <EnablissFibonacciLogo style={style} />;
       case 'PetPals':
@@ -38,13 +47,19 @@ const LogoRenderer: React.FC<LogoRendererProps> = ({ serviceName, style, variant
         return <MatchSenseFibonacciLogo style={style} />;
       case 'TasteFund':
         return <TasteFundFibonacciLogo style={style} />;
+      case 'StayFlow':
+        // Use a default logo with StayFlow styling
+        return <DefaultFibonacciLogo style={style} />;
+      case 'TravelMate':
+        // Use a default logo with TravelMate styling
+        return <DefaultFibonacciLogo style={style} />;
       default:
         return <DefaultFibonacciLogo style={style} />;
     }
   }
   
   // For default and modern variants
-  switch(serviceName) {
+  switch(normalizedName) {
     case 'Enabliss':
       return <EnablissLogo style={style} variant={variant} />;
     case 'PetPals':
@@ -55,6 +70,20 @@ const LogoRenderer: React.FC<LogoRendererProps> = ({ serviceName, style, variant
       return <MatchSenseLogo style={style} variant={variant} />;
     case 'TasteFund':
       return <TasteFundLogo style={style} variant={variant} />;
+    case 'StayFlow':
+      // Simple text-based logo for StayFlow
+      return (
+        <div className="text-center font-bold text-xs flex items-center justify-center w-full h-full">
+          {serviceName === 'StayFlow Portfolio' ? 'S.F.P' : 'SF'}
+        </div>
+      );
+    case 'TravelMate':
+      // Simple text-based logo for TravelMate
+      return (
+        <div className="text-center font-bold text-xs flex items-center justify-center w-full h-full">
+          TM
+        </div>
+      );
     default:
       return <DefaultLogo style={style} variant={variant} />;
   }

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,8 @@ const Navbar = () => {
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
+    { name: 'Points Program', href: '/points-program', isPage: true },
+    { name: 'TimeDrop', href: '/timedrop', isPage: true },
     { name: 'Contact', href: '#contact' },
   ];
 

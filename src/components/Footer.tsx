@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
@@ -96,16 +97,6 @@ const Footer = () => {
                   <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">
                     ポイントプログラム
                   </Link>
-                </li>
-                <li>
-                  <a href="/team" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    チーム紹介
-                  </a>
-                </li>
-                <li>
-                  <a href="/news" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    プレスリリース
-                  </a>
                 </li>
               </ul>
             </div>

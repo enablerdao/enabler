@@ -7,48 +7,27 @@ import { QuoteIcon } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    quote: "「TimeDrop」のおかげで、出張先での急な宿泊も全く心配なくなりました。いつも手頃な価格で素晴らしいホテルを見つけることができます。",
-    author: "佐藤 拓也",
-    title: "IT企業 営業部長",
-    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=ST"
-  },
-  {
-    id: 2,
-    quote: "「StayFlow」を導入してから、民泊の運営が格段に楽になりました。特に深夜のチェックインや外国人ゲスト対応が自動化されたのは大きな変化です。",
-    author: "田中 美咲",
-    title: "民泊オーナー",
-    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=TM"
-  },
-  {
-    id: 3,
-    quote: "「HealthGenius」の食事アドバイスに従うようになってから、体重が10kg減少し、健康診断の数値も改善しました。無理なくライフスタイルを変えられたのが良かったです。",
-    author: "鈴木 健太",
-    title: "会社員",
-    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=SK"
-  },
-  {
-    id: 4,
     quote: "ハワイのビーチフロントプロパティでの滞在は最高の思い出になりました。プライベートビーチへのアクセスが素晴らしく、サンセットを眺めながらのバーベキューは格別でした。スタッフの対応も親切で、また必ず利用したいです。",
     author: "吉田 直子",
     title: "リピーター",
     image: "https://placehold.co/60x60/374151/FFFFFF.png?text=YN"
   },
   {
-    id: 5,
+    id: 2,
     quote: "北海道・弟子屈のリトリートタワーのサウナ体験は最高でした。湖を見下ろしながらのサウナは絶景で、自然との一体感を味わえます。設備も清潔で、スタッフの対応も素晴らしかったです。",
     author: "山本 大輔",
     title: "サウナ愛好家",
     image: "https://placehold.co/60x60/374151/FFFFFF.png?text=YD"
   },
   {
-    id: 6,
+    id: 3,
     quote: "サイト構築を依頼したところ、なんと打ち合わせ中に完成して納品されてびっくりしました！要望を伝えるだけで即座に形にしてくれる対応力の高さに感動しています。予想を遥かに超えるスピードとクオリティでした。",
     author: "中村 良子",
     title: "飲食店経営者",
     image: "https://placehold.co/60x60/374151/FFFFFF.png?text=NR"
   },
   {
-    id: 7,
+    id: 4,
     quote: "依頼したシステムと全く同じものを翌日に完成させてくれたのでびっくりしました。急ぎの案件だったのですが、期待以上のスピードと品質で対応していただき、本当に感謝しています。",
     author: "伊藤 誠",
     title: "スタートアップCEO",

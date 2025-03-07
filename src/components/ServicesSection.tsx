@@ -79,7 +79,7 @@ const ServicesSection = () => {
                               fontFamily: 'font-sans',
                               gradient: 'from-gray-300 to-gray-400'
                             }}
-                            variant="modern"
+                            variant="fibonacci"
                           />
                         </div>
                       </div>

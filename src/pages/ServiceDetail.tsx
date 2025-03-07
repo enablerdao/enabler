@@ -66,6 +66,7 @@ const ServiceDetail = () => {
   const serviceColor = service.color || '#6366f1';
   const mission = service.mission || "人々の日常をより便利に、より豊かにする革新的なソリューションを提供する";
   const vision = service.vision || "テクノロジーの力で社会課題を解決し、持続可能な未来を創造する";
+  const brandStory = service.brandStory || "";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -86,8 +87,9 @@ const ServiceDetail = () => {
               <ServiceMissionVision 
                 mission={mission} 
                 vision={vision}
+                brandStory={brandStory}
                 serviceColor={serviceColor}
-                serviceName={service.nameEn} // Pass the service name
+                serviceName={service.nameEn} 
               />
               
               {service.features && (
@@ -99,7 +101,7 @@ const ServiceDetail = () => {
                   <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
                     <div className="flex items-center mb-6 border-b pb-2" style={{ borderColor: `${serviceColor}40` }}>
                       <ExternalLink className="mr-3" style={{ color: serviceColor }} />
-                      <h2 className="text-xl font-bold">プラン・料金</h2>
+                      <h2 className="text-xl font-bold">💳 プラン・料金</h2>
                     </div>
                     <ServicePricing pricing={service.pricing} />
                   </div>

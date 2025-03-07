@@ -1,11 +1,10 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { MotionBox } from '@/components/ui/motion-box';
 import { categoryInfo } from '@/lib/types/service';
-import { ArrowRight, Sitemap as SitemapIcon } from 'lucide-react';
+import { ArrowRight, Map } from 'lucide-react';
 
 const Sitemap = () => {
   return (
@@ -119,7 +118,7 @@ const Sitemap = () => {
 
             <MotionBox delay={600}>
               <div className="mt-16 text-center">
-                <SitemapIcon size={48} className="mx-auto text-enabler-500 mb-4" />
+                <Map size={48} className="mx-auto text-enabler-500 mb-4" />
                 <p className="text-gray-600">
                   ご不明な点がございましたら、<a href="#contact" className="text-enabler-600 hover:underline">お問い合わせフォーム</a>よりご連絡ください。
                 </p>

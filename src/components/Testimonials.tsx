@@ -25,6 +25,34 @@ const testimonials = [
     author: "鈴木 健太",
     title: "会社員",
     image: "https://placehold.co/60x60/374151/FFFFFF.png?text=SK"
+  },
+  {
+    id: 4,
+    quote: "ハワイのビーチフロントプロパティでの滞在は最高の思い出になりました。プライベートビーチへのアクセスが素晴らしく、サンセットを眺めながらのバーベキューは格別でした。スタッフの対応も親切で、また必ず利用したいです。",
+    author: "吉田 直子",
+    title: "リピーター",
+    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=YN"
+  },
+  {
+    id: 5,
+    quote: "北海道・弟子屈のリトリートタワーのサウナ体験は最高でした。湖を見下ろしながらのサウナは絶景で、自然との一体感を味わえます。設備も清潔で、スタッフの対応も素晴らしかったです。",
+    author: "山本 大輔",
+    title: "サウナ愛好家",
+    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=YD"
+  },
+  {
+    id: 6,
+    quote: "サイト構築を依頼したところ、なんと打ち合わせ中に完成して納品されてびっくりしました！要望を伝えるだけで即座に形にしてくれる対応力の高さに感動しています。予想を遥かに超えるスピードとクオリティでした。",
+    author: "中村 良子",
+    title: "飲食店経営者",
+    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=NR"
+  },
+  {
+    id: 7,
+    quote: "依頼したシステムと全く同じものを翌日に完成させてくれたのでびっくりしました。急ぎの案件だったのですが、期待以上のスピードと品質で対応していただき、本当に感謝しています。",
+    author: "伊藤 誠",
+    title: "スタートアップCEO",
+    image: "https://placehold.co/60x60/374151/FFFFFF.png?text=IM"
   }
 ];
 

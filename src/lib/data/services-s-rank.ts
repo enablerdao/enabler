@@ -1,4 +1,3 @@
-
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -9,8 +8,9 @@ export const sRankServices: Service[] = [
     nameEn: 'StayFlow Portfolio',
     nameJp: 'ステイフローポートフォリオ - 厳選特別物件',
     marketSize: '約5兆円規模',
-    domain: 'stayflow-portfolio.com',
+    domain: 'portfolio.stayflowapp.com',
     goal: '特別物件登録数100件、プレミアム利用者1000人達成',
+    disableLinks: true, // Add this property to disable links
     description: 'ステイフローの中から厳選された特別物件のコレクション。最高級のおもてなしとユニークな体験を提供する特別な宿泊施設をキュレーションしています。',
     features: [
       {
@@ -404,7 +404,7 @@ export const sRankServices: Service[] = [
       {
         author: "山田 直樹",
         position: "ホテル支配人",
-        company: "グランドホテル東京",
+        company: "グランドホテル��京",
         content: "TimeDropのおかげで空室を効率的に埋められるようになりました。収益化できなかった在庫が売上に貢献しています。",
         rating: 5
       },

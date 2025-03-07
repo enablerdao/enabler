@@ -259,15 +259,21 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
         
         <div className="flex flex-wrap justify-between items-end mt-auto pt-3 border-t border-gray-100">
-          <a 
-            href={`https://${service.domain}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={handleExternalLinkClick}
-            className="text-sm text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
-          >
-            {service.domain} <ExternalLink size={14} />
-          </a>
+          {service.disableLinks ? (
+            <span className="text-sm text-gray-600 inline-flex items-center gap-1">
+              {service.domain}
+            </span>
+          ) : (
+            <a 
+              href={`https://${service.domain}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={handleExternalLinkClick}
+              className="text-sm text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
+            >
+              {service.domain} <ExternalLink size={14} />
+            </a>
+          )}
           <span className="text-xs text-gray-500 mt-2">目標: {service.goal}</span>
         </div>
         
@@ -280,7 +286,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             詳細を見る <ArrowRight size={16} className="ml-1" />
           </Link>
           
-          {hasEditLink && (
+          {hasEditLink && !service.disableLinks && (
             <a 
               href={hasEditLink}
               target="_blank" 

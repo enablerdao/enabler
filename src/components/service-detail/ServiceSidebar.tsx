@@ -60,28 +60,34 @@ export const ServiceSidebar = ({ service }: ServiceSidebarProps) => {
           
           <div>
             <h3 className="text-sm font-medium text-gray-500">ドメイン</h3>
-            <a 
-              href={`https://${service.domain}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
-            >
-              {service.domain} <ExternalLink size={14} />
-            </a>
+            {service.disableLinks ? (
+              <p className="text-gray-600">{service.domain}</p>
+            ) : (
+              <a 
+                href={`https://${service.domain}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-enabler-600 hover:text-enabler-700 inline-flex items-center gap-1 transition-colors"
+              >
+                {service.domain} <ExternalLink size={14} />
+              </a>
+            )}
           </div>
         </div>
         
-        <div className="mt-8">
-          <a
-            href={`https://${service.domain}`}
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={handleExternalLinkClick}
-            className="w-full inline-flex items-center justify-center px-4 py-2 rounded-lg bg-enabler-600 text-white font-medium transition-all duration-200 hover:bg-enabler-700 shadow-md hover:shadow-lg"
-          >
-            サービスサイトを見る <ExternalLink size={16} className="ml-2" />
-          </a>
-        </div>
+        {!service.disableLinks && (
+          <div className="mt-8">
+            <a
+              href={`https://${service.domain}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={handleExternalLinkClick}
+              className="w-full inline-flex items-center justify-center px-4 py-2 rounded-lg bg-enabler-600 text-white font-medium transition-all duration-200 hover:bg-enabler-700 shadow-md hover:shadow-lg"
+            >
+              サービスサイトを見る <ExternalLink size={16} className="ml-2" />
+            </a>
+          </div>
+        )}
 
         {service.quote && (
           <div className="mt-6 pt-4 border-t border-gray-100">

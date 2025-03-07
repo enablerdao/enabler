@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { ExternalLink, ArrowRight, Star, Edit, Loader, Clock, Bot, Activity } from 'lucide-react';
+import { ExternalLink, ArrowRight, Star, Edit, Loader, Clock, Bot, Activity, Heart, MessageSquareText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logActivity } from '@/lib/logger';
 import ServiceLogo from './ServiceLogo';
@@ -60,7 +60,7 @@ const getServiceETA = (serviceId: number) => {
 // Generate AI activity status for each service
 const getAIActivityStatus = (serviceId: number) => {
   const activities = [
-    'コード生成中', 'データ分析中', '最適化中', 'テスト実行中', 'デプロイ準備中'
+    'コード生成中', 'データ分析中', '最適化中', 'テスト実行中', 'デプロイ準備中', 'ストーリー構築中', '人の想いをつなぐ中'
   ];
   return activities[serviceId % activities.length];
 };
@@ -73,10 +73,26 @@ const getServiceTasks = (serviceId: number) => {
     { done: serviceId % 2 === 0, text: 'データベース統合' },
     { done: serviceId % 3 === 0, text: 'フロントエンド開発' },
     { done: false, text: 'テスト自動化' },
-    { done: false, text: '本番環境デプロイ' }
+    { done: false, text: '本番環境デプロイ' },
+    { done: false, text: 'ストーリー要素追加' },
+    { done: false, text: '心を動かす体験の実装' }
   ];
   
-  return baseTasks.slice(0, 3 + (serviceId % 3));
+  return baseTasks.slice(0, 3 + (serviceId % 4));
+};
+
+// Generate a story element for service
+const getServiceStory = (serviceId: number) => {
+  const stories = [
+    "利用者の時間を大切にする物語",
+    "人と人をつなぐ温かい体験",
+    "心が動く出会いを創出",
+    "小さな手間をなくす技術",
+    "誰かの物語を豊かにする",
+    "日常に心のゆとりを届ける"
+  ];
+  
+  return stories[serviceId % stories.length];
 };
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
@@ -108,6 +124,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const eta = getServiceETA(service.id);
   const aiActivity = getAIActivityStatus(service.id);
   const tasks = getServiceTasks(service.id);
+  const storyElement = getServiceStory(service.id);
   
   return (
     <MotionBox 
@@ -143,6 +160,14 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           <h3 className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors mt-3">{service.nameEn}</h3>
         </Link>
         <p className="text-sm text-gray-600 mb-3">{service.nameJp}</p>
+        
+        {/* Story Element Badge */}
+        <div className="mb-3">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-enabler-50 border border-enabler-100">
+            <Heart className="w-3 h-3 text-enabler-500 mr-1" />
+            <span className="text-xs text-enabler-600">{storyElement}</span>
+          </div>
+        </div>
         
         {/* AI Progress Indicator */}
         <div className="mb-4">
@@ -223,11 +248,11 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           </ul>
         </div>
         
-        {service.catchphrase && (
-          <div className="mb-4 italic text-sm text-gray-700 bg-gray-50 p-3 rounded-md border border-gray-100">
-            "{service.catchphrase}"
-          </div>
-        )}
+        {/* Story element hint */}
+        <div className="mb-4 italic text-sm text-gray-700 bg-gray-50 p-3 rounded-md border border-gray-100 flex items-start">
+          <MessageSquareText size={14} className="text-enabler-400 mr-2 mt-0.5 flex-shrink-0" />
+          <span>"{service.catchphrase || '欲しいモノの先には、誰かの物語があります'}"</span>
+        </div>
         
         {service.features && (
           <div className="flex flex-wrap gap-2 mb-4">

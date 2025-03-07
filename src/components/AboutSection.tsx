@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github, Heart, MessageSquareText, Clock, Users } from 'lucide-react';
 import SimpleIllustration from './simple-illustration';
 
 const AboutSection = () => {
@@ -85,18 +85,26 @@ const AboutSection = () => {
                 <div className="space-y-4 relative">
                   <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
                     <div className="flex items-center mb-2">
-                      <BrainCircuit className="w-5 h-5 text-enabler-600 mr-2" />
+                      <Heart className="w-5 h-5 text-enabler-600 mr-2" />
                       <h4 className="font-bold text-enabler-800">ミッション</h4>
                     </div>
-                    <p className="text-gray-700">{companyInfo.mission}</p>
+                    <p className="text-gray-700 whitespace-pre-line">{companyInfo.mission}</p>
+                    <div className="mt-3 flex items-center text-xs text-gray-500">
+                      <MessageSquareText className="w-4 h-4 mr-1 text-enabler-400" />
+                      <span>心が動く出会いを届けます</span>
+                    </div>
                   </div>
                   
                   <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
                     <div className="flex items-center mb-2">
-                      <Cpu className="w-5 h-5 text-enabler-600 mr-2" />
+                      <Clock className="w-5 h-5 text-enabler-600 mr-2" />
                       <h4 className="font-bold text-enabler-800">ビジョン</h4>
                     </div>
-                    <p className="text-gray-700">{companyInfo.vision}</p>
+                    <p className="text-gray-700 whitespace-pre-line">{companyInfo.vision}</p>
+                    <div className="mt-3 flex items-center text-xs text-gray-500">
+                      <Users className="w-4 h-4 mr-1 text-enabler-400" />
+                      <span>大切な誰かとの新しい物語</span>
+                    </div>
                   </div>
                 </div>
               </div>

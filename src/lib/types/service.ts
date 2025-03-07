@@ -19,7 +19,7 @@ export interface PricingTier {
   period: string;
   features: string[];
   recommended?: boolean;
-  buttonText?: string; // Add buttonText property to fix build errors
+  buttonText?: string;
 }
 
 export interface Testimonial {
@@ -47,6 +47,43 @@ export interface UniquePoint {
 export interface FAQ {
   question: string;
   answer: string;
+}
+
+export interface ApiInfo {
+  endpoint: string;
+  description: string;
+  authentication: string;
+  examples: Array<{
+    language: string;
+    description: string;
+    code: string;
+  }>;
+  documentation?: string;
+}
+
+export interface PricingPlan extends PricingTier {}
+
+export interface CompanyInfo {
+  nameJp: string;
+  nameEn: string;
+  description: string;
+  slogan: string;
+  mission: string;
+  vision: string;
+  address: string;
+  email: string;
+  phone: string;
+  established: string;
+  ceo: string;
+  employees: string;
+  businessActivities: string;
+  openSource: string;
+  socialLinks: {
+    twitter?: string;
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+  };
 }
 
 export interface Service {
@@ -78,24 +115,16 @@ export interface Service {
   faqs?: FAQ[];
   quote?: string;
   quoteAuthor?: string;
-  apiInfo?: any; // Add apiInfo property to fix build errors
-  currentListings?: number; // Add current listings count
+  apiInfo?: ApiInfo;
+  currentListings?: number;
 }
 
-// Add these interfaces to fix build errors
-export interface ApiInfo {
-  [key: string]: any;
+export interface CategoryInfo {
+  name: string;
+  description: string;
 }
 
-export interface PricingPlan {
-  [key: string]: any;
-}
-
-export interface CompanyInfo {
-  [key: string]: any;
-}
-
-export const categoryInfo: Record<ServiceCategory, { name: string; description: string }> = {
+export const categoryInfo: Record<ServiceCategory, CategoryInfo> = {
   'STAY_TRAVEL': {
     name: '滞在・旅行',
     description: '宿泊施設や旅行に関連するサービス'

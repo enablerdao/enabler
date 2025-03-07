@@ -19,18 +19,19 @@ const SimpleIllustration: React.FC<SimpleIllustrationProps> = ({ className }) =>
       animate="visible"
       variants={containerVariants}
     >
-      <div className="relative w-full h-[440px] rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100/30 p-6 overflow-hidden shadow-md">
+      <div className="relative w-full h-[440px] rounded-3xl bg-blue-50/80 p-6 overflow-hidden shadow-md">
         <IllustrationBackground />
         
         {/* タイトル */}
         <motion.h2
-          className="text-2xl md:text-3xl font-bold text-center text-blue-600 mb-10 relative z-10"
+          className="text-2xl md:text-3xl font-bold text-center relative z-10"
+          style={{ color: "#4A66D5" }}
           variants={itemVariants}
         >
           可能性を広げる社会をつくる
         </motion.h2>
 
-        {/* 中央の要素 - 個人 */}
+        {/* 中央の要素 - 一人ひとり */}
         <ConceptNode 
           type="center"
           icon="Users"

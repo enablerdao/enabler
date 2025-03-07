@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Shield, Zap, TrendingUp, Target } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Service } from '@/lib/types/service';
 import { MotionBox } from '@/components/ui/motion-box';

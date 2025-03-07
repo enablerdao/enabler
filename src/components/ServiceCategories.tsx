@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { services } from '@/lib/data';
 import { Service, ServiceCategory, categoryInfo } from '@/lib/types/service';
@@ -11,7 +10,6 @@ const ServiceCategories = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<ServiceCategory | 'ALL'>('ALL');
   
-  // Assign category icons dynamically
   const getCategoryIcon = (category: ServiceCategory) => {
     switch(category) {
       case 'STAY_TRAVEL':
@@ -27,12 +25,10 @@ const ServiceCategories = () => {
     }
   };
   
-  // Get services by category
   const getServicesByCategory = (category: ServiceCategory) => {
     return services.filter(service => service.category === category);
   };
   
-  // Filter services by search query
   const filteredServices = services.filter(service => {
     if (!searchQuery) return activeCategory === 'ALL' || service.category === activeCategory;
     
@@ -46,7 +42,6 @@ const ServiceCategories = () => {
     return matchesQuery && (activeCategory === 'ALL' || service.category === activeCategory);
   });
   
-  // All available categories
   const allCategories = Object.keys(categoryInfo) as ServiceCategory[];
   
   return (
@@ -61,7 +56,6 @@ const ServiceCategories = () => {
           </p>
         </MotionBox>
         
-        {/* Category filters */}
         <MotionBox delay={100}>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             <Button
@@ -86,7 +80,6 @@ const ServiceCategories = () => {
           </div>
         </MotionBox>
         
-        {/* Search box */}
         <MotionBox delay={200}>
           <div className="relative max-w-md mx-auto mb-12">
             <input
@@ -100,7 +93,6 @@ const ServiceCategories = () => {
           </div>
         </MotionBox>
         
-        {/* Display by category when not searching or filtering */}
         {searchQuery === '' && activeCategory === 'ALL' ? (
           <div className="space-y-16">
             {allCategories.map((category, idx) => {
@@ -118,7 +110,7 @@ const ServiceCategories = () => {
                         {categoryInfo[category].name}
                       </h3>
                       <span className="ml-3 text-gray-500">
-                        {categoryInfo[category].nameJp}
+                        {categoryInfo[category].name}
                       </span>
                     </div>
                     <p className="text-center text-gray-600 mb-8">
@@ -136,7 +128,6 @@ const ServiceCategories = () => {
             })}
           </div>
         ) : (
-          // Display filtered results
           filteredServices.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredServices.map((service, index) => (

@@ -4,6 +4,7 @@ import { Service } from '@/lib/types/service';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Progress } from '@/components/ui/progress';
 import { Target } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ServiceOverviewProps {
   service: Service;
@@ -40,7 +41,12 @@ export const ServiceOverview = ({ service, serviceColor }: ServiceOverviewProps)
               <span className="text-sm font-medium">現在の掲載数: {currentListings}件</span>
               <span className="text-sm font-medium">目標: {portfolioGoal}件</span>
             </div>
-            <Progress value={progressPercentage} className="h-2" indicatorClassName="bg-amber-500" />
+            <div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary">
+              <div 
+                className="h-full bg-amber-500 transition-all"
+                style={{ width: `${progressPercentage}%` }}
+              />
+            </div>
             <p className="mt-3 text-xs text-gray-500 text-right">達成率: {progressPercentage.toFixed(2)}%</p>
           </div>
         )}

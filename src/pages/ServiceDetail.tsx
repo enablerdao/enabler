@@ -4,26 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { services, Service } from '@/lib/data';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { MotionBox } from '@/components/ui/motion-box';
 import { logActivity } from '@/lib/logger';
-import { ProcessDiagram } from '@/components/service-detail/ProcessDiagram';
-import { CycleDiagram } from '@/components/service-detail/CycleDiagram';
-import { ServiceSidebar } from '@/components/service-detail/ServiceSidebar';
-import { ExternalLink } from 'lucide-react';
-
-// Import the new components we've created
 import { ServiceHero } from '@/components/service-detail/ServiceHero';
-import { ServiceOverview } from '@/components/service-detail/ServiceOverview';
-import { ServiceMissionVision } from '@/components/service-detail/ServiceMissionVision';
-import { ServiceFeatures } from '@/components/service-detail/ServiceFeatures';
-import { ServiceDemoVideo } from '@/components/service-detail/ServiceDemoVideo';
-import { ServicePricing } from '@/components/service-detail/ServicePricing';
-import { ServiceApiInfo } from '@/components/service-detail/ServiceApiInfo';
-import { ServiceTestimonials } from '@/components/service-detail/ServiceTestimonials';
-import { ServiceUseCases } from '@/components/service-detail/ServiceUseCases';
-import { ServiceUniquePoints } from '@/components/service-detail/ServiceUniquePoints';
-import { ServiceFAQs } from '@/components/service-detail/ServiceFAQs';
-import { ServiceRoadmap } from '@/components/service-detail/ServiceRoadmap';
+import { ServiceMainContent } from '@/components/service-detail/ServiceMainContent';
+import { ServiceSidebar } from '@/components/service-detail/ServiceSidebar';
+import { ServiceLoadingIndicator } from '@/components/service-detail/ServiceLoadingIndicator';
 
 const ServiceDetail = () => {
   const { name } = useParams();
@@ -56,18 +41,10 @@ const ServiceDetail = () => {
   }, [name, navigate]);
   
   if (!service) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse">読み込み中...</div>
-      </div>
-    );
+    return <ServiceLoadingIndicator />;
   }
 
   const serviceColor = service.color || '#6366f1';
-  const mission = service.mission || "人々の日常をより便利に、より豊かにする革新的なソリューションを提供する";
-  const vision = service.vision || "テクノロジーの力で社会課題を解決し、持続可能な未来を創造する";
-  const brandStory = service.brandStory || "";
-  const isPortfolio = service.nameEn === 'StayFlow Portfolio';
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -78,141 +55,7 @@ const ServiceDetail = () => {
         
         <div className="container mx-auto px-6 mt-8">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <ServiceOverview service={service} serviceColor={serviceColor} />
-              
-              <MotionBox delay={300}>
-                <ServiceDemoVideo />
-              </MotionBox>
-
-              <ServiceMissionVision 
-                mission={mission} 
-                vision={vision}
-                brandStory={brandStory}
-                serviceColor={serviceColor}
-                serviceName={service.nameEn} 
-              />
-              
-              {service.features && (
-                <ServiceFeatures features={service.features} serviceColor={serviceColor} />
-              )}
-              
-              {service.pricing && service.pricing.length > 0 && (
-                <MotionBox delay={400}>
-                  <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
-                    <div className="flex items-center mb-6 border-b pb-2" style={{ borderColor: `${serviceColor}40` }}>
-                      <ExternalLink className="mr-3" style={{ color: serviceColor }} />
-                      <h2 className="text-xl font-bold">💳 プラン・料金</h2>
-                    </div>
-                    <ServicePricing pricing={service.pricing} />
-                  </div>
-                </MotionBox>
-              )}
-
-              {service.apiInfo && (
-                <MotionBox delay={450}>
-                  <ServiceApiInfo apiInfo={service.apiInfo} serviceColor={serviceColor} />
-                </MotionBox>
-              )}
-
-              {service.useCases && (
-                <ServiceUseCases useCases={service.useCases} serviceColor={serviceColor} />
-              )}
-
-              {service.testimonials && service.testimonials.length > 0 && (
-                <MotionBox delay={550}>
-                  <ServiceTestimonials testimonials={service.testimonials} serviceColor={serviceColor} />
-                </MotionBox>
-              )}
-
-              {service.uniquePoints && (
-                <ServiceUniquePoints uniquePoints={service.uniquePoints} serviceColor={serviceColor} />
-              )}
-              
-              <MotionBox delay={650}>
-                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
-                  <h2 className="text-xl font-bold mb-6 border-b pb-2" style={{ borderColor: `${serviceColor}40` }}>
-                    {isPortfolio ? "サービス体験の流れ" : "サービスの流れ"}
-                  </h2>
-                  <ProcessDiagram color={serviceColor} />
-                  <div className="grid md:grid-cols-4 gap-4 text-center text-sm mt-6">
-                    {isPortfolio ? (
-                      <>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>厳選</h3>
-                          <p className="text-gray-600">独自の基準で特別な物件を厳選</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>滞在</h3>
-                          <p className="text-gray-600">自分の別荘のようにリラックス</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>体験</h3>
-                          <p className="text-gray-600">特別な時間と空間を楽しむ</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>感動</h3>
-                          <p className="text-gray-600">思い出に残る特別な経験</p>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>データ収集</h3>
-                          <p className="text-gray-600">ユーザーデータを安全に収集</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>AI分析</h3>
-                          <p className="text-gray-600">高度なアルゴリズムで解析</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>パーソナライズ</h3>
-                          <p className="text-gray-600">個別最適化された提案</p>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-subtle">
-                          <h3 className="font-bold mb-2" style={{ color: serviceColor }}>価値提供</h3>
-                          <p className="text-gray-600">具体的な成果を実現</p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </MotionBox>
-              
-              <MotionBox delay={700}>
-                <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
-                  <h2 className="text-xl font-bold mb-6 border-b pb-2" style={{ borderColor: `${serviceColor}40` }}>
-                    {isPortfolio ? "継続的な価値向上サイクル" : "継続的改善サイクル"}
-                  </h2>
-                  <CycleDiagram color={serviceColor} />
-                  <p className="text-center text-gray-600 mt-6 bg-gray-50 p-4 rounded-lg">
-                    {isPortfolio ? (
-                      <>
-                        {service.nameEn}は常に特別な体験の創出を追求しています。<br />
-                        新たな魅力的な空間の発見、厳選された物件の選定、洗練されたサービスの提供、<br />
-                        そして他にはない特別な体験の創造を通じて、訪れるたびに新たな感動を提供します。
-                      </>
-                    ) : (
-                      <>
-                        {service.nameEn}は継続的な改善を重視しています。ユーザーフィードバックを元に<br />
-                        サービスの品質向上と新機能の開発を行い、常に最高の体験を提供します。
-                      </>
-                    )}
-                  </p>
-                </div>
-              </MotionBox>
-              
-              <ServiceFAQs 
-                faqs={service.faqs} 
-                serviceColor={serviceColor} 
-                serviceName={service.nameEn}
-                targetAudience={service.targetAudience}
-                specificAudience={service.specificAudience}
-              />
-              
-              <ServiceRoadmap service={service} serviceColor={serviceColor} />
-            </div>
-            
+            <ServiceMainContent service={service} serviceColor={serviceColor} />
             <div>
               <ServiceSidebar service={service} />
             </div>

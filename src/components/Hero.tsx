@@ -30,11 +30,18 @@ const Hero = () => {
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-enabler-800 mb-8 leading-tight max-w-4xl mx-auto">
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-enabler-600 to-enabler-800 bg-clip-text text-transparent">
-                {companyInfo.slogan}
+                「あったらいいな」を「あってよかった！」に。
               </span>
               <span className="absolute -bottom-1 left-0 w-full h-1.5 bg-enabler-500 rounded-full opacity-70"></span>
             </span>
           </h1>
+        </MotionBox>
+        
+        <MotionBox delay={500}>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-700 leading-relaxed">
+            テクノロジーで、あなたの日常をもっと楽しく、もっと便利に。<br />
+            一人ひとりの「好き」や「得意」を広げ、自分らしく輝ける毎日をつくります。
+          </p>
         </MotionBox>
         
         <MotionBox delay={700}>

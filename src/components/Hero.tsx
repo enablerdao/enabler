@@ -3,6 +3,7 @@ import React from 'react';
 import { MotionBox } from './ui/motion-box';
 import { ChevronDown } from 'lucide-react';
 import FibonacciBackground from './FibonacciBackground';
+import { companyInfo } from '@/lib/data';
 
 const Hero = () => {
   return (
@@ -39,8 +40,11 @@ const Hero = () => {
         </MotionBox>
         
         <MotionBox delay={500}>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-4">
             一人ひとりの「好き」や「得意」を広げ、自分らしく輝ける毎日をつくります。
+          </p>
+          <p className="text-sm md:text-base text-enabler-600 max-w-2xl mx-auto mb-10 italic">
+            {companyInfo.slogan}
           </p>
         </MotionBox>
         

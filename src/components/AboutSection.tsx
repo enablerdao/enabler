@@ -1,7 +1,8 @@
+
 import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github } from 'lucide-react';
 import SimpleIllustration from './simple-illustration';
 
 const AboutSection = () => {
@@ -125,7 +126,7 @@ const AboutSection = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-700">事業内容</h4>
-                      <p className="text-gray-600">デジタルサービスの開発・運営</p>
+                      <p className="text-gray-600">{companyInfo.businessActivities}</p>
                       <p className="text-xs text-gray-400 font-mono mt-1">// その他、宇宙の謎を解明する秘密プロジェクトも進行中</p>
                     </div>
                   </div>
@@ -140,6 +141,16 @@ const AboutSection = () => {
                       <h4 className="font-medium text-gray-700">所在地</h4>
                       <p className="text-gray-600">{companyInfo.address}</p>
                       <p className="text-xs text-gray-400 italic mt-1">*実際の場所は量子空間内にありますが、郵便物は東京でお受け取りしています</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start group">
+                    <div className="mt-0.5 mr-3 bg-enabler-100 p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
+                      <Github className="w-5 h-5 text-enabler-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-700">オープンソース</h4>
+                      <p className="text-gray-600">{companyInfo.openSource}</p>
                     </div>
                   </div>
                 </div>

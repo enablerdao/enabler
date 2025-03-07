@@ -3,7 +3,7 @@ import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -123,6 +123,18 @@ const Footer = () => {
               </address>
             </div>
           </div>
+        </div>
+        
+        <div className="mb-8 px-4 py-5 bg-gray-800 rounded-lg flex flex-col md:flex-row items-center justify-between">
+          <div className="flex items-center mb-4 md:mb-0">
+            <Github className="text-enabler-400 mr-3" size={20} />
+            <p className="text-gray-300 text-sm">
+              {companyInfo.openSource}
+            </p>
+          </div>
+          <a href="https://github.com/enabler-jp" className="text-enabler-400 hover:text-white text-sm font-medium transition-colors">
+            GitHubでプロジェクトを見る →
+          </a>
         </div>
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">

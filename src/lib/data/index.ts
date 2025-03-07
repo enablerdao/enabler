@@ -18,11 +18,11 @@ const categorizeServices = (services: Service[]): Service[] => {
     let category: ServiceCategory | undefined;
     
     // STAY & TRAVEL category
-    if (['Enabliss', 'TimeDrop', 'StayFlow'].includes(service.nameEn)) {
+    if (['Enabliss', 'TimeDrop', 'StayFlow', 'TravelMate', 'StayFlow Portfolio'].includes(service.nameEn)) {
       category = 'STAY_TRAVEL';
     }
     // LIFE & COMMUNITY category
-    else if (['PetPals', 'Kireasy', 'FoodSaver', 'Unused', 'MatchSense', 'TravelMate', 'LocalBites'].includes(service.nameEn)) {
+    else if (['PetPals', 'Kireasy', 'FoodSaver', 'Unused', 'MatchSense', 'LocalBites'].includes(service.nameEn)) {
       category = 'LIFE_COMMUNITY';
     }
     // WORK & PRODUCTIVITY category
@@ -44,6 +44,7 @@ const categorizeServices = (services: Service[]): Service[] => {
       case 'Enabliss': emoji = '🏝️'; break;
       case 'TimeDrop': emoji = '📅'; break;
       case 'StayFlow': emoji = '🏠'; break;
+      case 'StayFlow Portfolio': emoji = '🏯'; break;
       case 'PetPals': emoji = '🐾'; break;
       case 'Kireasy': emoji = '🧹'; break;
       case 'FoodSaver': emoji = '🍴'; break;
@@ -87,3 +88,4 @@ export const services: Service[] = categorizeServices([
 ]);
 
 export { companyInfo };
+

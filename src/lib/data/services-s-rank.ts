@@ -1,6 +1,93 @@
+
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
+  // Add StayFlow Portfolio as the first service to make it appear at the top
+  {
+    id: 0,  // Lower ID to ensure it appears first
+    rank: 'S',
+    nameEn: 'StayFlow Portfolio',
+    nameJp: 'ステイフローポートフォリオ - 厳選特別物件',
+    marketSize: '約5兆円規模',
+    domain: 'stayflow-portfolio.com',
+    goal: '特別物件登録数100件、プレミアム利用者1000人達成',
+    description: 'ステイフローの中から厳選された特別物件のコレクション。最高級のおもてなしとユニークな体験を提供する特別な宿泊施設をキュレーションしています。',
+    features: [
+      {
+        title: '特別物件厳選',
+        description: '独自の基準で選ばれた最高級の宿泊施設のみを掲載。一般では予約できない特別な物件も。'
+      },
+      {
+        title: 'プレミアムサービス',
+        description: 'コンシェルジュサービス、専用送迎、特別なアメニティなど、プレミアムな体験を提供。'
+      },
+      {
+        title: '限定イベント',
+        description: '会員限定の文化体験、ガストロノミーイベント、ワークショップなどを定期開催。'
+      },
+      {
+        title: '会員特典',
+        description: '早期予約特典、無料アップグレード、特別料金など、会員だけの特典を提供。'
+      }
+    ],
+    color: '#D4AF37',  // Gold color for premium feel
+    pricing: [
+      {
+        name: "スタンダードメンバーシップ",
+        price: "¥50,000",
+        period: "年",
+        features: [
+          "厳選物件への優先予約権",
+          "基本的なコンシェルジュサービス",
+          "会員限定イベント参加（2回/年）",
+          "特典・割引の適用"
+        ]
+      },
+      {
+        name: "プレミアムメンバーシップ",
+        price: "¥150,000",
+        period: "年",
+        features: [
+          "全物件への最優先予約権",
+          "24時間専属コンシェルジュ",
+          "会員限定イベント参加（無制限）",
+          "専用送迎サービス",
+          "無料アップグレード（年2回）",
+          "VIPウェルカムパッケージ"
+        ],
+        recommended: true
+      },
+      {
+        name: "プライベートメンバーシップ",
+        price: "要問合せ",
+        period: "",
+        features: [
+          "非公開物件へのアクセス権",
+          "プライベートジェット手配",
+          "完全パーソナライズサービス",
+          "専属スタッフの配置",
+          "オーナー直接プログラム参加",
+          "無制限の特典利用"
+        ]
+      }
+    ],
+    testimonials: [
+      {
+        author: "高橋 正和",
+        position: "経営者",
+        company: "Global Investment Partners",
+        content: "StayFlow Portfolioは旅の概念を根本から変えてくれました。どの物件も唯一無二の体験ができ、コンシェルジュサービスは常に期待を上回ります。",
+        rating: 5
+      },
+      {
+        author: "ジェニファー・チェン",
+        position: "インフルエンサー",
+        company: "Luxury Travel Magazine",
+        content: "世界中の高級ホテルを訪れてきましたが、StayFlow Portfolioのキュレーションは素晴らしいセンスがあります。会員限定イベントも非常に洗練されています。",
+        rating: 5
+      }
+    ]
+  },
   {
     id: 1,
     rank: 'S',

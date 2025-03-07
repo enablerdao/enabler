@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Service } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { ExternalLink, ArrowRight, Star, Edit, Loader, Clock, Bot, Activity } from 'lucide-react';
+import { ExternalLink, ArrowRight, Star, Edit, Loader, Clock, Bot, Activity, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logActivity } from '@/lib/logger';
 import ServiceLogo from './ServiceLogo';
@@ -108,6 +108,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const eta = getServiceETA(service.id);
   const aiActivity = getAIActivityStatus(service.id);
   const tasks = getServiceTasks(service.id);
+
+  // Special treatment for StayFlow Portfolio
+  const isPortfolio = service.nameEn === 'StayFlow Portfolio';
   
   return (
     <MotionBox 
@@ -116,11 +119,18 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     >
       <div 
         className={cn(
-          "h-full p-6 rounded-xl border bg-white shadow-subtle hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1",
+          "h-full p-6 rounded-xl border bg-white shadow-subtle hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 relative",
           `rank-${service.rank.toLowerCase()}`,
-          rankBorderMap[service.rank]
+          rankBorderMap[service.rank],
+          isPortfolio && "border-amber-300 border-2"
         )}
       >
+        {isPortfolio && (
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center">
+            <Award size={14} className="mr-1" /> 厳選コレクション
+          </div>
+        )}
+        
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center">
             <ServiceLogo serviceName={service.nameEn} size="sm" />
@@ -130,13 +140,17 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               </span>
             )}
           </div>
-          <span className={cn(
-            "inline-block px-2.5 py-1 rounded-full text-xs font-bold", 
-            rankColorMap[service.rank],
-            rankTextColorMap[service.rank]
-          )}>
-            Rank {service.rank}
-          </span>
+          
+          {/* Moved the rank badge to be on the right side, but slightly lower */}
+          <div className="flex flex-col items-end">
+            <span className={cn(
+              "inline-block px-2.5 py-1 rounded-full text-xs font-bold mt-1", 
+              rankColorMap[service.rank],
+              rankTextColorMap[service.rank]
+            )}>
+              Rank {service.rank}
+            </span>
+          </div>
         </div>
         
         <Link to={`/service/${service.id}`} onClick={handleCardClick}>
@@ -278,9 +292,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           )}
         </div>
         
-        {/* Floating AI indicator */}
+        {/* Floating AI indicator - moved to the top-right corner */}
         <motion.div 
-          className="absolute top-5 right-6 text-xs text-enabler-500 flex items-center"
+          className="absolute top-2 right-2 text-xs text-enabler-500 flex items-center"
           variants={fibonacciFloatVariants}
           animate="float"
           custom={service.id % 5}

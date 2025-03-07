@@ -1,3 +1,4 @@
+
 export interface Service {
   id: number;
   rank: 'S' | 'A' | 'B' | 'C';
@@ -110,6 +111,7 @@ export interface CompanyInfo {
   nameJp: string;
   nameEn: string;
   description: string;
+  slogan: string;
   mission: string;
   vision: string;
   address: string;
@@ -118,6 +120,8 @@ export interface CompanyInfo {
   established: string;
   ceo: string;
   employees: string;
+  businessActivities: string;
+  openSource: string;
   socialLinks: {
     twitter?: string;
     facebook?: string;

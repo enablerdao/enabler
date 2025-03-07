@@ -1,3 +1,4 @@
+
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -16,20 +17,20 @@ export const sRankServices: Service[] = [
     catchphrase: '生涯をかけて訪れたい、特別な場所だけを。',
     features: [
       {
-        title: '✅ 厳選された特別な空間',
-        description: '時代の感性を反映し、美的感覚に優れた場所のみを独自の基準で厳選。'
+        title: '🌴 ハワイのビーチハウス',
+        description: 'ワイキキから車で約15分、美しいビーチサイドにある理想的な海辺の別荘。自分だけのプライベートビーチを体験できる特別な空間。'
       },
       {
-        title: '✅ プレミアムな体験',
-        description: '訪れるたびに感動と新しい発見がある、パーソナライズされた特別な体験を提供。'
+        title: '🌊 熱海の眺望サウナハウス',
+        description: '2階建ての吹き抜けデザイン、一望できる海の絶景とプライベートサウナを備えた、贅沢なリラクゼーション空間。'
       },
       {
-        title: '✅ 限定イベント',
-        description: '厳選した空間でのみ体験できる、洗練された会員限定イベントを定期開催。'
+        title: '🗼 東京タワービューマンション',
+        description: '東京タワーを一望できる高級タワーマンション。都会の喧騒から離れた落ち着いた環境で、洗練された東京ライフを体験。'
       },
       {
-        title: '✅ 特別な会員特典',
-        description: 'StayFlow会員だけがアクセスできる特典、特別料金、アップグレードなどのプレミアムサービス。'
+        title: '⛰️ 北海道の自然派コテージ',
+        description: '弟子屈の自然に囲まれた環境、サンフロアとタワーサウナを備え、最大10名宿泊可能な広々とした空間。研修やグループ滞在に最適。'
       }
     ],
     color: '#D4AF37',  // Gold color for premium feel

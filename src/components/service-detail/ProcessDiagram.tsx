@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Star, Home, BookOpen, Heart } from 'lucide-react';
+import { Star, Home, BookOpen, Heart, Database, BarChart3, LineChart, Sparkles, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ProcessDiagramProps {

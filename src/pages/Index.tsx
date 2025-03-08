@@ -25,7 +25,6 @@ const Index = () => {
       <main className="overflow-x-hidden">
         <Hero />
         <HeroStats />
-        <SocietyDiagram />
         <AboutSection />
         <ServiceCategories />
         <Testimonials />

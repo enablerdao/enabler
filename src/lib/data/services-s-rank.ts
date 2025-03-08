@@ -1,4 +1,3 @@
-
 import { Service } from '../types/service';
 
 export const sRankServices: Service[] = [
@@ -129,29 +128,12 @@ export const sRankServices: Service[] = [
     id: 1,
     rank: 'S',
     nameEn: 'PetPals',
-    nameJp: 'ペットパルズ - ペットコミュニティ',
-    marketSize: '約1000億円',
+    nameJp: '',
+    marketSize: '',
     domain: 'petpalsapp.com',
-    goal: 'アクティブユーザー数1万人',
-    description: 'ペット愛好家向けのコミュニティプラットフォーム。写真共有、イベント情報、専門家アドバイスを提供。',
-    features: [
-      {
-        title: '写真共有',
-        description: 'ペットの写真を共有し、他のユーザーと交流できます。'
-      },
-      {
-        title: 'イベント情報',
-        description: '地域のペットイベント情報を提供します。'
-      },
-      {
-        title: '専門家アドバイス',
-        description: '獣医やトレーナーからの専門的なアドバイスを受けられます。'
-      },
-      {
-        title: 'コミュニティ',
-        description: '共通の興味を持つユーザー同士が交流できるコミュニティ機能。'
-      }
-    ],
+    goal: '',
+    description: '',
+    features: [],
     color: '#673ab7'
   },
   {

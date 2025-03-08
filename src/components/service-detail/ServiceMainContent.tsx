@@ -6,15 +6,12 @@ import { ServiceOverview } from './ServiceOverview';
 import { ServiceDemoVideo } from './ServiceDemoVideo';
 import { ServiceMissionVision } from './ServiceMissionVision';
 import { ServiceFeatures } from './ServiceFeatures';
-import { ServicePricing } from './ServicePricing';
 import { ServiceApiInfo } from './ServiceApiInfo';
 import { ServiceUseCases } from './ServiceUseCases';
-import { ServiceTestimonials } from './ServiceTestimonials';
 import { ServiceUniquePoints } from './ServiceUniquePoints';
-import { ServiceFAQs } from './ServiceFAQs';
 import { ServiceRoadmap } from './ServiceRoadmap';
-import { ServiceProcessCycle } from './ServiceProcessCycle';
 import { ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface ServiceMainContentProps {
   service: Service;
@@ -25,14 +22,17 @@ export const ServiceMainContent: React.FC<ServiceMainContentProps> = ({ service,
   const mission = service.mission || "人々の日常をより便利に、より豊かにする革新的なソリューションを提供する";
   const vision = service.vision || "テクノロジーの力で社会課題を解決し、持続可能な未来を創造する";
   const brandStory = service.brandStory || "";
+  const isStayFlow = service.nameEn === 'StayFlow';
 
   return (
     <div className="md:col-span-2">
       <ServiceOverview service={service} serviceColor={serviceColor} />
       
-      <MotionBox delay={300}>
-        <ServiceDemoVideo />
-      </MotionBox>
+      {!isStayFlow && (
+        <MotionBox delay={300}>
+          <ServiceDemoVideo />
+        </MotionBox>
+      )}
 
       <ServiceMissionVision 
         mission={mission} 
@@ -46,49 +46,42 @@ export const ServiceMainContent: React.FC<ServiceMainContentProps> = ({ service,
         <ServiceFeatures features={service.features} serviceColor={serviceColor} />
       )}
       
-      {service.pricing && service.pricing.length > 0 && (
-        <MotionBox delay={400}>
-          <div className="bg-white p-6 rounded-xl shadow-subtle mb-8">
-            <div className="flex items-center mb-6 border-b pb-2" style={{ borderColor: `${serviceColor}40` }}>
-              <ExternalLink className="mr-3" style={{ color: serviceColor }} />
-              <h2 className="text-xl font-bold">💳 プラン・料金</h2>
-            </div>
-            <ServicePricing pricing={service.pricing} />
-          </div>
-        </MotionBox>
-      )}
-
-      {service.apiInfo && (
+      {service.apiInfo && !isStayFlow && (
         <MotionBox delay={450}>
           <ServiceApiInfo apiInfo={service.apiInfo} serviceColor={serviceColor} />
         </MotionBox>
       )}
 
-      {service.useCases && (
+      {service.useCases && !isStayFlow && (
         <ServiceUseCases useCases={service.useCases} serviceColor={serviceColor} />
       )}
 
-      {service.testimonials && service.testimonials.length > 0 && (
-        <MotionBox delay={550}>
-          <ServiceTestimonials testimonials={service.testimonials} serviceColor={serviceColor} />
-        </MotionBox>
-      )}
-
-      {service.uniquePoints && (
+      {service.uniquePoints && !isStayFlow && (
         <ServiceUniquePoints uniquePoints={service.uniquePoints} serviceColor={serviceColor} />
       )}
       
-      <ServiceProcessCycle serviceColor={serviceColor} serviceName={service.nameEn} />
+      {!isStayFlow && (
+        <ServiceRoadmap service={service} serviceColor={serviceColor} />
+      )}
       
-      <ServiceFAQs 
-        faqs={service.faqs} 
-        serviceColor={serviceColor} 
-        serviceName={service.nameEn}
-        targetAudience={service.targetAudience}
-        specificAudience={service.specificAudience}
-      />
-      
-      <ServiceRoadmap service={service} serviceColor={serviceColor} />
+      {isStayFlow && (
+        <MotionBox delay={500}>
+          <div className="bg-white p-6 rounded-xl shadow-subtle mt-8 text-center">
+            <h2 className="text-xl font-bold mb-4">サービスサイトを確認する</h2>
+            <Button className="bg-enabler-600 hover:bg-enabler-700" asChild>
+              <a 
+                href="https://stayflowapp.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <ExternalLink className="mr-2" size={18} />
+                StayFlowのサイトを見る
+              </a>
+            </Button>
+          </div>
+        </MotionBox>
+      )}
     </div>
   );
 };

@@ -37,10 +37,10 @@ const TimeDrop = () => {
                   <div className="bg-orange-100 p-3 rounded-full mr-4">
                     <Rocket className="text-orange-600" size={24} />
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800">ミッション</h2>
+                  <h2 className="text-2xl font-bold text-gray-800">🚩 ミッション</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  TimeDropは、当日予約の煩わしさをテクノロジーの力で一瞬にして解消します。空室が「残念な空き」から「ラッキーな発見」へと変わる驚きと利便性を届け、宿泊施設の収益とゲストの満足度を最大化します。
+                  宿泊施設の空室という価値を最大限に引き出し、利用者には特別な宿泊体験を、施設には効率的な経営を提供することで、旅行・宿泊のあり方を革新する。
                 </p>
               </div>
             </MotionBox>
@@ -52,10 +52,10 @@ const TimeDrop = () => {
                   <div className="bg-orange-100 p-3 rounded-full mr-4">
                     <Star className="text-orange-600" size={24} />
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800">ビジョン</h2>
+                  <h2 className="text-2xl font-bold text-gray-800">🌎 ビジョン</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  私たちはテクノロジーとデータの力を活用し、世界中で無駄になっている空室を価値ある宿泊体験に変えます。宿泊施設と旅行者の双方に利益をもたらし、笑顔が生まれる革新的な「当日予約文化」をグローバルスタンダードにします。
+                  当日予約市場をリードするプラットフォームとなり、空室がもたらす機会損失を削減することで、持続可能な観光産業と無駄のない社会を実現する。
                 </p>
               </div>
             </MotionBox>

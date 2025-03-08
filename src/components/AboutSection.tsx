@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
 import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github } from 'lucide-react';
-import SimpleIllustration from './simple-illustration';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);
@@ -79,9 +78,6 @@ const AboutSection = () => {
             
             <MotionBox delay={300}>
               <div className="mb-8">
-                {/* Added the modern illustration */}
-                <SimpleIllustration className="my-10" />
-                
                 <div className="space-y-4 relative">
                   <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
                     <div className="flex items-center mb-2">

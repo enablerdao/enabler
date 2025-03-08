@@ -2,7 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github, Sparkles, Target, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);
@@ -77,22 +78,42 @@ const AboutSection = () => {
             </MotionBox>
             
             <MotionBox delay={300}>
-              <div className="mb-8">
-                <div className="space-y-4 relative">
-                  <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
-                    <div className="flex items-center mb-2">
-                      <BrainCircuit className="w-5 h-5 text-enabler-600 mr-2" />
-                      <h4 className="font-bold text-enabler-800">ミッション</h4>
+              <div className="mb-10">
+                <div className="space-y-6 relative">
+                  <div className="p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
+                    <div className="flex items-center mb-3">
+                      <div className="bg-enabler-500 p-3 rounded-full mr-3 shadow-md">
+                        <Target className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-enabler-800 text-lg">ミッション</h4>
                     </div>
-                    <p className="text-gray-700">{companyInfo.mission}</p>
+                    <div className="pl-4 border-l-4 border-enabler-500 mb-3">
+                      <p className="text-xl font-medium text-gray-800">「あったらいいな」を「あってよかった！」に。</p>
+                    </div>
+                    <p className="text-gray-700 ml-2">{companyInfo.mission}</p>
+                    <div className="mt-4 text-right">
+                      <Link to="/mission-vision" className="text-enabler-600 hover:text-enabler-800 text-sm font-medium inline-flex items-center">
+                        もっと詳しく <Sparkles className="w-3 h-3 ml-1" />
+                      </Link>
+                    </div>
                   </div>
                   
-                  <div className="p-5 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
-                    <div className="flex items-center mb-2">
-                      <Cpu className="w-5 h-5 text-enabler-600 mr-2" />
-                      <h4 className="font-bold text-enabler-800">ビジョン</h4>
+                  <div className="p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
+                    <div className="flex items-center mb-3">
+                      <div className="bg-enabler-500 p-3 rounded-full mr-3 shadow-md">
+                        <Eye className="w-5 h-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-enabler-800 text-lg">ビジョン</h4>
                     </div>
-                    <p className="text-gray-700">{companyInfo.vision}</p>
+                    <div className="pl-4 border-l-4 border-enabler-500 mb-3">
+                      <p className="text-xl font-medium text-gray-800">テクノロジーで毎日をもっと楽しく、もっと便利に。</p>
+                    </div>
+                    <p className="text-gray-700 ml-2">{companyInfo.vision}</p>
+                    <div className="mt-4 text-right">
+                      <Link to="/mission-vision" className="text-enabler-600 hover:text-enabler-800 text-sm font-medium inline-flex items-center">
+                        もっと詳しく <Sparkles className="w-3 h-3 ml-1" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

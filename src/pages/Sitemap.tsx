@@ -1,10 +1,11 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { MotionBox } from '@/components/ui/motion-box';
 import { categoryInfo } from '@/lib/types/service';
-import { ArrowRight, Map } from 'lucide-react';
+import { ArrowRight, Map, Target } from 'lucide-react';
 
 const Sitemap = () => {
   return (
@@ -55,6 +56,11 @@ const Sitemap = () => {
                 <div className="bg-white rounded-xl shadow-subtle p-6">
                   <h2 className="text-xl font-bold mb-4 border-b pb-2">会社情報</h2>
                   <ul className="space-y-3">
+                    <li>
+                      <Link to="/mission-vision" className="text-enabler-600 hover:text-enabler-800 flex items-center">
+                        <ArrowRight size={16} className="mr-2" /> <Target size={14} className="mr-1" /> ミッション・ビジョン
+                      </Link>
+                    </li>
                     <li>
                       <Link to="/team" className="text-enabler-600 hover:text-enabler-800 flex items-center">
                         <ArrowRight size={16} className="mr-2" /> チーム紹介

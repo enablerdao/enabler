@@ -3,7 +3,7 @@ import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, Users, FileText } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, Users, FileText, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -77,9 +77,9 @@ const Footer = () => {
               <h4 className="text-lg font-bold mb-4">会社情報</h4>
               <ul className="space-y-2">
                 <li>
-                  <span className="text-gray-400 cursor-not-allowed text-sm">
-                    ミッション・ビジョン
-                  </span>
+                  <Link to="/mission-vision" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
+                    <Target size={14} className="mr-1" /> ミッション・ビジョン
+                  </Link>
                 </li>
                 <li>
                   <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">

@@ -40,7 +40,7 @@ const TimeDrop = () => {
                   <h2 className="text-2xl font-bold text-gray-800">🚩 ミッション</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  宿泊施設の空室という価値を最大限に引き出し、利用者には特別な宿泊体験を、施設には効率的な経営を提供することで、旅行・宿泊のあり方を革新する。
+                  「今日泊まりたい人」と「今日迎えたい場所」をつなぎ、毎日にちょっとしたワクワクと豊かさを届ける。
                 </p>
               </div>
             </MotionBox>
@@ -55,7 +55,7 @@ const TimeDrop = () => {
                   <h2 className="text-2xl font-bold text-gray-800">🌎 ビジョン</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  当日予約市場をリードするプラットフォームとなり、空室がもたらす機会損失を削減することで、持続可能な観光産業と無駄のない社会を実現する。
+                  空室から生まれる「新しい体験」と「心温まる交流」を広げ、人にも地球にもやさしい宿泊文化を育てる。
                 </p>
               </div>
             </MotionBox>

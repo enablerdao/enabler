@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { MotionBox } from '@/components/ui/motion-box';
 import { categoryInfo } from '@/lib/types/service';
-import { ArrowRight, Map, Target } from 'lucide-react';
+import { ArrowRight, Map, Target, MessageSquare } from 'lucide-react';
 
 const Sitemap = () => {
   return (
@@ -63,7 +63,7 @@ const Sitemap = () => {
                     </li>
                     <li>
                       <Link to="/team" className="text-enabler-600 hover:text-enabler-800 flex items-center">
-                        <ArrowRight size={16} className="mr-2" /> チーム紹介
+                        <ArrowRight size={16} className="mr-2" /> <MessageSquare size={14} className="mr-1" /> 創業者からのメッセージ
                       </Link>
                     </li>
                     <li>
@@ -139,3 +139,4 @@ const Sitemap = () => {
 };
 
 export default Sitemap;
+

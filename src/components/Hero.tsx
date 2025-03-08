@@ -39,8 +39,8 @@ const Hero = () => {
         
         <MotionBox delay={500}>
           <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-700 leading-relaxed">
-            テクノロジーで、あなたの日常をもっと楽しく、もっと便利に。<br />
-            一人ひとりの「好き」や「得意」を広げ、自分らしく輝ける毎日をつくります。
+            テクノロジーで毎日をもっと楽しく、もっと便利に。<br />
+            一人ひとりの可能性を広げ、自分らしく輝ける社会を。
           </p>
         </MotionBox>
         
@@ -61,8 +61,8 @@ const Hero = () => {
           </div>
         </MotionBox>
         
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#services" className="flex flex-col items-center text-gray-400 hover:text-enabler-600 transition-colors">
+        <div className="absolute bottom-10 left-0 right-0 mx-auto text-center">
+          <a href="#services" className="inline-flex flex-col items-center text-gray-400 hover:text-enabler-600 transition-colors">
             <span className="text-sm mb-2">詳細を見る</span>
             <ChevronDown size={20} />
           </a>

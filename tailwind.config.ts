@@ -117,6 +117,14 @@ export default {
 				'subtle-pulse': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.8' }
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
@@ -125,11 +133,14 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'fade-up': 'fade-up 0.8s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
-				'subtle-pulse': 'subtle-pulse 3s ease-in-out infinite'
+				'subtle-pulse': 'subtle-pulse 3s ease-in-out infinite',
+				'scale-in': 'scale-in 0.5s ease-out forwards',
+				'float': 'float 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				'sans': ['"Inter"', 'sans-serif'],
 				'display': ['"Playfair Display"', 'serif'],
+				'jp': ['"Noto Sans JP"', 'sans-serif'],
 			},
 			boxShadow: {
 				'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',

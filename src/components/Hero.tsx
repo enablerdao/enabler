@@ -4,6 +4,7 @@ import { MotionBox } from './ui/motion-box';
 import { ChevronDown } from 'lucide-react';
 import FibonacciBackground from './FibonacciBackground';
 import { companyInfo } from '@/lib/data';
+import SocietyDiagram from './diagram/SocietyDiagram';
 
 const Hero = () => {
   return (
@@ -42,6 +43,10 @@ const Hero = () => {
             テクノロジーで毎日をもっと楽しく、もっと便利に。<br />
             一人ひとりの可能性を広げ、自分らしく輝ける社会を。
           </p>
+        </MotionBox>
+
+        <MotionBox delay={600}>
+          <SocietyDiagram />
         </MotionBox>
         
         <MotionBox delay={700}>

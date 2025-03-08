@@ -40,7 +40,7 @@ const TimeDrop = () => {
                   <h2 className="text-2xl font-bold text-gray-800">🚩 ミッション</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  「今日泊まりたい人」と「今日迎えたい場所」をつなぎ、毎日にちょっとしたワクワクと豊かさを届ける。
+                  泊まりたい瞬間に、ベストプライスでお気に入りの空間をゲットし、自分らしい旅やステイをもっと自由に楽しめるようにする。
                 </p>
               </div>
             </MotionBox>
@@ -55,7 +55,7 @@ const TimeDrop = () => {
                   <h2 className="text-2xl font-bold text-gray-800">🌎 ビジョン</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  空室から生まれる「新しい体験」と「心温まる交流」を広げ、人にも地球にもやさしい宿泊文化を育てる。
+                  空室を「ラッキーな出会い」と「お得な体験」にアップデートして、いつでも気軽に「いい感じ」の時間が過ごせるライフスタイルを広げる。
                 </p>
               </div>
             </MotionBox>

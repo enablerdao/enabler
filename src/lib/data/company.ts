@@ -9,7 +9,7 @@ export const companyInfo: CompanyInfo = {
   mission: "テクノロジーで、一人ひとりが自然に可能性を広げられる社会をつくる。",
   vision: "誰もが自分らしく活躍し、ワクワクする未来を共に叶える。",
   address: "東京",
-  email: "contact@enabler.jp",
+  email: "contact@enablerhq.com",
   phone: "",
   established: "2022年",
   ceo: "佐藤 健太郎",
@@ -17,9 +17,9 @@ export const companyInfo: CompanyInfo = {
   businessActivities: "デジタルサービスの開発・運営、滞在型施設（別荘など）の開発",
   openSource: "すべてのプロジェクトはオープンソースで公開中。誰でも参加して、共に未来を創造できます。",
   socialLinks: {
-    twitter: "https://twitter.com/enabler_jp",
-    facebook: "https://facebook.com/enabler.jp",
-    instagram: "https://instagram.com/enabler_jp",
-    linkedin: "https://linkedin.com/company/enabler-jp"
+    twitter: "https://twitter.com/enablerhq",
+    facebook: "https://facebook.com/enablerhq",
+    instagram: "https://instagram.com/enablerhq",
+    linkedin: "https://linkedin.com/company/enablerhq"
   }
 };

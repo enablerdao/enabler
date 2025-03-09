@@ -75,12 +75,26 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
     };
   };
 
+  // Calculate Golden Ratio for middle line
+  const calculateGoldenRatio = (width: number) => {
+    // Golden ratio is approximately 1.618
+    const goldenRatio = 1.618;
+    
+    // Calculate segments based on golden ratio
+    const segment1 = width / goldenRatio;
+    const segment2 = width - segment1;
+    
+    return { segment1, segment2 };
+  };
+
   // Get founding year color (2022)
   const foundingColor = '#22B6FF'; // Fixed founding color
   // Get current year color
   const currentYearColor = calculateColorForYear(year);
   // Get fibonacci accent color info for the specific year
   const fibonacciAccentInfo = generateFibonacciAccentColorForYear(year);
+  // Get golden ratio segments for a default width of 60
+  const goldenSegments = calculateGoldenRatio(60);
 
   if (variant === 'foundingLogo') {
     return (
@@ -112,13 +126,14 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
             </linearGradient>
             <linearGradient id={`middleLineGradient-${variant}-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
-              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           {/* First line - standard gradient from founding color */}
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
-          {/* Middle line - gradient from founding color to accent color */}
+          {/* Middle line - gradient using golden ratio segments */}
           <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-${variant}-${year})`}/>
           {/* Third line - reverse gradient */}
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`}/>
@@ -131,7 +146,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           <defs>
             <linearGradient id={`middleLineGradient-mono-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
-              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
@@ -155,7 +171,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
             </linearGradient>
             <linearGradient id={`middleLineGradient-${variant}-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
-              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
             <filter id={`glow-${variant}-${year}`} x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="2" result="blur" />
@@ -175,7 +192,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           <defs>
             <linearGradient id={`middleLineGradient-outline-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
-              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
@@ -191,6 +209,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           <defs>
             <linearGradient id={`middleLineGradient-original-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={foundingColor} />
               <stop offset="100%" stopColor={foundingColor} />
             </linearGradient>
           </defs>
@@ -217,7 +236,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
             </linearGradient>
             <linearGradient id={`middleLineGradient-consistent-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={foundingColor} />
-              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>

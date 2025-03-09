@@ -1,5 +1,5 @@
 
-type LogType = 'pageView' | 'serviceView' | 'contactSubmit' | 'externalLink' | 'serviceCardClick' | 'jobApplication';
+type LogType = 'pageView' | 'serviceView' | 'contactSubmit' | 'externalLink' | 'serviceCardClick' | 'jobApplication' | 'ideaSubmit';
 
 export interface LogData {
   type: LogType;

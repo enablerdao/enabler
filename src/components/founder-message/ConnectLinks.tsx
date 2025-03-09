@@ -5,24 +5,57 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Mail, Users, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { logActivity } from '@/lib/logger';
+import { supabase } from '@/integrations/supabase/client';
 
 const ConnectLinks = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletterSignup = (e: React.FormEvent) => {
+  const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call with a timeout
-    setTimeout(() => {
-      toast.success('ニュースレターに登録しました！', {
-        description: `${email}宛に確認メールを送信しました。`,
+    try {
+      // Log the newsletter signup
+      logActivity('contactSubmit', {
+        additionalData: { 
+          email, 
+          type: 'newsletter'
+        }
+      });
+      
+      // Store the email in Supabase database
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email }]);
+      
+      if (error) {
+        if (error.code === '23505') {
+          // Unique violation - email already exists
+          toast.info('このメールアドレスは既に登録されています', {
+            duration: 5000,
+          });
+        } else {
+          console.error('Error storing newsletter subscription:', error);
+          throw error;
+        }
+      } else {
+        toast.success('ニュースレターに登録しました！', {
+          description: `${email}宛に確認メールを送信しました。`,
+          duration: 5000,
+        });
+      }
+      
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast.error('登録中にエラーが発生しました。もう一度お試しください。', {
         duration: 5000,
       });
-      setEmail('');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (

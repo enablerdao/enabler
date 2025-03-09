@@ -11,7 +11,7 @@ import FibonacciVisualization from './fibonacci/FibonacciVisualization';
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
   const foundingYear = 2022; // Keep the actual founding year for reference
-  const startDisplayYear = 2025; // Start displaying from 2025 as the first Fibonacci year
+  const startDisplayYear = 2025; // Start displaying from 2025 as the first special year (green)
   const { toast } = useToast();
   
   // Show very long-term evolution including well beyond the 231st year
@@ -54,16 +54,13 @@ const YearlyLogoViewer: React.FC = () => {
     setZoomLevel(prev => Math.max(prev - 0.5, 0.5));
   }, []);
   
-  // Generate years array including 2025 as the first important year
-  const years = [2025];
-  let fibYear = 2023; // Actual first Fibonacci year after founding
+  // Generate years array starting with 2025 (green) then 2026 (first Fibonacci sum year/cycle 1)
+  const years = [2025, 2026];
   
   // Add in all the other visible years up to the limit
-  for (let i = 1; i < visibleYears; i++) {
+  for (let i = 2; i < visibleYears; i++) {
     const year = startDisplayYear + i;
-    if (year > 2025) { // Avoid duplicating 2025
-      years.push(year);
-    }
+    years.push(year);
   }
   
   return (
@@ -71,15 +68,13 @@ const YearlyLogoViewer: React.FC = () => {
       <h3 className="text-lg font-semibold mb-3">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
       <p className="text-sm text-gray-600 mb-3">
         ※ブランドカラーは毎年変化します。色をクリックするとコピーできます。<br />
-        ※会社は2022年に創業しましたが、ロゴ表示は2025年から始まります（最初のフィボナッチ重要年）。
+        ※2025年は特別なグリーン色、2026年は1周目のフィボナッチ年です。
       </p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {years.map(year => {
-          // For 2025 (first year), use the specified color
-          const color = year === 2025 
-            ? { hex: '#25b6ff', name: 'スカイブルー', rgb: '37, 182, 255' }
-            : calculateColorForYear(year);
+          // For 2025, use the specified green color
+          const color = calculateColorForYear(year);
           const specialAccent = calculateSpecialAccentColor(year);
           
           return (

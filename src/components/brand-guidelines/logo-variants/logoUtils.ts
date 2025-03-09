@@ -9,8 +9,14 @@ export const calculateColorForYear = (year: number) => {
     return "#22B6FF"; // Fixed founding color - verified correct
   }
   
-  // Get the Fibonacci sum year index
-  const fibonacciSumIndex = getFibonacciSumYearIndex(year);
+  // For 2025, set a special green color for the first important year
+  if (year === 2025) {
+    return "#4ADE80"; // Special green color for 2025
+  }
+  
+  // Get the Fibonacci sum year index - 2026 is the first Fibonacci sum year (1st cycle)
+  const yearsSinceFounding = year - 2022;
+  const fibonacciSumIndex = year >= 2026 ? getFibonacciSumYearIndex(year) : 0;
   
   // Using the exponential formula with a capped maximum to prevent overflow
   // This ensures the formula works for years well beyond 2041
@@ -37,7 +43,7 @@ export const foundingColor = '#22B6FF'; // Fixed founding color - verified corre
 const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711];
 
 // Fibonacci sums for years after 2022 - extended for long-term calculations
-// This means changes happen in years: 2023, 2025, 2028, 2033, 2041, 2054, 2075, 2109, 2164, 2253, 2375, 2608, 2985, 3595, 4582, 6179, 8763, 12944, 19709, 30655
+// This means changes happen in years: 2026, 2028, 2031, 2036, 2044, etc.
 const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
   const prevSum = i > 0 ? acc[i-1] : 0;
   acc.push(prevSum + curr);
@@ -45,23 +51,37 @@ const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
 }, []);
 
 // Function to check if a year corresponds to a Fibonacci sum year after founding (2022)
+// With 2026 as the first Fibonacci sum year (1st cycle)
 export const isFibonacciSumYear = (year: number): boolean => {
+  // Special case for 2025
+  if (year === 2025) return true;
+  
+  // For other years, check if it matches a Fibonacci sum year starting from 2026
   const yearsSinceFounding = year - 2022;
-  return fibonacciSums.includes(yearsSinceFounding);
+  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
+  const adjustedYear = yearsSinceFounding - 4;
+  
+  return adjustedYear >= 0 && fibonacciSums.includes(adjustedYear);
 };
 
 // Get the index in the Fibonacci sum sequence for a given year
 // If not a Fibonacci sum year, returns the previous Fibonacci sum year index
+// With 2026 as the first cycle year
 export const getFibonacciSumYearIndex = (year: number): number => {
+  // Special case for 2025
+  if (year === 2025) return 1;
+  
   const yearsSinceFounding = year - 2022;
+  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
+  const adjustedYear = yearsSinceFounding - 4;
   
-  // If before founding year, return 0
-  if (yearsSinceFounding <= 0) return 0;
+  // If before the first Fibonacci sum year, return 0
+  if (adjustedYear < 0) return 0;
   
-  // Find the highest Fibonacci sum index that doesn't exceed the years since founding
+  // Find the highest Fibonacci sum index that doesn't exceed the adjusted years since founding
   let sumIndex = 0;
   for (let i = 0; i < fibonacciSums.length; i++) {
-    if (fibonacciSums[i] <= yearsSinceFounding) {
+    if (fibonacciSums[i] <= adjustedYear) {
       sumIndex = i + 1; // We add 1 to start from 1 instead of 0
     } else {
       break;
@@ -83,6 +103,14 @@ export const getFibonacciYearIndex = (year: number): number => {
 
 // Generate Fibonacci sequence-based accent color for each year
 export const generateFibonacciAccentColorForYear = (year: number) => {
+  // Special case for 2025 - use a specific green color
+  if (year === 2025) {
+    return {
+      specialColor: "#4ADE80", // Special green color for 2025
+      fibNumber: 1
+    };
+  }
+  
   // Get the Fibonacci sum index for the year
   const fibIndex = getFibonacciSumYearIndex(year);
   

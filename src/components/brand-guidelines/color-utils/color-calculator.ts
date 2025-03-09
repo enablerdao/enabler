@@ -3,23 +3,30 @@ import { getFibonacciYearIndex, isFibonacciYear } from '../logo-variants/logoUti
 
 // Calculate Fibonacci sum for a given year since founding
 const calculateFibonacciSumIndex = (year: number): number => {
+  // Special case for 2025
+  if (year === 2025) return 1;
+  
   const yearsSinceFounding = year - 2022;
+  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
+  const adjustedYear = yearsSinceFounding - 4;
   
   // Fibonacci sequence - extended for very long-term calculations
   const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269];
   
   // Fibonacci sums (cumulative sums)
-  // 1, 3, 6, 11, 19, 32, 53, 87, 142, 231, 375, 608, 985, 1595, 2582, 4179, 6763, 10944, 17709, 28655, 46366, 75023, 121391, 196416, 317809, 514227, 832038, 1346267, 2178307, 3524576
   const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
     const prevSum = i > 0 ? acc[i-1] : 0;
     acc.push(prevSum + curr);
     return acc;
   }, []);
   
-  // Find the highest Fibonacci sum index that doesn't exceed the years since founding
+  // If before the first Fibonacci sum year, return 0
+  if (adjustedYear < 0) return 0;
+  
+  // Find the highest Fibonacci sum index that doesn't exceed the adjusted years since founding
   let sumIndex = 0;
   for (let i = 0; i < fibonacciSums.length; i++) {
-    if (fibonacciSums[i] <= yearsSinceFounding) {
+    if (fibonacciSums[i] <= adjustedYear) {
       sumIndex = i + 1; // Adding 1 because we want the index to start from 1
     } else {
       break;
@@ -31,7 +38,12 @@ const calculateFibonacciSumIndex = (year: number): number => {
 
 // Check if a year corresponds to a Fibonacci sum year after founding (2022)
 const isFibonacciSumYear = (year: number): boolean => {
+  // Special case for 2025
+  if (year === 2025) return true;
+  
   const yearsSinceFounding = year - 2022;
+  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
+  const adjustedYear = yearsSinceFounding - 4;
   
   // Fibonacci sequence - extended for very long-term calculations
   const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269];
@@ -43,13 +55,10 @@ const isFibonacciSumYear = (year: number): boolean => {
     return acc;
   }, []);
   
-  return fibonacciSums.includes(yearsSinceFounding);
+  return adjustedYear >= 0 && fibonacciSums.includes(adjustedYear);
 };
 
 export const calculateColorForYear = (year: number) => {
-  // Get the Fibonacci sum year index
-  const fibonacciSumIndex = calculateFibonacciSumIndex(year);
-  
   // For founding year (2022), return the exact founding color
   if (year === 2022) {
     return {
@@ -59,6 +68,19 @@ export const calculateColorForYear = (year: number) => {
       rgb: '34, 182, 255'
     };
   }
+  
+  // For 2025, set a special green color as the first important year
+  if (year === 2025) {
+    return {
+      year: 2025,
+      hex: '#4ADE80',
+      name: 'グリーン',
+      rgb: '74, 222, 128'
+    };
+  }
+  
+  // Get the Fibonacci sum year index
+  const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
   // Using the exponential formula with capped values to prevent overflow
   // The R value starts at 34 and approaches 224 (34 + 190)
@@ -93,6 +115,15 @@ export const calculateColorForYear = (year: number) => {
 
 // Calculate the special accent color for each year
 export const calculateSpecialAccentColor = (year: number) => {
+  // Special case for 2025 - use a specific green color
+  if (year === 2025) {
+    return {
+      hex: '#4ADE80',
+      hsl: '142, 75%, 60%',
+      fibNumber: 1
+    };
+  }
+  
   // For special accent color, we use the Golden Angle (137.5°) based on the Fibonacci sum index
   // This ensures both color calculations are consistent and based on Fibonacci principles
   const fibonacciSumIndex = calculateFibonacciSumIndex(year);
@@ -138,7 +169,6 @@ export const calculateSpecialAccentColor = (year: number) => {
 };
 
 export const generateColorsForYearRange = (startYear: number, endYear: number) => {
-  // Make 2025 the first Fibonacci year
   const colors = [];
   
   // Always include the founding year
@@ -146,9 +176,9 @@ export const generateColorsForYearRange = (startYear: number, endYear: number) =
     colors.push(calculateColorForYear(2022));
   }
   
-  // Add Fibonacci sum years - but make 2025 the first special year (match the formula but adjust the display)
+  // Make 2025 the green special year and 2026 the first Fibonacci sum year
   for (let year = Math.max(2022, startYear); year <= endYear; year++) {
-    if (year === 2025 || (year > 2025 && isFibonacciSumYear(year))) {
+    if (year === 2025 || (year >= 2026 && isFibonacciSumYear(year))) {
       colors.push(calculateColorForYear(year));
     }
   }

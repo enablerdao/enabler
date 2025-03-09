@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { logActivity } from '@/lib/logger';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -16,20 +16,68 @@ import { companyInfo } from '@/lib/data';
 import { calculateColorForYear, generateColorsForYearRange } from '@/components/brand-guidelines/color-utils/color-calculator';
 
 const BrandGuidelines = () => {
+  // State to store the current year
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  // State to store brand colors 
+  const [brandColors, setBrandColors] = useState<any[]>([]);
+  // State to store current year's color
+  const [currentYearColor, setCurrentYearColor] = useState<any>(null);
+
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Calculate current year's color
-  const currentYear = new Date().getFullYear();
-  
-  // Generate brand colors for Fibonacci years after 2022 (founding year)
-  // Fibonacci sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
-  // Years: 2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056, 2077, 2111...
-  const brandColors = generateColorsForYearRange(2022, currentYear + 20);
-  
-  // Get current year's color - if not a Fibonacci year, it will return the color of the last Fibonacci year
-  const currentYearColor = calculateColorForYear(currentYear);
+  // Effect to update the year and recalculate colors when needed
+  useEffect(() => {
+    // Update the current year
+    const updateYear = () => {
+      const newYear = new Date().getFullYear();
+      if (newYear !== currentYear) {
+        setCurrentYear(newYear);
+      }
+    };
+    
+    // Calculate the colors based on the current year
+    const calculateColors = () => {
+      // Generate brand colors for Fibonacci years after 2022 (founding year)
+      const colors = generateColorsForYearRange(2022, currentYear + 20);
+      setBrandColors(colors);
+      
+      // Get current year's color
+      const yearColor = calculateColorForYear(currentYear);
+      setCurrentYearColor(yearColor);
+    };
+    
+    // Initial calculation
+    updateYear();
+    calculateColors();
+    
+    // Set up interval to check for year changes (every hour)
+    const intervalId = setInterval(() => {
+      const newYear = new Date().getFullYear();
+      if (newYear !== currentYear) {
+        setCurrentYear(newYear);
+        // Colors will be recalculated in the next effect run
+      }
+    }, 3600000); // Check every hour
+    
+    return () => clearInterval(intervalId);
+  }, [currentYear]);
+
+  // If currentYearColor is not yet calculated, show a loading state
+  if (!currentYearColor) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 flex justify-center items-center h-64">
+            <p className="text-lg text-gray-500">ブランドガイドラインを読み込み中...</p>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>

@@ -1,12 +1,32 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import LogoVariations from './LogoVariations';
 import { motion } from 'framer-motion';
 
 const BrandHeader = () => {
-  // 現在の年を取得
-  const currentYear = new Date().getFullYear();
+  // Get current year for dynamic updating
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  
+  // Update the year when the component mounts and set interval to check for year changes
+  useEffect(() => {
+    // Function to update year if needed
+    const updateYear = () => {
+      const newYear = new Date().getFullYear();
+      if (newYear !== currentYear) {
+        setCurrentYear(newYear);
+      }
+    };
+    
+    // Update immediately when component mounts
+    updateYear();
+    
+    // Check for year change every hour (not too frequent, but will catch year rollover)
+    const intervalId = setInterval(updateYear, 3600000); // 1 hour in milliseconds
+    
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [currentYear]);
   
   return (
     <MotionBox delay={100}>

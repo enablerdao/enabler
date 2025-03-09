@@ -16,9 +16,11 @@ const BrandHeader = () => {
         <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-8">
           {currentYear}年度版 • ブランドの一貫性と認知度向上のために
         </p>
-        <div className="w-full max-w-3xl mx-auto px-2 md:px-0">
-          <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex justify-center items-center h-80 md:h-96 lg:h-[30rem]">
-            <LogoVariations variant="gradient" size="lg" year={currentYear} />
+        <div className="w-full max-w-4xl mx-auto px-2 md:px-0">
+          <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex justify-center items-center h-96 md:h-[28rem] lg:h-[32rem]">
+            <div className="w-72 md:w-96 lg:w-[30rem]">
+              <LogoVariations variant="modern" size="lg" year={currentYear} />
+            </div>
           </div>
         </div>
       </div>

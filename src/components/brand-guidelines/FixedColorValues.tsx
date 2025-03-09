@@ -2,6 +2,7 @@
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Calculator } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 const FixedColorValues = () => {
   return (
@@ -15,25 +16,85 @@ const FixedColorValues = () => {
           <p className="text-lg mb-6">
             Enablerのブランドカラーは2022年の設立時に定められた固定値で、プロダクトやサービス全体で一貫して使用します。
           </p>
-          <div className="overflow-x-auto">
-            <div className="flex space-x-4 min-w-max">
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#22B6FF' }}></div>
-                <p className="mt-2 font-medium">メインカラー</p>
-                <p className="text-sm text-gray-600">#22B6FF</p>
+          
+          {/* Logo variants with color schemes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-3 text-center">ロゴバリエーション</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="bg-white p-3 rounded-lg shadow-sm flex justify-center items-center h-24">
+                    <Logo variant="svg" size="md" />
+                  </div>
+                  <p className="text-sm mt-2">ベーシック</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="bg-white p-3 rounded-lg shadow-sm flex justify-center items-center h-24">
+                    <Logo variant="default" size="md" />
+                  </div>
+                  <p className="text-sm mt-2">スタンダード</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="bg-white p-3 rounded-lg shadow-sm flex justify-center items-center h-24">
+                    <Logo variant="minimalist" size="md" />
+                  </div>
+                  <p className="text-sm mt-2">ミニマル</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="bg-white p-3 rounded-lg shadow-sm flex justify-center items-center h-24">
+                    <Logo variant="fibonacci" size="md" />
+                  </div>
+                  <p className="text-sm mt-2">フィボナッチ</p>
+                </div>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#1E90FF' }}></div>
-                <p className="mt-2 font-medium">サブカラー</p>
-                <p className="text-sm text-gray-600">#1E90FF</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#79D300' }}></div>
-                <p className="mt-2 font-medium">アクセントカラー</p>
-                <p className="text-sm text-gray-600">#79D300</p>
+            </div>
+            
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-3 text-center">カラー固定値</h3>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-lg" style={{ backgroundColor: '#22B6FF' }}></div>
+                  <div>
+                    <p className="font-medium">メインカラー</p>
+                    <p className="text-sm text-gray-600">HEX: #22B6FF / RGB: 34,182,255</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-lg" style={{ backgroundColor: '#1E90FF' }}></div>
+                  <div>
+                    <p className="font-medium">サブカラー</p>
+                    <p className="text-sm text-gray-600">HEX: #1E90FF / RGB: 30,144,255</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-lg" style={{ backgroundColor: '#79D300' }}></div>
+                  <div>
+                    <p className="font-medium">アクセントカラー</p>
+                    <p className="text-sm text-gray-600">HEX: #79D300 / RGB: 121,211,0</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          
+          <div className="bg-gray-50 p-6 rounded-lg mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-center">グラデーションの使用例</h3>
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+              <div className="flex flex-col items-center">
+                <div className="w-24 h-8 rounded-lg bg-gradient-to-r from-[#22B6FF] to-[#1E90FF]"></div>
+                <p className="text-xs mt-1">標準グラデーション</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-24 h-8 rounded-lg bg-gradient-to-r from-[#22B6FF] via-[#1E90FF] to-[#79D300]"></div>
+                <p className="text-xs mt-1">拡張グラデーション</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-24 h-8 rounded-lg bg-gradient-to-br from-[#22B6FF] to-[#1E90FF]"></div>
+                <p className="text-xs mt-1">斜めグラデーション</p>
+              </div>
+            </div>
+          </div>
+          
           <p className="text-lg mt-6">
             これらのカラーは、あらゆるマーケティング資料や製品において一貫して使用することで、Enablerのブランドの統一性と認知度を高めます。
           </p>

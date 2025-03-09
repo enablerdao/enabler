@@ -2,6 +2,7 @@
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Palette } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 const BrandColors = ({ fixedMainColor, fixedHex }: { fixedMainColor: string, fixedHex: string }) => {
   return (
@@ -15,6 +16,67 @@ const BrandColors = ({ fixedMainColor, fixedHex }: { fixedMainColor: string, fix
           <p className="text-lg mb-6 leading-relaxed">
             Enablerのブランドカラーは2022年の設立時に定められ、不変の色として使用されています。
           </p>
+          
+          {/* Logo and color evolution visualization */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold mb-4 border-b pb-2">ブランドカラーとロゴの進化</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 bg-gray-50 p-4 rounded-lg">
+              <div className="flex flex-col items-center">
+                <p className="text-sm font-semibold mb-2">2022 設立時</p>
+                <div className="bg-white p-4 rounded-lg shadow-sm flex justify-center items-center mb-3">
+                  <Logo variant="svg" size="md" />
+                </div>
+                <div 
+                  className="h-8 w-24 rounded-md shadow-sm" 
+                  style={{ backgroundColor: fixedMainColor }}
+                ></div>
+                <p className="text-xs mt-1">{fixedHex}</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <p className="text-sm font-semibold mb-2">現在のブランド</p>
+                <div className="bg-white p-4 rounded-lg shadow-sm flex justify-center items-center mb-3">
+                  <Logo variant="default" size="md" />
+                </div>
+                <div className="flex space-x-2">
+                  <div 
+                    className="h-8 w-12 rounded-md shadow-sm" 
+                    style={{ backgroundColor: fixedMainColor }}
+                  ></div>
+                  <div 
+                    className="h-8 w-12 rounded-md shadow-sm" 
+                    style={{ backgroundColor: '#1E90FF' }}
+                  ></div>
+                </div>
+                <p className="text-xs mt-1">グラデーション適用</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <p className="text-sm font-semibold mb-2">未来のビジョン</p>
+                <div className="bg-white p-4 rounded-lg shadow-sm flex justify-center items-center mb-3">
+                  <Logo variant="fibonacci" size="md" />
+                </div>
+                <div className="flex space-x-1">
+                  <div 
+                    className="h-8 w-8 rounded-md shadow-sm" 
+                    style={{ backgroundColor: fixedMainColor }}
+                  ></div>
+                  <div 
+                    className="h-8 w-8 rounded-md shadow-sm" 
+                    style={{ backgroundColor: '#1E90FF' }}
+                  ></div>
+                  <div 
+                    className="h-8 w-8 rounded-md shadow-sm" 
+                    style={{ backgroundColor: '#79D300' }}
+                  ></div>
+                </div>
+                <p className="text-xs mt-1">拡張カラーパレット</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mt-2">
+              メインカラー（{fixedHex}）は2022年設立時から変わらず、当社のアイデンティティの核として継続して使用されています。
+            </p>
+          </div>
           
           <div className="mb-8">
             <h3 className="text-xl font-semibold mb-4 border-b pb-2">不変のアイデンティティカラー</h3>

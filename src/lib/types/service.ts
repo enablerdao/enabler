@@ -11,7 +11,7 @@ export type ServiceCategory =
 export interface ServiceFeature {
   title: string;
   description: string;
-  images?: string[]; // Added images property
+  images?: string[];
 }
 
 export interface PricingTier {
@@ -62,7 +62,8 @@ export interface ApiInfo {
   documentation?: string;
 }
 
-export interface PricingPlan extends PricingTier {}
+// Use PricingTier directly instead of extending with an empty interface
+export type PricingPlan = PricingTier;
 
 export interface CompanyInfo {
   nameJp: string;
@@ -104,7 +105,7 @@ export interface Service {
   emoji?: string;
   mission?: string;
   vision?: string;
-  brandStory?: string; // Added brandStory property
+  brandStory?: string;
   targetAudience?: string;
   specificAudience?: string;
   midtermGoal?: string;

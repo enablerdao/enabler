@@ -6,8 +6,17 @@ import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Trash2, RefreshCw, DownloadCloud } from 'lucide-react';
 
+interface LogItem {
+  type: string;
+  timestamp: number;
+  serviceId?: number;
+  serviceName?: string;
+  additionalData?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
 const AdminLogs = () => {
-  const [logs, setLogs] = useState<any[]>([]);
+  const [logs, setLogs] = useState<LogItem[]>([]);
   const [filter, setFilter] = useState<string>('all');
   
   useEffect(() => {

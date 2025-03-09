@@ -1,11 +1,15 @@
 
-import React, { useState } from 'react';
-import { Copy } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Copy, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const SpecialAccentColorIntro: React.FC = () => {
   const { toast } = useToast();
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
+  const specialColorsRef = useRef<HTMLDivElement>(null);
+  const yearlyColorsRef = useRef<HTMLDivElement>(null);
 
   const copyColorToClipboard = (colorCode: string, colorName: string) => {
     navigator.clipboard.writeText(colorCode);
@@ -15,15 +19,23 @@ const SpecialAccentColorIntro: React.FC = () => {
     });
   };
 
-  // Collection of all special accent colors by year
+  // Collection of all special accent colors by year - expanded to show more future colors
   const specialYearColors = [
     { year: 2025, color: "#4CAF50", name: "緑色" },
     { year: 2026, color: "#E54D4D", name: "赤色" },
     { year: 2028, color: "#A24DE5", name: "紫色" },
     { year: 2033, color: "#E5D24D", name: "黄色" },
+    { year: 2035, color: "#4D9FE5", name: "青色" },
+    { year: 2038, color: "#E57A4D", name: "オレンジ色" },
+    { year: 2042, color: "#4DE5A2", name: "ターコイズ色" },
+    { year: 2047, color: "#E54D9F", name: "ピンク色" },
+    { year: 2055, color: "#8FE54D", name: "黄緑色" },
+    { year: 2068, color: "#4D4DE5", name: "インディゴ色" },
+    { year: 2090, color: "#E5E54D", name: "イエロー色" },
+    { year: 2123, color: "#BC4DE5", name: "マゼンタ色" },
   ];
 
-  // Regular brand colors by year
+  // Regular brand colors by year - expanded for more years
   const yearlyBrandColors = [
     { year: 2022, color: "#22B6FF", name: "創業の年" },
     { year: 2023, color: "#27B8FF", name: "2年目" },
@@ -32,7 +44,32 @@ const SpecialAccentColorIntro: React.FC = () => {
     { year: 2026, color: "#2EBEFF", name: "5年目" },
     { year: 2027, color: "#30C0FF", name: "6年目" },
     { year: 2028, color: "#33C2FF", name: "7年目" },
+    { year: 2029, color: "#35C4FF", name: "8年目" },
+    { year: 2030, color: "#38C6FF", name: "9年目" },
+    { year: 2031, color: "#3AC8FF", name: "10年目" },
+    { year: 2032, color: "#3DCAFF", name: "11年目" },
+    { year: 2033, color: "#3FCCFF", name: "12年目" },
+    { year: 2034, color: "#42CEFF", name: "13年目" },
+    { year: 2035, color: "#44D0FF", name: "14年目" },
+    { year: 2036, color: "#47D2FF", name: "15年目" },
+    { year: 2037, color: "#49D4FF", name: "16年目" },
+    { year: 2038, color: "#4CD6FF", name: "17年目" },
+    { year: 2039, color: "#4ED8FF", name: "18年目" },
+    { year: 2040, color: "#51DAFF", name: "19年目" },
+    { year: 2041, color: "#53DCFF", name: "20年目" },
+    { year: 2042, color: "#56DEFF", name: "21年目" },
   ];
+
+  const scrollContent = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = 300; // Adjust as needed
+      const currentScroll = ref.current.scrollLeft;
+      ref.current.scrollTo({
+        left: direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="mb-10">
@@ -83,95 +120,146 @@ const SpecialAccentColorIntro: React.FC = () => {
       </p>
       
       <h4 className="text-xl font-semibold mb-4">特別アクセントカラー一覧</h4>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
-        {specialYearColors.map(({ year, color, name }) => (
-          <div 
-            key={year}
-            className="flex flex-col items-center" 
-            onMouseEnter={() => setHoveredColor(color)}
-            onMouseLeave={() => setHoveredColor(null)}
-          >
+      
+      <div className="relative">
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md hidden md:flex"
+          onClick={() => scrollContent(specialColorsRef, 'left')}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        
+        <div 
+          ref={specialColorsRef}
+          className="flex overflow-x-auto py-6 px-4 gap-6 hide-scrollbar touch-pan-x"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {specialYearColors.map(({ year, color, name }) => (
             <div 
-              className="w-24 h-24 rounded-full mb-2 flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
-              style={{ backgroundColor: color }}
-              onClick={() => copyColorToClipboard(color, `${year}年（${name}）`)}
+              key={year}
+              className="flex flex-col items-center flex-shrink-0" 
+              onMouseEnter={() => setHoveredColor(color)}
+              onMouseLeave={() => setHoveredColor(null)}
             >
-              {hoveredColor === color && (
-                <div className="bg-black bg-opacity-70 text-white px-2 py-1 rounded">
-                  <Copy className="w-4 h-4" />
-                </div>
-              )}
+              <div 
+                className="w-28 h-28 rounded-full mb-3 flex items-center justify-center cursor-pointer transition-transform hover:scale-110 shadow-md"
+                style={{ backgroundColor: color }}
+                onClick={() => copyColorToClipboard(color, `${year}年（${name}）`)}
+              >
+                {hoveredColor === color && (
+                  <div className="bg-black bg-opacity-70 text-white px-2 py-1 rounded">
+                    <Copy className="w-4 h-4" />
+                  </div>
+                )}
+              </div>
+              <p className="text-center font-medium">{year}年</p>
+              <p className="text-center">{name}</p>
+              <p className="text-center text-sm font-mono">{color}</p>
             </div>
-            <p className="text-center">{year}年（{name}）</p>
-            <p className="text-center text-sm font-mono">{color}</p>
-          </div>
-        ))}
+          ))}
+        </div>
+        
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md hidden md:flex"
+          onClick={() => scrollContent(specialColorsRef, 'right')}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
       </div>
       
       <h4 className="text-xl font-semibold mb-4 mt-8">年次のブランドカラーと特別カラー</h4>
-      <div className="overflow-x-auto">
-        <div className="min-w-max pb-4">
-          <table className="min-w-full text-sm border-collapse">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="border border-gray-200 px-4 py-2 text-left">西暦</th>
-                <th className="border border-gray-200 px-4 py-2 text-left">創業の年のカラー（固定）</th>
-                <th className="border border-gray-200 px-4 py-2 text-left">ブランドカラー（毎年変化）</th>
-                <th className="border border-gray-200 px-4 py-2 text-left">特別カラー（節目に変更）</th>
-              </tr>
-            </thead>
-            <tbody>
-              {yearlyBrandColors.map((yearInfo) => {
-                // Find matching special color for this year (if any)
-                const specialColor = specialYearColors.find(sc => sc.year <= yearInfo.year);
-                const hasSpecialYear = specialYearColors.some(sc => sc.year === yearInfo.year);
-                
-                return (
-                  <tr key={yearInfo.year} className="hover:bg-gray-50">
-                    <td className="border border-gray-200 px-4 py-2">
-                      {yearInfo.year}年
-                      {hasSpecialYear && <span className="ml-1 text-xs text-green-600">（節目）</span>}
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      <div 
-                        className="flex items-center gap-2 cursor-pointer"
-                        onClick={() => copyColorToClipboard("#22B6FF", "創業の年のカラー")}
-                      >
-                        <div className="w-5 h-5 rounded-full" style={{ backgroundColor: "#22B6FF" }}></div>
-                        <span className="font-mono">#22B6FF</span>
-                        <Copy className="w-3 h-3 opacity-50" />
-                      </div>
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      <div 
-                        className="flex items-center gap-2 cursor-pointer"
-                        onClick={() => copyColorToClipboard(yearInfo.color, `${yearInfo.year}年のブランドカラー`)}
-                      >
-                        <div className="w-5 h-5 rounded-full" style={{ backgroundColor: yearInfo.color }}></div>
-                        <span className="font-mono">{yearInfo.color}</span>
-                        <Copy className="w-3 h-3 opacity-50" />
-                      </div>
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      {specialColor ? (
+      
+      <div className="relative">
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md hidden md:flex"
+          onClick={() => scrollContent(yearlyColorsRef, 'left')}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        
+        <div 
+          ref={yearlyColorsRef}
+          className="overflow-x-auto hide-scrollbar touch-pan-x"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          <div className="min-w-max pb-4">
+            <table className="min-w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="border border-gray-200 px-4 py-2 text-left">西暦</th>
+                  <th className="border border-gray-200 px-4 py-2 text-left">創業の年のカラー（固定）</th>
+                  <th className="border border-gray-200 px-4 py-2 text-left">ブランドカラー（毎年変化）</th>
+                  <th className="border border-gray-200 px-4 py-2 text-left">特別カラー（節目に変更）</th>
+                </tr>
+              </thead>
+              <tbody>
+                {yearlyBrandColors.map((yearInfo) => {
+                  // Find matching special color for this year (if any)
+                  const specialColor = specialYearColors.find(sc => sc.year <= yearInfo.year);
+                  const hasSpecialYear = specialYearColors.some(sc => sc.year === yearInfo.year);
+                  
+                  return (
+                    <tr key={yearInfo.year} className="hover:bg-gray-50">
+                      <td className="border border-gray-200 px-4 py-2">
+                        {yearInfo.year}年
+                        {hasSpecialYear && <span className="ml-1 text-xs text-green-600">（節目）</span>}
+                      </td>
+                      <td className="border border-gray-200 px-4 py-2">
                         <div 
                           className="flex items-center gap-2 cursor-pointer"
-                          onClick={() => copyColorToClipboard(specialColor.color, `${specialColor.year}年（${specialColor.name}）`)}
+                          onClick={() => copyColorToClipboard("#22B6FF", "創業の年のカラー")}
                         >
-                          <div className="w-5 h-5 rounded-full" style={{ backgroundColor: specialColor.color }}></div>
-                          <span className="font-mono">{specialColor.color}</span>
+                          <div className="w-5 h-5 rounded-full" style={{ backgroundColor: "#22B6FF" }}></div>
+                          <span className="font-mono">#22B6FF</span>
                           <Copy className="w-3 h-3 opacity-50" />
                         </div>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      </td>
+                      <td className="border border-gray-200 px-4 py-2">
+                        <div 
+                          className="flex items-center gap-2 cursor-pointer"
+                          onClick={() => copyColorToClipboard(yearInfo.color, `${yearInfo.year}年のブランドカラー`)}
+                        >
+                          <div className="w-5 h-5 rounded-full" style={{ backgroundColor: yearInfo.color }}></div>
+                          <span className="font-mono">{yearInfo.color}</span>
+                          <Copy className="w-3 h-3 opacity-50" />
+                        </div>
+                      </td>
+                      <td className="border border-gray-200 px-4 py-2">
+                        {specialColor ? (
+                          <div 
+                            className="flex items-center gap-2 cursor-pointer"
+                            onClick={() => copyColorToClipboard(specialColor.color, `${specialColor.year}年（${specialColor.name}）`)}
+                          >
+                            <div className="w-5 h-5 rounded-full" style={{ backgroundColor: specialColor.color }}></div>
+                            <span className="font-mono">{specialColor.color}</span>
+                            <Copy className="w-3 h-3 opacity-50" />
+                          </div>
+                        ) : (
+                          <span className="text-gray-400">-</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
+        
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 shadow-md hidden md:flex"
+          onClick={() => scrollContent(yearlyColorsRef, 'right')}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
       </div>
       
       <div className="mt-6 flex flex-col md:flex-row gap-4">

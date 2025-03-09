@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useRef } from 'react';
 import { ChevronDown, Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { calculateColorForYear, calculateSpecialAccentColor } from './color-utils/color-calculator';
 import LogoYearCard from './logo-card/LogoYearCard';
 import FibonacciVisualization from './fibonacci/FibonacciVisualization';
+import { isFibonacciSumYear } from './logo-variants/logoUtils';
 
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
@@ -100,7 +100,7 @@ const YearlyLogoViewer: React.FC = () => {
     });
   }, [toast]);
   
-  // Generate years array starting with 2025 (green) then 2026 (first Fibonacci sum year/cycle 1)
+  // Generate years array - focus on specific milestone years from the table
   const years = [2022, 2025, 2026, 2028, 2031, 2033];
   
   // Add other visible years up to the limit

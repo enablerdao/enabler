@@ -31,7 +31,7 @@ export const ServiceCardFooter: React.FC<ServiceCardFooterProps> = ({ service })
       
       <div className="mt-4 flex justify-between items-center">
         <Link 
-          to={`/service/${service.nameEn}`}
+          to={`/services/${service.id}`}
           onClick={handleCardClick}
           className="inline-flex items-center text-sm text-enabler-600 hover:text-enabler-700 font-medium transition-colors"
         >

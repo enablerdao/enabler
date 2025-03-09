@@ -27,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
+          <Route path="/service/:serviceId" element={<ServiceDetail />} /> {/* 互換性のための古いルート */}
           <Route path="/points-program" element={<PointsProgram />} />
           <Route path="/mission-vision" element={<MissionVision />} />
           <Route path="/careers" element={<Careers />} />

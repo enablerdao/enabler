@@ -45,14 +45,14 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
       >
         {isPortfolio && (
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center whitespace-nowrap">
             <Award size={14} className="mr-1" /> 厳選コレクション
           </div>
         )}
         
         <ServiceCardHeader service={service} />
         
-        <Link to={`/service/${service.id}`}>
+        <Link to={`/services/${service.id}`}>
           <h3 className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors mt-3">{service.nameEn}</h3>
         </Link>
         <p className="text-sm text-gray-600 mb-3">{service.nameJp}</p>

@@ -108,7 +108,7 @@ const ServiceCategories = () => {
               
               <div 
                 ref={scrollContainerRef}
-                className="flex items-center gap-3 py-2 overflow-x-auto scrollbar-hide mx-auto scroll-smooth"
+                className="flex items-center gap-3 py-2 overflow-x-auto scrollbar-hide mx-auto scroll-smooth pl-2 pr-2 md:px-10"
                 style={{ 
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none'
@@ -137,7 +137,7 @@ const ServiceCategories = () => {
               
               <button 
                 onClick={scrollRight}
-                className="absolute right-0 z-10 bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400 flex items-center justify-center"
+                className="absolute right-0 z-10 bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400 hidden md:flex items-center justify-center"
                 aria-label="Scroll right"
               >
                 <ChevronRight size={20} />
@@ -183,12 +183,18 @@ const ServiceCategories = () => {
                         <div className="bg-enabler-100 p-3 rounded-full mr-3">
                           {getCategoryIcon(category)}
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-800">
-                          {categoryInfo[category].name}
-                        </h3>
-                        <span className="ml-3 text-gray-500">
-                          {categoryInfo[category].name}
-                        </span>
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-800">
+                            {categoryInfo[category].name}
+                          </h3>
+                          <span className="text-sm text-gray-500">
+                            {category === 'STAY_TRAVEL' ? '宿泊・旅行' : 
+                             category === 'LIFE_COMMUNITY' ? '生活・コミュニティ' : 
+                             category === 'WORK_PRODUCTIVITY' ? '仕事・生産性' : 
+                             category === 'HEALTH_WELLNESS' ? '健康・ウェルネス' : 
+                             '投資・成長'}
+                          </span>
+                        </div>
                       </div>
                       
                       {hasScrollableContent(category) && (
@@ -211,13 +217,13 @@ const ServiceCategories = () => {
                       )}
                     </div>
                     
-                    <p className="text-center text-gray-600 mb-8">
+                    <p className="text-gray-600 mb-8 max-w-3xl">
                       {categoryInfo[category].description}
                     </p>
                     
                     <div className="relative">
                       {hasScrollableContent(category) && (
-                        <div className="absolute right-0 top-0 bottom-0 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
+                        <div className="absolute right-0 top-0 bottom-0 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2 pointer-events-none">
                           <div className="bg-white/90 rounded-full p-1 shadow-sm animate-pulse">
                             <ChevronRight className="text-enabler-500" size={18} />
                           </div>
@@ -226,7 +232,7 @@ const ServiceCategories = () => {
                       
                       <div 
                         ref={categoryRowRefs.current[category]}
-                        className="flex gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar scroll-smooth"
+                        className="flex gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar scroll-smooth pt-6"
                       >
                         {categoryServices.map((service, index) => (
                           <div key={service.id} className="w-full min-w-[300px] max-w-[400px] flex-shrink-0">
@@ -242,7 +248,7 @@ const ServiceCategories = () => {
           </div>
         ) : (
           filteredServices.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pt-6">
               {filteredServices.map((service, index) => (
                 <ServiceCard key={service.id} service={service} index={index} />
               ))}

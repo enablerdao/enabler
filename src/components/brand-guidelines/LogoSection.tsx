@@ -9,6 +9,7 @@ interface ColorInfo {
   year: number;
   hex: string;
   name: string;
+  rgb: string;
 }
 
 interface LogoSectionProps {
@@ -26,6 +27,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
     });
   };
 
+  // Calculate logo SVG code using the current year's color
   const logoSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
   <defs>
     <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -53,7 +55,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
         </div>
         <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-3 md:mb-5 leading-relaxed">
-            Enablerのロゴは企業アイデンティティの中核を成す要素です。ロゴは常に一貫して使用され、会社のブランド価値を強化します。
+            Enablerのロゴは企業アイデンティティの中核を成す要素です。ロゴは会社のブランドとして一貫して使用され、ブランド価値を強化します。
             現在は{currentYearColor.year}年のブランドカラー（{currentYearColor.name}: {currentYearColor.hex}）を使用しています。
           </p>
           
@@ -101,11 +103,11 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
               </div>
               
               <div className="bg-gray-50 p-2 md:p-3 rounded-lg flex flex-col items-center">
-                <div className="bg-white p-2 md:p-3 rounded-md shadow-sm w-full h-16 md:h-20 flex items-center justify-center mb-2">
-                  <LogoVariations variant="original" size="md" />
+                <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-2 md:p-3 rounded-md shadow-sm w-full h-16 md:h-20 flex items-center justify-center mb-2">
+                  <LogoVariations variant="monochrome" size="md" year={currentYearColor.year} />
                 </div>
-                <p className="text-xs md:text-sm font-medium">オリジナルロゴ</p>
-                <p className="text-xs text-gray-500">2022年設立時</p>
+                <p className="text-xs md:text-sm font-medium">背景グラデーション</p>
+                <p className="text-xs text-gray-500">視認性重視</p>
               </div>
             </div>
           </div>
@@ -135,7 +137,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
           <div className="mb-3 md:mb-5">
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ロゴ使用ガイドライン</h3>
             <ul className="list-disc pl-5 space-y-1.5">
-              <li className="text-sm md:text-base">ブランドカラー：{currentYearColor.hex}（{currentYearColor.year}年に設定、年次で更新）</li>
+              <li className="text-sm md:text-base">ブランドカラー：{currentYearColor.hex}（{currentYearColor.year}年に設定、年次で自動更新）</li>
               <li className="text-sm md:text-base">ロゴ使用時の余白：ロゴの高さの1/3程度を空け、他の要素との重なりを避ける。</li>
               <li className="text-sm md:text-base">ロゴの変形は厳禁。アスペクト比を維持してサイズ変更すること。</li>
               <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つこと。</li>

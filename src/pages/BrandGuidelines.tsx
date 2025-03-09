@@ -19,23 +19,49 @@ const BrandGuidelines = () => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Calculate current year's color based on a rotation of colors
+  // Calculate current year's color based on the formula
+  // R = min(34 + (y - 2022) * 3, 224)
+  // G = min(182 + (y - 2022) * 2, 245)
+  // B = 255
   const currentYear = new Date().getFullYear();
   const baseYear = 2022; // When the first color was established
   const yearDiff = currentYear - baseYear;
   
-  // Array of brand colors that rotate yearly
-  const brandColors = [
-    { year: 2022, hex: '#22B6FF', name: 'スカイブルー' },
-    { year: 2023, hex: '#6E59A5', name: 'ロイヤルパープル' },
-    { year: 2024, hex: '#8B5CF6', name: 'ビビッドパープル' },
-    { year: 2025, hex: '#0EA5E9', name: 'オーシャンブルー' },
-    { year: 2026, hex: '#D946EF', name: 'マゼンタピンク' },
-  ];
+  // Calculate RGB values based on the formula
+  const calculateColorForYear = (year: number) => {
+    const yearDiff = year - 2022;
+    const r = Math.min(34 + yearDiff * 3, 224);
+    const g = Math.min(182 + yearDiff * 2, 245);
+    const b = 255;
+    
+    // Convert to HEX
+    const toHex = (value: number) => {
+      const hex = value.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    
+    const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    
+    // Generate color name based on the values
+    let name = '';
+    if (r < 100) {
+      name = 'ディープブルー';
+    } else if (r < 150) {
+      name = 'ミディアムブルー';
+    } else if (r < 200) {
+      name = 'ライトブルー';
+    } else {
+      name = 'スカイブルー';
+    }
+    
+    return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
+  };
   
-  // Get current year's color or default to first color if beyond array range
-  const colorIndex = yearDiff % brandColors.length;
-  const currentYearColor = brandColors[colorIndex];
+  // Generate brand colors for years 2022-2030
+  const brandColors = Array.from({ length: 9 }, (_, i) => calculateColorForYear(2022 + i));
+  
+  // Get current year's color
+  const currentYearColor = brandColors.find(color => color.year === currentYear) || brandColors[0];
 
   return (
     <>

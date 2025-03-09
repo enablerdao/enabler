@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
-import { Calculator, Copy, CheckCircle } from 'lucide-react';
+import { Calculator, Copy, CheckCircle, InfoIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
 
@@ -9,6 +9,7 @@ interface ColorInfo {
   year: number;
   hex: string;
   name: string;
+  rgb: string;
 }
 
 interface FixedColorValuesProps {
@@ -51,7 +52,7 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
         </div>
         <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-3 md:mb-5">
-            Enablerのブランドカラーは年度ごとに更新され、マーケティング資料やデザインで一貫して使用されます。
+            Enablerのブランドカラーは会社のブランドとして一貫して使用され、年度ごとに更新されます。
             以下は現在の年度カラーとその値です。
           </p>
           
@@ -86,13 +87,13 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
                 </div>
                 
                 <div className="flex items-center space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100"
-                     onClick={() => copyToClipboard(`rgb(${hexToRgb(currentYearColor.hex)})`, 'RGB値')}>
+                     onClick={() => copyToClipboard(`rgb(${currentYearColor.rgb})`, 'RGB値')}>
                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-md" style={{ backgroundColor: currentYearColor.hex }}></div>
                   <div className="flex-1">
                     <p className="text-xs font-medium">RGB</p>
                     <div className="flex items-center">
-                      <p className="text-sm md:text-base font-mono">rgb({hexToRgb(currentYearColor.hex)})</p>
-                      {copiedColor === `rgb(${hexToRgb(currentYearColor.hex)})` ? (
+                      <p className="text-sm md:text-base font-mono">rgb({currentYearColor.rgb})</p>
+                      {copiedColor === `rgb(${currentYearColor.rgb})` ? (
                         <CheckCircle className="w-3.5 h-3.5 ml-2 text-green-500" />
                       ) : (
                         <Copy className="w-3.5 h-3.5 ml-2 text-gray-400" />
@@ -101,6 +102,57 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          
+          {/* Color formula section */}
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 flex items-center">
+              <InfoIcon className="w-5 h-5 mr-2 text-blue-500" />
+              年度カラー計算式
+            </h3>
+            <div className="bg-white p-3 rounded-lg shadow-sm">
+              <p className="text-sm md:text-base mb-2">Enablerのブランドカラーは、以下の計算式に基づいて年ごとに変化します：</p>
+              <div className="font-mono bg-gray-100 p-2 rounded text-sm mb-3 overflow-x-auto">
+                <pre>R = min(34 + (y - 2022) * 3, 224)</pre>
+                <pre>G = min(182 + (y - 2022) * 2, 245)</pre>
+                <pre>B = 255</pre>
+                <pre>※ yは年度 (2022 ≤ y ≤ 2030)</pre>
+              </div>
+              <button 
+                className="text-xs md:text-sm px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center transition-colors"
+                onClick={() => copyToClipboard(
+                  "R = min(34 + (y - 2022) * 3, 224)\nG = min(182 + (y - 2022) * 2, 245)\nB = 255", 
+                  '色計算式'
+                )}
+              >
+                <Copy className="w-3.5 h-3.5 mr-1.5" /> 計算式をコピー
+              </button>
+            </div>
+          </div>
+          
+          {/* Color progression section */}
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">
+              年度別ブランドカラー (2022-2030)
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+              {brandColors.map(color => (
+                <div 
+                  key={color.year}
+                  className={`flex items-center space-x-2 p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100
+                    ${color.year === new Date().getFullYear() ? 'bg-blue-50 border border-blue-200' : 'bg-white'}`}
+                  onClick={() => copyToClipboard(color.hex, `${color.year}年カラー`)}
+                >
+                  <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: color.hex }}></div>
+                  <div className="overflow-hidden">
+                    <p className="text-xs font-medium truncate">{color.year}年</p>
+                    <p className="text-xs text-gray-600 font-mono truncate">{color.hex}</p>
+                    <p className="text-xs text-gray-500 truncate">RGB({color.rgb})</p>
+                  </div>
+                  <Copy className="w-3.5 h-3.5 ml-auto text-gray-400 flex-shrink-0" />
+                </div>
+              ))}
             </div>
           </div>
           

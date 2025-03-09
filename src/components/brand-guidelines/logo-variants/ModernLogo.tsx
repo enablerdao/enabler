@@ -21,7 +21,7 @@ const ModernLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getFul
           <stop offset="0%" stopColor={foundingColor} />
           <stop offset="100%" stopColor={currentYearColor} />
         </linearGradient>
-        <linearGradient id={`reverseGradient-modern-${year}`} x1="100%" y1="0%" x2="0%" y2="0%">
+        <linearGradient id={`reverseGradient-modern-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor={currentYearColor} />
           <stop offset="100%" stopColor={foundingColor} />
         </linearGradient>
@@ -31,11 +31,11 @@ const ModernLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getFul
         </linearGradient>
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-      {/* First line - standard gradient from founding color */}
+      {/* First line - standard gradient from founding color to current year color */}
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-modern-${year})`}/>
-      {/* Middle line - shorter width based on golden ratio */}
+      {/* Middle line - shorter width based on golden ratio with special accent color */}
       <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill={`url(#middleLineGradient-modern-${year})`}/>
-      {/* Third line - reverse gradient */}
+      {/* Third line - reverse gradient from current year color back to founding color */}
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-modern-${year})`}/>
       <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-modern-${year})`}>ENABLER</text>
     </>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Info, Copy } from 'lucide-react';
@@ -86,9 +87,9 @@ const LogoSection = ({
                   {currentYearColor.hex}
                 </span>
               </li>
-              <li className="text-sm md:text-base">{companyInfo.logoUsageGuidelines}</li>
-              <li className="text-sm md:text-base">ロゴはブランドの象徴です。公式のガイドラインに従って正しく使用してください。</li>
-              <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つことをお願いします。</li>
+              <li className="text-sm md:text-base">ロゴの周りには適切な余白を設け、他の要素と重ならないようにしてください。</li>
+              <li className="text-sm md:text-base">ロゴは変形せず、公式の比率を維持してください。</li>
+              <li className="text-sm md:text-base">ロゴの色は公式ガイドラインに従ってください。</li>
             </ul>
           </div>
           

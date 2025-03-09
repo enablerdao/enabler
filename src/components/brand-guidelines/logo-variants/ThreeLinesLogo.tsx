@@ -31,11 +31,11 @@ const ThreeLinesLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
         </linearGradient>
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-      {/* First line - standard gradient from founding color */}
+      {/* First line - standard gradient from founding color to current year color */}
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-threelines-${year})`}/>
       {/* Middle line - shorter width based on golden ratio with special accent color */}
       <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill={`url(#middleLineGradient-threelines-${year})`}/>
-      {/* Third line - reverse gradient */}
+      {/* Third line - reverse gradient from current year color back to founding color */}
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-threelines-${year})`}/>
     </>
   );

@@ -57,6 +57,15 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
           </tbody>
         </table>
       </div>
+      
+      <div className="bg-gray-50 p-4 rounded-lg">
+        <h5 className="font-medium mb-2">ロゴの3本線の意味</h5>
+        <ul className="list-disc pl-5 space-y-2 text-sm">
+          <li><span className="font-semibold">上部の線:</span> 創業カラーから現在のブランドカラーへのグラデーション。成長の軌跡を表します。</li>
+          <li><span className="font-semibold">中央の線:</span> 創業カラーから特別アクセントカラーへのグラデーション。黄金比に基づく長さで調和を表します。</li>
+          <li><span className="font-semibold">下部の線:</span> 現在のブランドカラーから創業カラーへの逆グラデーション。原点を忘れない姿勢を表します。</li>
+        </ul>
+      </div>
     </div>
   );
 };

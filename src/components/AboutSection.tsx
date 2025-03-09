@@ -33,7 +33,7 @@ const AboutSection = () => {
   }, []);
   
   return (
-    <section id="about" className="section-padding relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-24">
+    <section id="about" className="section-padding relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-20 md:py-24">
       {/* Tech background elements */}
       <div className="absolute inset-0 overflow-hidden opacity-5">
         <div ref={techBgRef} className="absolute inset-0 transition-transform duration-200 ease-out">
@@ -54,22 +54,22 @@ const AboutSection = () => {
         </div>
       </div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-3 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <MotionBox>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">会社情報</h2>
-            <div className="flex justify-center items-center gap-2 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4">会社情報</h2>
+            <div className="flex justify-center items-center gap-2 mb-8 md:mb-12">
               <span className="h-px w-12 bg-enabler-400"></span>
               <Code size={16} className="text-enabler-500" />
               <span className="h-px w-12 bg-enabler-400"></span>
             </div>
           </MotionBox>
           
-          <div className="bg-white rounded-xl shadow-subtle p-8 md:p-10 border border-gray-100 hover:shadow-xl transition-all duration-500">
+          <div className="bg-white rounded-xl shadow-subtle p-5 sm:p-8 md:p-10 border border-gray-100 hover:shadow-xl transition-all duration-500">
             <MotionBox delay={200}>
-              <div className="mb-8 relative">
-                <span className="absolute -top-3 -left-3 text-xs text-gray-400 font-mono">/** company_name */</span>
-                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-enabler-700 to-enabler-500">{companyInfo.nameJp}</h3>
+              <div className="mb-6 md:mb-8 relative">
+                <span className="absolute -top-3 -left-2 sm:-left-3 text-xs text-gray-400 font-mono">/** company_name */</span>
+                <h3 className="text-2xl font-bold mb-1 sm:mb-2 bg-clip-text text-transparent bg-gradient-to-r from-enabler-700 to-enabler-500">{companyInfo.nameJp}</h3>
                 <p className="text-gray-600">{companyInfo.nameEn}</p>
                 <div className="absolute right-0 top-0 bg-gray-50 px-2 py-1 rounded text-xs font-mono text-gray-400 animate-pulse">
                   {'<'}innovation_level{'>'}99.9%{'<'}/innovation_level{'>'}
@@ -78,38 +78,38 @@ const AboutSection = () => {
             </MotionBox>
             
             <MotionBox delay={300}>
-              <div className="mb-10">
-                <div className="space-y-6 relative">
-                  <div className="p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
-                    <div className="flex items-center mb-3">
-                      <div className="bg-enabler-500 p-3 rounded-full mr-3 shadow-md">
-                        <Target className="w-5 h-5 text-white" />
+              <div className="mb-8 sm:mb-10">
+                <div className="space-y-4 sm:space-y-6 relative">
+                  <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
+                    <div className="flex items-center mb-2 sm:mb-3">
+                      <div className="bg-enabler-500 p-2 sm:p-3 rounded-full mr-3 shadow-md">
+                        <Target className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
-                      <h4 className="font-bold text-enabler-800 text-lg">ミッション</h4>
+                      <h4 className="font-bold text-enabler-800 text-base sm:text-lg">ミッション</h4>
                     </div>
-                    <div className="pl-4 border-l-4 border-enabler-500 mb-3">
-                      <p className="text-xl font-medium text-gray-800">「あったらいいな」を「あってよかった！」に。</p>
+                    <div className="pl-3 sm:pl-4 border-l-4 border-enabler-500 mb-2 sm:mb-3">
+                      <p className="text-lg sm:text-xl font-medium text-gray-800">「あったらいいな」を「あってよかった！」に。</p>
                     </div>
-                    <p className="text-gray-700 ml-2">{companyInfo.mission}</p>
-                    <div className="mt-4 text-right">
+                    <p className="text-sm sm:text-base text-gray-700 ml-1 sm:ml-2">{companyInfo.mission}</p>
+                    <div className="mt-3 sm:mt-4 text-right">
                       <Link to="/mission-vision" className="text-enabler-600 hover:text-enabler-800 text-sm font-medium inline-flex items-center">
                         もっと詳しく <Sparkles className="w-3 h-3 ml-1" />
                       </Link>
                     </div>
                   </div>
                   
-                  <div className="p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
-                    <div className="flex items-center mb-3">
-                      <div className="bg-enabler-500 p-3 rounded-full mr-3 shadow-md">
-                        <Eye className="w-5 h-5 text-white" />
+                  <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-enabler-50 to-gray-50 border border-enabler-100 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-md">
+                    <div className="flex items-center mb-2 sm:mb-3">
+                      <div className="bg-enabler-500 p-2 sm:p-3 rounded-full mr-3 shadow-md">
+                        <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
-                      <h4 className="font-bold text-enabler-800 text-lg">ビジョン</h4>
+                      <h4 className="font-bold text-enabler-800 text-base sm:text-lg">ビジョン</h4>
                     </div>
-                    <div className="pl-4 border-l-4 border-enabler-500 mb-3">
-                      <p className="text-xl font-medium text-gray-800">テクノロジーで毎日をもっと楽しく、もっと便利に。</p>
+                    <div className="pl-3 sm:pl-4 border-l-4 border-enabler-500 mb-2 sm:mb-3">
+                      <p className="text-lg sm:text-xl font-medium text-gray-800">テクノロジーで毎日をもっと楽しく、もっと便利に。</p>
                     </div>
-                    <p className="text-gray-700 ml-2">{companyInfo.vision}</p>
-                    <div className="mt-4 text-right">
+                    <p className="text-sm sm:text-base text-gray-700 ml-1 sm:ml-2">{companyInfo.vision}</p>
+                    <div className="mt-3 sm:mt-4 text-right">
                       <Link to="/mission-vision" className="text-enabler-600 hover:text-enabler-800 text-sm font-medium inline-flex items-center">
                         もっと詳しく <Sparkles className="w-3 h-3 ml-1" />
                       </Link>
@@ -120,47 +120,47 @@ const AboutSection = () => {
             </MotionBox>
             
             <MotionBox delay={400}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start group">
-                    <div className="mt-0.5 mr-3 bg-enabler-100 p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
-                      <Calendar className="w-5 h-5 text-enabler-600" />
+                    <div className="mt-0.5 mr-2 sm:mr-3 bg-enabler-100 p-1.5 sm:p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
+                      <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-enabler-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-700">設立</h4>
-                      <p className="text-gray-600">{companyInfo.established}</p>
+                      <h4 className="font-medium text-sm sm:text-base text-gray-700">設立</h4>
+                      <p className="text-sm sm:text-base text-gray-600">{companyInfo.established}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start group">
-                    <div className="mt-0.5 mr-3 bg-enabler-100 p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
-                      <Briefcase className="w-5 h-5 text-enabler-600" />
+                    <div className="mt-0.5 mr-2 sm:mr-3 bg-enabler-100 p-1.5 sm:p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
+                      <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-enabler-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-700">事業内容</h4>
-                      <p className="text-gray-600">{companyInfo.businessActivities}</p>
+                      <h4 className="font-medium text-sm sm:text-base text-gray-700">事業内容</h4>
+                      <p className="text-sm sm:text-base text-gray-600">{companyInfo.businessActivities}</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start group">
-                    <div className="mt-0.5 mr-3 bg-enabler-100 p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
-                      <MapPin className="w-5 h-5 text-enabler-600" />
+                    <div className="mt-0.5 mr-2 sm:mr-3 bg-enabler-100 p-1.5 sm:p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-enabler-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-700">所在地</h4>
-                      <p className="text-gray-600">{companyInfo.address}</p>
+                      <h4 className="font-medium text-sm sm:text-base text-gray-700">所在地</h4>
+                      <p className="text-sm sm:text-base text-gray-600">{companyInfo.address}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start group">
-                    <div className="mt-0.5 mr-3 bg-enabler-100 p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
-                      <Github className="w-5 h-5 text-enabler-600" />
+                    <div className="mt-0.5 mr-2 sm:mr-3 bg-enabler-100 p-1.5 sm:p-2 rounded-md group-hover:bg-enabler-200 transition-colors">
+                      <Github className="w-4 h-4 sm:w-5 sm:h-5 text-enabler-600" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-700">オープンソース</h4>
-                      <p className="text-gray-600">{companyInfo.openSource}</p>
+                      <h4 className="font-medium text-sm sm:text-base text-gray-700">オープンソース</h4>
+                      <p className="text-sm sm:text-base text-gray-600">{companyInfo.openSource}</p>
                     </div>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ const AboutSection = () => {
             </MotionBox>
             
             {/* Techy footer */}
-            <div className="mt-6 pt-4 border-t border-gray-100 text-center">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100 text-center">
               <code className="text-xs text-gray-400 font-mono inline-block animate-pulse">
                 $ sudo innovation --optimize --level=maximum
               </code>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Copy } from 'lucide-react';
 import { companyInfo } from '@/lib/data';
-import { calculateColorForYear } from '../color-utils/color-calculator';
+import { calculateColorForYear, calculateSpecialAccentColor } from '../color-utils/color-calculator';
 
 interface ColorMathSectionProps {
   copyToClipboard: (text: string, label: string) => void;
@@ -10,12 +10,12 @@ interface ColorMathSectionProps {
 }
 
 const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, foundingYearColor }) => {
-  // Generate Fibonacci numbers sequence
-  const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
+  // Generate Fibonacci numbers sequence - extended for long-term calculations
+  const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584];
   const foundingYear = 2022;
   
   // Calculate Fibonacci sums (cumulative sums)
-  // 1, 3, 6, 11, 19, 32, 53, 87, 142, 231, 375, 608, 985, 1595, 2582
+  // 1, 3, 6, 11, 19, 32, 53, 87, 142, 231, 375, 608, 985, 1595, 2582, 4179, 6763
   const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
     const prevSum = i > 0 ? acc[i-1] : 0;
     acc.push(prevSum + curr);
@@ -28,11 +28,17 @@ const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, fo
     return calculateColorForYear(year);
   });
   
+  // Generate special accent colors for each Fibonacci sum year
+  const fibonacciSpecialColors = fibonacciSums.map(sumYear => {
+    const year = foundingYear + sumYear;
+    return calculateSpecialAccentColor(year);
+  });
+  
   return (
     <div className="mb-6 md:mb-10">
       <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">数学的な色の変化表現（フィボナッチ数列の累積和）</h3>
       <p className="text-base mb-4 leading-relaxed">
-        色の変化はフィボナッチ数列の累積和の年にのみ行われます。創業年（2022年）を起点として、フィボナッチ数列の累積和の年（1, 3, 6, 11, 19, 32, 53, 87, 142, 231年目）にのみ、以下の関数に基づいて色が変わります。
+        色の変化はフィボナッチ数列の累積和の年にのみ行われます。創業年（2022年）を起点として、フィボナッチ数列の累積和の年（1, 3, 6, 11, 19, 32, 53, 87, 142, 231, 375, 608, 985年目...）にのみ、以下の関数に基づいて色が変わります。
       </p>
       <div className="bg-gray-50 p-4 rounded-lg mb-5">
         <pre className="text-sm md:text-base font-mono overflow-x-auto p-4 bg-gray-100 rounded-lg">
@@ -72,6 +78,8 @@ B = ${companyInfo.colorFormula.b}
               <th className="text-left py-2 px-3">フィボナッチ数</th>
               <th className="text-left py-2 px-3">累積和</th>
               <th className="text-left py-2 px-3">色の変化</th>
+              <th className="text-left py-2 px-3">ブランドカラー</th>
+              <th className="text-left py-2 px-3">特別カラー</th>
             </tr>
           </thead>
           <tbody>
@@ -80,42 +88,92 @@ B = ${companyInfo.colorFormula.b}
               <td className="py-2 px-3">-</td>
               <td className="py-2 px-3">0</td>
               <td className="py-2 px-3">創業カラー</td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: foundingYearColor.hex }}></div>
+                  <span>{foundingYearColor.hex}</span>
+                </div>
+              </td>
+              <td className="py-2 px-3">-</td>
+            </tr>
+            {fibonacciSums.slice(0, 10).map((sum, index) => {
+              const year = foundingYear + sum;
+              const color = fibonacciSumColors[index];
+              const specialColor = fibonacciSpecialColors[index];
+              return (
+                <tr key={year} className="border-b">
+                  <td className="py-2 px-3">{year}年</td>
+                  <td className="py-2 px-3">{fibonacciSequence.slice(0, index + 1).join('+')}</td>
+                  <td className="py-2 px-3">{sum}</td>
+                  <td className="py-2 px-3">{index + 1}番目の色変化</td>
+                  <td className="py-2 px-3">
+                    <div className="flex items-center">
+                      <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: color.hex }}></div>
+                      <span>{color.hex}</span>
+                    </div>
+                  </td>
+                  <td className="py-2 px-3">
+                    <div className="flex items-center">
+                      <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: specialColor.hex }}></div>
+                      <span>{specialColor.hex}</span>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+            <tr className="border-b bg-gray-100">
+              <td className="py-2 px-3">2253年</td>
+              <td className="py-2 px-3">...</td>
+              <td className="py-2 px-3">231</td>
+              <td className="py-2 px-3">10番目の色変化</td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateColorForYear(2253).hex }}></div>
+                  <span>{calculateColorForYear(2253).hex}</span>
+                </div>
+              </td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateSpecialAccentColor(2253).hex }}></div>
+                  <span>{calculateSpecialAccentColor(2253).hex}</span>
+                </div>
+              </td>
             </tr>
             <tr className="border-b">
-              <td className="py-2 px-3">2023年</td>
-              <td className="py-2 px-3">1</td>
-              <td className="py-2 px-3">1</td>
-              <td className="py-2 px-3">最初の色変化</td>
-            </tr>
-            <tr className="border-b">
-              <td className="py-2 px-3">2025年</td>
-              <td className="py-2 px-3">1+2</td>
-              <td className="py-2 px-3">3</td>
-              <td className="py-2 px-3">2番目の色変化</td>
-            </tr>
-            <tr className="border-b">
-              <td className="py-2 px-3">2028年</td>
-              <td className="py-2 px-3">1+2+3</td>
-              <td className="py-2 px-3">6</td>
-              <td className="py-2 px-3">3番目の色変化</td>
-            </tr>
-            <tr className="border-b">
-              <td className="py-2 px-3">2033年</td>
-              <td className="py-2 px-3">1+2+3+5</td>
-              <td className="py-2 px-3">11</td>
-              <td className="py-2 px-3">4番目の色変化</td>
-            </tr>
-            <tr className="border-b">
-              <td className="py-2 px-3">2041年</td>
-              <td className="py-2 px-3">1+2+3+5+8</td>
-              <td className="py-2 px-3">19</td>
-              <td className="py-2 px-3">5番目の色変化</td>
+              <td className="py-2 px-3">2375年</td>
+              <td className="py-2 px-3">...</td>
+              <td className="py-2 px-3">375</td>
+              <td className="py-2 px-3">11番目の色変化</td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateColorForYear(2375).hex }}></div>
+                  <span>{calculateColorForYear(2375).hex}</span>
+                </div>
+              </td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateSpecialAccentColor(2375).hex }}></div>
+                  <span>{calculateSpecialAccentColor(2375).hex}</span>
+                </div>
+              </td>
             </tr>
             <tr>
-              <td className="py-2 px-3">2054年</td>
-              <td className="py-2 px-3">1+2+3+5+8+13</td>
-              <td className="py-2 px-3">32</td>
-              <td className="py-2 px-3">6番目の色変化</td>
+              <td className="py-2 px-3">2608年</td>
+              <td className="py-2 px-3">...</td>
+              <td className="py-2 px-3">608</td>
+              <td className="py-2 px-3">12番目の色変化</td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateColorForYear(2608).hex }}></div>
+                  <span>{calculateColorForYear(2608).hex}</span>
+                </div>
+              </td>
+              <td className="py-2 px-3">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: calculateSpecialAccentColor(2608).hex }}></div>
+                  <span>{calculateSpecialAccentColor(2608).hex}</span>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -162,6 +220,28 @@ B = ${companyInfo.colorFormula.b}
               ></div>
               <div className="opacity-0 group-hover:opacity-100 absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-2 py-1 whitespace-nowrap transition-opacity">
                 {foundingYear + fibonacciSums[index]}年
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Special Color Visualization */}
+      <h4 className="text-lg font-semibold mb-3 mt-10">フィボナッチ数列による特別カラー変化</h4>
+      <div className="mt-4 overflow-hidden">
+        <div className="flex flex-wrap gap-1">
+          {/* Add all Fibonacci special accent colors */}
+          {fibonacciSpecialColors.map((color, index) => (
+            <div 
+              className="relative group"
+              key={`fib-special-${index}`}
+            >
+              <div 
+                className="w-12 h-12 rounded-md shadow-sm transition-transform group-hover:scale-110"
+                style={{ backgroundColor: color.hex }}
+              ></div>
+              <div className="opacity-0 group-hover:opacity-100 absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-2 py-1 whitespace-nowrap transition-opacity">
+                {foundingYear + fibonacciSums[index]}年<br/>特別カラー
               </div>
             </div>
           ))}

@@ -27,13 +27,12 @@ export const calculateColorForYear = (year: number) => {
 // Get founding year color (2022)
 export const foundingColor = '#22B6FF'; // Fixed founding color
 
-// Fibonacci sequence for years after 2022 - the actual sequence is 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
-// This means changes happen in years: 2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056, 2077, 2111
-const fibonacciYears = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+// Extended Fibonacci sequence for very long-term calculations
+const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711];
 
-// Fibonacci sums for years after 2022 - the cumulative sums are 1, 3, 6, 11, 19, 32, 53, 87, 142, 231
-// This means changes happen in years: 2023, 2025, 2028, 2033, 2041, 2054, 2075, 2109, 2164, 2253
-const fibonacciSums = fibonacciYears.reduce((acc: number[], curr, i) => {
+// Fibonacci sums for years after 2022 - extended for long-term calculations
+// This means changes happen in years: 2023, 2025, 2028, 2033, 2041, 2054, 2075, 2109, 2164, 2253, 2375, 2608, 2985, 3595, 4582, 6179, 8763, 12944, 19709, 30655
+const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
   const prevSum = i > 0 ? acc[i-1] : 0;
   acc.push(prevSum + curr);
   return acc;
@@ -81,9 +80,41 @@ export const generateFibonacciAccentColorForYear = (year: number) => {
   // Get the Fibonacci sum index for the year
   const fibIndex = getFibonacciSumYearIndex(year);
   
+  // Calculate Golden Angle (137.5°) based color - a naturally pleasing progression
+  // Convert to radians and use HSL color model
+  const hue = (fibIndex * 137.5) % 360;
+  const saturation = 75; // 75%
+  const lightness = 60; // 60%
+  
+  // Convert HSL to RGB (simplified conversion for this purpose)
+  const c = (1 - Math.abs(2 * lightness / 100 - 1)) * saturation / 100;
+  const x = c * (1 - Math.abs((hue / 60) % 2 - 1));
+  const m = lightness / 100 - c / 2;
+  
+  let r, g, b;
+  if (hue < 60) {
+    [r, g, b] = [c, x, 0];
+  } else if (hue < 120) {
+    [r, g, b] = [x, c, 0];
+  } else if (hue < 180) {
+    [r, g, b] = [0, c, x];
+  } else if (hue < 240) {
+    [r, g, b] = [0, x, c];
+  } else if (hue < 300) {
+    [r, g, b] = [x, 0, c];
+  } else {
+    [r, g, b] = [c, 0, x];
+  }
+  
+  const toHex = (value: number) => {
+    const hex = Math.round((value + m) * 255).toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  
+  const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  
   return {
-    // Special color - a vivid purple
-    specialColor: "#8B5CF6",
+    specialColor: hex,
     fibNumber: fibIndex
   };
 };

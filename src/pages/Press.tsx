@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import { FileText, Calendar, ArrowRight, Download, ExternalLink } from 'lucide-react';
 import { MotionBox } from '@/components/ui/motion-box';
 import LogoVariations from '@/components/brand-guidelines/LogoVariations';
+import { Link } from 'react-router-dom';
+import { companyInfo } from '@/lib/data';
 
 const pressReleases = [
   {
@@ -33,9 +35,9 @@ const pressReleases = [
   },
   {
     id: 4,
-    title: '「Enabliss」サービス、月間アクティブユーザー10万人を突破',
+    title: '「StayFlow」サービス、月間アクティブユーザー10万人を突破',
     date: '2023年9月5日',
-    excerpt: 'Enabler株式会社の主力サービス「Enabliss」が、サービス開始から1年で月間アクティブユーザー10万人を突破しました。同サービスは持続可能な消費行動を促進するプラットフォームとして、特に20〜30代の若年層から支持を集めています。',
+    excerpt: 'Enabler株式会社の主力サービス「StayFlow」が、サービス開始から1年で月間アクティブユーザー10万人を突破しました。同サービスは持続可能な滞在型体験を提供するプラットフォームとして、特に20〜30代の若年層から支持を集めています。',
     pdfUrl: '#',
     category: 'サービス情報'
   },
@@ -43,7 +45,7 @@ const pressReleases = [
     id: 5,
     title: 'Enabler株式会社、サステナビリティ推進に関する国際会議で講演',
     date: '2023年7月20日',
-    excerpt: '当社CEOの山田太郎が、スイス・ジュネーブで開催されたサステナビリティ推進に関する国際会議に登壇しました。テクノロジーを活用した持続可能な社会の実現について議論を交わし、当社の取り組みを国際的に発信しました。',
+    excerpt: '当社CEO濱田優貴が、スイス・ジュネーブで開催されたサステナビリティ推進に関する国際会議に登壇しました。テクノロジーを活用した持続可能な社会の実現について議論を交わし、当社の取り組みを国際的に発信しました。',
     pdfUrl: '#',
     category: 'イベント'
   },
@@ -69,7 +71,7 @@ const Press = () => {
             <MotionBox>
               <div className="text-center mb-16">
                 <h1 className="text-4xl font-bold mb-4">プレスリリース</h1>
-                <p className="text-gray-600 max-w-2xl mx-auto">
+                <p className="text-gray-600 max-w-2xl mx-auto mb-6">
                   当社の最新のニュースやプレスリリースをご覧いただけます。
                   メディア関係者の方はお問い合わせフォームよりご連絡ください。
                 </p>
@@ -114,7 +116,7 @@ const Press = () => {
                     
                     <div className="text-gray-700 space-y-4">
                       <p>
-                        Enabler株式会社（本社：東京都渋谷区、代表取締役：山田太郎）は本日、新しいブランドロゴを発表しました。新ロゴは当社の成長と進化するビジョンを反映し、よりデジタル時代に適した洗練されたデザインとなっています。
+                        Enabler株式会社（本社：東京都渋谷区、代表取締役：{companyInfo.ceo}）は本日、新しいブランドロゴを発表しました。新ロゴは当社の成長と進化するビジョンを反映し、よりデジタル時代に適した洗練されたデザインとなっています。
                       </p>
                       <p>
                         2022年の創業時から使用してきた初代ロゴは、当社の立ち上げ期の精神を体現し、多くの方々に親しまれてきました。新ロゴは初代ロゴのエッセンスを維持しながらも、より現代的なデザイン言語を採用し、スマートデバイスやさまざまなデジタルプラットフォームでの視認性を向上させています。
@@ -123,7 +125,7 @@ const Press = () => {
                         カラーパレットも更新され、{currentYear}年の最新のブランドカラーを採用しています。この新しいビジュアルアイデンティティは、当社のすべての製品、サービス、およびコミュニケーションチャネルに段階的に導入されます。
                       </p>
                       <p>
-                        代表取締役の山田太郎は「新しいロゴは、私たちの成長とともに進化する企業としてのコミットメントを表しています。よりシンプルで力強いデザインは、私たちの『可能性を引き出す』というミッションを視覚的に表現しています」とコメントしています。
+                        代表取締役の{companyInfo.ceo}は「新しいロゴは、私たちの成長とともに進化する企業としてのコミットメントを表しています。よりシンプルで力強いデザインは、私たちの『{companyInfo.mission}』というミッションを視覚的に表現しています」とコメントしています。
                       </p>
                     </div>
                   </div>
@@ -133,10 +135,10 @@ const Press = () => {
                       <Download size={16} className="mr-2" />
                       プレスキットをダウンロード
                     </a>
-                    <a href="#" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <Link to="/brand-guidelines" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                       <ExternalLink size={16} className="mr-2" />
                       ブランドガイドラインを見る
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -163,16 +165,16 @@ const Press = () => {
                         Enabler株式会社は、イーストベンチャーズを引受先とする第三者割当増資により、5,000万円の資金調達を完了したことを発表しました。
                       </p>
                       <p>
-                        当社は「可能性を引き出す存在になる」をミッションに掲げ、持続可能な社会の実現に貢献するデジタルサービスを提供しています。主力サービスの「Enabliss」は、サービス開始からわずか1年で月間アクティブユーザー10万人を突破し、特に20〜30代の若年層から高い支持を得ています。
+                        当社は「{companyInfo.mission}」をミッションに掲げ、デジタルとリアルの両面から、持続可能な社会の実現に貢献するサービスを提供しています。主力サービスの「StayFlow」は、空間体験をより豊かにするためのプラットフォームとして、多くのユーザーから支持を得ています。
                       </p>
                       <p>
-                        今回調達した資金は、「Enabliss」のさらなる機能拡充と、国内市場でのマーケティング活動の強化に活用される予定です。具体的には、AIを活用した新機能の開発、パートナーシップの拡大、および全国規模のプロモーションキャンペーンを計画しています。
+                        今回調達した資金は、「StayFlow」のさらなる機能拡充と、国内市場でのマーケティング活動の強化に活用される予定です。具体的には、AIを活用した新機能の開発、パートナーシップの拡大、および全国規模のプロモーションキャンペーンを計画しています。
                       </p>
                       <p>
                         イーストベンチャーズのパートナー、鈴木一郎氏は「Enabler社のサービスは、その革新的なアプローチとユーザー体験の質の高さで市場に差別化されています。彼らのビジョンと実行力に共感し、今回の投資を決定しました。今後の成長と社会的インパクトの拡大を楽しみにしています」とコメントしています。
                       </p>
                       <p>
-                        代表取締役の山田太郎は「今回の資金調達により、私たちのサービスをより多くの人々に届け、社会的価値を創出する取り組みを加速できることを嬉しく思います。イーストベンチャーズの支援を受け、次のステージに進むための基盤を固めていきます」と述べています。
+                        代表取締役の{companyInfo.ceo}は「今回の資金調達により、私たちのサービスをより多くの人々に届け、社会的価値を創出する取り組みを加速できることを嬉しく思います。イーストベンチャーズの支援を受け、次のステージに進むための基盤を固めていきます」と述べています。
                       </p>
                     </div>
                   </div>
@@ -182,10 +184,10 @@ const Press = () => {
                       <Download size={16} className="mr-2" />
                       プレスリリースPDFをダウンロード
                     </a>
-                    <a href="#" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <Link to="/" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                       <ExternalLink size={16} className="mr-2" />
                       会社情報を見る
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

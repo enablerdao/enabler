@@ -12,7 +12,7 @@ export const companyInfo: CompanyInfo = {
   email: "contact@enablerhq.com",
   phone: "",
   established: "2022年",
-  ceo: "佐藤 健太郎",
+  ceo: "濱田 優貴",
   employees: "58名（2023年12月現在）",
   businessActivities: "デジタルサービスの開発・運営、滞在型施設（別荘など）の開発",
   openSource: "すべてのプロジェクトはオープンソースで公開中。誰でも参加して、共に未来を創造できます。",

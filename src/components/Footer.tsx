@@ -3,7 +3,7 @@ import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, FileText, Target, MessageSquare } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, FileText, Target, MessageSquare, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           <div className="md:col-span-2">
             <div className="mb-4">
-              <Logo className="text-white" />
+              <Logo className="text-white" variant="svg" />
             </div>
             <p className="text-gray-400 mb-6 text-sm">
               {companyInfo.description}
@@ -94,6 +94,11 @@ const Footer = () => {
                 <li>
                   <Link to="/press" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
                     <FileText size={14} className="mr-1" /> プレスリリース
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/brand-guidelines" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
+                    <Palette size={14} className="mr-1" /> ブランドガイドライン
                   </Link>
                 </li>
               </ul>

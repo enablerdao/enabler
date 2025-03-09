@@ -35,6 +35,7 @@ const Navbar = () => {
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
     { name: 'Contact', href: '#contact' },
+    { name: 'ブランド', href: '/brand-guidelines', isPage: true },
   ];
 
   return (
@@ -42,7 +43,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <Logo size={scrolled ? 'sm' : 'md'} />
+            <Logo size={scrolled ? 'sm' : 'md'} variant="svg" />
           </Link>
 
           {/* Desktop Navigation */}

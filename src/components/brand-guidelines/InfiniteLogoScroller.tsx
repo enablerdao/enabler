@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { calculateColorForYear, calculateSpecialAccentColor } from './color-utils/color-calculator';
 import { useToast } from '@/hooks/use-toast';
@@ -11,18 +11,24 @@ const InfiniteLogoScroller: React.FC = () => {
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [visibleYears, setVisibleYears] = useState<number[]>([]);
   const { toast } = useToast();
+  const [zoomLevel, setZoomLevel] = useState(3); // 1-5 scale, start at medium (3)
   
   const foundingYear = 2022;
-  const initialEndYear = 2122; // First 100 years
+  // Calculate initial number of visible years based on zoom level
+  const getInitialYearCount = () => {
+    const baseCount = 30;
+    return baseCount * (6 - zoomLevel); // Inverse relationship: lower zoom = more logos
+  };
   
-  // Initialize with first 100 years
+  // Initialize with years based on zoom level
   useEffect(() => {
+    const yearCount = getInitialYearCount();
     const initialYears = Array.from(
-      { length: initialEndYear - foundingYear + 1 }, 
+      { length: yearCount }, 
       (_, i) => foundingYear + i
     );
     setVisibleYears(initialYears);
-  }, []);
+  }, [zoomLevel]);
   
   // Handle scrolling
   const handleScroll = () => {
@@ -34,8 +40,9 @@ const InfiniteLogoScroller: React.FC = () => {
     // If we're close to the end, add more years
     if (scrollWidth - (scrollLeft + clientWidth) < 500) {
       const lastYear = visibleYears[visibleYears.length - 1];
+      const newYearsCount = Math.max(10, Math.floor(50 / zoomLevel)); // More years added at lower zoom
       const newYears = Array.from(
-        { length: 50 }, 
+        { length: newYearsCount }, 
         (_, i) => lastYear + i + 1
       );
       setVisibleYears(prev => [...prev, ...newYears]);
@@ -49,7 +56,7 @@ const InfiniteLogoScroller: React.FC = () => {
       scrollContainer.addEventListener('scroll', handleScroll);
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }
-  }, [visibleYears]);
+  }, [visibleYears, zoomLevel]);
   
   // Handle arrow navigation
   const scroll = (direction: 'left' | 'right') => {
@@ -110,8 +117,64 @@ const InfiniteLogoScroller: React.FC = () => {
     setTouchStart(null);
   };
   
+  // Handle zoom in/out
+  const handleZoom = (direction: 'in' | 'out') => {
+    setZoomLevel(prev => {
+      if (direction === 'in') {
+        return Math.min(prev + 1, 5); // Max zoom level is 5
+      } else {
+        return Math.max(prev - 1, 1); // Min zoom level is 1
+      }
+    });
+  };
+  
+  // Calculate card width based on zoom level
+  const getCardWidth = () => {
+    const baseWidth = 64; // 16rem = 64 in tailwind
+    return `${baseWidth * (zoomLevel / 3)}px`;
+  };
+  
+  // Calculate card height based on zoom level
+  const getCardHeight = () => {
+    // Start with fixed height at zoom level 3, then scale proportionally
+    return `${230 * (zoomLevel / 3)}px`;
+  };
+  
+  // Calculate gap between cards
+  const getGap = () => {
+    return `${4 * (zoomLevel / 3)}px`;
+  };
+  
   return (
     <div className="relative">
+      <div className="flex justify-between items-center mb-4">
+        <div className="text-sm text-gray-500">
+          {visibleYears.length > 0 && 
+            `${visibleYears[0]}年 〜 ${visibleYears[visibleYears.length - 1]}年 (${visibleYears.length}ロゴ表示中)`
+          }
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => handleZoom('out')}
+            disabled={zoomLevel <= 1}
+            title="拡大表示（少ないロゴ）"
+          >
+            <ZoomOut className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => handleZoom('in')}
+            disabled={zoomLevel >= 5}
+            title="縮小表示（多いロゴ）"
+          >
+            <ZoomIn className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+      
       {showLeftArrow && (
         <Button 
           variant="outline" 
@@ -125,8 +188,12 @@ const InfiniteLogoScroller: React.FC = () => {
       
       <div 
         ref={scrollContainerRef}
-        className="flex overflow-x-auto pb-10 pt-4 px-2 gap-4 hide-scrollbar"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex overflow-x-auto pb-10 pt-4 px-2 hide-scrollbar transition-all duration-300"
+        style={{ 
+          scrollbarWidth: 'none', 
+          msOverflowStyle: 'none',
+          gap: getGap()
+        }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -138,18 +205,25 @@ const InfiniteLogoScroller: React.FC = () => {
           const isSpecialYear = accentColor.hex !== brandColor.hex;
           
           return (
-            <div key={year} className="flex-shrink-0 w-64 p-4 bg-white rounded-lg shadow-sm border flex flex-col">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">{year}年</h3>
+            <div key={year} 
+              className="flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300"
+              style={{ 
+                width: getCardWidth(),
+                height: getCardHeight(),
+                padding: `${zoomLevel * 2}px`
+              }}
+            >
+              <div className="flex justify-between items-center mb-2">
+                <h3 className={`font-semibold ${zoomLevel >= 3 ? 'text-lg' : 'text-sm'}`}>{year}年</h3>
                 <div 
-                  className="w-6 h-6 rounded-full cursor-pointer"
+                  className={`rounded-full cursor-pointer ${zoomLevel >= 3 ? 'w-6 h-6' : 'w-4 h-4'}`}
                   style={{ backgroundColor: brandColor.hex }}
                   onClick={() => copyColor(brandColor.hex, year)}
                   title="クリックしてコピー"
                 />
               </div>
               
-              <div className="bg-gray-50 rounded-md p-3 flex justify-center items-center h-32 mb-3">
+              <div className="bg-gray-50 rounded-md p-2 flex justify-center items-center flex-grow mb-2">
                 <svg 
                   id={`infinite-logo-${year}`}
                   xmlns="http://www.w3.org/2000/svg" 
@@ -179,30 +253,32 @@ const InfiniteLogoScroller: React.FC = () => {
                 </svg>
               </div>
               
-              <div className="flex flex-col gap-2">
-                {isSpecialYear && (
-                  <div 
-                    className="flex items-center gap-2 p-2 rounded cursor-pointer"
-                    style={{ 
-                      backgroundColor: accentColor.hex,
-                      color: parseInt(accentColor.hex.slice(1, 3), 16) > 150 ? '#000' : '#fff'
-                    }}
-                    onClick={() => copyColor(accentColor.hex, year)}
+              {zoomLevel >= 3 && (
+                <div className="flex flex-col gap-2 mt-auto">
+                  {isSpecialYear && (
+                    <div 
+                      className="flex items-center gap-1 p-1 rounded cursor-pointer text-xs"
+                      style={{ 
+                        backgroundColor: accentColor.hex,
+                        color: parseInt(accentColor.hex.slice(1, 3), 16) > 150 ? '#000' : '#fff'
+                      }}
+                      onClick={() => copyColor(accentColor.hex, year)}
+                    >
+                      <span>アクセント:</span>
+                      <span className="font-mono">{accentColor.hex}</span>
+                    </div>
+                  )}
+                  
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs"
+                    onClick={() => copySVG(year)}
                   >
-                    <span className="text-sm">アクセントカラー:</span>
-                    <span className="font-mono text-sm">{accentColor.hex}</span>
-                  </div>
-                )}
-                
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="text-sm"
-                  onClick={() => copySVG(year)}
-                >
-                  SVGコードをコピー
-                </Button>
-              </div>
+                    SVGコピー
+                  </Button>
+                </div>
+              )}
             </div>
           );
         })}

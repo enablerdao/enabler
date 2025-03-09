@@ -36,12 +36,31 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
 
+  // Generate Fibonacci sequence-based accent color
+  const generateFibonacciAccentColor = () => {
+    // Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...
+    const fibSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34];
+    
+    // Use current month to select from fibonacci sequence
+    const currentMonth = new Date().getMonth(); // 0-11
+    const fibIndex = currentMonth % fibSequence.length;
+    const fibValue = fibSequence[fibIndex];
+    
+    // Generate color based on fibonacci value
+    // Hue based on golden ratio (approx 137.5 degrees)
+    const hue = (fibValue * 137.5) % 360;
+    const saturation = 70 + (fibValue % 3) * 10; // 70-90
+    const lightness = 45 + (fibValue % 4) * 5; // 45-60
+    
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  };
+
   // Get founding year color (2022)
   const foundingColor = calculateColorForYear(2022);
   // Get current year color
   const currentYearColor = calculateColorForYear(year);
-  // Get current year
-  const currentYear = new Date().getFullYear();
+  // Get fibonacci accent color
+  const fibonacciAccentColor = generateFibonacciAccentColor();
 
   if (variant === 'foundingLogo') {
     return (
@@ -67,11 +86,18 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
               <stop offset="0%" stopColor={foundingColor} />
               <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
+            <linearGradient id={`reverseGradient-${variant}-${year}`} x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stopColor={currentYearColor} />
+              <stop offset="100%" stopColor={foundingColor} />
+            </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
+          {/* First line - standard gradient */}
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
-          <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
+          {/* Second line - fibonacci accent color */}
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor}/>
+          {/* Third line - reverse gradient */}
+          <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-${variant}-${year})`}>ENABLER</text>
         </>
       )}
@@ -80,7 +106,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
         <>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={currentYearColor}/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={currentYearColor}/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={currentYearColor}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={currentYearColor}>ENABLER</text>
         </>
@@ -93,6 +119,10 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
               <stop offset="0%" stopColor={foundingColor} />
               <stop offset="100%" stopColor={currentYearColor} />
             </linearGradient>
+            <linearGradient id={`reverseGradient-${variant}-${year}`} x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stopColor={currentYearColor} />
+              <stop offset="100%" stopColor={foundingColor} />
+            </linearGradient>
             <filter id={`glow-${variant}-${year}`} x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="2" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -100,8 +130,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
-          <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor} filter={`url(#glow-${variant}-${year})`}/>
+          <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}>ENABLER</text>
         </>
       )}
@@ -110,7 +140,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
         <>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" stroke={currentYearColor} fill="none" strokeWidth="0.5"/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" stroke={currentYearColor} fill="none" strokeWidth="0.5"/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" stroke={fibonacciAccentColor} fill="none" strokeWidth="0.5"/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" stroke={currentYearColor} fill="none" strokeWidth="0.5"/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" stroke={currentYearColor} fill="none" strokeWidth="0.5">ENABLER</text>
         </>
@@ -120,7 +150,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
         <>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill="#22B6FF"/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" fill="#22B6FF"/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill="#22B6FF"/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="#22B6FF">ENABLER</text>
         </>
@@ -134,10 +164,15 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
               <stop offset="50%" stopColor={currentYearColor} />
               <stop offset="100%" stopColor={foundingColor} />
             </linearGradient>
+            <linearGradient id={`reverseGradient-consistent-${year}`} x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stopColor={currentYearColor} />
+              <stop offset="50%" stopColor={foundingColor} />
+              <stop offset="100%" stopColor={currentYearColor} />
+            </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="20" width="170" height="30" rx="4" stroke={`url(#consistentGradient-${year})`} fill="none" strokeWidth="1.5"/>
-          <rect x="25" y="35" width="40" height="2" rx="1" fill={currentYearColor}/>
+          <rect x="25" y="30" width="40" height="2" rx="1" fill={fibonacciAccentColor}/>
           <text x="75" y="40" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="bold" fill={currentYearColor}>ENABLER</text>
           <circle cx="160" cy="35" r="8" fill={currentYearColor} fillOpacity="0.2" stroke={currentYearColor} strokeWidth="1"/>
         </>

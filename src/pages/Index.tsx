@@ -10,7 +10,6 @@ import HeroStats from '@/components/HeroStats';
 import LatestNews from '@/components/LatestNews';
 import PartnerLogos from '@/components/PartnerLogos';
 import Testimonials from '@/components/Testimonials';
-import SocietyDiagram from '@/components/diagram/SocietyDiagram';
 import { logActivity } from '@/lib/logger';
 import { useEffect } from 'react';
 
@@ -25,7 +24,6 @@ const Index = () => {
       <main className="overflow-x-hidden">
         <Hero />
         <HeroStats />
-        <SocietyDiagram />
         <AboutSection />
         <ServiceCategories />
         <Testimonials />

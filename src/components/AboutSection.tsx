@@ -2,9 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
-import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github, Sparkles, Target, Eye } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, Code, Github, Sparkles, Target, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SocietyDiagram from './diagram/SocietyDiagram';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);
@@ -165,14 +164,6 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </MotionBox>
-            
-            {/* Society Diagram Section */}
-            <MotionBox delay={500}>
-              <div className="mt-12 pt-6 border-t border-gray-100">
-                <h4 className="text-lg font-bold text-enabler-800 mb-4 text-center">私たちの目指す社会</h4>
-                <SocietyDiagram />
               </div>
             </MotionBox>
             

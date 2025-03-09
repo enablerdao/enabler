@@ -69,13 +69,13 @@ export const calculateColorForYear = (year: number) => {
     };
   }
   
-  // For 2025, set a special green color as the first important year
+  // For 2025, set a special blue color as the first important year
   if (year === 2025) {
     return {
       year: 2025,
-      hex: '#4ADE80',
-      name: 'グリーン',
-      rgb: '74, 222, 128'
+      hex: '#2BBCFF',
+      name: 'ブルー',
+      rgb: '43, 188, 255'
     };
   }
   
@@ -115,11 +115,11 @@ export const calculateColorForYear = (year: number) => {
 
 // Calculate the special accent color for each year
 export const calculateSpecialAccentColor = (year: number) => {
-  // Special case for 2025 - use a specific green color
+  // Special case for 2025 - use a specific blue color
   if (year === 2025) {
     return {
-      hex: '#4ADE80',
-      hsl: '142, 75%, 60%',
+      hex: '#2BBCFF',
+      hsl: '198, 100%, 58%',
       fibNumber: 1
     };
   }
@@ -176,7 +176,7 @@ export const generateColorsForYearRange = (startYear: number, endYear: number) =
     colors.push(calculateColorForYear(2022));
   }
   
-  // Make 2025 the green special year and 2026 the first Fibonacci sum year
+  // Make 2025 the blue special year and 2026 the first Fibonacci sum year
   for (let year = Math.max(2022, startYear); year <= endYear; year++) {
     if (year === 2025 || (year >= 2026 && isFibonacciSumYear(year))) {
       colors.push(calculateColorForYear(year));

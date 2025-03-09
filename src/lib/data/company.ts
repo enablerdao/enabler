@@ -25,7 +25,7 @@ export const companyInfo: CompanyInfo = {
     b: "255"
   },
   currentColor: "#2BBCFF", // 2025年のカラー（更新）
-  accentColor: "#79D300", // 若草色：成長、生命力、安心感
+  accentColor: "#2BBCFF", // ブルー：成長、可能性、安心感
   supportingColors: {
     white: "#FFFFFF", // 透明性、誠実さ
     silver: "#C0C0C0"  // 調和、公平さ、技術的洗練

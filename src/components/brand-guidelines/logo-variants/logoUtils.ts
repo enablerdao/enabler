@@ -9,9 +9,9 @@ export const calculateColorForYear = (year: number) => {
     return "#22B6FF"; // Fixed founding color - verified correct
   }
   
-  // For 2025, set a special green color for the first important year
+  // For 2025, set a special blue color for the first important year
   if (year === 2025) {
-    return "#4ADE80"; // Special green color for 2025
+    return "#2BBCFF"; // Special blue color for 2025
   }
   
   // Get the Fibonacci sum year index - 2026 is the first Fibonacci sum year (1st cycle)
@@ -103,10 +103,10 @@ export const getFibonacciYearIndex = (year: number): number => {
 
 // Generate Fibonacci sequence-based accent color for each year
 export const generateFibonacciAccentColorForYear = (year: number) => {
-  // Special case for 2025 - use a specific green color
+  // Special case for 2025 - use a specific blue color
   if (year === 2025) {
     return {
-      specialColor: "#4ADE80", // Special green color for 2025
+      specialColor: "#2BBCFF", // Special blue color for 2025
       fibNumber: 1
     };
   }

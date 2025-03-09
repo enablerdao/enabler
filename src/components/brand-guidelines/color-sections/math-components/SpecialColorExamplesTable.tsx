@@ -11,9 +11,9 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
   fibonacciSums, 
   foundingYear 
 }) => {
-  // Special years starting with 2025 (green) and then Fibonacci years
+  // Special years starting with 2025 (blue) and then Fibonacci years
   const specialYears = [
-    { year: 2025, cycle: "特別年", hue: 142, colorName: "グリーン系" },
+    { year: 2025, cycle: "特別年", hue: 198, colorName: "ブルー系" },
     { year: 2026, cycle: "1周目", hue: Math.round(1 * 137.5) % 360, colorName: getColorName(Math.round(1 * 137.5) % 360) },
     { year: 2028, cycle: "2周目", hue: Math.round(2 * 137.5) % 360, colorName: getColorName(Math.round(2 * 137.5) % 360) },
     { year: 2031, cycle: "3周目", hue: Math.round(3 * 137.5) % 360, colorName: getColorName(Math.round(3 * 137.5) % 360) },

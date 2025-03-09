@@ -60,15 +60,6 @@ const LogoCard: React.FC<LogoCardProps> = ({
     }
   };
   
-  // Get font size for year label in compact mode
-  const getYearFontSize = () => {
-    if (zoomLevel <= 1) {
-      return '5px'; // Very tiny font for ultra-compact view
-    } else {
-      return '6px'; // Small font for normal compact view
-    }
-  };
-  
   return (
     <div 
       className={`flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300 ${zoomLevel <= 2 ? 'hover:shadow-md' : ''}`}
@@ -102,6 +93,7 @@ const LogoCard: React.FC<LogoCardProps> = ({
           minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto')
         }}
       >
+        {/* For zoom level <= 2, we've removed the year label and only show the accent color indicator when needed */}
         {zoomLevel <= 2 && isSpecialYear && (
           <div 
             className="absolute top-0 right-0 rounded-full" 
@@ -140,22 +132,11 @@ const LogoCard: React.FC<LogoCardProps> = ({
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-infinite-${year})`}/>
           <rect x="15" y="33" width="37" height="3" rx="1.5" fill={`url(#middleLineGradient-infinite-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-infinite-${year})`}/>
+          {/* Show "ENABLER" text only for zoom level > 1 */}
           {zoomLevel > 1 && (
             <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
           )}
         </svg>
-        
-        {zoomLevel <= 2 && (
-          <div 
-            className="absolute bottom-0 left-0 text-gray-500"
-            style={{ 
-              fontSize: getYearFontSize(),
-              lineHeight: '1'
-            }}
-          >
-            {year}
-          </div>
-        )}
       </div>
       
       {shouldShowDetails() && (

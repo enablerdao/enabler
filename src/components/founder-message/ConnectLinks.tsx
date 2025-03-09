@@ -3,8 +3,28 @@ import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Mail, Users, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 const ConnectLinks = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate API call with a timeout
+    setTimeout(() => {
+      toast.success('ニュースレターに登録しました！', {
+        description: `${email}宛に確認メールを送信しました。`,
+        duration: 5000,
+      });
+      setEmail('');
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
   return (
     <MotionBox delay={500}>
       <div className="mb-16">
@@ -30,13 +50,13 @@ const ConnectLinks = () => {
             <a href="https://yukihamada.jp" target="_blank" rel="noopener noreferrer" 
               className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
               <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
-              <span>yuki.hamada.jp</span>
+              <span>yukihamada.jp</span>
             </a>
           </div>
           
           <p className="text-center mb-6">また、最新情報や事前登録は下記からどうぞ。</p>
           
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4 mb-8">
             <Button variant="default" className="bg-enabler-600 hover:bg-enabler-700" asChild>
               <a href="#" className="flex items-center justify-center gap-2">
                 <ExternalLink size={18} />
@@ -46,8 +66,8 @@ const ConnectLinks = () => {
             
             <Button variant="outline" className="border-enabler-200" asChild>
               <a href="#" className="flex items-center justify-center gap-2">
-                <Mail size={18} className="text-enabler-600" />
-                <span>ニュースレター登録</span>
+                <Users size={18} className="text-enabler-600" />
+                <span>採用情報を見る</span>
               </a>
             </Button>
             
@@ -57,13 +77,30 @@ const ConnectLinks = () => {
                 <span>GitHubでプロジェクトを見る</span>
               </a>
             </Button>
+          </div>
+
+          {/* Newsletter Signup Form */}
+          <div className="mt-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
+            <p className="text-center text-enabler-800 font-medium mb-4">ニュースレターに登録して最新情報をお届けします</p>
             
-            <Button variant="outline" className="border-enabler-200" asChild>
-              <a href="#" className="flex items-center justify-center gap-2">
-                <Users size={18} className="text-enabler-600" />
-                <span>採用情報を見る</span>
-              </a>
-            </Button>
+            <form onSubmit={handleNewsletterSignup} className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="メールアドレスを入力"
+                required
+                className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent"
+              />
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="bg-enabler-600 hover:bg-enabler-700"
+              >
+                {isSubmitting ? '登録中...' : '登録する'}
+                <Mail size={16} />
+              </Button>
+            </form>
           </div>
         </div>
         

@@ -8,6 +8,7 @@ import AboutEnabler from '@/components/founder-message/AboutEnabler';
 import AboutStayFlow from '@/components/founder-message/AboutStayFlow';
 import FounderStory from '@/components/founder-message/FounderStory';
 import ConnectLinks from '@/components/founder-message/ConnectLinks';
+import { Toaster } from '@/components/ui/toaster';
 
 const FounderMessage = () => {
   React.useEffect(() => {
@@ -65,6 +66,7 @@ const FounderMessage = () => {
         </section>
       </main>
       <Footer />
+      <Toaster />
     </>
   );
 };

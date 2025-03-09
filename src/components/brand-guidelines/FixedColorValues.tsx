@@ -4,10 +4,7 @@ import { MotionBox } from '@/components/ui/motion-box';
 import { Calculator, Copy, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
-import ColorCard from './color-utils/ColorCard';
 import ColorFormula from './color-utils/ColorFormula';
-import ColorProgression from './color-utils/ColorProgression';
-import YearSelector from './color-utils/YearSelector';
 import LogoVariants from './color-utils/LogoVariants';
 import ColorPalette from './color-utils/ColorPalette';
 import GradientExamples from './color-utils/GradientExamples';
@@ -22,8 +19,6 @@ interface FixedColorValuesProps {
 const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesProps) => {
   const { toast } = useToast();
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
-  const [customYear, setCustomYear] = useState<number>(2031);
-  const [customColors, setCustomColors] = useState<ColorInfo[]>([]);
   const currentYear = new Date().getFullYear();
 
   const copyToClipboard = (text: string, label: string) => {
@@ -38,50 +33,6 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
     setTimeout(() => {
       setCopiedColor(null);
     }, 2000);
-  };
-
-  // Function to calculate color for any given year using the new formula
-  const calculateColorForYear = (year: number) => {
-    const yearDiff = year - 2022;
-    
-    // Using the exponential formula: R = round(34 + 190 × (1 - 0.95^(y - 2022)))
-    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
-    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
-    const b = 255;
-    
-    // Convert to HEX
-    const toHex = (value: number) => {
-      const hex = value.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-    
-    const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    
-    // Generate color name based on the values
-    let name = '';
-    if (r < 100) {
-      name = 'ディープブルー';
-    } else if (r < 150) {
-      name = 'ミディアムブルー';
-    } else if (r < 200) {
-      name = 'ライトブルー';
-    } else {
-      name = 'スカイブルー';
-    }
-    
-    return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
-  };
-
-  const addCustomYear = () => {
-    const newColor = calculateColorForYear(customYear);
-    setCustomColors([...customColors, newColor]);
-    setCustomYear(customYear + 1);
-  };
-
-  const decreaseCustomYear = () => {
-    if (customYear > 2031) {
-      setCustomYear(customYear - 1);
-    }
   };
 
   return (
@@ -147,47 +98,7 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
           </div>
           
           {/* Color formula section */}
-          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
-            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 flex items-center">
-              <InfoIcon className="w-5 h-5 mr-2 text-blue-500" />
-              年度カラー計算式
-            </h3>
-            <div className="bg-white p-3 rounded-lg shadow-sm">
-              <p className="text-sm md:text-base mb-2">Enablerのブランドカラーは、以下の計算式に基づいて年ごとに変化します：</p>
-              <div className="font-mono bg-gray-100 p-2 rounded text-sm mb-3 overflow-x-auto">
-                <pre>{companyInfo.colorFormula.r}</pre>
-                <pre>{companyInfo.colorFormula.g}</pre>
-                <pre>{companyInfo.colorFormula.b}</pre>
-                <pre>※ y：年度</pre>
-              </div>
-              <button 
-                className="text-xs md:text-sm px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center transition-colors"
-                onClick={() => copyToClipboard(
-                  `${companyInfo.colorFormula.r}\n${companyInfo.colorFormula.g}\n${companyInfo.colorFormula.b}`, 
-                  '色計算式'
-                )}
-              >
-                <Copy className="w-3.5 h-3.5 mr-1.5" /> 計算式をコピー
-              </button>
-            </div>
-          </div>
-          
-          {/* Color progression section */}
-          <ColorProgression 
-            brandColors={brandColors} 
-            currentYear={currentYear} 
-            onColorCopy={copyToClipboard} 
-          />
-
-          {/* Custom year colors section */}
-          <YearSelector 
-            customYear={customYear}
-            onDecreaseYear={decreaseCustomYear}
-            onAddYear={() => setCustomYear(customYear + 1)}
-            onAddCustomYear={addCustomYear}
-            customColors={customColors}
-            onColorCopy={copyToClipboard}
-          />
+          <ColorFormula onCopy={copyToClipboard} />
           
           {/* Logo variants with color schemes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 mb-4 md:mb-6">
@@ -206,13 +117,5 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
     </MotionBox>
   );
 };
-
-const InfoIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <line x1="12" y1="16" x2="12" y2="12"></line>
-    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-  </svg>
-);
 
 export default FixedColorValues;

@@ -4,9 +4,8 @@ import { MotionBox } from '@/components/ui/motion-box';
 import { Palette } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { companyInfo } from '@/lib/data';
-import { calculateColorForYear, generateColorsForYearRange } from './color-utils/color-calculator';
+import { calculateColorForYear } from './color-utils/color-calculator';
 import FoundingColorSection from './color-sections/FoundingColorSection';
-import LogoPreviewSection from './color-sections/LogoPreviewSection';
 import ColorMathSection from './color-sections/ColorMathSection';
 import ColorPaletteSection from './color-sections/ColorPaletteSection';
 
@@ -24,8 +23,6 @@ interface BrandColorsProps {
 
 const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   const { toast } = useToast();
-  const [displayCount, setDisplayCount] = useState<number>(10);
-  const [maxYear, setMaxYear] = useState<number>(2022 + displayCount - 1);
   const currentYear = new Date().getFullYear();
 
   const copyToClipboard = (text: string, label: string) => {
@@ -38,24 +35,6 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
 
   // Get founding year color (2022)
   const foundingYearColor = brandColors.find(color => color.year === 2022) || currentYearColor;
-  
-  // Generate additional colors dynamically
-  const generateMoreColors = () => {
-    const startYear = maxYear + 1;
-    const additionalYears = 10; // Add 10 more years
-    const endYear = startYear + additionalYears - 1;
-    
-    setMaxYear(endYear);
-    setDisplayCount(displayCount + additionalYears);
-  };
-
-  // Get all colors to display (initial + dynamically generated)
-  const getAllColorsToDisplay = () => {
-    // Generate all years from 2022 up to maxYear
-    return generateColorsForYearRange(2022, maxYear);
-  };
-
-  const colorsToDisplay = getAllColorsToDisplay();
   
   return (
     <MotionBox delay={400}>
@@ -71,14 +50,6 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           </p>
           
           <FoundingColorSection foundingYearColor={foundingYearColor} />
-          
-          <LogoPreviewSection 
-            colorsToDisplay={colorsToDisplay}
-            currentYear={currentYear}
-            copyToClipboard={copyToClipboard}
-            generateMoreColors={generateMoreColors}
-            maxYear={maxYear}
-          />
           
           <ColorMathSection 
             copyToClipboard={copyToClipboard}

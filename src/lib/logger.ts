@@ -9,7 +9,7 @@ export interface LogData {
   position?: string;
   additionalData?: Record<string, unknown>;
   timestamp: number;
-  [key: string]: unknown; // Add index signature to make it compatible with LogItem
+  [key: string]: unknown; // Change any to unknown
 }
 
 // Store logs in localStorage for demo purposes

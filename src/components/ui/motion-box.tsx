@@ -12,6 +12,8 @@ export const MotionBox = ({ children, className, delay = 0 }: MotionBoxProps) =>
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const currentRef = ref.current; // Store ref.current in a local variable
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,13 +31,13 @@ export const MotionBox = ({ children, className, delay = 0 }: MotionBoxProps) =>
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [delay]);

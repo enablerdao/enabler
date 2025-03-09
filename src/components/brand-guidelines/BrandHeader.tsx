@@ -18,7 +18,7 @@ const BrandHeader = () => {
         </p>
         <div className="w-full max-w-3xl mx-auto px-2 md:px-0">
           <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex justify-center items-center h-80 md:h-96 lg:h-[30rem]">
-            <LogoVariations variant="modern" size="lg" year={currentYear} />
+            <LogoVariations variant="gradient" size="lg" year={currentYear} />
           </div>
         </div>
       </div>

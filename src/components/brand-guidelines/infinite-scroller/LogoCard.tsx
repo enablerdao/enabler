@@ -3,7 +3,7 @@ import React from 'react';
 import { Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { calculateColorForYear, calculateSpecialAccentColor } from '../color-utils/color-calculator';
+import { calculateColorForYear, calculateSpecialAccentColor, calculateBackgroundColor } from '../color-utils/color-calculator';
 import { LogoCardProps } from './types';
 
 const LogoCard: React.FC<LogoCardProps> = ({ 
@@ -17,6 +17,9 @@ const LogoCard: React.FC<LogoCardProps> = ({
   const isSpecialYear = accentColor.hex !== brandColor.hex;
   const foundingYear = 2022;
   const foundingColor = calculateColorForYear(foundingYear);
+  
+  // Calculate background color based on accent color if it's a special year
+  const backgroundColorData = isSpecialYear ? calculateBackgroundColor(accentColor.hex) : null;
   
   // Calculate card width based on zoom level
   const getCardWidth = () => {
@@ -66,7 +69,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
       style={{ 
         width: getCardWidth(),
         height: zoomLevel >= 3 ? getCardHeight() : 'auto',
-        padding: zoomLevel <= 1 ? '2px' : `${Math.max(1, zoomLevel - 1) * 2}px`
+        padding: zoomLevel <= 1 ? '2px' : `${Math.max(1, zoomLevel - 1) * 2}px`,
+        backgroundColor: isSpecialYear && backgroundColorData ? backgroundColorData.hex : 'white'
       }}
     >
       {shouldShowDetails() && (
@@ -90,7 +94,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
         className={`${zoomLevel <= 2 ? 'p-1' : 'bg-gray-50 rounded-md p-2'} flex justify-center items-center ${zoomLevel <= 2 ? '' : 'flex-grow mb-2'}`}
         style={{ 
           position: 'relative',
-          minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto')
+          minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto'),
+          backgroundColor: zoomLevel > 2 && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
         }}
       >
         {/* For zoom level <= 2, we've removed the year label and only show the accent color indicator when needed */}
@@ -159,6 +164,21 @@ const LogoCard: React.FC<LogoCardProps> = ({
             <Palette className="w-3 h-3 text-blue-500" />
             <span className="font-mono">{brandColor.hex}</span>
           </div>
+          
+          {isSpecialYear && backgroundColorData && (
+            <div 
+              className="flex items-center gap-1 p-1 rounded cursor-pointer text-xs"
+              style={{ 
+                backgroundColor: backgroundColorData.hex,
+                color: '#000',
+                border: '1px dashed #ddd'
+              }}
+              onClick={() => onCopyColor(backgroundColorData.hex, year)}
+            >
+              <span>背景色:</span>
+              <span className="font-mono">{backgroundColorData.hex}</span>
+            </div>
+          )}
           
           <Button 
             variant="outline" 

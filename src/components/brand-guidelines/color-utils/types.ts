@@ -6,6 +6,14 @@ export interface ColorInfo {
   rgb: string;
 }
 
+export interface BackgroundColorInfo {
+  hex: string;
+  name: string;
+  hue: number;
+  saturation: number;
+  value: number;
+}
+
 export interface ColorCardProps {
   color: ColorInfo;
   onClick: (text: string, label: string) => void;

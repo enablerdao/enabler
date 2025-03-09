@@ -7,6 +7,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import SpecialColorCircles from './components/SpecialColorCircles';
 import ColorUsageGuidelines from './components/ColorUsageGuidelines';
 import SpecialYearColorExplanation from './components/SpecialYearColorExplanation';
+import SpecialColorFormula from './SpecialColorFormula';
+import BackgroundColorTheory from './BackgroundColorTheory';
 
 const SpecialAccentColorIntro: React.FC = () => {
   const { toast } = useToast();
@@ -104,6 +106,10 @@ const SpecialAccentColorIntro: React.FC = () => {
         specialYearColors={specialYearColors} 
         copyColorToClipboard={copyColorToClipboard} 
       />
+      
+      <SpecialColorFormula />
+      
+      <BackgroundColorTheory />
       
       <ColorUsageGuidelines />
     </div>

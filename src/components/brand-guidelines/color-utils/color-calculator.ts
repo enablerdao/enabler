@@ -1,4 +1,3 @@
-
 import { getFibonacciYearIndex, isFibonacciYear } from '../logo-variants/logoUtils';
 
 // Calculate Fibonacci sum for a given year since founding
@@ -203,4 +202,128 @@ export const generateColorsForYearRange = (startYear: number, endYear: number) =
   }
   
   return colors;
+};
+
+// Calculate background color based on accent color using Golden Ratio-Based Complementary Logic
+export const calculateBackgroundColor = (accentColorHex: string) => {
+  // Convert hex to HSV
+  const { h, s, v } = hexToHSV(accentColorHex);
+  
+  // Calculate new hue using the Golden Angle (137.5°)
+  const backgroundHue = (h + 137.5) % 360;
+  
+  // Set low saturation and high value for a pastel background
+  const backgroundSaturation = 0.15; // Low saturation (10-20%)
+  const backgroundValue = 0.98; // High brightness (95-98%)
+  
+  // Convert back to hex
+  const backgroundHex = hsvToHex(backgroundHue, backgroundSaturation, backgroundValue);
+  
+  // Generate a name for the background color
+  const backgroundName = generateBackgroundColorName(backgroundHue);
+  
+  return {
+    hex: backgroundHex,
+    name: backgroundName,
+    hue: backgroundHue,
+    saturation: backgroundSaturation,
+    value: backgroundValue
+  };
+};
+
+// Special hardcoded background colors for specific years
+const getSpecialBackgroundColor = (year: number) => {
+  switch (year) {
+    case 2025:
+      return '#F3F0FC'; // Soft lavender for green accent
+    case 2026:
+      return '#F2FCE2'; // Soft green for red accent
+    case 2028:
+      return '#FEF7CD'; // Soft yellow for purple accent
+    case 2033:
+      return '#E5DEFF'; // Soft purple for yellow accent
+    default:
+      return null;
+  }
+};
+
+// Generate a name for the background color based on hue
+const generateBackgroundColorName = (hue: number): string => {
+  if (hue >= 0 && hue < 30) return '淡いレッド';
+  if (hue >= 30 && hue < 60) return '淡いオレンジ';
+  if (hue >= 60 && hue < 90) return '淡いイエロー';
+  if (hue >= 90 && hue < 150) return '淡いグリーン';
+  if (hue >= 150 && hue < 210) return '淡いシアン';
+  if (hue >= 210 && hue < 270) return '淡いブルー';
+  if (hue >= 270 && hue < 330) return '淡いバイオレット';
+  return '淡いマゼンタ';
+};
+
+// Utility function to convert hex to HSV
+const hexToHSV = (hex: string): { h: number, s: number, v: number } => {
+  // Remove # if present
+  hex = hex.replace(/^#/, '');
+  
+  // Parse the hex string
+  const r = parseInt(hex.substring(0, 2), 16) / 255;
+  const g = parseInt(hex.substring(2, 4), 16) / 255;
+  const b = parseInt(hex.substring(4, 6), 16) / 255;
+  
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  
+  // Calculate hue
+  let h = 0;
+  if (delta !== 0) {
+    if (max === r) {
+      h = ((g - b) / delta) % 6;
+    } else if (max === g) {
+      h = (b - r) / delta + 2;
+    } else {
+      h = (r - g) / delta + 4;
+    }
+    
+    h = Math.round(h * 60);
+    if (h < 0) h += 360;
+  }
+  
+  // Calculate saturation
+  const s = max === 0 ? 0 : delta / max;
+  
+  // Value is the maximum component
+  const v = max;
+  
+  return { h, s, v };
+};
+
+// Utility function to convert HSV to hex
+const hsvToHex = (h: number, s: number, v: number): string => {
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+  
+  let r = 0, g = 0, b = 0;
+  
+  if (h >= 0 && h < 60) {
+    [r, g, b] = [c, x, 0];
+  } else if (h >= 60 && h < 120) {
+    [r, g, b] = [x, c, 0];
+  } else if (h >= 120 && h < 180) {
+    [r, g, b] = [0, c, x];
+  } else if (h >= 180 && h < 240) {
+    [r, g, b] = [0, x, c];
+  } else if (h >= 240 && h < 300) {
+    [r, g, b] = [x, 0, c];
+  } else {
+    [r, g, b] = [c, 0, x];
+  }
+  
+  // Convert to 0-255 range and then to hex
+  const toHex = (value: number) => {
+    const hex = Math.round((value + m) * 255).toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };

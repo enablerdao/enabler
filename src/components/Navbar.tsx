@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -54,7 +53,6 @@ const Navbar = () => {
     { name: 'ブランド', href: '/brand-guidelines', isPage: true },
   ];
 
-  // Animation variants
   const menuItemVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i: number) => ({
@@ -142,7 +140,6 @@ const Navbar = () => {
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
               <motion.div
@@ -209,7 +206,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Navigation Toggle */}
           <motion.button
             className="md:hidden text-gray-700 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -224,6 +220,7 @@ const Navbar = () => {
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
+                  onClick={() => setIsOpen(false)}
                 >
                   <X />
                 </motion.div>
@@ -243,7 +240,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Dropdown */}
       <div ref={menuRef}>
         <AnimatePresence>
           {isOpen && (

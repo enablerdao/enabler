@@ -13,7 +13,7 @@ const InfiniteLogoScroller: React.FC = () => {
   const { toast } = useToast();
   const [zoomLevel, setZoomLevel] = useState(3); // 1-5 scale, start at medium (3)
   
-  const foundingYear = 2022;
+  const startingYear = 2025; // Changed from 2022 to 2025
   // Calculate initial number of visible years based on zoom level
   const getInitialYearCount = () => {
     const baseCount = 30;
@@ -25,7 +25,7 @@ const InfiniteLogoScroller: React.FC = () => {
     const yearCount = getInitialYearCount();
     const initialYears = Array.from(
       { length: yearCount }, 
-      (_, i) => foundingYear + i
+      (_, i) => startingYear + i
     );
     setVisibleYears(initialYears);
   }, [zoomLevel]);

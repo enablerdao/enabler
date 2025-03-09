@@ -21,24 +21,24 @@ const Footer = () => {
         {/* Social Media Links */}
         <div className="flex justify-center space-x-8 mb-6">
           {companyInfo.socialLinks.twitter && (
-            <span className="text-gray-500 hover:text-gray-300 transition-colors cursor-not-allowed">
+            <a href={companyInfo.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Twitter size={20} />
-            </span>
+            </a>
           )}
           {companyInfo.socialLinks.facebook && (
-            <span className="text-gray-500 hover:text-gray-300 transition-colors cursor-not-allowed">
+            <a href={companyInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Facebook size={20} />
-            </span>
+            </a>
           )}
           {companyInfo.socialLinks.instagram && (
-            <span className="text-gray-500 hover:text-gray-300 transition-colors cursor-not-allowed">
+            <a href={companyInfo.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Instagram size={20} />
-            </span>
+            </a>
           )}
           {companyInfo.socialLinks.linkedin && (
-            <span className="text-gray-500 hover:text-gray-300 transition-colors cursor-not-allowed">
+            <a href={companyInfo.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Linkedin size={20} />
-            </span>
+            </a>
           )}
         </div>
         
@@ -48,9 +48,9 @@ const Footer = () => {
             <h4 className="text-md font-bold mb-3">サービスカテゴリー</h4>
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(categoryInfo).map(([key, value]) => (
-                <span key={key} className="text-gray-400 hover:text-gray-300 transition-colors cursor-not-allowed text-sm">
+                <Link to={`/#services`} key={key} className="text-gray-400 hover:text-white transition-colors text-sm">
                   {value.name}
-                </span>
+                </Link>
               ))}
             </div>
           </div>
@@ -73,6 +73,15 @@ const Footer = () => {
               </Link>
               <Link to="/brand-guidelines" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm">
                 ブランドガイドライン
+              </Link>
+              <Link to="/company-info" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm">
+                会社概要
+              </Link>
+              <Link to="/careers" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm">
+                採用情報
+              </Link>
+              <Link to="/blog" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm">
+                ブログ
               </Link>
             </div>
           </div>

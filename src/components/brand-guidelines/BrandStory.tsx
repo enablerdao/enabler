@@ -12,7 +12,7 @@ const BrandStory = () => {
           <BookOpen className="text-enabler-600 mr-3" size={24} />
           <h2 className="text-2xl font-bold text-gray-900">1. ブランドストーリーと理念</h2>
         </div>
-        <div className="bg-white p-8 rounded-xl shadow-subtle">
+        <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle">
           <p className="text-lg mb-4 leading-relaxed">
             {companyInfo.brandStory}
           </p>

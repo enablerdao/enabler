@@ -80,11 +80,31 @@ export interface CompanyInfo {
   employees: string;
   businessActivities: string;
   openSource: string;
+  brandStory: string;
+  logoDescription: string;
+  gradientMeaning: string;
+  logoUsageGuidelines: string;
+  colorFormula: {
+    r: string;
+    g: string;
+    b: string;
+  };
+  currentColor: string;
+  accentColor: string;
+  supportingColors: {
+    white: string;
+    silver: string;
+  };
+  fibonacci: string;
+  fibonacciGoldenAngle?: {
+    formula: string;
+    description: string;
+  };
   socialLinks: {
-    twitter?: string;
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
+    twitter: string;
+    facebook: string;
+    instagram: string;
+    linkedin: string;
   };
 }
 

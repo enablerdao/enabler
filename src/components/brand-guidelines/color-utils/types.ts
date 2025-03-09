@@ -53,3 +53,13 @@ export interface GradientExamplesProps {
   currentYearColor: ColorInfo;
   onCopy: (text: string, label: string) => void;
 }
+
+export interface BackgroundColorProps {
+  accentColor: string;
+  year: number;
+  name: string;
+}
+
+export interface CalculateBackgroundColorFunction {
+  (accentColorHex: string): string;
+}

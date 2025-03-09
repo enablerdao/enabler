@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import SpecialColorCircles from './components/SpecialColorCircles';
@@ -13,6 +13,8 @@ import BackgroundColorTheory from './BackgroundColorTheory';
 const SpecialAccentColorIntro: React.FC = () => {
   const { toast } = useToast();
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isTheoryOpen, setIsTheoryOpen] = useState(false);
+  const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
 
   const copyColorToClipboard = (colorCode: string, colorName: string) => {
     navigator.clipboard.writeText(colorCode);
@@ -72,7 +74,7 @@ const SpecialAccentColorIntro: React.FC = () => {
       <Collapsible
         open={isDetailOpen}
         onOpenChange={setIsDetailOpen}
-        className="bg-gray-50 p-4 rounded-lg mb-5"
+        className="bg-gray-50/70 p-4 rounded-lg mb-5"
       >
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium">アクセントカラーの詳細説明</p>
@@ -107,11 +109,67 @@ const SpecialAccentColorIntro: React.FC = () => {
         copyColorToClipboard={copyColorToClipboard} 
       />
       
-      <SpecialColorFormula />
+      <Collapsible
+        open={isTheoryOpen}
+        onOpenChange={setIsTheoryOpen}
+        className="bg-gray-50/70 p-4 rounded-lg my-5"
+      >
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <Info className="h-5 w-5 mr-2 text-enabler-600" />
+            <p className="text-lg font-medium">アクセントカラーの数学的原理</p>
+          </div>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="sm" className="flex items-center gap-1">
+              {isTheoryOpen ? (
+                <>
+                  <span className="text-sm">詳細を隠す</span>
+                  <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  <span className="text-sm">詳細を表示</span>
+                  <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+        
+        <CollapsibleContent>
+          <SpecialColorFormula />
+          <BackgroundColorTheory />
+        </CollapsibleContent>
+      </Collapsible>
       
-      <BackgroundColorTheory />
-      
-      <ColorUsageGuidelines />
+      <Collapsible
+        open={isGuidelinesOpen}
+        onOpenChange={setIsGuidelinesOpen}
+        className="bg-gray-50/70 p-4 rounded-lg mt-5"
+      >
+        <div className="flex justify-between items-center">
+          <p className="text-lg font-medium">色彩使用ガイドライン</p>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="sm" className="flex items-center gap-1">
+              {isGuidelinesOpen ? (
+                <>
+                  <span className="text-sm">詳細を隠す</span>
+                  <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  <span className="text-sm">詳細を表示</span>
+                  <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+        
+        <CollapsibleContent>
+          <ColorUsageGuidelines />
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };

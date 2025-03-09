@@ -87,7 +87,7 @@ export const calculateSpecialAccentColor = (year: number) => {
   // This ensures both color calculations are consistent and based on Fibonacci principles
   const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
-  // Calculate Golden Angle (137.5°) based color - a naturally pleasing progression
+  // Calculate Golden Angle (137.5°) based color
   // Convert to radians and use HSL color model
   const hue = (fibonacciSumIndex * 137.5) % 360;
   const saturation = 75; // 75%
@@ -128,7 +128,7 @@ export const calculateSpecialAccentColor = (year: number) => {
 };
 
 export const generateColorsForYearRange = (startYear: number, endYear: number) => {
-  // Only generate colors for Fibonacci sum sequence years after founding
+  // Make 2025 the first Fibonacci year
   const colors = [];
   
   // Always include the founding year
@@ -136,9 +136,9 @@ export const generateColorsForYearRange = (startYear: number, endYear: number) =
     colors.push(calculateColorForYear(2022));
   }
   
-  // Add Fibonacci sum years
+  // Add Fibonacci sum years - but make 2025 the first special year (match the formula but adjust the display)
   for (let year = Math.max(2022, startYear); year <= endYear; year++) {
-    if (isFibonacciSumYear(year)) {
+    if (year === 2025 || (year > 2025 && isFibonacciSumYear(year))) {
       colors.push(calculateColorForYear(year));
     }
   }

@@ -11,7 +11,7 @@ import FibonacciVisualization from './fibonacci/FibonacciVisualization';
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
   const foundingYear = 2022; // Keep the actual founding year for reference
-  const startDisplayYear = 2025; // Start displaying from 2025
+  const startDisplayYear = 2025; // Start displaying from 2025 as the first Fibonacci year
   const { toast } = useToast();
   
   // Show very long-term evolution including well beyond the 231st year
@@ -54,18 +54,24 @@ const YearlyLogoViewer: React.FC = () => {
     setZoomLevel(prev => Math.max(prev - 0.5, 0.5));
   }, []);
   
-  // Generate years array from start display year to visible limit
-  const years = Array.from(
-    { length: Math.min(visibleYears, totalYears) }, 
-    (_, i) => startDisplayYear + i
-  );
+  // Generate years array including 2025 as the first important year
+  const years = [2025];
+  let fibYear = 2023; // Actual first Fibonacci year after founding
+  
+  // Add in all the other visible years up to the limit
+  for (let i = 1; i < visibleYears; i++) {
+    const year = startDisplayYear + i;
+    if (year > 2025) { // Avoid duplicating 2025
+      years.push(year);
+    }
+  }
   
   return (
     <div className="mt-4 space-y-4">
       <h3 className="text-lg font-semibold mb-3">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
       <p className="text-sm text-gray-600 mb-3">
         ※ブランドカラーは毎年変化します。色をクリックするとコピーできます。<br />
-        ※会社は2022年に創業しましたが、ロゴ表示は2025年から始まります。
+        ※会社は2022年に創業しましたが、ロゴ表示は2025年から始まります（最初のフィボナッチ重要年）。
       </p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">

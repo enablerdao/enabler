@@ -2,6 +2,7 @@
 import React from 'react';
 import { Copy } from 'lucide-react';
 import { companyInfo } from '@/lib/data';
+import { calculateColorForYear } from '../color-utils/color-calculator';
 
 interface ColorMathSectionProps {
   copyToClipboard: (text: string, label: string) => void;
@@ -9,6 +10,16 @@ interface ColorMathSectionProps {
 }
 
 const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, foundingYearColor }) => {
+  // Generate Fibonacci years from 2022 (founding year)
+  const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
+  const foundingYear = 2022;
+  
+  // Generate colors for each Fibonacci year
+  const fibonacciColors = fibonacciSequence.map(fibYear => {
+    const year = foundingYear + fibYear;
+    return calculateColorForYear(year);
+  });
+  
   return (
     <div className="mb-6 md:mb-10">
       <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">数学的な色の変化表現（フィボナッチ数列）</h3>
@@ -104,6 +115,71 @@ B = ${companyInfo.colorFormula.b}
           </p>
         </div>
       )}
+
+      {/* Fibonacci Color Visualization */}
+      <h4 className="text-lg font-semibold mb-3 mt-6">フィボナッチ数列による色の進化</h4>
+      <div className="mt-4 overflow-hidden">
+        <div className="flex flex-wrap gap-1">
+          {/* Add founding year color as the first color */}
+          <div 
+            className="relative group"
+            key="founding-year"
+          >
+            <div 
+              className="w-12 h-12 rounded-md shadow-sm transition-transform group-hover:scale-110"
+              style={{ backgroundColor: foundingYearColor.hex }}
+            ></div>
+            <div className="opacity-0 group-hover:opacity-100 absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-2 py-1 whitespace-nowrap transition-opacity">
+              2022年
+            </div>
+          </div>
+
+          {/* Add all Fibonacci year colors */}
+          {fibonacciColors.map((color, index) => (
+            <div 
+              className="relative group"
+              key={`fib-${index}`}
+            >
+              <div 
+                className="w-12 h-12 rounded-md shadow-sm transition-transform group-hover:scale-110"
+                style={{ backgroundColor: color.hex }}
+              ></div>
+              <div className="opacity-0 group-hover:opacity-100 absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-2 py-1 whitespace-nowrap transition-opacity">
+                {foundingYear + fibonacciSequence[index]}年
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Detailed color progression - a finer gradient showing all years */}
+      <h4 className="text-lg font-semibold mb-3 mt-10">すべての年の色（詳細なグラデーション）</h4>
+      <div className="mt-4 overflow-x-auto pb-4">
+        <div className="flex gap-0.5" style={{ width: 'max-content' }}>
+          {Array.from({ length: 50 }, (_, i) => foundingYear + i).map(year => {
+            const color = calculateColorForYear(year);
+            const isFib = fibonacciSequence.includes(year - foundingYear);
+            return (
+              <div 
+                className="relative group"
+                key={year}
+              >
+                <div 
+                  className="w-6 h-14 transition-transform group-hover:scale-y-110"
+                  style={{ 
+                    backgroundColor: color.hex,
+                    border: isFib ? '1px solid rgba(0,0,0,0.2)' : 'none',
+                    boxShadow: isFib ? '0 2px 4px rgba(0,0,0,0.1)' : 'none' 
+                  }}
+                ></div>
+                <div className="opacity-0 group-hover:opacity-100 absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-1.5 py-0.5 whitespace-nowrap transition-opacity">
+                  {year}年
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

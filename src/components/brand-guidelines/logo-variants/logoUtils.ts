@@ -9,14 +9,11 @@ export const calculateColorForYear = (year: number) => {
   
   // Using the exponential formula with a capped maximum to prevent overflow
   // This ensures the formula works for years well beyond 2041
-  const yearDiff = fibonacciSumIndex;
-  
-  // After verification: The calculations are correct
   // The R value starts at 34 and approaches 224 (34 + 190)
   // The G value starts at 182 and approaches 245 (182 + 63)
   // The B value remains constant at 255
-  const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
-  const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
+  const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, fibonacciSumIndex))));
+  const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, fibonacciSumIndex))));
   const b = 255;
   
   // Convert to HEX

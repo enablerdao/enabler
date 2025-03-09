@@ -101,11 +101,17 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
           }}
         >
           {generateFibonacciPositions(233, window.innerWidth / 2, window.innerHeight / 2).map((pos, index) => {
-            // Generate color variations based on Fibonacci sequence and original color
-            // Start from 2025
-            const adjustedColor = calculateSpecialAccentColor(
-              Math.max(2025, (selectedYear || 2025) + index)
-            ).hex;
+            // パターン生成のためにフィボナッチサムインデックスを使用して特別カラーを計算
+            const currentYear = selectedYear || 2025;
+            const nextFibYear = currentYear + index;
+            const fibIndex = getFibonacciSumYearIndex(nextFibYear);
+            
+            // 特別カラーの計算
+            const hue = (fibIndex * 137.5) % 360;
+            const saturation = 75;
+            const lightness = 60;
+            
+            const adjustedColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
             
             return (
               <motion.div
@@ -139,13 +145,13 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
       
       <div className="p-4 text-white text-sm">
         <p>上の円はフィボナッチ数列に従って配置され、ゴールデンスパイラルを形成しています。</p>
-        <p>特別カラーが年を追うごとにフィボナッチ数列の法則で変化する様子を視覚化しています。</p>
+        <p>特別カラーがフィボナッチ数列の累積和の年のインデックスに基づいて黄金角（137.5°）で変化する様子を視覚化しています。</p>
       </div>
     </motion.div>
   );
 };
 
-// Import the function needed from color-calculator
-import { calculateSpecialAccentColor } from '../color-utils/color-calculator';
+// 一貫した計算のために必要な関数をインポート
+import { getFibonacciSumYearIndex } from '../logo-variants/logoUtils';
 
 export default FibonacciVisualization;

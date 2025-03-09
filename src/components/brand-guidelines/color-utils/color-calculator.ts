@@ -83,14 +83,13 @@ export const calculateColorForYear = (year: number) => {
 
 // Calculate the special accent color for each year
 export const calculateSpecialAccentColor = (year: number) => {
-  // The special accent color is calculated based on the year (NOT the Fibonacci sum year)
-  // Each year gets a unique color based on the golden angle calculation
-  // Year - 2022 is used for the golden angle computation (years from founding)
-  const yearFromFounding = year - 2022;
+  // For special accent color, we use the Golden Angle (137.5°) based on the Fibonacci sum index
+  // This ensures both color calculations are consistent and based on Fibonacci principles
+  const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
   // Calculate Golden Angle (137.5°) based color - a naturally pleasing progression
   // Convert to radians and use HSL color model
-  const hue = (yearFromFounding * 137.5) % 360;
+  const hue = (fibonacciSumIndex * 137.5) % 360;
   const saturation = 75; // 75%
   const lightness = 60; // 60%
   
@@ -120,9 +119,6 @@ export const calculateSpecialAccentColor = (year: number) => {
   };
   
   const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  
-  // Calculate the Fibonacci sum index for information purposes
-  const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
   return {
     hex,

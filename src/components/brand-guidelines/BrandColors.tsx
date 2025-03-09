@@ -9,6 +9,7 @@ interface ColorInfo {
   year: number;
   hex: string;
   name: string;
+  rgb: string;
 }
 
 interface BrandColorsProps {

@@ -13,6 +13,7 @@ import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import BrandAssetRules from '@/components/brand-guidelines/BrandAssetRules';
 import FixedColorValues from '@/components/brand-guidelines/FixedColorValues';
 import FAQContact from '@/components/brand-guidelines/FAQContact';
+import LogoEvolution from '@/components/brand-guidelines/LogoEvolution';
 
 const BrandGuidelines = () => {
   useEffect(() => {
@@ -25,7 +26,6 @@ const BrandGuidelines = () => {
   // B = 255
   const currentYear = new Date().getFullYear();
   const baseYear = 2022; // When the first color was established
-  const yearDiff = currentYear - baseYear;
   
   // Calculate RGB values based on the formula
   const calculateColorForYear = (year: number) => {
@@ -57,11 +57,19 @@ const BrandGuidelines = () => {
     return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
   };
   
-  // Generate brand colors for years 2022-2030
-  const brandColors = Array.from({ length: 9 }, (_, i) => calculateColorForYear(2022 + i));
+  // Generate brand colors for years 2022-2031 (10 years instead of 9)
+  const brandColors = Array.from({ length: 10 }, (_, i) => calculateColorForYear(2022 + i));
   
   // Get current year's color
   const currentYearColor = brandColors.find(color => color.year === currentYear) || brandColors[0];
+
+  // Generate logo evolution data for every 10 years
+  const logoEvolutionData = [
+    { year: 2022, name: '設立時', description: '会社設立時のオリジナルデザイン' },
+    { year: 2032, name: '10周年', description: '設立10周年記念デザイン' },
+    { year: 2042, name: '20周年', description: '設立20周年記念デザイン' },
+    { year: 2052, name: '30周年', description: '設立30周年記念デザイン' },
+  ];
 
   return (
     <>
@@ -72,6 +80,7 @@ const BrandGuidelines = () => {
           <BrandStory />
           <LogoSection currentYearColor={currentYearColor} />
           <BrandColors currentYearColor={currentYearColor} brandColors={brandColors} />
+          <LogoEvolution evolutionData={logoEvolutionData} />
           <Typography />
           <PhotosAndIllustrations />
           <VoiceAndTone />

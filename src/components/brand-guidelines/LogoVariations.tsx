@@ -11,18 +11,20 @@ interface LogoVariationsProps {
 const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = new Date().getFullYear() }) => {
   const sizeClasses = {
     sm: 'w-20 h-auto', 
-    md: 'w-28 h-auto', 
-    lg: 'w-40 h-auto', 
+    md: 'w-32 h-auto', 
+    lg: 'w-56 h-auto', 
   };
 
   // Calculate color based on year using the formula
-  // R = min(34 + (y - 2022) * 3, 224)
-  // G = min(182 + (y - 2022) * 2, 245)
+  // R = round(34 + 190 × (1 - 0.95^(y - 2022)))
+  // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
   // B = 255
   const calculateColorForYear = (year: number) => {
     const yearDiff = year - 2022;
-    const r = Math.min(34 + yearDiff * 3, 224);
-    const g = Math.min(182 + yearDiff * 2, 245);
+    
+    // Using the exponential formula
+    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
+    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
     const b = 255;
     
     // Convert to HEX

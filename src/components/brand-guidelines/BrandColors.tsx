@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
-import { Palette, Copy, CheckCircle } from 'lucide-react';
+import { Palette, Copy, CheckCircle, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
 import { companyInfo } from '@/lib/data';
@@ -21,6 +21,8 @@ interface BrandColorsProps {
 const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   const { toast } = useToast();
   const [copiedColorHex, setCopiedColorHex] = useState<string | null>(null);
+  const [displayCount, setDisplayCount] = useState<number>(10);
+  const currentYear = new Date().getFullYear();
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -39,14 +41,70 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   // Get founding year color (2022)
   const foundingYearColor = brandColors.find(color => color.year === 2022) || currentYearColor;
   
+  // Calculate color for any given year using the formula
+  const calculateColorForYear = (year: number) => {
+    const yearDiff = year - 2022;
+    
+    // Using the exponential formula
+    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
+    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
+    const b = 255;
+    
+    // Convert to HEX
+    const toHex = (value: number) => {
+      const hex = value.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    
+    const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    
+    // Generate color name based on the values
+    let name = '';
+    if (r < 100) {
+      name = 'ディープブルー';
+    } else if (r < 150) {
+      name = 'ミディアムブルー';
+    } else if (r < 200) {
+      name = 'ライトブルー';
+    } else {
+      name = 'スカイブルー';
+    }
+    
+    return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
+  };
+
+  // Generate additional colors dynamically
+  const generateMoreColors = () => {
+    const startYear = 2022 + displayCount;
+    const additionalColors = Array.from({ length: 10 }, (_, i) => calculateColorForYear(startYear + i));
+    setDisplayCount(displayCount + 10);
+    return additionalColors;
+  };
+
+  // Get all colors to display (initial + dynamically generated)
+  const getAllColorsToDisplay = () => {
+    const initialColors = brandColors.slice(0, 10);
+    const additionalColors = [];
+    
+    if (displayCount > 10) {
+      for (let i = 10; i < displayCount; i++) {
+        additionalColors.push(calculateColorForYear(2022 + i));
+      }
+    }
+    
+    return [...initialColors, ...additionalColors];
+  };
+
+  const colorsToDisplay = getAllColorsToDisplay();
+  
   return (
     <MotionBox delay={400}>
-      <section className="mb-8 md:mb-14 px-6 md:px-10">
+      <section className="mb-8 md:mb-14 px-4 md:px-10">
         <div className="flex items-center mb-4 md:mb-6">
           <Palette className="text-enabler-600 mr-3" size={24} />
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">3. ブランドカラー</h2>
         </div>
-        <div className="bg-white p-5 md:p-8 rounded-xl shadow-subtle">
+        <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-5 md:mb-6 leading-relaxed">
             Enablerのブランドカラーは創業年（2022年）を起点に年数経過で変化します。
             この色の進化は「絶え間ない成長と可能性の追求」を表しています。
@@ -119,15 +177,15 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           <div className="mb-6 md:mb-10">
             <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">年度別ロゴと色の進化</h3>
             <p className="text-base mb-4 leading-relaxed">
-              創業時から現在までの色の変化と、それに伴うロゴの見え方の変化を確認できます。
+              創業時から将来までの色の変化と、それに伴うロゴの見え方の変化を確認できます。
               これにより、一貫したブランドイメージがどのように進化するかを視覚的に理解できます。
             </p>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
-              {brandColors.slice(0, 9).map((color, index) => (
+              {colorsToDisplay.map((color, index) => (
                 <div 
                   key={index} 
-                  className={`bg-white rounded-lg p-3 shadow-sm ${color.year === 2022 ? 'border-2 border-blue-300 bg-blue-50' : ''}`}
+                  className={`bg-white rounded-lg p-3 shadow-sm ${color.year === 2022 ? 'border-2 border-blue-300 bg-blue-50' : ''} ${color.year === currentYear ? 'border-2 border-green-300 bg-green-50' : ''}`}
                 >
                   <div className="bg-gray-50 p-2 rounded-lg mb-2 flex justify-center items-center">
                     <LogoVariations variant="modern" size="sm" year={color.year} />
@@ -136,6 +194,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
                     <p className="text-sm font-medium">
                       {color.year}年
                       {color.year === 2022 && <span className="text-xs bg-blue-100 text-blue-800 px-1 ml-1 rounded">創業</span>}
+                      {color.year === currentYear && <span className="text-xs bg-green-100 text-green-800 px-1 ml-1 rounded">現在</span>}
                     </p>
                     <div 
                       className="h-10 w-full rounded mt-2 mb-1 cursor-pointer"
@@ -149,6 +208,17 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
                   </div>
                 </div>
               ))}
+            </div>
+            
+            {/* もっと見るボタン */}
+            <div className="text-center">
+              <button 
+                className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors"
+                onClick={generateMoreColors}
+              >
+                <ChevronDown className="w-4 h-4 mr-2" />
+                さらに{10}年分を表示
+              </button>
             </div>
           </div>
           

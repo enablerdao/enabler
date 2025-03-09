@@ -25,6 +25,9 @@ const BrandHeader = () => {
             <div className="w-72 md:w-96 lg:w-[30rem]">
               <LogoVariations variant="modern" size="lg" year={currentYear} />
             </div>
+            <p className="text-sm text-gray-500 mt-6">
+              © {currentYear} Enabler, Inc. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

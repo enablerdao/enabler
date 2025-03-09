@@ -1,3 +1,4 @@
+
 // Calculate color based on year using the formula with Fibonacci sums
 // R = round(34 + 190 × (1 - 0.95^(y - 2022)))
 // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
@@ -5,12 +6,29 @@
 export const calculateColorForYear = (year: number) => {
   // For founding year (2022), return the exact founding color
   if (year === 2022) {
-    return "#22B6FF"; // Fixed founding color - verified correct
+    return "#22B6FF"; // Fixed founding color
   }
   
-  // For 2025, set a special blue color for the first important year
+  // For 2025, set the specific blue color as defined in the guidelines
   if (year === 2025) {
-    return "#2BBCFF"; // Special blue color for 2025
+    return "#2BBCFF"; // Blue color for 2025
+  }
+  
+  // For specific years defined in the guide
+  if (year === 2026) {
+    return "#37C0FF"; 
+  }
+  
+  if (year === 2028) {
+    return "#4AC4FF"; 
+  }
+  
+  if (year === 2031) {
+    return "#3DC6FF"; 
+  }
+  
+  if (year === 2033) {
+    return "#41C9FF"; 
   }
   
   // Get the Fibonacci sum year index - 2026 is the first Fibonacci sum year (1st cycle)
@@ -36,12 +54,12 @@ export const calculateColorForYear = (year: number) => {
 };
 
 // Get founding year color (2022)
-export const foundingColor = '#22B6FF'; // Fixed founding color - verified correct
+export const foundingColor = '#22B6FF'; // Fixed founding color
 
 // Extended Fibonacci sequence for very long-term calculations
 const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711];
 
-// Fibonacci sums for years after 2022 - extended for long-term calculations
+// Fibonacci sums for years after 2022 (founding year)
 // This means changes happen in years: 2026, 2028, 2031, 2036, 2044, etc.
 const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
   const prevSum = i > 0 ? acc[i-1] : 0;
@@ -102,11 +120,26 @@ export const getFibonacciYearIndex = (year: number): number => {
 
 // Generate Fibonacci sequence-based accent color for each year
 export const generateFibonacciAccentColorForYear = (year: number) => {
-  // Special case for 2025 - use a specific green color
+  // Special hardcoded colors from the guide
   if (year === 2025) {
     return {
-      specialColor: "#4CAF50", // Special green color for 2025
+      specialColor: "#4CAF50", // Green color for 2025
       fibNumber: 1
+    };
+  } else if (year === 2026) {
+    return {
+      specialColor: "#E54D4D", // Red color for 2026
+      fibNumber: 1
+    };
+  } else if (year === 2028) {
+    return {
+      specialColor: "#A24DE5", // Purple color for 2028
+      fibNumber: 2
+    };
+  } else if (year === 2033) {
+    return {
+      specialColor: "#E5D24D", // Yellow color for 2033
+      fibNumber: 3
     };
   }
   

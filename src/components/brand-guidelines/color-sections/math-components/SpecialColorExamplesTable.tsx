@@ -13,11 +13,10 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
 }) => {
   // Special years starting with 2025 (green) and then Fibonacci years
   const specialYears = [
-    { year: 2025, cycle: "特別年", hue: 122, colorName: "グリーン系" },
-    { year: 2026, cycle: "1年目", hue: Math.round(1 * 137.5) % 360, colorName: getColorName(Math.round(1 * 137.5) % 360) },
-    { year: 2028, cycle: "3年目", hue: Math.round(2 * 137.5) % 360, colorName: getColorName(Math.round(2 * 137.5) % 360) },
-    { year: 2031, cycle: "6年目", hue: Math.round(3 * 137.5) % 360, colorName: getColorName(Math.round(3 * 137.5) % 360) },
-    { year: 2036, cycle: "11年目", hue: Math.round(4 * 137.5) % 360, colorName: getColorName(Math.round(4 * 137.5) % 360) }
+    { year: 2025, cycle: "3年目", hue: 122, colorName: "グリーン系", hex: "#4CAF50" },
+    { year: 2026, cycle: "4年目・フィボナッチ1", hue: Math.round(1 * 137.5) % 360, colorName: "レッド系", hex: "#E54D4D" },
+    { year: 2028, cycle: "6年目・フィボナッチ3", hue: Math.round(2 * 137.5) % 360, colorName: "紫系", hex: "#A24DE5" },
+    { year: 2033, cycle: "11年目・フィボナッチ8", hue: Math.round(3 * 137.5) % 360, colorName: "黄色系", hex: "#E5D24D" }
   ];
 
   return (
@@ -31,23 +30,21 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
               <th className="text-left py-2 px-3">周期</th>
               <th className="text-left py-2 px-3">対象年</th>
               <th className="text-left py-2 px-3">色相(H)</th>
-              <th className="text-left py-2 px-3">HEXカラー例</th>
+              <th className="text-left py-2 px-3">HEXカラー</th>
               <th className="text-left py-2 px-3">イメージ</th>
             </tr>
           </thead>
           <tbody>
             {specialYears.map((yearInfo) => {
-              const color = calculateSpecialAccentColor(yearInfo.year);
-              
               return (
                 <tr key={yearInfo.year} className="border-b">
                   <td className="py-2 px-3">{yearInfo.cycle}</td>
                   <td className="py-2 px-3">{yearInfo.year}年</td>
                   <td className="py-2 px-3">{yearInfo.hue}°</td>
-                  <td className="py-2 px-3">{color.hex}</td>
+                  <td className="py-2 px-3">{yearInfo.hex}</td>
                   <td className="py-2 px-3">
                     <div className="flex items-center">
-                      <div className="w-6 h-6 rounded-full mr-2" style={{ backgroundColor: color.hex }}></div>
+                      <div className="w-6 h-6 rounded-full mr-2" style={{ backgroundColor: yearInfo.hex }}></div>
                       <span>{yearInfo.colorName}</span>
                     </div>
                   </td>
@@ -69,14 +66,5 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
     </div>
   );
 };
-
-// Helper function to determine color name based on hue
-function getColorName(hue: number): string {
-  if (hue >= 90 && hue < 150) return "グリーン系";
-  else if (hue >= 150 && hue < 210) return "水色系";
-  else if (hue >= 210 && hue < 270) return "青/紫系";
-  else if (hue >= 270 && hue < 330) return "紫/ピンク系";
-  else return "黄/オレンジ系";
-}
 
 export default SpecialColorExamplesTable;

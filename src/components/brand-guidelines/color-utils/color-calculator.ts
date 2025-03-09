@@ -69,7 +69,7 @@ export const calculateColorForYear = (year: number) => {
     };
   }
   
-  // For 2025, set a special blue color as the first important year
+  // For 2025, set a specific blue color as defined in the guidelines
   if (year === 2025) {
     return {
       year: 2025,
@@ -115,17 +115,34 @@ export const calculateColorForYear = (year: number) => {
 
 // Calculate the special accent color for each year
 export const calculateSpecialAccentColor = (year: number) => {
-  // Special case for 2025 - use a specific green color as the first special color
+  // Special hardcoded colors from the guide
   if (year === 2025) {
     return {
       hex: '#4CAF50', // Green color for 2025
       hsl: '122, 39%, 49%',
       fibNumber: 1
     };
+  } else if (year === 2026) {
+    return {
+      hex: '#E54D4D', // Red color for 2026
+      hsl: '0, 76%, 60%',
+      fibNumber: 1
+    };
+  } else if (year === 2028) {
+    return {
+      hex: '#A24DE5', // Purple color for 2028
+      hsl: '275, 76%, 60%',
+      fibNumber: 2
+    };
+  } else if (year === 2033) {
+    return {
+      hex: '#E5D24D', // Yellow color for 2033
+      hsl: '50, 76%, 60%',
+      fibNumber: 3
+    };
   }
   
-  // For special accent color, we use the Golden Angle (137.5°) based on the Fibonacci sum index
-  // This ensures both color calculations are consistent and based on Fibonacci principles
+  // For other years, calculate using the Golden Angle (137.5°) based on the Fibonacci sum index
   const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
   // Calculate Golden Angle (137.5°) based color
@@ -176,9 +193,11 @@ export const generateColorsForYearRange = (startYear: number, endYear: number) =
     colors.push(calculateColorForYear(2022));
   }
   
-  // Make 2025 the blue special year and 2026 the first Fibonacci sum year
+  // Include specific years from the guide
+  const specificYears = [2022, 2025, 2026, 2028, 2031, 2033];
+  
   for (let year = Math.max(2022, startYear); year <= endYear; year++) {
-    if (year === 2025 || (year >= 2026 && isFibonacciSumYear(year))) {
+    if (specificYears.includes(year) || (year >= 2026 && isFibonacciSumYear(year))) {
       colors.push(calculateColorForYear(year));
     }
   }

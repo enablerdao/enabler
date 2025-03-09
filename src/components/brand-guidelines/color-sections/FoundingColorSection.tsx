@@ -21,8 +21,9 @@ const FoundingColorSection: React.FC<FoundingColorSectionProps> = ({ foundingYea
           <div className="flex-1">
             <h4 className="text-lg font-semibold mb-3">ディープブルー ({foundingYearColor.hex})</h4>
             <p className="text-base leading-relaxed">
-              Enablerの創業カラーは、「可能性の海」と「自由な探求」を象徴する深い青色が選ばれました。
-              この色は人々の持つ無限の可能性を表現し、テクノロジーがもたらす明るい未来への期待を込めています。
+              Enablerの創業カラーは、「可能性の海」を象徴する深い青色が選ばれました。
+              この色は、無限の広がりを持つ空の色、そして可能性に満ちた海の色を表現しています。
+              創業理念である「一人ひとりの可能性を広げる」という思いをこの鮮やかなブルーに込めています。
             </p>
           </div>
         </div>

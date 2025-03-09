@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
 import { services } from '@/lib/data';
 import { Service, ServiceCategory, categoryInfo } from '@/lib/types/service';
 import { MotionBox } from './ui/motion-box';
 import { Button } from './ui/button';
 import ServiceCard from './ServiceCard';
-import { Search, Hotel, Users, Briefcase, HeartPulse, TrendingUp } from 'lucide-react';
+import { Search, Hotel, Users, Briefcase, HeartPulse, TrendingUp, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const ServiceCategories = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<ServiceCategory | 'ALL'>('ALL');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const getCategoryIcon = (category: ServiceCategory) => {
     switch(category) {
@@ -44,6 +46,18 @@ const ServiceCategories = () => {
   
   const allCategories = Object.keys(categoryInfo) as ServiceCategory[];
   
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="services" className="section-padding py-20">
       <div className="container mx-auto px-6">
@@ -57,26 +71,62 @@ const ServiceCategories = () => {
         </MotionBox>
         
         <MotionBox delay={100}>
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <Button
-              onClick={() => setActiveCategory('ALL')}
-              variant={activeCategory === 'ALL' ? 'default' : 'outline'}
-              className="rounded-full"
-            >
-              すべて
-            </Button>
-            
-            {allCategories.map((category) => (
-              <Button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                variant={activeCategory === category ? 'default' : 'outline'}
-                className="rounded-full flex items-center"
+          <div className="relative mb-8">
+            <div className="flex items-center">
+              <button 
+                onClick={scrollLeft}
+                className="absolute left-0 z-10 bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400 hidden md:flex"
+                aria-label="Scroll left"
               >
-                {getCategoryIcon(category)}
-                {categoryInfo[category].name}
-              </Button>
-            ))}
+                <ChevronLeft size={20} />
+              </button>
+              
+              <div 
+                ref={scrollContainerRef}
+                className="flex items-center gap-3 py-2 overflow-x-auto scrollbar-hide mx-auto scroll-smooth"
+                style={{ 
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
+                }}
+              >
+                <Button
+                  onClick={() => setActiveCategory('ALL')}
+                  variant={activeCategory === 'ALL' ? 'default' : 'outline'}
+                  className="rounded-full whitespace-nowrap flex-shrink-0"
+                >
+                  すべて
+                </Button>
+                
+                {allCategories.map((category) => (
+                  <Button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    variant={activeCategory === category ? 'default' : 'outline'}
+                    className="rounded-full flex items-center whitespace-nowrap flex-shrink-0"
+                  >
+                    {getCategoryIcon(category)}
+                    {categoryInfo[category].name}
+                  </Button>
+                ))}
+              </div>
+              
+              <button 
+                onClick={scrollRight}
+                className="absolute right-0 z-10 bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400 flex items-center justify-center"
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            
+            {/* Scroll indicator */}
+            <div className="hidden md:flex items-center justify-center mt-3">
+              <div className="flex space-x-1">
+                <span className="w-8 h-1 bg-enabler-300 rounded-full"></span>
+                <span className="w-1 h-1 bg-enabler-200 rounded-full"></span>
+                <span className="w-1 h-1 bg-enabler-200 rounded-full"></span>
+              </div>
+            </div>
           </div>
         </MotionBox>
         
@@ -117,10 +167,18 @@ const ServiceCategories = () => {
                       {categoryInfo[category].description}
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                      {categoryServices.map((service, index) => (
-                        <ServiceCard key={service.id} service={service} index={index} />
-                      ))}
+                    <div className="relative">
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
+                        <div className="bg-white/90 rounded-full p-1 shadow-sm animate-pulse">
+                          <ChevronRight className="text-enabler-500" size={18} />
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar">
+                        {categoryServices.map((service, index) => (
+                          <ServiceCard key={service.id} service={service} index={index} />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </MotionBox>

@@ -102,12 +102,12 @@ const ColorEvolutionVisualization: React.FC<ColorEvolutionVisualizationProps> = 
         <ChevronRight className="h-4 w-4" />
       </Button>
       
-      {/* Add custom scrollbar styling */}
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar {
+      {/* Add custom scrollbar styling using a style tag without the jsx property */}
+      <style>
+        {`.hide-scrollbar::-webkit-scrollbar {
           display: none;
-        }
-      `}</style>
+        }`}
+      </style>
     </div>
   );
 };

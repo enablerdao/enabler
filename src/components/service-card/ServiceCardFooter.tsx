@@ -26,7 +26,7 @@ export const ServiceCardFooter: React.FC<ServiceCardFooterProps> = ({ service })
         <span className="text-sm text-gray-600 inline-flex items-center gap-1">
           {service.domain}
         </span>
-        <span className="text-xs text-gray-500 mt-2">目標: {service.goal}</span>
+        <span className="text-xs text-gray-500">目標: {service.goal}</span>
       </div>
       
       <div className="mt-4 flex justify-between items-center">

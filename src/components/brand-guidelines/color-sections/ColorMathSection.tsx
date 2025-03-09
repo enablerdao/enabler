@@ -36,40 +36,23 @@ const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, fo
   
   return (
     <div className="mb-6 md:mb-10">
-      <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">🌊 Enabler ブランドカラーの進化</h3>
+      <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 border-b pb-2">Enabler ブランドカラーの進化</h3>
       
       <p className="text-base mb-4 leading-relaxed">
-        Enablerのブランドカラーは、『可能性の海』を象徴する深い青色『ディープブルー (#22B6FF)』から始まり、年月を重ねるにつれて徐々に明るく透明感を増していきます。
+        Enablerのブランドカラーは『ディープブルー (#22B6FF)』から始まります。この深い青色は、「可能性の海」を象徴し、一人ひとりが持つ無限の可能性や挑戦する勇気を表しています。
       </p>
       
-      <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
-        <h4 className="font-semibold mb-2">カラーの変化は次のように表現されます：</h4>
-        <ol className="space-y-2 pl-5 list-decimal">
-          <li>
-            <span className="font-medium">海（創業期）</span><br/>
-            深く濃い青色 (#22B6FF)：可能性に満ちたスタートを表現。
-          </li>
-          <li>
-            <span className="font-medium">空（成長期）</span><br/>
-            明るく澄みわたる水色へ変化：さらに広がる可能性を表現。
-          </li>
-          <li>
-            <span className="font-medium">宇宙（成熟期～理想の姿）</span><br/>
-            最終的には限りなく白に近い淡いブルー：無限の可能性、壮大さ、スケールの大きさを抽象的に表現します。
-          </li>
-        </ol>
-        <p className="mt-3 text-sm text-gray-600">
-          ここでいう『宇宙』とは、暗闇の宇宙空間ではなく、「果てしなく広がる可能性」という意味での宇宙です。<br/>
-          Enablerは成長するほど、より明るく、より広く、無限の可能性を提供できる存在へと進化していきます。
-        </p>
-      </div>
-      
-      <h4 className="text-lg font-semibold mb-3">📘 毎年の色の変化式（青系カラー）</h4>
       <p className="text-base mb-4 leading-relaxed">
-        ブルーは毎年、以下の計算式で変化します（年々淡いブルーに近づきます）。
+        年月を重ねるごとに、このブルーは徐々に明るくなり、澄みわたった空のような色へと変化します。さらに長い時間の中で、その青は淡く、透明感のある色へと進化を続けます。これは、Enablerが人々の暮らしに自然に溶け込み、なくてはならない存在へと成長していく姿を表しています。特に、「海」から「空」へ、そして最終的には無限の広がりを持つ「宇宙」のような壮大な可能性へと発展していくことを示しています。
+      </p>
+      
+      <h4 className="text-lg font-semibold mb-3 mt-8">毎年の色の変化について（ブルー系カラー）</h4>
+      <p className="text-base mb-4 leading-relaxed">
+        Enablerの青色は毎年徐々に明るくなり、絶え間ない成長を表します。
       </p>
       
       <div className="bg-gray-50 p-4 rounded-lg mb-5">
+        <h5 className="font-medium mb-2">色の変化式</h5>
         <pre className="text-sm md:text-base font-mono overflow-x-auto p-4 bg-gray-100 rounded-lg">
 {`R = round(34 + 190 × (1 - 0.95^(y - 2022)))
 G = round(182 + 63 × (1 - 0.95^(y - 2022)))
@@ -120,17 +103,17 @@ B = 255（固定）
         </div>
       </div>
       
-      <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">🍃 特別カラー（アクセントのグリーン）の設定方法</h3>
+      <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 border-b pb-2 mt-12">特別な周年のアクセントカラー（グリーン）</h3>
       
       <p className="text-base mb-4 leading-relaxed">
-        Enablerは特別な節目の年（フィボナッチ数列の累積和：1年目、3年目、6年目、11年目…）にのみ、ブランドカラーとは別に『アクセントカラー』としてグリーン系の色を用います。
+        Enablerは、フィボナッチ数列の累積和（1年目、3年目、6年目、11年目…）の節目の年にだけ、通常のブルーとは異なる特別なアクセントカラーを使用します。
       </p>
       
       <p className="text-base mb-4 leading-relaxed">
-        アクセントのグリーンは、以下の数式を用いて毎回変化します。
+        アクセントカラーは「黄金角（約137.5度）」を用いて決定されます。これは自然界において最も美しい調和を生み出す角度であり、特別な節目を美しく祝福する意味を込めています。
       </p>
       
-      <h4 className="text-lg font-semibold mb-3">🌿 アクセントカラーの数式（グリーン系カラー）</h4>
+      <h4 className="text-lg font-semibold mb-3 mt-5">特別カラーの計算方法</h4>
       
       <div className="bg-gray-50 p-4 rounded-lg mb-5">
         <pre className="text-sm md:text-base font-mono overflow-x-auto p-4 bg-gray-100 rounded-lg mb-2">
@@ -145,17 +128,17 @@ V（明度）= 1（固定）
         </p>
       </div>
       
-      <h4 className="text-lg font-semibold mb-3">🌱 アクセントカラーの例（イメージ）</h4>
+      <h4 className="text-lg font-semibold mb-3 mt-5">特別カラーの例</h4>
       
       <div className="bg-gray-50 p-4 rounded-lg mb-5 overflow-x-auto">
         <table className="min-w-full text-sm">
           <thead>
             <tr className="border-b">
-              <th className="text-left py-2 px-3">フィボナッチ累積和</th>
-              <th className="text-left py-2 px-3">周年</th>
-              <th className="text-left py-2 px-3">HSV計算値</th>
+              <th className="text-left py-2 px-3">累積和の周年</th>
+              <th className="text-left py-2 px-3">対象年</th>
+              <th className="text-left py-2 px-3">色相(H)</th>
               <th className="text-left py-2 px-3">HEXカラー例</th>
-              <th className="text-left py-2 px-3">色イメージ</th>
+              <th className="text-left py-2 px-3">イメージ</th>
             </tr>
           </thead>
           <tbody>
@@ -165,7 +148,7 @@ V（明度）= 1（固定）
               
               let colorName;
               const hue = (index + 1) * 137.5 % 360;
-              if (hue >= 90 && hue < 150) colorName = "緑系";
+              if (hue >= 90 && hue < 150) colorName = "グリーン系";
               else if (hue >= 150 && hue < 210) colorName = "水色系";
               else if (hue >= 210 && hue < 270) colorName = "青/紫系";
               else if (hue >= 270 && hue < 330) colorName = "紫/ピンク系";
@@ -173,9 +156,9 @@ V（明度）= 1（固定）
               
               return (
                 <tr key={year} className="border-b">
-                  <td className="py-2 px-3">{sum}</td>
-                  <td className="py-2 px-3">{sum}周年（{year}年）</td>
-                  <td className="py-2 px-3">H={Math.round((index + 1) * 137.5) % 360}°</td>
+                  <td className="py-2 px-3">{sum}周年</td>
+                  <td className="py-2 px-3">{year}年</td>
+                  <td className="py-2 px-3">{Math.round((index + 1) * 137.5) % 360}°</td>
                   <td className="py-2 px-3">{color.hex}</td>
                   <td className="py-2 px-3">
                     <div className="flex items-center">
@@ -188,9 +171,6 @@ V（明度）= 1（固定）
             })}
           </tbody>
         </table>
-        <p className="mt-3 text-xs text-gray-600">
-          ※このアクセントカラーは、毎回異なる色相の美しい色へと変化し、節目を華やかに祝福します。
-        </p>
       </div>
       
       {/* Special Accent Colors Visualization */}
@@ -215,15 +195,15 @@ V（明度）= 1（固定）
         </div>
       </div>
       
-      <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">📝 ブランドカラーまとめ</h3>
+      <h3 className="text-xl font-semibold mb-4 md:mb-5 border-b pb-2 mt-12">ブランドカラーのまとめ</h3>
       
       <div className="bg-gray-50 p-5 rounded-lg">
         <ul className="list-disc pl-5 space-y-2">
-          <li>通常カラー（青色）は『海→空→宇宙』のイメージで毎年徐々に淡くなり、最終的に淡いブルーへ。</li>
-          <li>特別な周年（フィボナッチ数列の累積和）には『黄金角による美しいアクセントカラー（グリーン系中心）』を使用します。</li>
+          <li>通常のカラーは、深い青から明るい空色、そして限りなく淡いブルーへと進化し、Enablerの絶え間ない成長と広がり続ける可能性を象徴します。</li>
+          <li>特別な節目の周年には、黄金角から算出されるアクセントカラーが登場し、その節目を華やかに彩ります。</li>
         </ul>
         <p className="mt-3 text-sm font-medium">
-          これによって、Enablerの『無限の可能性』というメッセージを鮮やかに、わかりやすく表現できます。
+          Enablerはこれらのカラーを通じて、人々の可能性をより豊かに、そして自然に広げる存在として、未来へ向けて進化していきます。
         </p>
       </div>
     </div>

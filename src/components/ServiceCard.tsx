@@ -45,7 +45,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         )}
       >
         {isPortfolio && (
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center whitespace-nowrap">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center whitespace-nowrap z-10">
             <Award size={14} className="mr-1" /> 厳選コレクション
           </div>
         )}

@@ -103,7 +103,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
           
           <div 
             ref={categoryRowRef}
-            className="flex gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4 overflow-x-auto hide-scrollbar scroll-smooth pt-2 md:pt-6"
+            className="flex gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4 overflow-x-auto touch-pan-x hide-scrollbar scroll-smooth pt-2 md:pt-6"
           >
             {services.map((service, index) => (
               <div key={service.id} className="w-full min-w-[260px] md:min-w-[300px] max-w-[350px] md:max-w-[400px] flex-shrink-0">

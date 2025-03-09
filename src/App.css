@@ -40,3 +40,31 @@
 .read-the-docs {
   color: #888;
 }
+
+/* タッチスクロール用のスタイル */
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.overflow-x-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* スクロールバーをより見やすく */
+.hide-scrollbar::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 厳選コレクションのラベルのスタイル */
+.collection-label {
+  white-space: nowrap;
+  z-index: 10;
+}

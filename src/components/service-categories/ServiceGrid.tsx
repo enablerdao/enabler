@@ -17,7 +17,7 @@ export const ServiceGrid: React.FC<ServiceGridProps> = ({ services }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pt-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-6 pb-8 overflow-visible">
       {services.map((service, index) => (
         <ServiceCard key={service.id} service={service} index={index} />
       ))}

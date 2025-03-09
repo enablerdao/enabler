@@ -19,9 +19,9 @@ const Index = () => {
   }, []);
 
   return (
-    <>
+    <div className="overflow-hidden">
       <Navbar />
-      <main className="overflow-x-hidden">
+      <main>
         <Hero />
         <HeroStats />
         <AboutSection />
@@ -32,7 +32,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

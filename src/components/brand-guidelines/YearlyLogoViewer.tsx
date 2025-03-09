@@ -10,8 +10,9 @@ const YearlyLogoViewer: React.FC = () => {
   const foundingYear = 2022;
   const currentYear = new Date().getFullYear();
   
-  // Calculate how many years to generate (foundingYear to currentYear + 30 future years)
-  const totalYears = currentYear + 30 - foundingYear;
+  // Calculate how many years to generate (allowing for an "infinite" number of future years)
+  // Using a very large number like 1000 years into the future to simulate infinity
+  const totalYears = 1000;
   
   const handleLoadMore = useCallback(() => {
     setVisibleYears(prev => prev + 10);

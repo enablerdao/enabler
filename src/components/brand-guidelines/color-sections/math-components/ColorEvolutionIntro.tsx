@@ -1,21 +1,35 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const ColorEvolutionIntro: React.FC = () => {
   return (
     <div className="mb-6">
-      <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 border-b pb-2">Enabler ブランドカラーの進化</h3>
+      <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 border-b pb-2">色の成長ストーリー</h3>
       
       <p className="text-base mb-4 leading-relaxed">
-        Enablerのブランドカラーは『ディープブルー (#22B6FF)』から始まります。この深い青色は、「可能性の海」を象徴し、一人ひとりが持つ無限の可能性や挑戦する勇気を表しています。
+        私たちの青は「深い海」からスタートします。そこから徐々に上へ上へと昇っていき、
+        「広い空」へ、そして最終的には「宇宙の無限」へとつながっていきます。
       </p>
       
-      <p className="text-base mb-4 leading-relaxed">
-        年月が経つにつれて、このブルーは徐々に明るく、より透明感のある色へと変化していきます。これは、Enablerが徐々に「空気のような存在」へと進化していくことを表しています。つまり、誰もが当たり前のように使え、存在を意識せずとも自然に価値を提供できる、そんな理想の姿を目指しています。
-      </p>
+      <motion.div
+        className="p-4 bg-gradient-to-t from-blue-500 to-sky-200 rounded-lg mb-4 text-white"
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <p className="font-medium">
+          人の可能性は最初は海の底に眠る真珠のよう。それを見つけ、育て、
+          やがて空高く飛ばせるようになるまで、ずっと一緒に歩んでいきたい。
+          そんな思いを、この「下から上へ」の色の旅に込めています。
+        </p>
+      </motion.div>
       
       <p className="text-base mb-4 leading-relaxed">
-        最終的には真っ白にはなりませんが、ほぼ白に近い、透明感のある存在へと変化していく様子を色の変化として表現しています。この色の進化は、会社の成長と共に、より広く、より透明に、より自然に人々の可能性を広げていくという願いが込められています。
+        最終的な色は、まるで宇宙から見た地球の青のように、
+        希望と可能性に満ちた明るい青になります。
+        （このペースだと完成まで100年以上かかりますが、気長にお付き合いください）
       </p>
     </div>
   );

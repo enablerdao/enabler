@@ -13,7 +13,6 @@ import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import BrandAssetRules from '@/components/brand-guidelines/BrandAssetRules';
 import FixedColorValues from '@/components/brand-guidelines/FixedColorValues';
 import FAQContact from '@/components/brand-guidelines/FAQContact';
-import LogoEvolution from '@/components/brand-guidelines/LogoEvolution';
 import { companyInfo } from '@/lib/data';
 
 const BrandGuidelines = () => {
@@ -66,18 +65,6 @@ const BrandGuidelines = () => {
   // Get current year's color
   const currentYearColor = brandColors.find(color => color.year === currentYear) || brandColors[0];
 
-  // Generate logo evolution data for 10-year intervals from 2022 to 2062 (40 years)
-  const logoEvolutionData = [
-    { year: 2022, name: '設立時', description: '会社設立時のオリジナルデザイン' },
-    { year: 2032, name: '10周年', description: '設立10周年記念デザイン' },
-    { year: 2042, name: '20周年', description: '設立20周年記念デザイン' },
-    { year: 2052, name: '30周年', description: '設立30周年記念デザイン' },
-    { year: 2062, name: '40周年', description: '設立40周年記念デザイン' },
-  ];
-
-  // Get Fibonacci years for special designs
-  const fibonacciYears = [2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056];
-
   return (
     <>
       <Navbar />
@@ -87,7 +74,6 @@ const BrandGuidelines = () => {
           <BrandStory />
           <LogoSection currentYearColor={currentYearColor} />
           <BrandColors currentYearColor={currentYearColor} brandColors={brandColors} />
-          <LogoEvolution evolutionData={logoEvolutionData} />
           <Typography />
           <PhotosAndIllustrations />
           <VoiceAndTone />

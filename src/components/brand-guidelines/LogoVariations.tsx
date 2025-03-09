@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -81,34 +82,6 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   // Get fibonacci accent color info for the specific year
   const fibonacciAccentInfo = generateFibonacciAccentColorForYear(year);
 
-  // Create segments for the middle line based on fibonacci number
-  const createMiddleLineSegments = () => {
-    const totalSegments = fibonacciAccentInfo.fibNumber;
-    
-    // For very large Fibonacci numbers, we need to limit the number of segments
-    // and adjust the segment width accordingly
-    const maxVisibleSegments = Math.min(totalSegments, 100); // Limit to 100 visible segments
-    const segmentWidth = 40 / maxVisibleSegments; // Total width 40 divided by segments
-    
-    const segments = [];
-    for (let i = 0; i < maxVisibleSegments; i++) {
-      // First segment is founding color, rest are special color
-      const segmentColor = i === 0 ? foundingColor : fibonacciAccentInfo.specialColor;
-      segments.push(
-        <rect 
-          key={`segment-${i}`} 
-          x={15 + (i * segmentWidth)} 
-          y={33} 
-          width={segmentWidth} 
-          height={3} 
-          rx={1.5} 
-          fill={segmentColor}
-        />
-      );
-    }
-    return segments;
-  };
-
   if (variant === 'foundingLogo') {
     return (
       <img 
@@ -145,8 +118,8 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           {/* First line - standard gradient from founding color */}
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
-          {/* Second line - segments based on fibonacci number */}
-          {createMiddleLineSegments()}
+          {/* Middle line - gradient from founding color to accent color */}
+          <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-${variant}-${year})`}/>
           {/* Third line - reverse gradient */}
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-${variant}-${year})`}>ENABLER</text>
@@ -155,10 +128,15 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       
       {variant === 'monochrome' && (
         <>
+          <defs>
+            <linearGradient id={`middleLineGradient-mono-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={foundingColor} />
+              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+            </linearGradient>
+          </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={currentYearColor}/>
-          {/* Middle line with segments */}
-          {createMiddleLineSegments()}
+          <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-mono-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={currentYearColor}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={currentYearColor}>ENABLER</text>
         </>
@@ -186,11 +164,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
-          {/* Glowing middle line with segments */}
-          {createMiddleLineSegments().map((segment, i) => React.cloneElement(segment, {
-            filter: `url(#glow-${variant}-${year})`,
-            key: `glow-segment-${i}`
-          }))}
+          <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#yearGradient-${variant}-${year})`} filter={`url(#glow-${variant}-${year})`}>ENABLER</text>
         </>
@@ -198,31 +172,15 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       
       {variant === 'outline' && (
         <>
+          <defs>
+            <linearGradient id={`middleLineGradient-outline-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={foundingColor} />
+              <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
+            </linearGradient>
+          </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" stroke={currentYearColor} fill="none" strokeWidth="0.5"/>
-          {/* Outlined middle line with segments */}
-          {createMiddleLineSegments().map((segment, i) => {
-            const x = parseFloat(segment.props.x);
-            const y = parseFloat(segment.props.y);
-            const width = parseFloat(segment.props.width);
-            const height = parseFloat(segment.props.height);
-            const rx = parseFloat(segment.props.rx);
-            const color = segment.props.fill;
-            
-            return (
-              <rect 
-                key={`outline-segment-${i}`} 
-                x={x} 
-                y={y} 
-                width={width} 
-                height={height} 
-                rx={rx} 
-                stroke={color} 
-                fill="none" 
-                strokeWidth="0.5"
-              />
-            );
-          })}
+          <rect x="15" y="33" width="60" height="3" rx="1.5" stroke={`url(#middleLineGradient-outline-${year})`} fill="none" strokeWidth="0.5"/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" stroke={currentYearColor} fill="none" strokeWidth="0.5"/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" stroke={currentYearColor} fill="none" strokeWidth="0.5">ENABLER</text>
         </>
@@ -230,31 +188,15 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       
       {variant === 'original' && (
         <>
+          <defs>
+            <linearGradient id={`middleLineGradient-original-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={foundingColor} />
+              <stop offset="100%" stopColor={foundingColor} />
+            </linearGradient>
+          </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={foundingColor}/>
-          {/* Original logo uses the first year's segments */}
-          {(() => {
-            const firstYearInfo = generateFibonacciAccentColorForYear(2022);
-            const totalSegments = firstYearInfo.fibNumber; // Should be 1 for 2022
-            const segmentWidth = 40 / totalSegments;
-            
-            const segments = [];
-            for (let i = 0; i < totalSegments; i++) {
-              const segmentColor = i === 0 ? foundingColor : firstYearInfo.specialColor;
-              segments.push(
-                <rect 
-                  key={`original-segment-${i}`} 
-                  x={15 + (i * segmentWidth)} 
-                  y={33} 
-                  width={segmentWidth} 
-                  height={3} 
-                  rx={1.5} 
-                  fill={segmentColor}
-                />
-              );
-            }
-            return segments;
-          })()}
+          <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-original-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={foundingColor}/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={foundingColor}>ENABLER</text>
         </>
@@ -280,21 +222,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
           <rect x="15" y="20" width="170" height="30" rx="4" stroke={`url(#consistentGradient-${year})`} fill="none" strokeWidth="1.5"/>
-          {/* Middle line with segments in the consistent variant */}
-          {createMiddleLineSegments().map((segment, i) => {
-            const width = parseFloat(segment.props.width);
-            return (
-              <rect 
-                key={`consistent-segment-${i}`} 
-                x={25 + (i * width)} 
-                y={30} 
-                width={width} 
-                height={2} 
-                rx={1} 
-                fill={segment.props.fill}
-              />
-            );
-          })}
+          <rect x="25" y="30" width="40" height="2" rx="1" fill={`url(#middleLineGradient-consistent-${year})`} />
           <text x="75" y="40" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="bold" fill={currentYearColor}>ENABLER</text>
           <circle cx="160" cy="35" r="8" fill={currentYearColor} fillOpacity="0.2" stroke={currentYearColor} strokeWidth="1"/>
         </>

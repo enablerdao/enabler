@@ -19,8 +19,16 @@ const InfiniteLogoScroller: React.FC = () => {
   
   // Calculate initial number of visible years based on zoom level
   const getInitialYearCount = () => {
-    const baseCount = 30;
-    return baseCount * (6 - zoomLevel); // Inverse relationship: lower zoom = more logos
+    // Exponentially increase the number of logos at lower zoom levels
+    if (zoomLevel <= 1) {
+      return 150; // Significantly more logos at lowest zoom
+    } else if (zoomLevel === 2) {
+      return 60; // Many logos at zoom level 2
+    } else {
+      // Original behavior for higher zoom levels
+      const baseCount = 30;
+      return baseCount * (6 - zoomLevel); // Inverse relationship: lower zoom = more logos
+    }
   };
   
   // Initialize with years based on zoom level
@@ -43,7 +51,8 @@ const InfiniteLogoScroller: React.FC = () => {
     // If we're close to the end, add more years
     if (scrollWidth - (scrollLeft + clientWidth) < 500) {
       const lastYear = visibleYears[visibleYears.length - 1];
-      const newYearsCount = Math.max(10, Math.floor(50 / zoomLevel)); // More years added at lower zoom
+      // Add many more logos at once when zoomed out
+      const newYearsCount = zoomLevel <= 1 ? 100 : (zoomLevel === 2 ? 50 : Math.max(10, Math.floor(50 / zoomLevel)));
       const newYears = Array.from(
         { length: newYearsCount }, 
         (_, i) => lastYear + i + 1
@@ -133,41 +142,49 @@ const InfiniteLogoScroller: React.FC = () => {
   
   // Calculate card width based on zoom level
   const getCardWidth = () => {
-    // Increase the base width to fix the small width issue
-    const baseWidth = 180; // Base width for zoom level 3
-    return `${baseWidth * (zoomLevel / 3)}px`;
+    if (zoomLevel <= 1) {
+      return '60px'; // Much smaller at lowest zoom
+    } else if (zoomLevel === 2) {
+      return '120px'; // Still small at zoom level 2
+    } else {
+      // For higher zoom levels, use the original scaling formula with increased base width
+      const baseWidth = 180; // Base width for zoom level 3
+      return `${baseWidth * (zoomLevel / 3)}px`;
+    }
   };
   
   // Calculate card height based on zoom level
   const getCardHeight = () => {
-    // Start with fixed height at zoom level 3, then scale proportionally
-    return `${230 * (zoomLevel / 3)}px`;
+    if (zoomLevel <= 1) {
+      return '40px'; // Very compact height at lowest zoom
+    } else if (zoomLevel === 2) {
+      return '100px'; // Moderate height at zoom level 2
+    } else {
+      // Start with fixed height at zoom level 3, then scale proportionally
+      return `${230 * (zoomLevel / 3)}px`;
+    }
   };
   
   // Calculate gap between cards
   const getGap = () => {
-    return `${8 * (zoomLevel / 3)}px`; // Increased gap from 4px to 8px
+    if (zoomLevel <= 1) {
+      return '2px'; // Minimal gap at lowest zoom
+    } else if (zoomLevel === 2) {
+      return '4px'; // Small gap at zoom level 2
+    } else {
+      return `${8 * (zoomLevel / 3)}px`; // Normal gap at higher zoom levels
+    }
   };
   
   // Determine if we should show detailed information based on zoom level
   const shouldShowDetails = () => {
-    return zoomLevel >= 2; // Show details only at zoom level 2 and above
+    return zoomLevel >= 3; // Show details only at zoom level 3 and above
   };
   
   // Get container style based on zoom level
   const getContainerStyle = () => {
-    if (zoomLevel >= 2) {
-      // For higher zoom levels, keep horizontal layout
-      return {
-        display: 'flex',
-        flexDirection: 'row' as const,
-        flexWrap: 'nowrap' as const,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'hidden' as const,
-      };
-    } else {
-      // For lower zoom levels (1), use grid layout
+    if (zoomLevel <= 1) {
+      // For lowest zoom level, use dense grid layout with many tiny logos
       return {
         display: 'grid',
         gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
@@ -176,6 +193,26 @@ const InfiniteLogoScroller: React.FC = () => {
         overflowY: 'auto' as const,
         maxHeight: '400px',
       };
+    } else if (zoomLevel === 2) {
+      // For zoom level 2, use a less dense grid but still compact
+      return {
+        display: 'grid',
+        gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
+        gap: getGap(),
+        overflowX: 'auto' as const,
+        overflowY: 'auto' as const,
+        maxHeight: '400px',
+      };
+    } else {
+      // For higher zoom levels (3+), keep horizontal layout
+      return {
+        display: 'flex',
+        flexDirection: 'row' as const,
+        flexWrap: 'nowrap' as const,
+        gap: getGap(),
+        overflowX: 'auto' as const,
+        overflowY: 'hidden' as const,
+      };
     }
   };
   
@@ -183,11 +220,20 @@ const InfiniteLogoScroller: React.FC = () => {
   const getLogoSize = () => {
     // Scale down more aggressively at lower zoom levels
     if (zoomLevel <= 1) {
-      return '80%';
+      return '70%'; // Smallest logo size
     } else if (zoomLevel === 2) {
-      return '85%';
+      return '80%'; // Small logo size
     } else {
-      return '100%';
+      return '100%'; // Regular logo size
+    }
+  };
+  
+  // Get font size for year label in compact mode
+  const getYearFontSize = () => {
+    if (zoomLevel <= 1) {
+      return '5px'; // Very tiny font for ultra-compact view
+    } else {
+      return '6px'; // Small font for normal compact view
     }
   };
   
@@ -256,7 +302,7 @@ const InfiniteLogoScroller: React.FC = () => {
         </div>
       </div>
       
-      {showLeftArrow && zoomLevel >= 2 && (
+      {showLeftArrow && zoomLevel >= 3 && (
         <Button 
           variant="outline" 
           size="icon" 
@@ -269,7 +315,7 @@ const InfiniteLogoScroller: React.FC = () => {
       
       <div 
         ref={scrollContainerRef}
-        className={`pb-10 pt-4 px-2 hide-scrollbar transition-all duration-300 ${zoomLevel <= 1 ? 'border rounded-lg bg-gray-50/50' : ''}`}
+        className={`pb-10 pt-4 px-2 hide-scrollbar transition-all duration-300 ${zoomLevel <= 2 ? 'border rounded-lg bg-gray-50/50' : ''}`}
         style={getContainerStyle()}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
@@ -283,22 +329,22 @@ const InfiniteLogoScroller: React.FC = () => {
           
           return (
             <div key={year} 
-              className={`flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300 ${zoomLevel <= 1 ? 'hover:shadow-md' : ''}`}
+              className={`flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300 ${zoomLevel <= 2 ? 'hover:shadow-md' : ''}`}
               style={{ 
                 width: getCardWidth(),
-                height: zoomLevel <= 1 ? 'auto' : getCardHeight(),
-                padding: `${Math.max(1, zoomLevel) * 2}px`
+                height: zoomLevel >= 3 ? getCardHeight() : 'auto',
+                padding: zoomLevel <= 1 ? '2px' : `${Math.max(1, zoomLevel - 1) * 2}px`
               }}
             >
-              {zoomLevel >= 2 && (
+              {shouldShowDetails() && (
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className={`font-semibold ${zoomLevel >= 3 ? 'text-lg' : 'text-sm'}`}>{year}年</h3>
+                  <h3 className={`font-semibold ${zoomLevel >= 4 ? 'text-lg' : 'text-sm'}`}>{year}年</h3>
                   <div className="flex items-center gap-1">
                     {year === startingYear && (
                       <Badge variant="outline" className="text-[0.65rem] py-0 px-1 font-normal">開始</Badge>
                     )}
                     <div 
-                      className={`rounded-full cursor-pointer ${zoomLevel >= 3 ? 'w-6 h-6' : 'w-4 h-4'}`}
+                      className={`rounded-full cursor-pointer ${zoomLevel >= 4 ? 'w-6 h-6' : 'w-4 h-4'}`}
                       style={{ backgroundColor: brandColor.hex }}
                       onClick={() => copyColor(brandColor.hex, year)}
                       title="クリックしてコピー"
@@ -308,16 +354,20 @@ const InfiniteLogoScroller: React.FC = () => {
               )}
               
               <div 
-                className={`${zoomLevel <= 1 ? 'p-1' : 'bg-gray-50 rounded-md p-2'} flex justify-center items-center ${zoomLevel <= 1 ? '' : 'flex-grow mb-2'}`}
+                className={`${zoomLevel <= 2 ? 'p-1' : 'bg-gray-50 rounded-md p-2'} flex justify-center items-center ${zoomLevel <= 2 ? '' : 'flex-grow mb-2'}`}
                 style={{ 
                   position: 'relative',
-                  minHeight: zoomLevel <= 1 ? '40px' : 'auto'
+                  minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto')
                 }}
               >
-                {zoomLevel <= 1 && isSpecialYear && (
+                {zoomLevel <= 2 && isSpecialYear && (
                   <div 
-                    className="absolute top-0 right-0 w-2 h-2 rounded-full" 
-                    style={{ backgroundColor: accentColor.hex }}
+                    className="absolute top-0 right-0 rounded-full" 
+                    style={{ 
+                      backgroundColor: accentColor.hex,
+                      width: zoomLevel <= 1 ? '3px' : '4px',
+                      height: zoomLevel <= 1 ? '3px' : '4px'
+                    }}
                     title={`${year}年 アクセントカラー: ${accentColor.hex}`}
                   ></div>
                 )}
@@ -348,13 +398,18 @@ const InfiniteLogoScroller: React.FC = () => {
                   <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-infinite-${year})`}/>
                   <rect x="15" y="33" width="37" height="3" rx="1.5" fill={`url(#middleLineGradient-infinite-${year})`}/>
                   <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-infinite-${year})`}/>
-                  <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
+                  {zoomLevel > 1 && (
+                    <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
+                  )}
                 </svg>
                 
-                {zoomLevel <= 1 && (
+                {zoomLevel <= 2 && (
                   <div 
-                    className="absolute bottom-0 left-0 text-[8px] text-gray-500"
-                    style={{ fontSize: '6px' }}
+                    className="absolute bottom-0 left-0 text-gray-500"
+                    style={{ 
+                      fontSize: getYearFontSize(),
+                      lineHeight: '1'
+                    }}
                   >
                     {year}
                   </div>
@@ -397,7 +452,7 @@ const InfiniteLogoScroller: React.FC = () => {
         })}
       </div>
       
-      {showRightArrow && zoomLevel >= 2 && (
+      {showRightArrow && zoomLevel >= 3 && (
         <Button 
           variant="outline" 
           size="icon" 
@@ -412,6 +467,10 @@ const InfiniteLogoScroller: React.FC = () => {
         {`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         `}
       </style>

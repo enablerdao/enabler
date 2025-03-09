@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
+import { companyInfo } from '@/lib/data';
 
 const AboutEnabler = () => {
   return (
@@ -13,6 +14,9 @@ const AboutEnabler = () => {
         <div className="bg-gradient-to-r from-enabler-50 to-white p-6 rounded-lg border border-enabler-100">
           <p className="mb-4">
             株式会社イネブラは、「テクノロジーで一人ひとりの可能性を広げる」をミッションに掲げ、人々の毎日をより楽しく、便利にするサービスや空間を創造しています。
+          </p>
+          <p>
+            {companyInfo.description}
           </p>
         </div>
       </div>

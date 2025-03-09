@@ -4,7 +4,7 @@ import { CompanyInfo } from '../types/service';
 export const companyInfo: CompanyInfo = {
   nameJp: "株式会社イネブラ",
   nameEn: "Enabler, Inc.",
-  description: "",
+  description: "テクノロジーと空間づくりで、一人ひとりの可能性を広げる企業です。デジタルとリアルの両面から、毎日をもっと豊かに、もっと便利にするサービスを提供しています。",
   slogan: "デジタルでも、リアルでも。テクノロジーと空間づくりで毎日をもっと豊かに。",
   mission: "テクノロジーで、一人ひとりが自然に可能性を広げられる社会をつくる。",
   vision: "誰もが自分らしく活躍し、ワクワクする未来を共に叶える。",

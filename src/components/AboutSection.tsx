@@ -4,6 +4,7 @@ import { companyInfo } from '@/lib/data';
 import { MotionBox } from './ui/motion-box';
 import { Briefcase, MapPin, Calendar, Code, Cpu, BrainCircuit, Github, Sparkles, Target, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SocietyDiagram from './diagram/SocietyDiagram';
 
 const AboutSection = () => {
   const techBgRef = useRef<HTMLDivElement>(null);
@@ -167,8 +168,16 @@ const AboutSection = () => {
               </div>
             </MotionBox>
             
+            {/* Society Diagram Section */}
+            <MotionBox delay={500}>
+              <div className="mt-12 pt-6 border-t border-gray-100">
+                <h4 className="text-lg font-bold text-enabler-800 mb-4 text-center">私たちの目指す社会</h4>
+                <SocietyDiagram />
+              </div>
+            </MotionBox>
+            
             {/* Techy footer */}
-            <div className="mt-12 pt-4 border-t border-gray-100 text-center">
+            <div className="mt-6 pt-4 border-t border-gray-100 text-center">
               <code className="text-xs text-gray-400 font-mono inline-block animate-pulse">
                 $ sudo innovation --optimize --level=maximum
               </code>

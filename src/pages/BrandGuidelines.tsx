@@ -41,7 +41,7 @@ const BrandGuidelines = () => {
     <>
       <Navbar />
       <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
-        <div className="container mx-auto px-2 sm:px-4 md:px-6">
+        <div className="container mx-auto px-1 sm:px-4 md:px-6">
           <BrandHeader />
           <BrandStory />
           <LogoSection currentYearColor={currentYearColor} />

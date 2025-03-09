@@ -66,8 +66,8 @@ export const ServiceMainContent: React.FC<ServiceMainContentProps> = ({ service,
       
       {isStayFlow && (
         <MotionBox delay={500}>
-          <div className="bg-white p-6 rounded-xl shadow-subtle mt-8 text-center">
-            <h2 className="text-xl font-bold mb-4">サービスサイトを確認する</h2>
+          <div className="bg-white p-4 md:p-6 rounded-xl shadow-subtle mt-6 md:mt-8 text-center">
+            <h2 className="text-lg md:text-xl font-bold mb-3 md:mb-4">サービスサイトを確認する</h2>
             <Button className="bg-enabler-600 hover:bg-enabler-700" asChild>
               <a 
                 href="https://stayflowapp.com" 

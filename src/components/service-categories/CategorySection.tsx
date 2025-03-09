@@ -48,17 +48,17 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
 
   return (
     <MotionBox key={category} delay={300 + index * 100}>
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 md:mb-8">
+        <div className="flex items-center justify-between mb-4 md:mb-6">
           <div className="flex items-center">
-            <div className="bg-enabler-100 p-3 rounded-full mr-3">
+            <div className="bg-enabler-100 p-2 md:p-3 rounded-full mr-2 md:mr-3">
               {getCategoryIcon(category)}
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-gray-800">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800">
                 {categoryInfo[category].name}
               </h3>
-              <span className="text-sm text-gray-500">
+              <span className="text-xs md:text-sm text-gray-500">
                 {category === 'STAY_TRAVEL' ? '宿泊・旅行' : 
                  category === 'LIFE_COMMUNITY' ? '生活・コミュニティ' : 
                  category === 'WORK_PRODUCTIVITY' ? '仕事・生産性' : 
@@ -69,44 +69,44 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
           </div>
           
           {hasScrollableContent() && (
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               <button 
                 onClick={scrollCategoryLeft}
                 className="bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400"
                 aria-label={`Scroll ${category} left`}
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} />
               </button>
               <button 
                 onClick={scrollCategoryRight}
                 className="bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400"
                 aria-label={`Scroll ${category} right`}
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} />
               </button>
             </div>
           )}
         </div>
         
-        <p className="text-gray-600 mb-8 max-w-3xl">
+        <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-8 max-w-3xl">
           {categoryInfo[category].description}
         </p>
         
         <div className="relative">
           {hasScrollableContent() && (
-            <div className="absolute right-0 top-0 bottom-0 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2 pointer-events-none">
+            <div className="absolute right-0 top-0 bottom-0 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-12 md:w-16 h-full flex items-center justify-end pr-1 md:pr-2 pointer-events-none">
               <div className="bg-white/90 rounded-full p-1 shadow-sm animate-pulse">
-                <ChevronRight className="text-enabler-500" size={18} />
+                <ChevronRight className="text-enabler-500" size={16} />
               </div>
             </div>
           )}
           
           <div 
             ref={categoryRowRef}
-            className="flex gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar scroll-smooth pt-6"
+            className="flex gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4 overflow-x-auto hide-scrollbar scroll-smooth pt-2 md:pt-6"
           >
             {services.map((service, index) => (
-              <div key={service.id} className="w-full min-w-[300px] max-w-[400px] flex-shrink-0">
+              <div key={service.id} className="w-full min-w-[260px] md:min-w-[300px] max-w-[350px] md:max-w-[400px] flex-shrink-0">
                 <ServiceCard service={service} index={index} />
               </div>
             ))}

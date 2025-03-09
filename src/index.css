@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -76,7 +77,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-16 lg:py-24;
   }
 
   .fade-in-view {
@@ -130,4 +131,12 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400;
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }

@@ -17,8 +17,8 @@ const ServiceCategories = () => {
   const filteredServices = filterServices(services, searchQuery, activeCategory);
   
   return (
-    <section id="services" className="section-padding py-20">
-      <div className="container mx-auto px-6">
+    <section id="services" className="section-padding py-16 md:py-20">
+      <div className="container mx-auto px-2 sm:px-4 md:px-6">
         <MotionBox>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Enabler サービスエコシステム
@@ -44,7 +44,7 @@ const ServiceCategories = () => {
         
         {/* Display categories in rows when no search or "ALL" category is active */}
         {searchQuery === '' && activeCategory === 'ALL' ? (
-          <div className="space-y-16">
+          <div className="space-y-12 md:space-y-16">
             {allCategories.map((category, idx) => {
               const categoryServices = getServicesByCategory(services, category);
               if (categoryServices.length === 0) return null;

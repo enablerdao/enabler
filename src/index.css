@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,14 +48,17 @@
     @apply bg-background text-foreground font-sans text-left;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight text-left;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
   }
   
   p {
     @apply text-left;
+    font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
   }
   
   /* Add slight margin to all section elements for better spacing */

@@ -53,6 +53,19 @@ const BrandColors = ({
           
           <FoundingColorSection foundingYearColor={foundingYearColor} />
           
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold mb-4 border-b pb-2">Enabler ブランドカラーの進化</h3>
+            <p className="text-base mb-4 leading-relaxed">
+              私たちの青は「深い海」からスタートします。そこから徐々に上へと昇り、「広い空」へ、そして最終的には「無限の可能性」へとつながっていきます。
+            </p>
+            <p className="text-base mb-4 leading-relaxed">
+              人の可能性は最初は海の底に眠る真珠のようなもの。それを見つけ、育て、やがて空高く飛ばせるようになるまで、一緒に歩んでいきたいという思いを、この「下から上へ」の色の旅に込めています。
+            </p>
+            <p className="text-base mb-4 leading-relaxed">
+              最終的な色は、まるで宇宙から見た地球の青のように、希望と可能性に満ちた明るい青になります。
+            </p>
+          </div>
+          
           <ColorMathSection copyToClipboard={copyToClipboard} foundingYearColor={foundingYearColor} />
         </div>
       </section>

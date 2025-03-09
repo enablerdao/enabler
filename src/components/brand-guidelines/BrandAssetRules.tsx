@@ -22,13 +22,11 @@ const BrandAssetRules = () => {
       <section className="mb-16">
         <div className="flex items-center mb-6">
           <BookOpen className="text-enabler-600 mr-3" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">7. ブランド素材の使い方</h2>
+          <h2 className="text-2xl font-bold text-gray-900">7. ブランド資産使用ルール</h2>
         </div>
         <div className="bg-white p-8 rounded-xl shadow-subtle">
           <p className="text-lg mb-6">
-            ロゴやカラーを使うときは、公式のファイル（SVG、PNG）を使ってください。
-            独自解釈で色を変えたり、形を変えたりすると、ブランドが混乱します。
-            （そして私たちもちょっと悲しくなります）
+            ロゴやブランドカラーを外部利用する場合は、公式のロゴファイル（SVG、PNG）を使用し、必ずガイドラインを遵守してください。独自解釈での変更はブランドの一貫性を損なう可能性があります。
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -80,8 +78,9 @@ const BrandAssetRules = () => {
           >
             <AlertTriangle className="text-yellow-500 mr-3 flex-shrink-0" size={24} />
             <p className="text-sm">
-              <span className="font-medium">お願い:</span> ブランド素材を使用する際に判断に迷った場合は、
-              遠慮なくお問い合わせください。「これってOK？」と思ったら、まずは聞いてみるのが一番です。
+              <span className="font-medium">お問い合わせ:</span> ブランドやロゴに関するご質問・利用申請は、以下までご連絡ください。<br />
+              メール：brand@enabler.jp<br />
+              専用フォーム：<a href="#" className="text-blue-600 underline">Webページへ</a>
             </p>
           </motion.div>
         </div>

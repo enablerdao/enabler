@@ -11,12 +11,11 @@ const BrandStory = () => {
       <section className="mb-16">
         <div className="flex items-center mb-6">
           <BookOpen className="text-enabler-600 mr-3" size={24} />
-          <h2 className="text-2xl font-bold text-gray-900">1. ブランドストーリー - 私たちの旅</h2>
+          <h2 className="text-2xl font-bold text-gray-900">1. ブランドストーリーと理念</h2>
         </div>
         <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle">
           <p className="text-lg mb-4 leading-relaxed">
-            こんにちは、「Enabler（イネブラ）」です！2022年生まれの若いブランドですが、大きな夢を持っています。
-            私たちは「可能性の種」を見つけるのが得意。あなたの中にある才能や夢を、テクノロジーの力でそっと後押しする、そんな頼れる友達になりたいと思っています。
+            「Enabler（イネブラ）」は、人々が持つ可能性をテクノロジーの力で引き出し、実現するために2022年に誕生しました。誰もが持っている可能性の種を育て、未来をともに創るパートナーとして、温かな視点で寄り添い続けています。
           </p>
           
           <motion.div 
@@ -26,12 +25,8 @@ const BrandStory = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            誰にでも眠っている可能性がある。私たちはその種を一緒に育てる、あたたかな園丁でありたい。
+            私たちは一人ひとりの可能性を広げ、それぞれの夢の実現をサポートします。
           </motion.div>
-          
-          <p className="text-lg leading-relaxed">
-            誰もが持っている可能性の種を育て、未来をともに創るパートナーとして、あたたかな視点で寄り添い続けています。
-          </p>
         </div>
       </section>
     </MotionBox>

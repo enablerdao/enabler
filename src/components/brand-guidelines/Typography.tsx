@@ -38,7 +38,7 @@ const Typography = () => {
             </motion.div>
           </div>
           <p className="text-lg mt-6">
-            文字と文字の間には適切な「呼吸」（余白）を。窮屈な文章は読みにくいですからね。
+            見やすさや親しみやすさを重視し、余白や間隔にも配慮してください。
           </p>
         </div>
       </section>

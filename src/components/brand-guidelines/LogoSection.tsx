@@ -5,6 +5,7 @@ import { Info, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
 import { companyInfo } from '@/lib/data';
+import YearlyLogoViewer from './YearlyLogoViewer';
 
 interface ColorInfo {
   year: number;
@@ -74,6 +75,9 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
               <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つこと。</li>
             </ul>
           </div>
+          
+          {/* Add the YearlyLogoViewer component */}
+          <YearlyLogoViewer />
         </div>
       </section>
     </MotionBox>

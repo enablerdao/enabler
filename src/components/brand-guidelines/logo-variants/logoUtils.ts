@@ -27,7 +27,8 @@ export const calculateColorForYear = (year: number) => {
 // Get founding year color (2022)
 export const foundingColor = '#22B6FF'; // Fixed founding color
 
-// Fibonacci sequence for years after 2022
+// Fibonacci sequence for years after 2022 - the actual sequence is 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+// This means changes happen in years: 2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056, 2077, 2111
 const fibonacciYears = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
 // Function to check if a year corresponds to a Fibonacci sequence year after founding (2022)

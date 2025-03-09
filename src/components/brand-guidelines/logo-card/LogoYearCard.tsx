@@ -33,9 +33,9 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
     <div 
       className="bg-white rounded-lg p-4 shadow-md border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow duration-300"
     >
-      <div className="h-40 w-full flex items-center justify-center mb-2 relative">
+      <div className="h-32 w-full flex items-center justify-center mb-2 relative">
         <LogoVariations variant="modern" size="lg" year={year} />
-        <div className="absolute bottom-0 text-xs text-gray-600 bg-white/90 px-2 py-0.5 rounded-md shadow-sm border border-gray-100">
+        <div className="absolute bottom-1 text-xs text-gray-600 bg-white/90 px-2 py-0.5 rounded-md shadow-sm border border-gray-100">
           {year}年（創業から{yearsSinceFounding}年目）
         </div>
       </div>
@@ -51,7 +51,7 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
           </div>
         </div>
 
-        {/* Changed from grid to flex to place colors side by side */}
+        {/* Display colors side by side in one row */}
         <div className="flex gap-2">
           {/* Brand color card */}
           <div 

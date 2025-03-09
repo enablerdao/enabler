@@ -5,6 +5,7 @@ import { ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavLink } from './types';
 import { mobileMenuVariants, mobileItemVariants } from './animation-variants';
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -63,6 +64,17 @@ const MobileNav: React.FC<MobileNavProps> = ({
                   )}
                 </motion.div>
               ))}
+              
+              {/* Language Switcher in mobile menu */}
+              <motion.div 
+                custom={navLinks.length}
+                variants={mobileItemVariants}
+                className="pt-2"
+              >
+                <div className="flex justify-center">
+                  <LanguageSwitcher />
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}

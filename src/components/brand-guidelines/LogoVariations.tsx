@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface LogoVariationsProps {
-  variant: 'modern' | 'monochrome' | 'gradient' | 'outline' | 'original' | 'consistent';
+  variant: 'modern' | 'monochrome' | 'gradient' | 'outline' | 'original' | 'consistent' | 'foundingLogo';
   size: 'sm' | 'md' | 'lg';
   year?: number;
 }
@@ -35,6 +35,16 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   };
 
   const yearColor = calculateColorForYear(year);
+
+  if (variant === 'foundingLogo') {
+    return (
+      <img 
+        src="/lovable-uploads/85dd8f76-5a2d-4d47-a7a8-b01b7098b335.png" 
+        alt="Enabler 設立時ロゴ" 
+        className={cn(sizeClasses[size])}
+      />
+    );
+  }
 
   return (
     <svg 

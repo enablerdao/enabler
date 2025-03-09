@@ -61,6 +61,18 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
           
           <div className="mb-5 md:mb-8">
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ロゴの公式バリエーション</h3>
+            
+            {/* 設立時のロゴを小さく表示 */}
+            <div className="flex justify-start items-center mb-4 bg-gray-50 p-2 rounded-lg">
+              <div className="mr-3">
+                <LogoVariations variant="foundingLogo" size="sm" year={2022} />
+              </div>
+              <div className="text-xs md:text-sm">
+                <p className="font-medium">設立時オリジナルロゴ（2022年）</p>
+                <p className="text-gray-600">会社設立時に使用された初期デザイン</p>
+              </div>
+            </div>
+            
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
               <div className="bg-gray-50 p-2 md:p-3 rounded-lg flex flex-col items-center">
                 <div className="bg-white p-2 md:p-3 rounded-md shadow-sm w-full h-16 md:h-20 flex items-center justify-center mb-2">

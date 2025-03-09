@@ -123,13 +123,13 @@ const YearlyLogoViewer: React.FC = () => {
                     style={{ backgroundColor: color.hex }}
                     onClick={() => copyToClipboard(color.hex, "ブランドカラー")}
                   >
-                    <span className="text-white text-sm font-medium drop-shadow-sm mb-1">
+                    <span className={`text-sm font-medium drop-shadow-sm mb-1 ${isLightColor(color.hex) ? 'text-gray-800' : 'text-white'}`}>
                       ブランド
                     </span>
-                    <span className="text-white text-xs bg-black/20 px-2 py-1 rounded-sm">
+                    <span className={`text-xs bg-black/20 px-2 py-1 rounded-sm ${isLightColor(color.hex) ? 'text-gray-800' : 'text-white'}`}>
                       {color.hex}
                     </span>
-                    <Copy size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Copy size={14} className={`absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity ${isLightColor(color.hex) ? 'text-gray-800' : 'text-white'}`} />
                   </div>
                   
                   {/* Special accent color - larger rectangle with color code inside */}
@@ -138,13 +138,13 @@ const YearlyLogoViewer: React.FC = () => {
                     style={{ backgroundColor: specialAccent.hex }}
                     onClick={() => handleSpecialColorClick(specialAccent.hex, year)}
                   >
-                    <span className="text-white text-sm font-medium drop-shadow-sm mb-1">
+                    <span className={`text-sm font-medium drop-shadow-sm mb-1 ${isLightColor(specialAccent.hex) ? 'text-gray-800' : 'text-white'}`}>
                       特別
                     </span>
-                    <span className="text-white text-xs bg-black/20 px-2 py-1 rounded-sm">
+                    <span className={`text-xs bg-black/20 px-2 py-1 rounded-sm ${isLightColor(specialAccent.hex) ? 'text-gray-800' : 'text-white'}`}>
                       {specialAccent.hex}
                     </span>
-                    <ZoomIn size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ZoomIn size={14} className={`absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity ${isLightColor(specialAccent.hex) ? 'text-gray-800' : 'text-white'}`} />
                   </div>
                 </div>
               </div>
@@ -178,7 +178,7 @@ const YearlyLogoViewer: React.FC = () => {
               <div>
                 <h3 className="text-lg font-semibold">フィボナッチ数列の色彩表現</h3>
                 <p className="text-sm opacity-80">
-                  {selectedYear}年のフィボナッチ特別カラー: {selectedColor}
+                  {selectedYear}年のフィボナッチ特別カラー: <span className="px-2 py-1 rounded" style={{ backgroundColor: selectedColor }}>{selectedColor}</span>
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -267,6 +267,21 @@ const YearlyLogoViewer: React.FC = () => {
       </AnimatePresence>
     </div>
   );
+};
+
+// Helper function to determine if a color is light or dark
+const isLightColor = (color: string): boolean => {
+  // Convert hex to RGB
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  
+  // Calculate brightness (YIQ formula)
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  
+  // Return true if the color is light
+  return brightness > 128;
 };
 
 export default YearlyLogoViewer;

@@ -61,18 +61,32 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
         <div className="bg-white p-4 md:p-6 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-4 md:mb-5 leading-relaxed">
             {companyInfo.logoDescription}
-            現在は{currentYearColor.year}年のブランドカラー（{currentYearColor.name}: {currentYearColor.hex}）を使用しています。
+            現在は{currentYearColor.year}年のブランドカラー（
+            <span className="px-2 py-1 rounded" style={{ backgroundColor: currentYearColor.hex, color: isLightColor(currentYearColor.hex) ? '#000' : '#fff' }}>
+              {currentYearColor.name}: {currentYearColor.hex}
+            </span>）を使用しています。
             ロゴのグラデーションは創業時（2022年）のカラーから現在のカラーへと変化します。
           </p>
           
           <div className="mb-3 md:mb-5">
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ロゴ使用ガイドライン</h3>
             <ul className="list-disc pl-5 space-y-2">
-              <li className="text-sm md:text-base">創業カラー（2022年）：#22B6FF</li>
-              <li className="text-sm md:text-base">現在のブランドカラー（{currentYear}年）：{currentYearColor.hex}</li>
+              <li className="text-sm md:text-base">創業カラー（2022年）：
+                <span className="px-2 py-1 rounded text-white" style={{ backgroundColor: '#22B6FF' }}>
+                  #22B6FF
+                </span>
+              </li>
+              <li className="text-sm md:text-base">現在のブランドカラー（{currentYear}年）：
+                <span className="px-2 py-1 rounded" style={{ 
+                  backgroundColor: currentYearColor.hex, 
+                  color: isLightColor(currentYearColor.hex) ? '#000' : '#fff' 
+                }}>
+                  {currentYearColor.hex}
+                </span>
+              </li>
               <li className="text-sm md:text-base">{companyInfo.logoUsageGuidelines}</li>
-              <li className="text-sm md:text-base">ロゴの変形や色の自由な変更は厳禁。</li>
-              <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つこと。</li>
+              <li className="text-sm md:text-base">ロゴはブランドの象徴です。公式のガイドラインに従って正しく使用してください。</li>
+              <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つことをお願いします。</li>
             </ul>
           </div>
           
@@ -82,6 +96,21 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
       </section>
     </MotionBox>
   );
+};
+
+// Helper function to determine if a color is light or dark
+const isLightColor = (color: string): boolean => {
+  // Convert hex to RGB
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  
+  // Calculate brightness (YIQ formula)
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  
+  // Return true if the color is light
+  return brightness > 128;
 };
 
 export default LogoSection;

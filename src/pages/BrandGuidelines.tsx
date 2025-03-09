@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { logActivity } from '@/lib/logger';
 import Navbar from '@/components/Navbar';
@@ -12,13 +11,9 @@ const BrandGuidelines = () => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Current brand color calculation
-  const currentYear = new Date().getFullYear();
-  const yearsFromFoundation = currentYear - 2022;
-  const R = Math.min(34 + yearsFromFoundation * 3, 224);
-  const G = Math.min(182 + yearsFromFoundation * 2, 245);
-  const currentColor = `rgb(${R}, ${G}, 255)`;
-  const currentHex = `#${R.toString(16).padStart(2, '0')}${G.toString(16).padStart(2, '0')}FF`;
+  // Fixed 2022 brand color
+  const fixedMainColor = '#22B6FF';
+  const fixedHex = '#22B6FF';
 
   return (
     <>
@@ -65,7 +60,7 @@ const BrandGuidelines = () => {
               </div>
               <div className="bg-white p-8 rounded-xl shadow-subtle">
                 <p className="text-lg mb-6 leading-relaxed">
-                  ロゴは鮮やかなブルーを基調とし、毎年少しずつ色調が明るく変化するように設計されています。色の変化は創業年（2022年）を起点とし、数学的な関数で表現されます。
+                  ロゴは鮮やかなブルーを基調とし、2022年に設立された際に定められた色を使用しています。この色は会社の原点と理念を表現しています。
                 </p>
                 
                 <div className="mb-8">
@@ -79,11 +74,11 @@ const BrandGuidelines = () => {
                         {`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
   <defs>
     <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2BBCFF" />
+      <stop offset="0%" stop-color="#22B6FF" />
       <stop offset="100%" stop-color="#1E90FF" />
     </linearGradient>
     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2BBCFF" />
+      <stop offset="0%" stop-color="#22B6FF" />
       <stop offset="100%" stop-color="#1E90FF" />
     </linearGradient>
   </defs>
@@ -104,7 +99,7 @@ const BrandGuidelines = () => {
                     ロゴのグラデーションは、「可能性の広がり」と「未来へ向かう進化」を象徴しています。
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>現在のブランドカラー（{currentYear}年）：{currentHex}</li>
+                    <li>ブランドカラー：{fixedHex}（2022年の設立時に定められた不変の色）</li>
                     <li>ロゴ使用時の余白：ロゴの高さの1/3程度を空け、他の要素との重なりを避ける。</li>
                     <li>ロゴの変形や色の自由な変更は厳禁。</li>
                   </ul>
@@ -122,25 +117,19 @@ const BrandGuidelines = () => {
               </div>
               <div className="bg-white p-8 rounded-xl shadow-subtle">
                 <p className="text-lg mb-6 leading-relaxed">
-                  ブランドカラーは創業年を起点に年数経過で変化します。変化は以下の数式で定義されています。
+                  Enablerのブランドカラーは2022年の設立時に定められ、不変の色として使用されています。
                 </p>
                 
                 <div className="mb-8">
-                  <h3 className="text-xl font-semibold mb-4 border-b pb-2">数学的な色の変化表現</h3>
+                  <h3 className="text-xl font-semibold mb-4 border-b pb-2">不変のアイデンティティカラー</h3>
                   <p className="text-lg mb-4 leading-relaxed">
-                    年数を <code>y</code>（西暦年）とした時の色の変化は、以下の式で表されます。
+                    ブランドカラーはイネブラの原点を象徴し、すべてのプロダクトやサービスで統一的に使用されます。
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                    <pre className="font-mono text-sm">
-                      {`R = min(34 + (y - 2022) * 3, 224)
-G = min(182 + (y - 2022) * 2, 245)
-B = 255`}
-                    </pre>
+                    <div className="font-mono text-sm p-3">
+                      メインカラー: RGB(34,182,255) → HEX: {fixedHex}
+                    </div>
                   </div>
-                  <ul className="list-disc pl-6 space-y-2 mb-6">
-                    <li>現在（{currentYear}年）のカラー：RGB({R},{G},255) → HEX:{currentHex}</li>
-                    <li>将来的にはRGB値が徐々に255（透明色）へと近づいていきます。</li>
-                  </ul>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -148,10 +137,10 @@ B = 255`}
                     <h3 className="text-lg font-semibold mb-3">メインカラー</h3>
                     <div 
                       className="h-24 rounded-lg shadow-sm mb-2" 
-                      style={{ backgroundColor: currentColor }}
+                      style={{ backgroundColor: fixedMainColor }}
                     ></div>
-                    <p className="text-sm text-gray-600">スカイブルー ({currentHex})</p>
-                    <p className="text-xs text-gray-500">数式で動的に変化</p>
+                    <p className="text-sm text-gray-600">スカイブルー ({fixedHex})</p>
+                    <p className="text-xs text-gray-500">2022年設立時に定められた不変の色</p>
                   </div>
                   
                   <div className="flex flex-col">
@@ -269,48 +258,38 @@ B = 255`}
             </section>
           </MotionBox>
 
-          {/* Brand Color Evolution */}
+          {/* Brand Color Evolution - Remove this section and replace with Fixed Color Values */}
           <MotionBox delay={900}>
             <section className="mb-16">
               <div className="flex items-center mb-6">
                 <Calculator className="text-enabler-600 mr-3" size={24} />
-                <h2 className="text-2xl font-bold text-gray-900">8. ブランドカラーの進化</h2>
+                <h2 className="text-2xl font-bold text-gray-900">8. ブランドカラーの固定値</h2>
               </div>
               <div className="bg-white p-8 rounded-xl shadow-subtle">
                 <p className="text-lg mb-6">
-                  Enablerのブランドカラーは創業年の2022年を起点に、5年ごとに明るさや透明感が増していきます。
+                  Enablerのブランドカラーは2022年の設立時に定められた固定値で、プロダクトやサービス全体で一貫して使用します。
                 </p>
                 <div className="overflow-x-auto">
                   <div className="flex space-x-4 min-w-max">
                     <div className="flex flex-col items-center">
                       <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#22B6FF' }}></div>
-                      <p className="mt-2 font-medium">2022年</p>
+                      <p className="mt-2 font-medium">メインカラー</p>
                       <p className="text-sm text-gray-600">#22B6FF</p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#2EBBFF' }}></div>
-                      <p className="mt-2 font-medium">2027年</p>
-                      <p className="text-sm text-gray-600">#2EBBFF</p>
+                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#1E90FF' }}></div>
+                      <p className="mt-2 font-medium">サブカラー</p>
+                      <p className="text-sm text-gray-600">#1E90FF</p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#47C5FF' }}></div>
-                      <p className="mt-2 font-medium">2032年</p>
-                      <p className="text-sm text-gray-600">#47C5FF</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#60CFFF' }}></div>
-                      <p className="mt-2 font-medium">2037年</p>
-                      <p className="text-sm text-gray-600">#60CFFF</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#E0F5FF' }}></div>
-                      <p className="mt-2 font-medium">2122年</p>
-                      <p className="text-sm text-gray-600">#E0F5FF</p>
+                      <div className="w-20 h-20 rounded-lg" style={{ backgroundColor: '#79D300' }}></div>
+                      <p className="mt-2 font-medium">アクセントカラー</p>
+                      <p className="text-sm text-gray-600">#79D300</p>
                     </div>
                   </div>
                 </div>
                 <p className="text-lg mt-6">
-                  2037年以降、徐々に透明感が増し、100年後の2122年には淡く透明に近いブルー (#E0F5FF) になります。
+                  これらのカラーは、あらゆるマーケティング資料や製品において一貫して使用することで、Enablerのブランドの統一性と認知度を高めます。
                 </p>
               </div>
             </section>

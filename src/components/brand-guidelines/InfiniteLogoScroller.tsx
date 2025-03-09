@@ -134,7 +134,8 @@ const InfiniteLogoScroller: React.FC = () => {
   
   // Calculate card width based on zoom level
   const getCardWidth = () => {
-    const baseWidth = 64; // 16rem = 64 in tailwind
+    // Increase the base width to fix the small width issue
+    const baseWidth = 180; // Increased from 64px
     return `${baseWidth * (zoomLevel / 3)}px`;
   };
   
@@ -146,7 +147,12 @@ const InfiniteLogoScroller: React.FC = () => {
   
   // Calculate gap between cards
   const getGap = () => {
-    return `${4 * (zoomLevel / 3)}px`;
+    return `${8 * (zoomLevel / 3)}px`; // Increased gap from 4px to 8px
+  };
+  
+  // Determine if we should show detailed information based on zoom level
+  const shouldShowDetails = () => {
+    return zoomLevel >= 2; // Show details only at zoom level 2 and above
   };
   
   return (
@@ -297,7 +303,7 @@ const InfiniteLogoScroller: React.FC = () => {
                 </svg>
               </div>
               
-              {zoomLevel >= 3 && (
+              {shouldShowDetails() && (
                 <div className="flex flex-col gap-2 mt-auto">
                   {isSpecialYear && (
                     <div 
@@ -356,3 +362,4 @@ const InfiniteLogoScroller: React.FC = () => {
 };
 
 export default InfiniteLogoScroller;
+

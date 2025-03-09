@@ -36,15 +36,21 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
 
-  // Generate Fibonacci sequence-based accent color
-  const generateFibonacciAccentColor = () => {
+  // Generate Fibonacci sequence-based accent color for each year
+  const generateFibonacciAccentColorForYear = (year: number) => {
     // Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...
-    const fibSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34];
+    let a = 1, b = 1;
+    // Calculate Fibonacci number for the year offset (year - 2022)
+    const yearOffset = year - 2022;
+    let fibValue = 1;
     
-    // Use current month to select from fibonacci sequence
-    const currentMonth = new Date().getMonth(); // 0-11
-    const fibIndex = currentMonth % fibSequence.length;
-    const fibValue = fibSequence[fibIndex];
+    // Generate Fibonacci number corresponding to year offset
+    for (let i = 0; i < yearOffset; i++) {
+      const next = a + b;
+      a = b;
+      b = next;
+      fibValue = a;
+    }
     
     // Generate color based on fibonacci value
     // Hue based on golden ratio (approx 137.5 degrees)
@@ -56,11 +62,11 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   };
 
   // Get founding year color (2022)
-  const foundingColor = calculateColorForYear(2022);
+  const foundingColor = '#22B6FF'; // Fixed founding color
   // Get current year color
   const currentYearColor = calculateColorForYear(year);
-  // Get fibonacci accent color
-  const fibonacciAccentColor = generateFibonacciAccentColor();
+  // Get fibonacci accent color for the specific year
+  const fibonacciAccentColor = generateFibonacciAccentColorForYear(year);
 
   if (variant === 'foundingLogo') {
     return (
@@ -92,9 +98,9 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
             </linearGradient>
           </defs>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-          {/* First line - standard gradient */}
+          {/* First line - standard gradient from founding color */}
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-${variant}-${year})`}/>
-          {/* Second line - fibonacci accent color */}
+          {/* Second line - fibonacci accent color that changes with year */}
           <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor}/>
           {/* Third line - reverse gradient */}
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-${variant}-${year})`}/>
@@ -149,10 +155,10 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       {variant === 'original' && (
         <>
           <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-          <rect x="15" y="25" width="60" height="3" rx="1.5" fill="#22B6FF"/>
-          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={fibonacciAccentColor}/>
-          <rect x="15" y="41" width="60" height="3" rx="1.5" fill="#22B6FF"/>
-          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="#22B6FF">ENABLER</text>
+          <rect x="15" y="25" width="60" height="3" rx="1.5" fill={foundingColor}/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill={generateFibonacciAccentColorForYear(2022)}/>
+          <rect x="15" y="41" width="60" height="3" rx="1.5" fill={foundingColor}/>
+          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={foundingColor}>ENABLER</text>
         </>
       )}
       

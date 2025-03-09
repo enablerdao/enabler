@@ -57,18 +57,19 @@ const BrandGuidelines = () => {
     return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
   };
   
-  // Generate brand colors for years 2022-2031 (10 years instead of 9)
+  // Generate brand colors for years 2022-2031 (10 years)
   const brandColors = Array.from({ length: 10 }, (_, i) => calculateColorForYear(2022 + i));
   
   // Get current year's color
   const currentYearColor = brandColors.find(color => color.year === currentYear) || brandColors[0];
 
-  // Generate logo evolution data for every 10 years
+  // Generate logo evolution data for 10-year intervals from 2022 to 2062 (40 years)
   const logoEvolutionData = [
     { year: 2022, name: '設立時', description: '会社設立時のオリジナルデザイン' },
     { year: 2032, name: '10周年', description: '設立10周年記念デザイン' },
     { year: 2042, name: '20周年', description: '設立20周年記念デザイン' },
     { year: 2052, name: '30周年', description: '設立30周年記念デザイン' },
+    { year: 2062, name: '40周年', description: '設立40周年記念デザイン' },
   ];
 
   return (

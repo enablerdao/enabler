@@ -10,9 +10,9 @@ interface LogoVariationsProps {
 
 const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = new Date().getFullYear() }) => {
   const sizeClasses = {
-    sm: 'w-20 h-auto', // Changed fixed height to auto
-    md: 'w-28 h-auto', // Changed fixed height to auto
-    lg: 'w-36 h-auto', // Changed fixed height to auto
+    sm: 'w-20 h-auto', 
+    md: 'w-28 h-auto', 
+    lg: 'w-40 h-auto', 
   };
 
   // Calculate color based on year using the formula
@@ -41,7 +41,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       <img 
         src="/lovable-uploads/85dd8f76-5a2d-4d47-a7a8-b01b7098b335.png" 
         alt="Enabler 設立時ロゴ" 
-        className={cn(sizeClasses[size], 'object-contain')} // Added object-contain to maintain aspect ratio
+        className={cn(sizeClasses[size], 'object-contain')} 
       />
     );
   }
@@ -49,9 +49,9 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   return (
     <svg 
       viewBox="0 0 200 70" 
-      className={cn(sizeClasses[size], 'object-contain')} // Added object-contain to maintain aspect ratio
+      className={cn(sizeClasses[size], 'object-contain')} 
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid meet" // Added preserveAspectRatio to ensure proper scaling
+      preserveAspectRatio="xMidYMid meet" 
     >
       {variant === 'modern' && (
         <>

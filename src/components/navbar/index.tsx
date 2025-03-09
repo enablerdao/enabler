@@ -14,13 +14,13 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
   // Define navigation links
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
+    { name: 'Home', href: '/', isPage: true },
+    { name: 'Services', href: '/#services', isPage: false },
     { name: 'Blog', href: '/blog', isPage: true },
     { name: 'Company', href: '/company-info', isPage: true },
     { name: 'Press', href: '/press', isPage: true },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Points Program', href: '/points-program', isPage: true },
+    { name: 'Contact', href: '/#contact', isPage: false },
   ];
 
   useEffect(() => {

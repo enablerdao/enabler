@@ -10,7 +10,7 @@ const FounderIntro = () => {
         <div className="flex items-center mb-6">
           <div className="w-16 h-16 rounded-full overflow-hidden mr-5 border-2 border-enabler-200">
             <img 
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&h=256&q=80" 
+              src="/lovable-uploads/ef3a4f63-3dd4-4b40-93ce-62b03d4f1be1.png" 
               alt="濱田 優貴" 
               className="w-full h-full object-cover"
             />

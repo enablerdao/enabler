@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -61,7 +62,7 @@ const Sitemap = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/team" className="text-enabler-600 hover:text-enabler-800 flex items-center">
+                      <Link to="/founder-message" className="text-enabler-600 hover:text-enabler-800 flex items-center">
                         <ArrowRight size={16} className="mr-2" /> <MessageSquare size={14} className="mr-1" /> 創業者からのメッセージ
                       </Link>
                     </li>

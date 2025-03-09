@@ -12,7 +12,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import PointsProgram from "./pages/PointsProgram";
 import TimeDrop from "./pages/TimeDrop";
-import FounderMessage from "./pages/Team";
+import FounderMessage from "./pages/FounderMessage";
 import Press from "./pages/Press";
 import Sitemap from "./pages/Sitemap";
 import Terms from "./pages/Terms";
@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/points-program" element={<PointsProgram />} />
           <Route path="/timedrop" element={<TimeDrop />} />
-          <Route path="/team" element={<FounderMessage />} />
+          <Route path="/founder-message" element={<FounderMessage />} />
           <Route path="/press" element={<Press />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/terms" element={<Terms />} />

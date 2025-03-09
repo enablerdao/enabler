@@ -1,102 +1,209 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
-import { Calculator } from 'lucide-react';
-import Logo from '@/components/Logo';
+import { Calculator, Copy, CheckCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import LogoVariations from './LogoVariations';
 
-const FixedColorValues = () => {
+interface ColorInfo {
+  year: number;
+  hex: string;
+  name: string;
+}
+
+interface FixedColorValuesProps {
+  currentYearColor: ColorInfo;
+  brandColors: ColorInfo[];
+}
+
+const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesProps) => {
+  const { toast } = useToast();
+  const [copiedColor, setCopiedColor] = useState<string | null>(null);
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedColor(text);
+    toast({
+      title: "コピーしました",
+      description: `${label}をクリップボードにコピーしました`,
+    });
+    
+    // Reset copied state after animation
+    setTimeout(() => {
+      setCopiedColor(null);
+    }, 2000);
+  };
+
+  // Helper function to convert HEX to RGB
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? 
+      `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
+      '';
+  };
+
   return (
     <MotionBox delay={900}>
-      <section className="mb-8 md:mb-16">
-        <div className="flex items-center mb-4 md:mb-6">
+      <section className="mb-6 md:mb-12">
+        <div className="flex items-center mb-3 md:mb-5">
           <Calculator className="text-enabler-600 mr-2 md:mr-3" size={24} />
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900">8. ブランドカラーの固定値</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900">8. 年度カラーとコードリファレンス</h2>
         </div>
-        <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle">
-          <p className="text-base md:text-lg mb-4 md:mb-6">
-            Enablerのブランドカラーは2022年の設立時に定められた固定値で、プロダクトやサービス全体で一貫して使用します。
+        <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
+          <p className="text-base md:text-lg mb-3 md:mb-5">
+            Enablerのブランドカラーは年度ごとに更新され、マーケティング資料やデザインで一貫して使用されます。
+            以下は現在の年度カラーとその値です。
           </p>
           
+          {/* Current year color highlight */}
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">
+              {currentYearColor.year}年ブランドカラー
+            </h3>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+              <div className="flex flex-col items-center">
+                <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm mb-2 md:mb-3">
+                  <LogoVariations variant="modern" size="md" year={currentYearColor.year} />
+                </div>
+                <p className="text-xs md:text-sm font-medium">{currentYearColor.name}</p>
+              </div>
+              
+              <div className="grid grid-cols-1 gap-2 md:gap-3 w-full max-w-xs">
+                <div className="flex items-center space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100"
+                     onClick={() => copyToClipboard(currentYearColor.hex, 'HEX値')}>
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-md" style={{ backgroundColor: currentYearColor.hex }}></div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium">HEX</p>
+                    <div className="flex items-center">
+                      <p className="text-sm md:text-base font-mono">{currentYearColor.hex}</p>
+                      {copiedColor === currentYearColor.hex ? (
+                        <CheckCircle className="w-3.5 h-3.5 ml-2 text-green-500" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5 ml-2 text-gray-400" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100"
+                     onClick={() => copyToClipboard(`rgb(${hexToRgb(currentYearColor.hex)})`, 'RGB値')}>
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-md" style={{ backgroundColor: currentYearColor.hex }}></div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium">RGB</p>
+                    <div className="flex items-center">
+                      <p className="text-sm md:text-base font-mono">rgb({hexToRgb(currentYearColor.hex)})</p>
+                      {copiedColor === `rgb(${hexToRgb(currentYearColor.hex)})` ? (
+                        <CheckCircle className="w-3.5 h-3.5 ml-2 text-green-500" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5 ml-2 text-gray-400" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           {/* Logo variants with color schemes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8">
-            <div className="bg-gray-50 p-3 md:p-4 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 mb-4 md:mb-6">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">ロゴバリエーション</h3>
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 gap-2 md:gap-3">
                 <div className="flex flex-col items-center">
-                  <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm flex justify-center items-center h-20 md:h-24">
-                    <Logo variant="svg" size="md" />
+                  <div className="bg-white p-2 rounded-lg shadow-sm flex justify-center items-center h-16 md:h-20">
+                    <LogoVariations variant="modern" size="sm" year={currentYearColor.year} />
                   </div>
-                  <p className="text-xs md:text-sm mt-1 md:mt-2">ベーシック</p>
+                  <p className="text-xs mt-1 md:mt-2">スタンダード</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm flex justify-center items-center h-20 md:h-24">
-                    <Logo variant="default" size="md" />
+                  <div className="bg-white p-2 rounded-lg shadow-sm flex justify-center items-center h-16 md:h-20">
+                    <LogoVariations variant="monochrome" size="sm" year={currentYearColor.year} />
                   </div>
-                  <p className="text-xs md:text-sm mt-1 md:mt-2">スタンダード</p>
+                  <p className="text-xs mt-1 md:mt-2">モノクローム</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm flex justify-center items-center h-20 md:h-24">
-                    <Logo variant="minimalist" size="md" />
+                  <div className="bg-white p-2 rounded-lg shadow-sm flex justify-center items-center h-16 md:h-20">
+                    <LogoVariations variant="gradient" size="sm" year={currentYearColor.year} />
                   </div>
-                  <p className="text-xs md:text-sm mt-1 md:mt-2">ミニマル</p>
+                  <p className="text-xs mt-1 md:mt-2">グラデーション</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm flex justify-center items-center h-20 md:h-24">
-                    <Logo variant="fibonacci" size="md" />
+                  <div className="bg-white p-2 rounded-lg shadow-sm flex justify-center items-center h-16 md:h-20">
+                    <LogoVariations variant="outline" size="sm" year={currentYearColor.year} />
                   </div>
-                  <p className="text-xs md:text-sm mt-1 md:mt-2">フィボナッチ</p>
+                  <p className="text-xs mt-1 md:mt-2">アウトライン</p>
                 </div>
               </div>
             </div>
             
-            <div className="bg-gray-50 p-3 md:p-4 rounded-lg">
-              <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">カラー固定値</h3>
-              <div className="space-y-3 md:space-y-4">
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg" style={{ backgroundColor: '#22B6FF' }}></div>
+            <div className="bg-gray-50 p-3 rounded-lg">
+              <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">カラーパレット</h3>
+              <div className="space-y-2 md:space-y-3">
+                <div className="flex items-center space-x-2 md:space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer"
+                     onClick={() => copyToClipboard(currentYearColor.hex, `${currentYearColor.name} HEX`)}>
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg" style={{ backgroundColor: currentYearColor.hex }}></div>
                   <div>
-                    <p className="text-sm md:text-base font-medium">メインカラー</p>
-                    <p className="text-xs md:text-sm text-gray-600">HEX: #22B6FF / RGB: 34,182,255</p>
+                    <p className="text-xs md:text-sm font-medium">メインカラー ({currentYearColor.year})</p>
+                    <p className="text-xs text-gray-600 font-mono">{currentYearColor.hex}</p>
                   </div>
+                  <Copy className="w-3.5 h-3.5 ml-auto text-gray-400" />
                 </div>
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg" style={{ backgroundColor: '#1E90FF' }}></div>
+                
+                <div className="flex items-center space-x-2 md:space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer"
+                     onClick={() => copyToClipboard('#79D300', 'アクセントカラー HEX')}>
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg" style={{ backgroundColor: '#79D300' }}></div>
                   <div>
-                    <p className="text-sm md:text-base font-medium">サブカラー</p>
-                    <p className="text-xs md:text-sm text-gray-600">HEX: #1E90FF / RGB: 30,144,255</p>
+                    <p className="text-xs md:text-sm font-medium">アクセントカラー</p>
+                    <p className="text-xs text-gray-600 font-mono">#79D300</p>
                   </div>
+                  <Copy className="w-3.5 h-3.5 ml-auto text-gray-400" />
                 </div>
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg" style={{ backgroundColor: '#79D300' }}></div>
+                
+                <div className="flex items-center space-x-2 md:space-x-3 bg-white p-2 rounded-lg shadow-sm cursor-pointer"
+                     onClick={() => copyToClipboard('#333333', 'テキストカラー HEX')}>
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg" style={{ backgroundColor: '#333333' }}></div>
                   <div>
-                    <p className="text-sm md:text-base font-medium">アクセントカラー</p>
-                    <p className="text-xs md:text-sm text-gray-600">HEX: #79D300 / RGB: 121,211,0</p>
+                    <p className="text-xs md:text-sm font-medium">テキストカラー</p>
+                    <p className="text-xs text-gray-600 font-mono">#333333</p>
                   </div>
+                  <Copy className="w-3.5 h-3.5 ml-auto text-gray-400" />
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-gray-50 p-4 md:p-6 rounded-lg mb-4 md:mb-6">
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
             <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">グラデーションの使用例</h3>
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 lg:gap-8">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-20 md:w-24 h-6 md:h-8 rounded-lg bg-gradient-to-r from-[#22B6FF] to-[#1E90FF]"></div>
-                <p className="text-xs mt-1">標準グラデーション</p>
+                <div className="w-16 md:w-20 h-5 md:h-6 rounded-md bg-gradient-to-r" 
+                     style={{ backgroundImage: `linear-gradient(to right, ${currentYearColor.hex}, ${currentYearColor.hex}CC)` }}></div>
+                <p className="text-xs mt-1">標準</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-20 md:w-24 h-6 md:h-8 rounded-lg bg-gradient-to-r from-[#22B6FF] via-[#1E90FF] to-[#79D300]"></div>
-                <p className="text-xs mt-1">拡張グラデーション</p>
+                <div className="w-16 md:w-20 h-5 md:h-6 rounded-md bg-gradient-to-r" 
+                     style={{ backgroundImage: `linear-gradient(to right, ${currentYearColor.hex}, #79D300)` }}></div>
+                <p className="text-xs mt-1">アクセント</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-20 md:w-24 h-6 md:h-8 rounded-lg bg-gradient-to-br from-[#22B6FF] to-[#1E90FF]"></div>
-                <p className="text-xs mt-1">斜めグラデーション</p>
+                <div className="w-16 md:w-20 h-5 md:h-6 rounded-md bg-gradient-to-br" 
+                     style={{ backgroundImage: `linear-gradient(to bottom right, ${currentYearColor.hex}, ${currentYearColor.hex}99)` }}></div>
+                <p className="text-xs mt-1">斜め</p>
               </div>
+            </div>
+            <div className="mt-3 md:mt-4 text-center">
+              <button className="text-xs md:text-sm px-3 py-1.5 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors"
+                      onClick={() => copyToClipboard(
+                        `background-image: linear-gradient(to right, ${currentYearColor.hex}, ${currentYearColor.hex}CC);`, 
+                        'CSS グラデーション'
+                      )}>
+                <span className="flex items-center"><Copy className="w-3 h-3 mr-1.5" /> CSS コードをコピー</span>
+              </button>
             </div>
           </div>
           
-          <p className="text-base md:text-lg mt-4 md:mt-6">
-            これらのカラーは、あらゆるマーケティング資料や製品において一貫して使用することで、Enablerのブランドの統一性と認知度を高めます。
+          <p className="text-base md:text-lg mt-3 md:mt-4">
+            これらのカラーコードは、すべてのマーケティング資料やプロダクトで一貫して使用することで、Enablerのブランドの統一性と認知度を高めます。毎年更新される年度カラーは、常に企業サイトに反映されます。
           </p>
         </div>
       </section>

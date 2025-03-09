@@ -19,24 +19,38 @@ const BrandGuidelines = () => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Fixed 2022 brand color
-  const fixedMainColor = '#22B6FF';
-  const fixedHex = '#22B6FF';
+  // Calculate current year's color based on a rotation of colors
+  const currentYear = new Date().getFullYear();
+  const baseYear = 2022; // When the first color was established
+  const yearDiff = currentYear - baseYear;
+  
+  // Array of brand colors that rotate yearly
+  const brandColors = [
+    { year: 2022, hex: '#22B6FF', name: 'スカイブルー' },
+    { year: 2023, hex: '#6E59A5', name: 'ロイヤルパープル' },
+    { year: 2024, hex: '#8B5CF6', name: 'ビビッドパープル' },
+    { year: 2025, hex: '#0EA5E9', name: 'オーシャンブルー' },
+    { year: 2026, hex: '#D946EF', name: 'マゼンタピンク' },
+  ];
+  
+  // Get current year's color or default to first color if beyond array range
+  const colorIndex = yearDiff % brandColors.length;
+  const currentYearColor = brandColors[colorIndex];
 
   return (
     <>
       <Navbar />
-      <main className="pt-16 md:pt-20 pb-12 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+      <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6">
           <BrandHeader />
           <BrandStory />
-          <LogoSection fixedHex={fixedHex} />
-          <BrandColors fixedMainColor={fixedMainColor} fixedHex={fixedHex} />
+          <LogoSection currentYearColor={currentYearColor} />
+          <BrandColors currentYearColor={currentYearColor} brandColors={brandColors} />
           <Typography />
           <PhotosAndIllustrations />
           <VoiceAndTone />
           <BrandAssetRules />
-          <FixedColorValues />
+          <FixedColorValues currentYearColor={currentYearColor} brandColors={brandColors} />
           <FAQContact />
         </div>
       </main>

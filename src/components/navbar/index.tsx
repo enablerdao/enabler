@@ -18,6 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     { name: 'Services', href: '/#services', isPage: false },
     { name: 'Blog', href: '/blog', isPage: true },
     { name: 'Company', href: '/company-info', isPage: true },
+    { name: 'Brand', href: '/brand-guidelines', isPage: true },
     { name: 'Press', href: '/press', isPage: true },
     { name: 'Points Program', href: '/points-program', isPage: true },
     { name: 'Contact', href: '/#contact', isPage: false },

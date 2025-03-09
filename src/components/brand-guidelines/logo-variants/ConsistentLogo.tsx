@@ -30,8 +30,7 @@ const ConsistentLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
         </linearGradient>
         <linearGradient id={`middleLineGradient-consistent-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor={foundingColor} />
-          <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
-          <stop offset="100%" stopColor={currentYearColor} />
+          <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
         </linearGradient>
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>

@@ -27,8 +27,7 @@ const GradientLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getF
         </linearGradient>
         <linearGradient id={`middleLineGradient-gradient-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor={foundingColor} />
-          <stop offset={`${(goldenSegments.segment1 / 60) * 100}%`} stopColor={fibonacciAccentInfo.specialColor} />
-          <stop offset="100%" stopColor={currentYearColor} />
+          <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
         </linearGradient>
         <filter id={`glow-gradient-${year}`} x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="2" result="blur" />

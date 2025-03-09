@@ -32,8 +32,8 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
     <div 
       className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col items-center"
     >
-      <div className="h-32 flex items-center justify-center mb-2 relative">
-        <LogoVariations variant="modern" size="md" year={year} />
+      <div className="h-40 flex items-center justify-center mb-2 relative">
+        <LogoVariations variant="modern" size="lg" year={year} />
         <div className="absolute bottom-0 text-xs text-gray-500 bg-white/80 px-2 py-0.5 rounded">
           {year}年（創業から{yearsSinceFounding}年目）
         </div>

@@ -50,7 +50,7 @@ const YearlyColorTable: React.FC<YearlyColorTableProps> = ({
                 <th className="border border-gray-200 px-4 py-2 text-left">西暦</th>
                 <th className="border border-gray-200 px-4 py-2 text-left">創業の年のカラー（固定）</th>
                 <th className="border border-gray-200 px-4 py-2 text-left">ブランドカラー（毎年変化）</th>
-                <th className="border border-gray-200 px-4 py-2 text-left">特別カラー（節目に変更）</th>
+                <th className="border border-gray-200 px-4 py-2 text-left">特別アクセントカラー（節目に変更）</th>
               </tr>
             </thead>
             <tbody>
@@ -86,7 +86,7 @@ const YearlyColorTable: React.FC<YearlyColorTableProps> = ({
                       </div>
                     </td>
                     <td className="border border-gray-200 px-4 py-2">
-                      {specialColor ? (
+                      {specialColor && yearInfo.year >= 2025 ? (
                         <div 
                           className="flex items-center gap-2 cursor-pointer"
                           onClick={() => copyColorToClipboard(specialColor.color, `${specialColor.year}年（${specialColor.name}）`)}

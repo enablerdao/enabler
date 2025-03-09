@@ -60,12 +60,12 @@ const SpecialAccentColorIntro: React.FC = () => {
 
   return (
     <div className="mb-10">
-      <h3 className="text-2xl md:text-3xl font-semibold mb-5 md:mb-6 border-b pb-3 mt-12">特別な周年のアクセントカラー</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold mb-5 md:mb-6 border-b pb-3 mt-12">特別アクセントカラー</h3>
       
       <SpecialYearColorExplanation copyColorToClipboard={copyColorToClipboard} />
       
       <p className="text-lg mb-5 leading-relaxed">
-        特別な色は節目となる年（フィボナッチ数列の年：1,2,3,5,8...）に変更され、次の節目が来るまで固定されます。これらの特別な色は「黄金角（約137.5度）」という、自然界の法則から生まれます。ひまわりの種やパイナップルの模様と同じ原理です。
+        特別アクセントカラーは節目となる年（フィボナッチ数列の年：1,2,3,5,8...）に変更され、次の節目が来るまで固定されます。これらの特別な色は「黄金角（約137.5度）」という、自然界の法則から生まれます。ひまわりの種やパイナップルの模様と同じ原理です。
       </p>
       
       <h4 className="text-xl font-semibold mb-4">特別アクセントカラー一覧</h4>
@@ -75,7 +75,7 @@ const SpecialAccentColorIntro: React.FC = () => {
         copyColorToClipboard={copyColorToClipboard} 
       />
       
-      <h4 className="text-xl font-semibold mb-4 mt-8">年次のブランドカラーと特別カラー</h4>
+      <h4 className="text-xl font-semibold mb-4 mt-8">年次のブランドカラーと特別アクセントカラー</h4>
       
       <YearlyColorTable 
         yearlyBrandColors={yearlyBrandColors}

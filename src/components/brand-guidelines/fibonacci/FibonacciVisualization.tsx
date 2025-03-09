@@ -59,7 +59,7 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
         <div>
           <h3 className="text-lg font-semibold">フィボナッチ数列の色彩表現</h3>
           <p className="text-sm opacity-80">
-            {selectedYear}年のフィボナッチ特別カラー: <span className="px-2 py-1 rounded" style={{ backgroundColor: selectedColor }}>{selectedColor}</span>
+            {selectedYear}年の特別アクセントカラー: <span className="px-2 py-1 rounded" style={{ backgroundColor: selectedColor }}>{selectedColor}</span>
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -106,7 +106,7 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
             const nextFibYear = currentYear + index;
             const fibIndex = getFibonacciSumYearIndex(nextFibYear);
             
-            // 特別カラーの計算
+            // 特別アクセントカラーの計算
             const hue = (fibIndex * 137.5) % 360;
             const saturation = 75;
             const lightness = 60;
@@ -145,7 +145,7 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
       
       <div className="p-4 text-white text-sm">
         <p>上の円はフィボナッチ数列に従って配置され、ゴールデンスパイラルを形成しています。</p>
-        <p>特別カラーがフィボナッチ数列の累積和の年のインデックスに基づいて黄金角（137.5°）で変化する様子を視覚化しています。</p>
+        <p>特別アクセントカラーがフィボナッチ数列の累積和の年のインデックスに基づいて黄金角（137.5°）で変化する様子を視覚化しています。</p>
       </div>
     </motion.div>
   );

@@ -1,10 +1,11 @@
 
-import React, { useState, useCallback } from 'react';
-import { ChevronDown, Copy } from 'lucide-react';
+import React, { useState, useCallback, useRef } from 'react';
+import { ChevronDown, Copy, ZoomIn, ZoomOut, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LogoVariations from './LogoVariations';
 import { calculateColorForYear, calculateSpecialAccentColor } from './color-utils/color-calculator';
 import { useToast } from '@/hooks/use-toast';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
@@ -15,6 +16,13 @@ const YearlyLogoViewer: React.FC = () => {
   
   // Show very long-term evolution including well beyond the 231st year
   const totalYears = 1000;
+  
+  // State for Fibonacci color visualization
+  const [showFibonacciViz, setShowFibonacciViz] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const vizContainerRef = useRef<HTMLDivElement>(null);
   
   const handleLoadMore = useCallback(() => {
     setVisibleYears(prev => prev + 12);
@@ -28,11 +36,55 @@ const YearlyLogoViewer: React.FC = () => {
     });
   }, [toast]);
   
+  const handleSpecialColorClick = useCallback((color: string, year: number) => {
+    setSelectedColor(color);
+    setSelectedYear(year);
+    setShowFibonacciViz(true);
+    setZoomLevel(1);
+  }, []);
+  
+  const handleCloseViz = useCallback(() => {
+    setShowFibonacciViz(false);
+  }, []);
+  
+  const handleZoomIn = useCallback(() => {
+    setZoomLevel(prev => Math.min(prev + 0.5, 5));
+  }, []);
+  
+  const handleZoomOut = useCallback(() => {
+    setZoomLevel(prev => Math.max(prev - 0.5, 0.5));
+  }, []);
+  
   // Generate years array from start display year to visible limit
   const years = Array.from(
     { length: Math.min(visibleYears, totalYears) }, 
     (_, i) => startDisplayYear + i
   );
+  
+  // Generate Fibonacci sequence for visualization
+  const generateFibonacciSequence = (length: number) => {
+    const sequence = [1, 1];
+    for (let i = 2; i < length; i++) {
+      sequence.push(sequence[i-1] + sequence[i-2]);
+    }
+    return sequence;
+  };
+  
+  // Generate golden ratio-based positions for the Fibonacci spiral
+  const generateFibonacciPositions = (count: number, centerX: number, centerY: number) => {
+    const positions = [];
+    const goldenRatio = 1.618033988749895;
+    
+    for (let i = 0; i < count; i++) {
+      const angle = i * goldenRatio * Math.PI * 2;
+      const radius = Math.sqrt(i) * 20 * zoomLevel;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+      positions.push({ x, y, size: Math.max(5, 30 - i * 0.5) * zoomLevel });
+    }
+    
+    return positions;
+  };
   
   return (
     <div className="mt-6 space-y-6">
@@ -84,7 +136,7 @@ const YearlyLogoViewer: React.FC = () => {
                   <div 
                     className="flex-1 h-24 rounded-md flex flex-col items-center justify-center cursor-pointer group transition-all hover:shadow-md relative" 
                     style={{ backgroundColor: specialAccent.hex }}
-                    onClick={() => copyToClipboard(specialAccent.hex, "特別カラー")}
+                    onClick={() => handleSpecialColorClick(specialAccent.hex, year)}
                   >
                     <span className="text-white text-sm font-medium drop-shadow-sm mb-1">
                       特別
@@ -92,7 +144,7 @@ const YearlyLogoViewer: React.FC = () => {
                     <span className="text-white text-xs bg-black/20 px-2 py-1 rounded-sm">
                       {specialAccent.hex}
                     </span>
-                    <Copy size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ZoomIn size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
               </div>
@@ -112,6 +164,107 @@ const YearlyLogoViewer: React.FC = () => {
           </Button>
         </div>
       )}
+      
+      {/* Fibonacci Color Visualization */}
+      <AnimatePresence>
+        {showFibonacciViz && selectedColor && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex flex-col"
+          >
+            <div className="flex justify-between items-center p-4 text-white">
+              <div>
+                <h3 className="text-lg font-semibold">フィボナッチ数列の色彩表現</h3>
+                <p className="text-sm opacity-80">
+                  {selectedYear}年のフィボナッチ特別カラー: {selectedColor}
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/20"
+                  onClick={handleZoomOut}
+                >
+                  <ZoomOut size={20} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/20"
+                  onClick={handleZoomIn}
+                >
+                  <ZoomIn size={20} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/20"
+                  onClick={handleCloseViz}
+                >
+                  <X size={20} />
+                </Button>
+              </div>
+            </div>
+            
+            <div 
+              ref={vizContainerRef}
+              className="flex-1 overflow-hidden relative"
+            >
+              <div 
+                className="absolute inset-0 transform-gpu transition-transform duration-500"
+                style={{ 
+                  transform: `scale(${zoomLevel})`
+                }}
+              >
+                {generateFibonacciPositions(233, window.innerWidth / 2, window.innerHeight / 2).map((pos, index) => {
+                  // Generate color variations based on Fibonacci sequence and original color
+                  const hslMatch = selectedColor.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+                  
+                  // Adjust lightness based on index
+                  const adjustedColor = calculateSpecialAccentColor(
+                    (selectedYear || 2025) + index
+                  ).hex;
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ 
+                        scale: 1, 
+                        opacity: 1,
+                        transition: { 
+                          delay: index * 0.005,
+                          duration: 0.3
+                        }
+                      }}
+                      className="absolute rounded-full flex items-center justify-center text-xs text-white/80 font-mono overflow-hidden"
+                      style={{
+                        left: pos.x,
+                        top: pos.y,
+                        width: pos.size,
+                        height: pos.size,
+                        backgroundColor: adjustedColor,
+                        zIndex: 1000 - index,
+                      }}
+                    >
+                      {index < 30 && pos.size > 20 ? 
+                        generateFibonacciSequence(30)[index] : null}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            <div className="p-4 text-white text-sm">
+              <p>上の円はフィボナッチ数列に従って配置され、ゴールデンスパイラルを形成しています。</p>
+              <p>特別カラーが年を追うごとにフィボナッチ数列の法則で変化する様子を視覚化しています。</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

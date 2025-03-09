@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Palette } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -7,7 +7,6 @@ import { companyInfo } from '@/lib/data';
 import { calculateColorForYear } from './color-utils/color-calculator';
 import FoundingColorSection from './color-sections/FoundingColorSection';
 import ColorMathSection from './color-sections/ColorMathSection';
-import ColorPaletteSection from './color-sections/ColorPaletteSection';
 
 interface ColorInfo {
   year: number;
@@ -54,12 +53,6 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           <ColorMathSection 
             copyToClipboard={copyToClipboard}
             foundingYearColor={foundingYearColor}
-          />
-          
-          <ColorPaletteSection 
-            foundingYearColor={foundingYearColor}
-            currentYearColor={currentYearColor}
-            copyToClipboard={copyToClipboard}
           />
         </div>
       </section>

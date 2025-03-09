@@ -11,7 +11,6 @@ import Typography from '@/components/brand-guidelines/Typography';
 import PhotosAndIllustrations from '@/components/brand-guidelines/PhotosAndIllustrations';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import BrandAssetRules from '@/components/brand-guidelines/BrandAssetRules';
-import FixedColorValues from '@/components/brand-guidelines/FixedColorValues';
 import FAQContact from '@/components/brand-guidelines/FAQContact';
 import { companyInfo } from '@/lib/data';
 import { calculateColorForYear, generateColorsForYearRange } from '@/components/brand-guidelines/color-utils/color-calculator';
@@ -45,7 +44,6 @@ const BrandGuidelines = () => {
           <PhotosAndIllustrations />
           <VoiceAndTone />
           <BrandAssetRules />
-          <FixedColorValues currentYearColor={currentYearColor} brandColors={brandColors} />
           <FAQContact />
         </div>
       </main>

@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +11,7 @@ import FibonacciVisualization from './fibonacci/FibonacciVisualization';
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
   const foundingYear = 2022; // Keep the actual founding year for reference
-  const startDisplayYear = 2025; // Start displaying from 2025 as the first special year (red)
+  const startDisplayYear = 2025; // Start displaying from 2025 as the first special year (green)
   const { toast } = useToast();
   
   // Show very long-term evolution including well beyond the 231st year
@@ -53,7 +54,7 @@ const YearlyLogoViewer: React.FC = () => {
     setZoomLevel(prev => Math.max(prev - 0.5, 0.5));
   }, []);
   
-  // Generate years array starting with 2025 (red) then 2026 (first Fibonacci sum year/cycle 1)
+  // Generate years array starting with 2025 (green) then 2026 (first Fibonacci sum year/cycle 1)
   const years = [2025, 2026];
   
   // Add in all the other visible years up to the limit
@@ -67,12 +68,12 @@ const YearlyLogoViewer: React.FC = () => {
       <h3 className="text-lg font-semibold mb-3">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
       <p className="text-sm text-gray-600 mb-3">
         ※ブランドカラーは毎年変化します。色をクリックするとコピーできます。<br />
-        ※2025年は特別な赤色、2026年は1周目のフィボナッチ年です。
+        ※2025年は特別な緑色、2026年は1年目のフィボナッチ年です。
       </p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {years.map(year => {
-          // For 2025, use the specified red color
+          // Calculate the color for this year
           const color = calculateColorForYear(year);
           const specialAccent = calculateSpecialAccentColor(year);
           

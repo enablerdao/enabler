@@ -23,7 +23,6 @@ const FoundingColorSection: React.FC<FoundingColorSectionProps> = ({ foundingYea
             <p className="text-base leading-relaxed">
               Enablerの創業カラーは、「可能性の海」と「自由な探求」を象徴する深い青色が選ばれました。
               この色は人々の持つ無限の可能性を表現し、テクノロジーがもたらす明るい未来への期待を込めています。
-              また、創業理念である「一人ひとりの可能性を広げる」という思いを鮮やかなブルーの深みと輝きで表現しています。
             </p>
           </div>
         </div>

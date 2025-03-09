@@ -1,3 +1,4 @@
+
 import { getFibonacciYearIndex, isFibonacciYear } from '../logo-variants/logoUtils';
 
 // Calculate Fibonacci sum for a given year since founding
@@ -114,11 +115,11 @@ export const calculateColorForYear = (year: number) => {
 
 // Calculate the special accent color for each year
 export const calculateSpecialAccentColor = (year: number) => {
-  // Special case for 2025 - use a specific red color
+  // Special case for 2025 - use a specific green color as the first special color
   if (year === 2025) {
     return {
-      hex: '#ea384c',
-      hsl: '354, 82%, 57%',
+      hex: '#4CAF50', // Green color for 2025
+      hsl: '122, 39%, 49%',
       fibNumber: 1
     };
   }

@@ -102,10 +102,10 @@ export const getFibonacciYearIndex = (year: number): number => {
 
 // Generate Fibonacci sequence-based accent color for each year
 export const generateFibonacciAccentColorForYear = (year: number) => {
-  // Special case for 2025 - use a specific red color
+  // Special case for 2025 - use a specific green color
   if (year === 2025) {
     return {
-      specialColor: "#ea384c", // Special red color for 2025
+      specialColor: "#4CAF50", // Special green color for 2025
       fibNumber: 1
     };
   }

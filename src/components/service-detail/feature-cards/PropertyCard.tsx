@@ -20,7 +20,7 @@ export const PropertyCard = ({ feature, serviceColor }: PropertyCardProps) => {
 
   return (
     <div 
-      className="border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+      className="border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 m-1"
     >
       {feature.images && feature.images.length > 0 && (
         <div className="property-images mb-3">
@@ -40,7 +40,7 @@ export const PropertyCard = ({ feature, serviceColor }: PropertyCardProps) => {
           </div>
         </div>
       )}
-      <div className="p-5">
+      <div className="p-6">
         <div className="flex items-center mb-3">
           <div className={`p-2.5 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>
             {getIconForProperty(feature.title)}

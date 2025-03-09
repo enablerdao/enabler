@@ -67,3 +67,15 @@
   white-space: nowrap;
   z-index: 10;
 }
+
+/* Adding global margin adjustment for better spacing */
+.content-spacing {
+  margin: 5px;
+}
+
+/* Global section margin */
+.section-margin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+

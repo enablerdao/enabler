@@ -20,7 +20,7 @@ export const FeatureCard = ({ feature, serviceColor }: FeatureCardProps) => {
 
   return (
     <div 
-      className="border border-gray-100 rounded-lg p-5 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+      className="border border-gray-100 rounded-lg p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 m-1"
     >
       <div className="flex items-center mb-3">
         <div className={`p-2.5 rounded-full mr-3`} style={{ backgroundColor: `${serviceColor}20`, color: serviceColor }}>

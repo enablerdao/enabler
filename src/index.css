@@ -57,6 +57,11 @@
   p {
     @apply text-left;
   }
+  
+  /* Add slight margin to all section elements for better spacing */
+  section {
+    @apply my-1;
+  }
 }
 
 @layer components {
@@ -118,6 +123,15 @@
   .text-center-important {
     @apply text-center !important;
   }
+  
+  /* Global spacing helpers */
+  .content-block {
+    @apply my-1 mx-1;
+  }
+  
+  .card-container {
+    @apply p-1;
+  }
 }
 
 /* Custom scroll behavior */
@@ -145,7 +159,12 @@ html {
 /* Mobile specific adjustments */
 @media (max-width: 640px) {
   .container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Add extra spacing for mobile content */
+  .mobile-content-spacing {
+    @apply px-1 py-1;
   }
 }

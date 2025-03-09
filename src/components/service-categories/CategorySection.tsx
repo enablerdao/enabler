@@ -48,10 +48,10 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
 
   return (
     <MotionBox key={category} delay={300 + index * 100}>
-      <div className="mb-6 md:mb-8">
+      <div className="mb-8 md:mb-10 px-1">
         <div className="flex items-center justify-between mb-4 md:mb-6">
           <div className="flex items-center">
-            <div className="bg-enabler-100 p-2 md:p-3 rounded-full mr-2 md:mr-3">
+            <div className="bg-enabler-100 p-2 md:p-3 rounded-full mr-3 md:mr-4">
               {getCategoryIcon(category)}
             </div>
             <div>
@@ -88,7 +88,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
           )}
         </div>
         
-        <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-8 max-w-3xl">
+        <p className="text-sm md:text-base text-gray-600 mb-5 md:mb-8 max-w-3xl ml-1">
           {categoryInfo[category].description}
         </p>
         
@@ -103,7 +103,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, serv
           
           <div 
             ref={categoryRowRef}
-            className="flex gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4 overflow-x-auto touch-pan-x hide-scrollbar scroll-smooth pt-2 md:pt-6"
+            className="flex gap-4 md:gap-6 lg:gap-8 pb-2 md:pb-4 overflow-x-auto touch-pan-x hide-scrollbar scroll-smooth pt-2 md:pt-6 px-1"
           >
             {services.map((service, index) => (
               <div key={service.id} className="w-full min-w-[260px] md:min-w-[300px] max-w-[350px] md:max-w-[400px] flex-shrink-0">

@@ -21,15 +21,27 @@ const Index = () => {
   return (
     <div className="overflow-hidden">
       <Navbar />
-      <main>
+      <main className="mx-1">
         <Hero />
         <HeroStats />
-        <AboutSection />
-        <ServiceCategories />
-        <Testimonials />
-        <LatestNews />
-        <PartnerLogos />
-        <ContactSection />
+        <div className="my-1">
+          <AboutSection />
+        </div>
+        <div className="my-1">
+          <ServiceCategories />
+        </div>
+        <div className="my-1">
+          <Testimonials />
+        </div>
+        <div className="my-1">
+          <LatestNews />
+        </div>
+        <div className="my-1">
+          <PartnerLogos />
+        </div>
+        <div className="my-1">
+          <ContactSection />
+        </div>
       </main>
       <Footer />
     </div>

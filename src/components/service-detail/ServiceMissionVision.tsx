@@ -20,7 +20,7 @@ export const ServiceMissionVision: React.FC<ServiceMissionVisionProps> = ({
 }) => {
   return (
     <MotionBox delay={250}>
-      <div className="bg-white p-6 rounded-xl shadow-subtle mb-8 overflow-hidden relative">
+      <div className="bg-white p-7 rounded-xl shadow-subtle mb-8 overflow-hidden relative">
         {/* Decorative background elements */}
         <div 
           className="absolute -right-16 -top-16 w-32 h-32 rounded-full opacity-10"
@@ -36,8 +36,8 @@ export const ServiceMissionVision: React.FC<ServiceMissionVisionProps> = ({
           ミッション＆ビジョン
         </h2>
         
-        <div className="space-y-8">
-          <div className="flex flex-col md:flex-row md:items-start gap-4 group hover:bg-gray-50 p-2 rounded-lg transition-all duration-300">
+        <div className="space-y-8 mx-1">
+          <div className="flex flex-col md:flex-row md:items-start gap-4 group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
             <div className="flex-shrink-0">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-md transition-transform group-hover:scale-110" 
@@ -66,7 +66,7 @@ export const ServiceMissionVision: React.FC<ServiceMissionVisionProps> = ({
             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row md:items-start gap-4 group hover:bg-gray-50 p-2 rounded-lg transition-all duration-300">
+          <div className="flex flex-col md:flex-row md:items-start gap-4 group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
             <div className="flex-shrink-0">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-md transition-transform group-hover:scale-110" 
@@ -96,7 +96,7 @@ export const ServiceMissionVision: React.FC<ServiceMissionVisionProps> = ({
           </div>
           
           {brandStory && (
-            <div className="mt-10 p-8 bg-gray-50 rounded-lg relative group hover:shadow-md transition-all">
+            <div className="mt-10 p-8 bg-gray-50 rounded-lg relative group hover:shadow-md transition-all mx-1">
               <div 
                 className="absolute -top-6 left-6 bg-white px-4 py-2 rounded-lg shadow-sm border flex items-center" 
                 style={{ 

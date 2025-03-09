@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import LogoVariations from './LogoVariations';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
 
 const BrandHeader = () => {
   // Get current year for dynamic updating
@@ -63,6 +66,16 @@ const BrandHeader = () => {
             >
               <LogoVariations variant="modern" size="lg" year={currentYear} />
             </motion.div>
+            
+            <div className="mt-8">
+              <Link to="/logo-evolution-viewer">
+                <Button className="flex items-center gap-2" variant="outline">
+                  <span>ロゴ無限スクロールを見る</span>
+                  <ExternalLink className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
             <p className="text-sm text-gray-500 mt-6">
               © {currentYear} Enabler, Inc. All rights reserved.
             </p>

@@ -15,6 +15,7 @@ import Sitemap from './pages/Sitemap';
 import Press from './pages/Press';
 import CompanyInfo from './pages/CompanyInfo';
 import BrandGuidelines from './pages/BrandGuidelines';
+import LogoEvolutionViewer from './pages/LogoEvolutionViewer';
 import { Toaster } from './components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/press" element={<Press />} />
             <Route path="/company-info" element={<CompanyInfo />} />
             <Route path="/brand-guidelines" element={<BrandGuidelines />} />
+            <Route path="/logo-evolution-viewer" element={<LogoEvolutionViewer />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />

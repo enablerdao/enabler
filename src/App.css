@@ -79,3 +79,35 @@
   margin-bottom: 5px;
 }
 
+/* Menu hover animation */
+.nav-link-hover {
+  position: relative;
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #0ea5e9;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Menu icon animation */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.8; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.menu-icon-sparkle {
+  animation: sparkle 2s infinite;
+}

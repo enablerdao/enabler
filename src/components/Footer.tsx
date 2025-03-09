@@ -3,7 +3,7 @@ import React from 'react';
 import { companyInfo } from '@/lib/data';
 import { categoryInfo } from '@/lib/types/service';
 import Logo from './Logo';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, Users, FileText, Target } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Github, FileText, Target, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -87,8 +87,8 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/team" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
-                    <Users size={14} className="mr-1" /> チーム紹介
+                  <Link to="/founder-message" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm flex items-center">
+                    <MessageSquare size={14} className="mr-1" /> 創業者メッセージ
                   </Link>
                 </li>
                 <li>

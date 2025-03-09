@@ -10,6 +10,10 @@ import FounderStory from '@/components/founder-message/FounderStory';
 import ConnectLinks from '@/components/founder-message/ConnectLinks';
 
 const FounderMessage = () => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -29,6 +33,29 @@ const FounderMessage = () => {
             <div className="max-w-4xl mx-auto">
               <div className="mb-16">
                 <FounderIntro />
+                
+                <MotionBox delay={200}>
+                  <div className="bg-white rounded-xl shadow-subtle p-8 my-10 border border-enabler-100">
+                    <div className="space-y-6 text-gray-700">
+                      <p>
+                        「Enabler（イネブラ）」という社名は、英語の「Enabler＝可能性を引き出す存在」から生まれました。
+                      </p>
+                      <p>
+                        誰もがまだ気づいていない、自分の中に眠る可能性。それをテクノロジーの力で優しく照らし、育み、花開かせるお手伝いをしたい——そんな願いを込めています。
+                      </p>
+                      <p>
+                        私たちがカタカナで「イネブラ」と表記する理由。それはシンプルで親しみやすく、かつ洗練された響きを通して、未来へ向かう軽やかさや新しさを感じていただくためです。
+                      </p>
+                      <p>
+                        「イネブラ」の響きの中には、まだ誰も見たことのない可能性へのワクワク感、そして未来への前向きな期待が込められています。
+                      </p>
+                      <p>
+                        私たちEnablerは、人が持つあらゆる可能性を引き出し、一緒に未来をつくるパートナーとして歩んでいきます。
+                      </p>
+                    </div>
+                  </div>
+                </MotionBox>
+                
                 <AboutEnabler />
                 <AboutStayFlow />
                 <FounderStory />

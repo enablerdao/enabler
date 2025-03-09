@@ -5,7 +5,7 @@ import { Info, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
 import { companyInfo } from '@/lib/data';
-import YearlyLogoViewer from './YearlyLogoViewer';
+import InfiniteLogoScroller from './InfiniteLogoScroller';
 
 interface ColorInfo {
   year: number;
@@ -135,10 +135,12 @@ const LogoSection = ({
           </div>
 
           <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">ロゴ年次変遷（2022年〜）</h3>
-          <p className="text-sm md:text-base mb-4">ブランドカラーは毎年変化し、特別な年には特別なアクセントカラーが追加されます。</p>
+          <p className="text-sm md:text-base mb-4">ブランドカラーは毎年変化し、特別な年には特別なアクセントカラーが追加されます。下記の横スクロールで、無限にロゴの変化を見ることができます。</p>
           
-          {/* Add the YearlyLogoViewer component */}
-          <YearlyLogoViewer />
+          {/* Replaced YearlyLogoViewer with InfiniteLogoScroller component */}
+          <div className="mt-6">
+            <InfiniteLogoScroller />
+          </div>
         </div>
       </section>
     </MotionBox>

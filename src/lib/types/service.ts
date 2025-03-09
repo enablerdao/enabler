@@ -62,7 +62,7 @@ export interface ApiInfo {
   documentation?: string;
 }
 
-// Use PricingTier directly instead of extending with an empty interface
+// Use PricingTier directly instead of creating an empty interface
 export type PricingPlan = PricingTier;
 
 export interface CompanyInfo {

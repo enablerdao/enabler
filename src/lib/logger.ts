@@ -1,7 +1,7 @@
 
 type LogType = 'pageView' | 'serviceView' | 'contactSubmit' | 'externalLink' | 'serviceCardClick' | 'jobApplication';
 
-interface LogData {
+export interface LogData {
   type: LogType;
   path?: string;
   serviceId?: number;
@@ -9,6 +9,7 @@ interface LogData {
   position?: string;
   additionalData?: Record<string, unknown>;
   timestamp: number;
+  [key: string]: unknown; // Add index signature to make it compatible with LogItem
 }
 
 // Store logs in localStorage for demo purposes

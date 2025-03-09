@@ -1,19 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { getAllLogs, clearLogs } from '@/lib/logger';
+import { getAllLogs, clearLogs, LogData } from '@/lib/logger';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Trash2, RefreshCw, DownloadCloud } from 'lucide-react';
 
-interface LogItem {
-  type: string;
-  timestamp: number;
-  serviceId?: number;
-  serviceName?: string;
-  additionalData?: Record<string, unknown>;
-  [key: string]: unknown;
-}
+type LogItem = LogData;
 
 const AdminLogs = () => {
   const [logs, setLogs] = useState<LogItem[]>([]);

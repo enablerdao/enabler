@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { calculateColorForYear } from '../../color-utils/color-calculator';
+import { calculateColorForYear } from '../../../color-utils/color-calculator';
 
 interface ColorEvolutionVisualizationProps {
   fibonacciSums: number[];

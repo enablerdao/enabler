@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { calculateSpecialAccentColor } from '../../color-utils/color-calculator';
+import { calculateSpecialAccentColor } from '../../../color-utils/color-calculator';
 import { Download, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';

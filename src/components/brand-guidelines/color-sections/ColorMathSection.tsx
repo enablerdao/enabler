@@ -1,14 +1,14 @@
 
 import React from 'react';
-import ColorEvolutionIntro from './math-components/ColorEvolutionIntro';
-import ColorFormula from './math-components/ColorFormula';
-import ColorEvolutionVisualization from './math-components/ColorEvolutionVisualization';
-import SpecialAccentColorIntro from './math-components/SpecialAccentColorIntro';
-import SpecialColorFormula from './math-components/SpecialColorFormula';
-import SpecialColorExamplesTable from './math-components/SpecialColorExamplesTable';
-import SpecialAccentVisualization from './math-components/SpecialAccentVisualization';
-import ColorSummary from './math-components/ColorSummary';
-import { calculateFibonacciSums } from './math-components/FibonacciCalculator';
+import { calculateFibonacciSums } from './math-components/utils/FibonacciCalculator';
+import ColorEvolutionIntro from './math-components/color-evolution/ColorEvolutionIntro';
+import ColorFormula from './math-components/color-evolution/ColorFormula';
+import ColorEvolutionVisualization from './math-components/color-evolution/ColorEvolutionVisualization';
+import SpecialAccentColorIntro from './math-components/special-colors/SpecialAccentColorIntro';
+import SpecialColorFormula from './math-components/special-colors/SpecialColorFormula';
+import SpecialColorExamplesTable from './math-components/special-colors/SpecialColorExamplesTable';
+import SpecialAccentVisualization from './math-components/special-colors/SpecialAccentVisualization';
+import ColorSummary from './math-components/summary/ColorSummary';
 
 interface ColorMathSectionProps {
   copyToClipboard: (text: string, label: string) => void;

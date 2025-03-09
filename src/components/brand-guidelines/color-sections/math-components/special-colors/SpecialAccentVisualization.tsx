@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { calculateSpecialAccentColor } from '../../color-utils/color-calculator';
+import { calculateSpecialAccentColor } from '../../../color-utils/color-calculator';
 
 interface SpecialAccentVisualizationProps {
   fibonacciSums: number[];

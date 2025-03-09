@@ -1,3 +1,4 @@
+
 import { Service } from '../types/service';
 
 export const aRankServices: Service[] = [
@@ -132,6 +133,8 @@ export const aRankServices: Service[] = [
     domain: 'getaicademy.com',
     goal: '教育プログラム10件完成、無料体験者500人',
     description: '学習者一人ひとりの理解度や学習スタイルに合わせた教育コンテンツを提供。AIが弱点を分析し効率的な学習をサポート。',
+    mission: '一人ひとりの学び方に最適化した教育を届け、潜在能力を引き出す',
+    vision: '誰もが自分らしい方法で学べる環境を整え、生涯学び続けられる社会を実現する',
     features: [
       { 
         title: '教材一覧',

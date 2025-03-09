@@ -1,3 +1,4 @@
+
 import { Service } from '../types/service';
 
 export const bRankServices: Service[] = [
@@ -173,6 +174,8 @@ export const bRankServices: Service[] = [
     domain: 'myseniorknowledge.com',
     goal: 'コンテンツ投稿数100件、登録ユーザー数200人達成',
     description: 'シニア世代の経験や知識を次世代に伝えるプラットフォーム。オンラインで相談や知恵を共有できるコミュニティ。',
+    mission: 'シニア世代の知恵を社会に還元し、世代を超えた価値を生み出す',
+    vision: '年齢を超えて誰もが尊重され、経験を活かし合える持続可能な社会を実現する',
     features: [
       { 
         title: 'コンテンツ一覧',
@@ -202,6 +205,8 @@ export const bRankServices: Service[] = [
     domain: 'emotionseed.com',
     goal: 'コミュニティメンバー500人突破、投稿数200件',
     description: '日々の感情や気持ちを共有し、共感しあえるオンラインコミュニティ。メンタルヘルスケアにも貢献。',
+    mission: '感情を共有し、共感を通じて人々の心の健康を支える場を提供する',
+    vision: '誰も孤独を感じることなく、感情を大切にできる社会を創る',
     features: [
       { 
         title: '投稿一覧',

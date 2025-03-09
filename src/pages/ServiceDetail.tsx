@@ -11,17 +11,17 @@ import { ServiceSidebar } from '@/components/service-detail/ServiceSidebar';
 import { ServiceLoadingIndicator } from '@/components/service-detail/ServiceLoadingIndicator';
 
 const ServiceDetail = () => {
-  const { name } = useParams();
+  const { serviceId } = useParams();
   const navigate = useNavigate();
   const [service, setService] = useState<Service | null>(null);
   
   useEffect(() => {
-    if (!name) {
+    if (!serviceId) {
       navigate('/#services');
       return;
     }
     
-    const foundService = services.find(s => s.nameEn === name);
+    const foundService = services.find(s => s.id.toString() === serviceId);
     
     if (foundService) {
       setService(foundService);
@@ -38,7 +38,7 @@ const ServiceDetail = () => {
     } else {
       navigate('/#services');
     }
-  }, [name, navigate]);
+  }, [serviceId, navigate]);
   
   if (!service) {
     return <ServiceLoadingIndicator />;

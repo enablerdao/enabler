@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ServiceStyle } from './types';
 
@@ -27,10 +26,15 @@ import TravelMateFibonacciLogo from './fibonacci/TravelMateFibonacciLogo';
 interface LogoRendererProps {
   serviceName: string;
   style: ServiceStyle;
-  variant: 'default' | 'modern' | 'fibonacci';
+  variant: 'default' | 'modern' | 'fibonacci' | 'svg';
 }
 
 const LogoRenderer: React.FC<LogoRendererProps> = ({ serviceName, style, variant }) => {
+  // For svg variant, use the default logo with svg style
+  if (variant === 'svg') {
+    return <DefaultLogo style={style} variant="default" />;
+  }
+  
   // For fibonacci variant
   if (variant === 'fibonacci') {
     switch(serviceName) {

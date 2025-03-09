@@ -1,18 +1,17 @@
-
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 interface LogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'minimal' | 'geometric' | 'gradient' | 'neon' | 'minimalist' | 'doraemon' | 'fibonacci';
+  variant?: 'default' | 'minimal' | 'geometric' | 'gradient' | 'neon' | 'minimalist' | 'doraemon' | 'fibonacci' | 'svg';
   animated?: boolean;
 }
 
 const Logo: React.FC<LogoProps> = ({
   className,
   size = 'md',
-  variant = 'default',
+  variant = 'svg',
   animated = true,
 }) => {
   const logoRef = useRef<SVGSVGElement>(null);
@@ -22,13 +21,13 @@ const Logo: React.FC<LogoProps> = ({
   const pathRef3 = useRef<SVGPathElement>(null);
   
   const sizeClasses = {
-    sm: 'w-6 h-6',
-    md: 'w-8 h-8',
-    lg: 'w-10 h-10',
+    sm: 'w-24 h-9',
+    md: 'w-32 h-12',
+    lg: 'w-40 h-14',
   };
   
   useEffect(() => {
-    if (!animated) return;
+    if (!animated || variant === 'svg') return;
     
     let animationFrame: number;
     let startTime = Date.now();
@@ -66,7 +65,34 @@ const Logo: React.FC<LogoProps> = ({
     return () => {
       cancelAnimationFrame(animationFrame);
     };
-  }, [animated]);
+  }, [animated, variant]);
+
+  // Default to new SVG logo
+  if (variant === 'svg') {
+    return (
+      <svg 
+        viewBox="0 0 200 70" 
+        className={cn(sizeClasses[size], className)}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#2BBCFF" />
+            <stop offset="100%" stopColor="#1E90FF" />
+          </linearGradient>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#2BBCFF" />
+            <stop offset="100%" stopColor="#1E90FF" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
+        <rect x="15" y="25" width="60" height="3" rx="1.5" fill="url(#lineGradient)"/>
+        <rect x="15" y="33" width="40" height="3" rx="1.5" fill="url(#lineGradient)"/>
+        <rect x="15" y="41" width="60" height="3" rx="1.5" fill="url(#lineGradient)"/>
+        <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="url(#textGradient)">ENABLER</text>
+      </svg>
+    );
+  }
 
   // Logo variants
   const renderLogo = () => {
@@ -420,25 +446,28 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={cn('flex items-center space-x-2', className)}>
-      {renderLogo()}
-      
-      {variant !== 'minimal' && (
-        <span className={cn(
-          "text-xl font-display font-bold tracking-tight uppercase letter-spacing-wide",
-          variant === 'geometric' || variant === 'gradient' 
-            ? "bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600" 
-            : variant === 'neon'
-              ? "bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-emerald-500"
-              : variant === 'minimalist'
-                ? "bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600"
-                : variant === 'doraemon'
-                  ? "bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-500"
-                  : variant === 'fibonacci'
-                    ? "bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400"
-                    : "bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400"
-        )}>
-          ENABLER
-        </span>
+      {variant !== 'svg' ? renderLogo() : (
+        <svg 
+          viewBox="0 0 200 70" 
+          className={cn(sizeClasses[size])}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2BBCFF" />
+              <stop offset="100%" stopColor="#1E90FF" />
+            </linearGradient>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2BBCFF" />
+              <stop offset="100%" stopColor="#1E90FF" />
+            </linearGradient>
+          </defs>
+          <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
+          <rect x="15" y="25" width="60" height="3" rx="1.5" fill="url(#lineGradient)"/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill="url(#lineGradient)"/>
+          <rect x="15" y="41" width="60" height="3" rx="1.5" fill="url(#lineGradient)"/>
+          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="url(#textGradient)">ENABLER</text>
+        </svg>
       )}
     </div>
   );

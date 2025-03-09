@@ -8,7 +8,7 @@ const ColorUsageGuidelines: React.FC = () => {
         <h5 className="font-medium mb-2">基本カラーとアクセントカラーの使い方</h5>
         <ul className="list-disc pl-5 space-y-2">
           <li><span className="font-medium">基本カラー</span>：メインのブランドカラーとして、ロゴ、アイコン、見出しなどに使用</li>
-          <li><span className="font-medium">アクセントカラー</span>：特別な周年の広告、キャンペーン、記念グッズなどに使用</li>
+          <li><span className="font-medium">特別カラー</span>：特別な周年の広告、キャンペーン、記念グッズなどに使用</li>
           <li>両方のカラーを組み合わせることで、ブランドの歴史と成長を表現できます</li>
         </ul>
       </div>

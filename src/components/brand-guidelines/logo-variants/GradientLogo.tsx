@@ -10,6 +10,9 @@ const GradientLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getF
   const fibonacciAccentInfo = generateFibonacciAccentColorForYear(year);
   // Get golden ratio segments for a default width of 60
   const goldenSegments = calculateGoldenRatio(60);
+  
+  // Calculate the middle line width based on golden ratio
+  const middleLineWidth = goldenSegments.segment1;
 
   return (
     <>
@@ -34,7 +37,7 @@ const GradientLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getF
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#yearGradient-gradient-${year})`} filter={`url(#glow-gradient-${year})`}/>
-      <rect x="15" y="33" width="60" height="3" rx="1.5" fill={`url(#middleLineGradient-gradient-${year})`} filter={`url(#glow-gradient-${year})`}/>
+      <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill={`url(#middleLineGradient-gradient-${year})`} filter={`url(#glow-gradient-${year})`}/>
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-gradient-${year})`} filter={`url(#glow-gradient-${year})`}/>
       <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#yearGradient-gradient-${year})`} filter={`url(#glow-gradient-${year})`}>ENABLER</text>
     </>

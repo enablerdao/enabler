@@ -10,6 +10,10 @@ const ConsistentLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
   const fibonacciAccentInfo = generateFibonacciAccentColorForYear(year);
   // Get golden ratio segments for a default width of 60
   const goldenSegments = calculateGoldenRatio(60);
+  
+  // Calculate the middle line width based on golden ratio
+  // For this variant we use a different approach with a central element
+  const middleLineWidth = goldenSegments.segment1 * 0.667; // Making it slightly shorter for this variant
 
   return (
     <>
@@ -32,7 +36,7 @@ const ConsistentLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
       <rect x="15" y="20" width="170" height="30" rx="4" stroke={`url(#consistentGradient-${year})`} fill="none" strokeWidth="1.5"/>
-      <rect x="25" y="30" width="40" height="2" rx="1" fill={`url(#middleLineGradient-consistent-${year})`} />
+      <rect x="25" y="30" width={middleLineWidth} height="2" rx="1" fill={`url(#middleLineGradient-consistent-${year})`} />
       <text x="75" y="40" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="bold" fill={currentYearColor}>ENABLER</text>
       <circle cx="160" cy="35" r="8" fill={currentYearColor} fillOpacity="0.2" stroke={currentYearColor} strokeWidth="1"/>
     </>

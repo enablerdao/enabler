@@ -8,6 +8,11 @@ interface LogoProps {
 }
 
 const EnablissLogo: React.FC<LogoProps> = ({ style, variant }) => {
+  // Use golden ratio to determine the middle line length (approximately 0.618 of the total)
+  const goldenRatio = 1.618;
+  const totalWidth = 60;
+  const middleLineWidth = totalWidth / goldenRatio; // Approximately 37px
+
   return (
     <svg viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -22,7 +27,7 @@ const EnablissLogo: React.FC<LogoProps> = ({ style, variant }) => {
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill="url(#lineGradientEnabliss)"/>
-      <rect x="15" y="33" width="40" height="3" rx="1.5" fill="url(#lineGradientEnabliss)"/>
+      <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill="url(#lineGradientEnabliss)"/>
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill="url(#lineGradientEnabliss)"/>
       <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="url(#textGradientEnabliss)">ENABLISS</text>
     </svg>

@@ -5,7 +5,7 @@ import { ColorProgressionProps } from './types';
 
 const ColorProgression: React.FC<ColorProgressionProps> = ({ brandColors, currentYear, onColorCopy }) => {
   return (
-    <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+    <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6 w-full">
       <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">
         年度別ブランドカラー (2022-2030)
       </h3>

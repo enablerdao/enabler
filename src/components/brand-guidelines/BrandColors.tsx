@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Palette, Copy, CheckCircle, ChevronDown } from 'lucide-react';
@@ -107,12 +108,12 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   
   return (
     <MotionBox delay={400}>
-      <section className="mb-8 md:mb-14 px-4 md:px-10">
+      <section className="mb-8 md:mb-14 px-0 md:px-4">
         <div className="flex items-center mb-4 md:mb-6">
           <Palette className="text-enabler-600 mr-3" size={24} />
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">3. ブランドカラー</h2>
         </div>
-        <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle">
+        <div className="bg-white p-4 md:p-8 rounded-xl shadow-subtle w-full">
           <p className="text-base md:text-lg mb-5 md:mb-6 leading-relaxed">
             Enablerのブランドカラーは創業年（2022年）を起点に年数経過で変化します。
             この色の進化は「絶え間ない成長と可能性の追求」を表しています。
@@ -145,14 +146,14 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           </div>
           
           {/* 年度別ロゴプレビュー */}
-          <div className="mb-6 md:mb-10">
+          <div className="mb-6 md:mb-10 w-full">
             <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">年度別ロゴと色の進化</h3>
             <p className="text-base mb-4 leading-relaxed">
               創業時から将来までの色の変化と、それに伴うロゴの見え方の変化を確認できます。
               これにより、一貫したブランドイメージがどのように進化するかを視覚的に理解できます。
             </p>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6">
               {colorsToDisplay.map((color, index) => (
                 <div 
                   key={index} 

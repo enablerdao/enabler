@@ -86,19 +86,19 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
 
   return (
     <MotionBox delay={900}>
-      <section className="mb-6 md:mb-12">
+      <section className="mb-6 md:mb-12 px-0 md:px-4">
         <div className="flex items-center mb-3 md:mb-5">
           <Calculator className="text-enabler-600 mr-2 md:mr-3" size={24} />
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">8. 年度カラーとコードリファレンス</h2>
         </div>
-        <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
+        <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle w-full">
           <p className="text-base md:text-lg mb-3 md:mb-5">
             Enablerのブランドカラーは会社のブランドとして一貫して使用され、年度ごとに更新されます。
             以下は現在の年度カラーとその値です。
           </p>
           
           {/* Current year color highlight */}
-          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6 w-full">
             <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">
               {currentYearColor.year}年ブランドカラー
             </h3>

@@ -13,7 +13,7 @@ const YearSelector: React.FC<YearSelectorProps> = ({
   onColorCopy
 }) => {
   return (
-    <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+    <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6 w-full">
       <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 flex items-center justify-between">
         <span>追加年度カラー</span>
         <div className="flex items-center space-x-2">

@@ -111,63 +111,26 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           </p>
           
           <div className="mb-6 md:mb-10">
-            <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">ブランドカラーの進化</h3>
+            <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">創業カラーの由来</h3>
             
-            {/* 2022年の創業カラーと現在のカラーを並べて表示 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-              {/* 創業カラー (2022) */}
-              <div className="bg-gray-50 p-5 rounded-lg">
-                <h4 className="text-base font-semibold mb-3 text-center">創業カラー (2022年)</h4>
+            <div className="bg-gray-50 p-5 rounded-lg">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
                 <div 
-                  className="h-32 md:h-40 w-full rounded-lg mb-4 cursor-pointer relative group"
+                  className="h-32 w-32 md:h-40 md:w-40 rounded-lg flex-shrink-0"
                   style={{ backgroundColor: foundingYearColor.hex }}
-                  onClick={() => copyToClipboard(foundingYearColor.hex, `創業カラー (${foundingYearColor.year}年)`)}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    {copiedColorHex === foundingYearColor.hex ? (
-                      <CheckCircle className="text-white w-10 h-10" />
-                    ) : (
-                      <Copy className="text-white w-10 h-10" />
-                    )}
-                  </div>
                 </div>
-                <div className="flex justify-between items-center bg-white p-4 rounded-md">
-                  <div>
-                    <p className="text-base font-medium">{foundingYearColor.name}</p>
-                    <p className="text-sm text-gray-600">創業当初の基準色</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-base font-mono font-medium">{foundingYearColor.hex}</p>
-                    <p className="text-sm text-gray-600 font-mono">RGB({foundingYearColor.rgb})</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* 現在のカラー */}
-              <div className="bg-gray-50 p-5 rounded-lg">
-                <h4 className="text-base font-semibold mb-3 text-center">現在のブランドカラー ({currentYearColor.year}年)</h4>
-                <div 
-                  className="h-32 md:h-40 w-full rounded-lg mb-4 cursor-pointer relative group"
-                  style={{ backgroundColor: currentYearColor.hex }}
-                  onClick={() => copyToClipboard(currentYearColor.hex, `${currentYearColor.year}年カラー`)}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    {copiedColorHex === currentYearColor.hex ? (
-                      <CheckCircle className="text-white w-10 h-10" />
-                    ) : (
-                      <Copy className="text-white w-10 h-10" />
-                    )}
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-white p-4 rounded-md">
-                  <div>
-                    <p className="text-base font-medium">{currentYearColor.name}</p>
-                    <p className="text-sm text-gray-600">現行の公式カラー</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-base font-mono font-medium">{currentYearColor.hex}</p>
-                    <p className="text-sm text-gray-600 font-mono">RGB({currentYearColor.rgb})</p>
-                  </div>
+                <div className="flex-1">
+                  <h4 className="text-lg font-semibold mb-3">ディープブルー (#22B6FF)</h4>
+                  <p className="text-base mb-4 leading-relaxed">
+                    Enablerの創業カラーは、「可能性の海」と「自由な探求」を象徴する深い青色が選ばれました。
+                    この色は人々の持つ無限の可能性を表現し、テクノロジーがもたらす明るい未来への期待を込めています。
+                    また、創業理念である「一人ひとりの可能性を広げる」という思いを鮮やかなブルーの深みと輝きで表現しています。
+                  </p>
+                  <p className="text-base leading-relaxed">
+                    この創業カラーは、Enablerのブランドアイデンティティの基盤として重要な意味を持ち、
+                    年を追うごとに変化する色彩の起点となります。この変化は会社の成長と共に、より多くの可能性へと広がっていくことを表しています。
+                  </p>
                 </div>
               </div>
             </div>

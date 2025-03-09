@@ -11,6 +11,15 @@ const ServiceCategories = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<ServiceCategory | 'ALL'>('ALL');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const categoryRowRefs = useRef<Record<ServiceCategory, React.RefObject<HTMLDivElement>>>({} as any);
+  
+  // Initialize refs for each category
+  const allCategories = Object.keys(categoryInfo) as ServiceCategory[];
+  allCategories.forEach(category => {
+    if (!categoryRowRefs.current[category]) {
+      categoryRowRefs.current[category] = React.createRef<HTMLDivElement>();
+    }
+  });
   
   const getCategoryIcon = (category: ServiceCategory) => {
     switch(category) {
@@ -44,8 +53,18 @@ const ServiceCategories = () => {
     return matchesQuery && (activeCategory === 'ALL' || service.category === activeCategory);
   });
   
-  const allCategories = Object.keys(categoryInfo) as ServiceCategory[];
-  
+  const scrollCategoryLeft = (category: ServiceCategory) => {
+    if (categoryRowRefs.current[category].current) {
+      categoryRowRefs.current[category].current?.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollCategoryRight = (category: ServiceCategory) => {
+    if (categoryRowRefs.current[category].current) {
+      categoryRowRefs.current[category].current?.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
@@ -56,6 +75,12 @@ const ServiceCategories = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
     }
+  };
+
+  // Check if a category has enough items to scroll
+  const hasScrollableContent = (category: ServiceCategory) => {
+    const categoryServices = getServicesByCategory(category);
+    return categoryServices.length > (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
   };
 
   return (
@@ -143,6 +168,7 @@ const ServiceCategories = () => {
           </div>
         </MotionBox>
         
+        {/* Display categories in rows when no search or "ALL" category is active */}
         {searchQuery === '' && activeCategory === 'ALL' ? (
           <div className="space-y-16">
             {allCategories.map((category, idx) => {
@@ -152,31 +178,60 @@ const ServiceCategories = () => {
               return (
                 <MotionBox key={category} delay={300 + idx * 100}>
                   <div className="mb-8">
-                    <div className="flex items-center justify-center mb-6">
-                      <div className="bg-enabler-100 p-3 rounded-full mr-3">
-                        {getCategoryIcon(category)}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center">
+                        <div className="bg-enabler-100 p-3 rounded-full mr-3">
+                          {getCategoryIcon(category)}
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-800">
+                          {categoryInfo[category].name}
+                        </h3>
+                        <span className="ml-3 text-gray-500">
+                          {categoryInfo[category].name}
+                        </span>
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-800">
-                        {categoryInfo[category].name}
-                      </h3>
-                      <span className="ml-3 text-gray-500">
-                        {categoryInfo[category].name}
-                      </span>
+                      
+                      {hasScrollableContent(category) && (
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={() => scrollCategoryLeft(category)}
+                            className="bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400"
+                            aria-label={`Scroll ${category} left`}
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <button 
+                            onClick={() => scrollCategoryRight(category)}
+                            className="bg-white/80 rounded-full p-1 shadow-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-enabler-400"
+                            aria-label={`Scroll ${category} right`}
+                          >
+                            <ChevronRight size={20} />
+                          </button>
+                        </div>
+                      )}
                     </div>
+                    
                     <p className="text-center text-gray-600 mb-8">
                       {categoryInfo[category].description}
                     </p>
                     
                     <div className="relative">
-                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
-                        <div className="bg-white/90 rounded-full p-1 shadow-sm animate-pulse">
-                          <ChevronRight className="text-enabler-500" size={18} />
+                      {hasScrollableContent(category) && (
+                        <div className="absolute right-0 top-0 bottom-0 z-10 bg-gradient-to-l from-white via-white/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
+                          <div className="bg-white/90 rounded-full p-1 shadow-sm animate-pulse">
+                            <ChevronRight className="text-enabler-500" size={18} />
+                          </div>
                         </div>
-                      </div>
+                      )}
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar">
+                      <div 
+                        ref={categoryRowRefs.current[category]}
+                        className="flex gap-6 lg:gap-8 pb-4 overflow-x-auto hide-scrollbar scroll-smooth"
+                      >
                         {categoryServices.map((service, index) => (
-                          <ServiceCard key={service.id} service={service} index={index} />
+                          <div key={service.id} className="w-full min-w-[300px] max-w-[400px] flex-shrink-0">
+                            <ServiceCard service={service} index={index} />
+                          </div>
                         ))}
                       </div>
                     </div>

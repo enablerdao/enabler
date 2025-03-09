@@ -1,3 +1,4 @@
+
 export type ServiceRank = 'S' | 'A' | 'B' | 'C';
 
 export type ServiceCategory = 

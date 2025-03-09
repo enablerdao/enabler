@@ -9,7 +9,7 @@ export interface LogData {
   position?: string;
   additionalData?: Record<string, unknown>;
   timestamp: number;
-  [key: string]: unknown; // Change any to unknown
+  [key: string]: unknown; // Changed any to unknown
 }
 
 // Store logs in localStorage for demo purposes

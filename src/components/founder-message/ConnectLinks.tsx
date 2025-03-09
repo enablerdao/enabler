@@ -1,9 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Mail, Users, Heart, Lightbulb } from 'lucide-react';
-import { useState } from 'react';
 import { toast } from 'sonner';
 import { logActivity } from '@/lib/logger';
 import { supabase } from '@/integrations/supabase/client';
@@ -100,144 +99,161 @@ const ConnectLinks = () => {
         </div>
         
         <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100">
+          {/* 整理された創業者のメッセージ */}
           <div className="mb-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
             <h3 className="text-xl font-semibold mb-4 text-enabler-800">創業者のメッセージ</h3>
             <div className="space-y-4 text-gray-700">
               <p>
-                これまで私はソフトウェアエンジニアとして様々なプロダクトの開発やマネジメントに携わってきましたが、自分の興味や好奇心はソフトウェアだけにとどまりませんでした。
+                ソフトウェアエンジニアとしての経験と建築への関心を持ち、常に新しいことに挑戦してきました。理論より実践を重視し、自らの手で作り上げることで学びを深めてきました。
               </p>
               <p>
-                建築にも強い関心を持ち、通信制大学で学び始めました。しかし、実際に座学で学ぶよりも、自らの手で何かを作り上げることの方が遥かに早く学べると気づき、実際にプロジェクトを立ち上げて取り組みました。
+                民泊運営を始めようとした際、多くの課題に直面し「もっと効率的な解決方法があるはずだ」という思いから、新サービス「StayFlow」の開発が始まりました。
               </p>
               <p>
-                その後、自分自身が民泊運営を始めようとした際に、多くの課題に直面しました。この時、「もっと便利で効率的な解決方法があるはずだ」という強い思いが芽生えました。そして、この思いが新しいサービス「StayFlow」の開発へと繋がりました。
+                特に生成AIの登場は革命的でした。今まで何十時間もかけていた作業が、わずかな時間で実現できるようになり、テクノロジーの可能性を再認識しました。
               </p>
               <p>
-                特に、生成AIの登場は衝撃的でした。自分が今まで何十時間もかけて行ってきた作業が、わずか100分の1、いや、10,000分の1と言っても過言ではないスピードで実現できるようになったのです。
-              </p>
-              <p>
-                これをきっかけに、誰もが「あったらいいな」「欲しいな」と感じるものを気軽に実現できる会社を作りたいと考えています。
+                この経験から、皆さんの「あったらいいな」というアイデアを実現する会社を作りたいと考えています。小さなアイデアからでも、革新的なサービスは生まれると信じています。
               </p>
             </div>
           </div>
           
-          <p className="mb-6 text-center">まずは創業者の活動をフォローしてください：</p>
-          
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
-            <a href="https://x.com/YukiHamada" target="_blank" rel="noopener noreferrer" 
-              className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
-              <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
-              <span>X.com: YukiHamada</span>
-            </a>
-            <a href="https://github.com/YukiHamada" target="_blank" rel="noopener noreferrer" 
-              className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
-              <Github size={18} className="text-gray-600 group-hover:text-enabler-600" />
-              <span>GitHub: YukiHamada</span>
-            </a>
-            <a href="https://yukihamadajp" target="_blank" rel="noopener noreferrer" 
-              className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
-              <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
-              <span>yukihamadajp</span>
-            </a>
-          </div>
-          
-          <p className="text-center mb-6">また、最新情報や事前登録は下記からどうぞ。</p>
-          
-          <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            <Button variant="default" className="bg-enabler-600 hover:bg-enabler-700" asChild>
-              <a href="#" className="flex items-center justify-center gap-2">
-                <ExternalLink size={18} />
-                <span>StayFlow事前登録</span>
-              </a>
-            </Button>
-            
-            <Button variant="outline" className="border-enabler-200" asChild>
-              <a href="#" className="flex items-center justify-center gap-2">
-                <Users size={18} className="text-enabler-600" />
-                <span>採用情報を見る</span>
-              </a>
-            </Button>
-            
-            <Button variant="outline" className="border-enabler-200" asChild>
-              <a href="#" className="flex items-center justify-center gap-2">
-                <Github size={18} className="text-enabler-600" />
-                <span>GitHubでプロジェクトを見る</span>
-              </a>
-            </Button>
-          </div>
-
-          {/* アイデア投稿フォーム */}
-          <div className="mt-10 mb-10 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold mb-2 text-enabler-800 flex items-center">
-                <Lightbulb size={20} className="text-enabler-600 mr-2" />
-                あなたのアイデアを共有してください
-              </h3>
-              <p className="text-gray-700 mb-2">
-                皆さんが「こんなのがあったらいいな」と感じていることを気軽に投稿してください。どんな些細なアイデアでも構いません。匿名でも投稿可能ですが、メールアドレスをご記入いただき、あなたのアイデアが採用された場合には、「共同ファウンダー」として迎え入れさせていただきます。
-              </p>
+          {/* 社会貢献と協力のメッセージ */}
+          <div className="mb-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
+            <div className="flex items-center justify-center gap-2 text-enabler-700 mb-4">
+              <Heart size={20} className="text-enabler-600" />
+              <span className="font-medium">共に創る未来</span>
             </div>
-            
-            <form onSubmit={handleIdeaSubmission} className="space-y-4">
-              <textarea
-                value={idea}
-                onChange={(e) => setIdea(e.target.value)}
-                placeholder="あなたのアイデアを教えてください"
-                required
-                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent h-32"
-              />
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  value={ideaEmail}
-                  onChange={(e) => setIdeaEmail(e.target.value)}
-                  placeholder="メールアドレス（任意）"
-                  className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent"
-                />
-                <Button 
-                  type="submit" 
-                  disabled={isSubmittingIdea || !idea.trim()}
-                  className="bg-enabler-600 hover:bg-enabler-700"
-                >
-                  {isSubmittingIdea ? '送信中...' : 'アイデアを送信'}
-                </Button>
-              </div>
-              <p className="text-sm text-gray-500">
-                ※メールアドレスを入力しなくても匿名で投稿できます
-              </p>
-            </form>
+            <p className="text-gray-700">
+              システム開発やマーケティングについては私自身が責任を持って取り組みます。皆さんには、サービスの使いやすさや改善点についてのフィードバックをいただければ幸いです。一緒に最高のサービスを作っていきましょう！
+            </p>
           </div>
-
-          {/* Newsletter Signup Form */}
-          <div className="mt-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
-            <p className="text-center text-enabler-800 font-medium mb-4">ニュースレターに登録して最新情報をお届けします</p>
+          
+          {/* フォローリンク */}
+          <div className="mb-8">
+            <p className="mb-4 text-center font-medium text-gray-700">創業者の活動をフォローする：</p>
             
-            <form onSubmit={handleNewsletterSignup} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="メールアドレスを入力"
-                required
-                className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent"
-              />
-              <Button 
-                type="submit" 
-                disabled={isSubmittingNewsletter}
-                className="bg-enabler-600 hover:bg-enabler-700"
-              >
-                {isSubmittingNewsletter ? '登録中...' : '登録する'}
-                <Mail size={16} />
+            <div className="grid sm:grid-cols-3 gap-4">
+              <a href="https://x.com/YukiHamada" target="_blank" rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
+                <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
+                <span>X.com: YukiHamada</span>
+              </a>
+              <a href="https://github.com/YukiHamada" target="_blank" rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
+                <Github size={18} className="text-gray-600 group-hover:text-enabler-600" />
+                <span>GitHub: YukiHamada</span>
+              </a>
+              <a href="https://yukihamadajp" target="_blank" rel="noopener noreferrer" 
+                className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
+                <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
+                <span>yukihamadajp</span>
+              </a>
+            </div>
+          </div>
+          
+          {/* サービスリンク */}
+          <div className="mb-8">
+            <p className="text-center mb-4 font-medium text-gray-700">サービスの最新情報と機会：</p>
+            
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Button variant="default" className="bg-enabler-600 hover:bg-enabler-700" asChild>
+                <a href="#" className="flex items-center justify-center gap-2">
+                  <ExternalLink size={18} />
+                  <span>StayFlow事前登録</span>
+                </a>
               </Button>
-            </form>
+              
+              <Button variant="outline" className="border-enabler-200" asChild>
+                <a href="#" className="flex items-center justify-center gap-2">
+                  <Users size={18} className="text-enabler-600" />
+                  <span>採用情報を見る</span>
+                </a>
+              </Button>
+              
+              <Button variant="outline" className="border-enabler-200 sm:col-span-2" asChild>
+                <a href="#" className="flex items-center justify-center gap-2">
+                  <Github size={18} className="text-enabler-600" />
+                  <span>GitHubでプロジェクトを見る</span>
+                </a>
+              </Button>
+            </div>
           </div>
-        </div>
-        
-        <div className="mt-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100 text-center">
-          <p className="flex items-center justify-center gap-2 text-enabler-700">
-            <Heart size={20} className="text-enabler-600" />
-            <span>システム開発やマーケティングについては私自身が責任を持って取り組みますので、皆さんにはぜひサービスの使いやすさや改善点についてフィードバックをいただければ嬉しいです。一緒に最高のサービスを作っていきましょう！</span>
-          </p>
+
+          {/* アイデア投稿と購読を一つのセクションにまとめる */}
+          <div className="mt-10 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* アイデア投稿フォーム */}
+              <div>
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold mb-2 text-enabler-800 flex items-center">
+                    <Lightbulb size={20} className="text-enabler-600 mr-2" />
+                    あなたのアイデアを共有
+                  </h3>
+                  <p className="text-gray-700 text-sm">
+                    「こんなのがあったらいいな」と感じるアイデアをお聞かせください。メールアドレスを記入いただければ、採用時に共同ファウンダーとしてご連絡します。
+                  </p>
+                </div>
+                
+                <form onSubmit={handleIdeaSubmission} className="space-y-4">
+                  <textarea
+                    value={idea}
+                    onChange={(e) => setIdea(e.target.value)}
+                    placeholder="あなたのアイデアを教えてください"
+                    required
+                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent h-24"
+                  />
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      value={ideaEmail}
+                      onChange={(e) => setIdeaEmail(e.target.value)}
+                      placeholder="メールアドレス（任意）"
+                      className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent"
+                    />
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmittingIdea || !idea.trim()}
+                      className="bg-enabler-600 hover:bg-enabler-700"
+                    >
+                      {isSubmittingIdea ? '送信中...' : '送信する'}
+                    </Button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Newsletter Signup Form */}
+              <div>
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold mb-2 text-enabler-800 flex items-center">
+                    <Mail size={20} className="text-enabler-600 mr-2" />
+                    ニュースレター登録
+                  </h3>
+                  <p className="text-gray-700 text-sm">
+                    イネブラとStayFlowの最新情報をいち早くお届けします。新機能や限定オファーについてもご案内します。
+                  </p>
+                </div>
+                
+                <form onSubmit={handleNewsletterSignup} className="space-y-4">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="メールアドレスを入力"
+                    required
+                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-enabler-400 focus:border-transparent"
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmittingNewsletter}
+                    className="w-full bg-enabler-600 hover:bg-enabler-700"
+                  >
+                    {isSubmittingNewsletter ? '登録中...' : '登録する'}
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </MotionBox>

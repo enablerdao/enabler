@@ -17,7 +17,7 @@ const BrandHeader = () => {
           {currentYear}年度版 • ブランドの一貫性と認知度向上のために
         </p>
         <div className="w-full max-w-xl mx-auto px-2 md:px-0">
-          <div className="p-3 md:p-5 rounded-xl bg-white shadow-subtle flex justify-center items-center">
+          <div className="p-3 md:p-5 rounded-xl bg-white shadow-subtle flex justify-center items-center h-20 md:h-24">
             <LogoVariations variant="modern" size="lg" year={currentYear} />
           </div>
         </div>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -50,7 +51,7 @@ const Navbar = () => {
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
     { name: 'Contact', href: '#contact' },
-    { name: 'ブランド', href: '/brand-guidelines', isPage: true },
+    // Removed "ブランド" item as requested
   ];
 
   const menuItemVariants = {

@@ -28,7 +28,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
   };
 
   // Calculate logo SVG code using the current year's color
-  const logoSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
+  const logoSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70" preserveAspectRatio="xMidYMid meet">
   <defs>
     <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="${currentYearColor.hex}" />
@@ -64,7 +64,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
             
             {/* 設立時のロゴを小さく表示 */}
             <div className="flex justify-start items-center mb-4 bg-gray-50 p-2 rounded-lg">
-              <div className="mr-3">
+              <div className="mr-3 flex items-center justify-center h-12 w-24">
                 <LogoVariations variant="foundingLogo" size="sm" year={2022} />
               </div>
               <div className="text-xs md:text-sm">
@@ -128,7 +128,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ロゴのSVGデータ</h3>
             <div className="bg-gray-50 p-3 rounded-lg mb-3">
               <div className="mb-3 md:mb-4 flex flex-col md:flex-row items-start md:items-center justify-between">
-                <div className="mb-3 md:mb-0">
+                <div className="mb-3 md:mb-0 flex items-center justify-center h-12">
                   <LogoVariations variant="modern" size="md" year={currentYearColor.year} />
                 </div>
                 <button 

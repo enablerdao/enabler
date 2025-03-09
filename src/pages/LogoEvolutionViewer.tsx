@@ -21,12 +21,37 @@ const LogoEvolutionViewer: React.FC = () => {
           </Link>
         </div>
         
-        <p className="mb-6 text-gray-600">
-          ロゴの進化を横スクロールで見ることができます。創業年から数百年先までのロゴの変化を確認できます。
-        </p>
+        <div className="bg-white p-5 rounded-lg shadow-sm mb-6 border">
+          <h2 className="text-xl font-semibold mb-3">2025年からの進化するロゴデザイン</h2>
+          <p className="text-gray-600">
+            Enablerのロゴは、創業カラー（2022年: #22B6FF）を起点に、フィボナッチ数列に基づく数学的アルゴリズムで進化します。
+            2025年を新たな出発点として、未来に向けて徐々に色彩や形状が変化していく様子を横スクロールで確認できます。
+          </p>
+          <div className="flex flex-wrap gap-2 mt-3">
+            <div className="text-sm px-3 py-1 bg-blue-50 rounded-md flex items-center">
+              <span className="w-3 h-3 rounded-full bg-[#22B6FF] mr-1"></span>
+              <span>創業カラー: #22B6FF</span>
+            </div>
+            <div className="text-sm px-3 py-1 bg-blue-50 rounded-md flex items-center">
+              <span className="w-3 h-3 rounded-full bg-[#2BBCFF] mr-1"></span>
+              <span>2025年カラー: #2BBCFF</span>
+            </div>
+            <div className="text-sm px-3 py-1 bg-green-50 rounded-md flex items-center">
+              <span className="w-3 h-3 rounded-full bg-[#4CAF50] mr-1"></span>
+              <span>2025年アクセント: #4CAF50</span>
+            </div>
+          </div>
+        </div>
         
         <div className="my-8">
           <InfiniteLogoScroller />
+        </div>
+        
+        <div className="mt-8 bg-gray-100 rounded-lg p-4 text-sm text-gray-600">
+          <p>
+            <strong>ヒント:</strong> 拡大/縮小ボタンでロゴのサイズと表示数を調整できます。右へスクロールすると自動的に新しい年のロゴが追加されます。
+            各ロゴのカラーをクリックするとクリップボードにカラーコードがコピーされます。
+          </p>
         </div>
       </div>
     </div>

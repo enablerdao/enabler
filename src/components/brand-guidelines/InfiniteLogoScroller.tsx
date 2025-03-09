@@ -1,9 +1,10 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { calculateColorForYear, calculateSpecialAccentColor } from './color-utils/color-calculator';
 import { useToast } from '@/hooks/use-toast';
+import { Badge } from '@/components/ui/badge';
 
 const InfiniteLogoScroller: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -13,7 +14,10 @@ const InfiniteLogoScroller: React.FC = () => {
   const { toast } = useToast();
   const [zoomLevel, setZoomLevel] = useState(3); // 1-5 scale, start at medium (3)
   
-  const startingYear = 2025; // Changed from 2022 to 2025
+  const startingYear = 2025; // Starting from 2025
+  const foundingYear = 2022; // For reference to founding color
+  const foundingColor = calculateColorForYear(foundingYear);
+  
   // Calculate initial number of visible years based on zoom level
   const getInitialYearCount = () => {
     const baseCount = 30;
@@ -147,10 +151,44 @@ const InfiniteLogoScroller: React.FC = () => {
   
   return (
     <div className="relative">
+      <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg mb-4 border border-blue-200">
+        <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
+          <div className="flex-grow">
+            <h3 className="text-lg font-medium mb-1">2025年からのロゴ変遷</h3>
+            <p className="text-sm text-gray-600">
+              Enablerブランドの中核を維持しながら、フィボナッチ数列に基づいて進化するロゴデザインを時系列で表示しています。
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <div 
+              className="flex items-center gap-1 px-3 py-1 rounded-md bg-white border shadow-sm hover:bg-blue-50 cursor-pointer transition-colors"
+              onClick={() => copyColor(foundingColor.hex, foundingYear)}
+            >
+              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: foundingColor.hex }}></div>
+              <span className="text-xs font-medium">創業カラー: {foundingColor.hex}</span>
+            </div>
+            
+            <div 
+              className="flex items-center gap-1 px-3 py-1 rounded-md bg-white border shadow-sm hover:bg-blue-50 cursor-pointer transition-colors"
+              onClick={() => copyColor(calculateColorForYear(startingYear).hex, startingYear)}
+            >
+              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: calculateColorForYear(startingYear).hex }}></div>
+              <span className="text-xs font-medium">2025年カラー: {calculateColorForYear(startingYear).hex}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div className="flex justify-between items-center mb-4">
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-gray-600">
           {visibleYears.length > 0 && 
-            `${visibleYears[0]}年 〜 ${visibleYears[visibleYears.length - 1]}年 (${visibleYears.length}ロゴ表示中)`
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="font-normal">
+                <span className="font-semibold">{visibleYears[0]}年</span> 〜 <span className="font-semibold">{visibleYears[visibleYears.length - 1]}年</span>
+              </Badge>
+              <span className="text-gray-500">（{visibleYears.length}ロゴ表示中）</span>
+            </div>
           }
         </div>
         <div className="flex items-center gap-2">
@@ -159,16 +197,17 @@ const InfiniteLogoScroller: React.FC = () => {
             size="icon"
             onClick={() => handleZoom('out')}
             disabled={zoomLevel <= 1}
-            title="拡大表示（少ないロゴ）"
+            title="縮小表示（多いロゴ）"
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
+          <div className="text-xs text-gray-500 w-5 text-center">{zoomLevel}</div>
           <Button
             variant="outline"
             size="icon"
             onClick={() => handleZoom('in')}
             disabled={zoomLevel >= 5}
-            title="縮小表示（多いロゴ）"
+            title="拡大表示（少ないロゴ）"
           >
             <ZoomIn className="h-4 w-4" />
           </Button>
@@ -215,12 +254,17 @@ const InfiniteLogoScroller: React.FC = () => {
             >
               <div className="flex justify-between items-center mb-2">
                 <h3 className={`font-semibold ${zoomLevel >= 3 ? 'text-lg' : 'text-sm'}`}>{year}年</h3>
-                <div 
-                  className={`rounded-full cursor-pointer ${zoomLevel >= 3 ? 'w-6 h-6' : 'w-4 h-4'}`}
-                  style={{ backgroundColor: brandColor.hex }}
-                  onClick={() => copyColor(brandColor.hex, year)}
-                  title="クリックしてコピー"
-                />
+                <div className="flex items-center gap-1">
+                  {year === startingYear && (
+                    <Badge variant="outline" className="text-[0.65rem] py-0 px-1 font-normal">開始</Badge>
+                  )}
+                  <div 
+                    className={`rounded-full cursor-pointer ${zoomLevel >= 3 ? 'w-6 h-6' : 'w-4 h-4'}`}
+                    style={{ backgroundColor: brandColor.hex }}
+                    onClick={() => copyColor(brandColor.hex, year)}
+                    title="クリックしてコピー"
+                  />
+                </div>
               </div>
               
               <div className="bg-gray-50 rounded-md p-2 flex justify-center items-center flex-grow mb-2">
@@ -233,15 +277,15 @@ const InfiniteLogoScroller: React.FC = () => {
                 >
                   <defs>
                     <linearGradient id={`modernGradient-infinite-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#22B6FF" />
+                      <stop offset="0%" stopColor={foundingColor.hex} />
                       <stop offset="100%" stopColor={brandColor.hex} />
                     </linearGradient>
                     <linearGradient id={`reverseGradient-infinite-${year}`} x1="100%" y1="0%" x2="0%" y2="0%">
                       <stop offset="0%" stopColor={brandColor.hex} />
-                      <stop offset="100%" stopColor="#22B6FF" />
+                      <stop offset="100%" stopColor={foundingColor.hex} />
                     </linearGradient>
                     <linearGradient id={`middleLineGradient-infinite-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#22B6FF" />
+                      <stop offset="0%" stopColor={foundingColor.hex} />
                       <stop offset="100%" stopColor={isSpecialYear ? accentColor.hex : brandColor.hex} />
                     </linearGradient>
                   </defs>
@@ -268,6 +312,11 @@ const InfiniteLogoScroller: React.FC = () => {
                       <span className="font-mono">{accentColor.hex}</span>
                     </div>
                   )}
+                  
+                  <div className="flex items-center gap-1 p-1 rounded cursor-pointer text-xs bg-blue-50">
+                    <Palette className="w-3 h-3 text-blue-500" />
+                    <span className="font-mono">{brandColor.hex}</span>
+                  </div>
                   
                   <Button 
                     variant="outline" 

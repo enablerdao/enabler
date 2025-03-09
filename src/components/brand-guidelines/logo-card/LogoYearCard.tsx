@@ -33,7 +33,7 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
     <div 
       className="bg-white rounded-lg p-4 shadow-md border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow duration-300"
     >
-      <div className="h-44 w-full flex items-center justify-center mb-2 relative">
+      <div className="h-40 w-full flex items-center justify-center mb-2 relative">
         <LogoVariations variant="modern" size="lg" year={year} />
         <div className="absolute bottom-0 text-xs text-gray-600 bg-white/90 px-2 py-0.5 rounded-md shadow-sm border border-gray-100">
           {year}年（創業から{yearsSinceFounding}年目）
@@ -51,10 +51,11 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
-          {/* Brand color - professional card with name and color chip */}
+        {/* Changed from grid to flex to place colors side by side */}
+        <div className="flex gap-2">
+          {/* Brand color card */}
           <div 
-            className="rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
+            className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
             onClick={() => onColorCopy(color.hex, "ブランドカラー")}
           >
             <div 
@@ -73,9 +74,9 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
             </div>
           </div>
           
-          {/* Special accent color - professional card with chip */}
+          {/* Special accent color card */}
           <div 
-            className="rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
+            className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
             onClick={() => onSpecialColorClick(specialAccent.hex, year)}
           >
             <div 

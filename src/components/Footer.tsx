@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center mb-6">
-          <div className="mb-4">
+        <div className="flex flex-col mb-6">
+          <div className="flex justify-center mb-4">
             <Logo className="text-enabler-400" variant="svg" />
           </div>
-          <p className="text-gray-400 mb-8 text-sm max-w-2xl text-center">
+          <p className="text-gray-400 mb-6 max-w-2xl mx-auto text-center">
             {companyInfo.description}
           </p>
           
           {/* Social Media Links */}
-          <div className="flex space-x-8 mb-10">
+          <div className="flex justify-center space-x-8 mb-8">
             {companyInfo.socialLinks.twitter && (
               <span className="text-gray-500 hover:text-gray-300 transition-colors cursor-not-allowed">
                 <Twitter size={20} />
@@ -44,11 +44,11 @@ const Footer = () => {
         </div>
         
         {/* Service Categories */}
-        <div className="mb-10">
-          <h4 className="text-xl font-bold mb-6 text-center">サービスカテゴリー</h4>
-          <div className="flex flex-wrap justify-center gap-6">
+        <div className="mb-8">
+          <h4 className="text-xl font-bold mb-4 text-left">サービスカテゴリー</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Object.entries(categoryInfo).map(([key, value]) => (
-              <span key={key} className="text-gray-400 hover:text-gray-300 transition-colors cursor-not-allowed text-sm">
+              <span key={key} className="text-gray-400 hover:text-gray-300 transition-colors cursor-not-allowed text-sm text-left">
                 {value.name}
               </span>
             ))}
@@ -56,30 +56,30 @@ const Footer = () => {
         </div>
         
         {/* Company Info */}
-        <div className="text-center">
-          <h4 className="text-xl font-bold mb-6">会社情報</h4>
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
-            <Link to="/mission-vision" className="text-gray-400 hover:text-white transition-colors text-sm">
+        <div>
+          <h4 className="text-xl font-bold mb-4 text-left">会社情報</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <Link to="/mission-vision" className="text-gray-400 hover:text-white transition-colors text-sm text-left">
               ミッション・ビジョン
             </Link>
-            <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <Link to="/points-program" className="text-gray-400 hover:text-white transition-colors text-sm text-left">
               ポイントプログラム
             </Link>
-            <Link to="/founder-message" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <Link to="/founder-message" className="text-gray-400 hover:text-white transition-colors text-sm text-left">
               創業者メッセージ
             </Link>
-            <Link to="/press" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <Link to="/press" className="text-gray-400 hover:text-white transition-colors text-sm text-left">
               プレスリリース
             </Link>
-            <Link to="/brand-guidelines" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <Link to="/brand-guidelines" className="text-gray-400 hover:text-white transition-colors text-sm text-left">
               ブランドガイドライン
             </Link>
           </div>
         </div>
         
         {/* Copyright */}
-        <div className="text-center border-t border-gray-800 pt-6">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-800 pt-4">
+          <p className="text-gray-500 text-sm text-center">
             &copy; {new Date().getFullYear()} {companyInfo.nameEn} All rights reserved.
           </p>
         </div>

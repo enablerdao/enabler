@@ -1,8 +1,6 @@
-
 import React from 'react';
 import LogoVariations from '../LogoVariations';
 import { Copy, ZoomIn, Info } from 'lucide-react';
-
 interface LogoYearCardProps {
   year: number;
   foundingYear: number;
@@ -17,25 +15,20 @@ interface LogoYearCardProps {
   onColorCopy: (text: string, label: string) => void;
   onSpecialColorClick: (color: string, year: number) => void;
 }
-
 const LogoYearCard: React.FC<LogoYearCardProps> = ({
   year,
   foundingYear,
   color,
   specialAccent,
   onColorCopy,
-  onSpecialColorClick,
+  onSpecialColorClick
 }) => {
   const yearsSinceFounding = year - foundingYear;
   const foundingColor = "#22B6FF"; // Founding color hex
-  
+
   // 色の変化に関する説明の状態
   const [showColorInfo, setShowColorInfo] = React.useState(false);
-  
-  return (
-    <div 
-      className="bg-white rounded-lg p-4 shadow-md border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow duration-300"
-    >
+  return <div className="bg-white rounded-lg p-4 shadow-md border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow duration-300 px-[4px]">
       <div className="h-32 w-full flex items-center justify-center mb-2 relative">
         <LogoVariations variant="modern" size="lg" year={year} />
         <div className="absolute bottom-1 text-xs text-gray-600 bg-white/90 px-2 py-0.5 rounded-md shadow-sm border border-gray-100">
@@ -49,22 +42,23 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
             <span className="text-xs font-medium text-gray-500">創業カラー</span>
             <span className="text-xs px-2 py-0.5 rounded bg-gray-100">{foundingColor}</span>
           </div>
-          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ backgroundColor: "#eaeaea" }}>
-            <div className="h-full rounded-full" style={{ width: "100%", backgroundColor: foundingColor }}></div>
+          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{
+          backgroundColor: "#eaeaea"
+        }}>
+            <div className="h-full rounded-full" style={{
+            width: "100%",
+            backgroundColor: foundingColor
+          }}></div>
           </div>
         </div>
 
         {/* Display colors side by side in one row */}
         <div className="flex gap-2">
           {/* Brand color card */}
-          <div 
-            className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
-            onClick={() => onColorCopy(color.hex, "ブランドカラー")}
-          >
-            <div 
-              className="h-10 cursor-pointer relative group"
-              style={{ backgroundColor: color.hex }}
-            >
+          <div className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all" onClick={() => onColorCopy(color.hex, "ブランドカラー")}>
+            <div className="h-10 cursor-pointer relative group" style={{
+            backgroundColor: color.hex
+          }}>
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/10 transition-opacity">
                 <Copy size={14} className={isLightColor(color.hex) ? 'text-gray-800' : 'text-white'} />
               </div>
@@ -78,14 +72,10 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
           </div>
           
           {/* Special accent color card */}
-          <div 
-            className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
-            onClick={() => onSpecialColorClick(specialAccent.hex, year)}
-          >
-            <div 
-              className="h-10 cursor-pointer relative group"
-              style={{ backgroundColor: specialAccent.hex }}
-            >
+          <div className="flex-1 rounded-md overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all" onClick={() => onSpecialColorClick(specialAccent.hex, year)}>
+            <div className="h-10 cursor-pointer relative group" style={{
+            backgroundColor: specialAccent.hex
+          }}>
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/10 transition-opacity">
                 <ZoomIn size={14} className={isLightColor(specialAccent.hex) ? 'text-gray-800' : 'text-white'} />
               </div>
@@ -100,17 +90,13 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
         </div>
         
         {/* Color info button */}
-        <button 
-          className="w-full mt-1 flex items-center justify-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition-colors"
-          onClick={() => setShowColorInfo(!showColorInfo)}
-        >
+        <button className="w-full mt-1 flex items-center justify-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition-colors" onClick={() => setShowColorInfo(!showColorInfo)}>
           <Info size={12} />
           <span>{showColorInfo ? '情報を閉じる' : 'ブランドカラーについて'}</span>
         </button>
         
         {/* Color information section */}
-        {showColorInfo && (
-          <div className="mt-2 p-2 bg-gray-50 rounded-md text-xs text-gray-600 space-y-1">
+        {showColorInfo && <div className="mt-2 p-2 bg-gray-50 rounded-md text-xs text-gray-600 space-y-1">
             <p>ブランドカラーは毎年変化します。計算式：</p>
             <div className="bg-white p-1 rounded font-mono text-2xs">
               R = round(34 + 190 × (1 - 0.95^(y - 2022)))<br />
@@ -130,11 +116,9 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
               特別カラーはフィボナッチ数列の累積和の年に対応する黄金角（137.5°）に基づき計算され、
               基本カラーとは別に進化します。
             </p>
-          </div>
-        )}
+          </div>}
       </div>
-    </div>
-  );
+    </div>;
 };
 
 // Helper function to determine if a color is light or dark
@@ -144,12 +128,11 @@ const isLightColor = (color: string): boolean => {
   const r = parseInt(hex.substr(0, 2), 16);
   const g = parseInt(hex.substr(2, 2), 16);
   const b = parseInt(hex.substr(4, 2), 16);
-  
+
   // Calculate brightness (YIQ formula)
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-  
+
   // Return true if the color is light
   return brightness > 128;
 };
-
 export default LogoYearCard;

@@ -1,12 +1,11 @@
 
 import React from 'react';
-import { MotionBox } from '@/components/ui/motion-box';
 
 const FounderMessageSection = () => {
   return (
-    <div className="mb-8 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
+    <div className="mb-8">
       <h3 className="text-xl font-semibold mb-4 text-enabler-800">創業者のメッセージ</h3>
-      <div className="space-y-4 text-gray-700">
+      <div className="space-y-4 text-gray-700 bg-enabler-50 p-6 rounded-lg border border-enabler-100">
         <p>
           ソフトウェアエンジニアとしての経験と建築への関心を持ち、常に新しいことに挑戦してきました。理論より実践を重視し、自らの手で作り上げることで学びを深めてきました。
         </p>

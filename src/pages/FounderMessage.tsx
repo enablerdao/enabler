@@ -26,7 +26,7 @@ const FounderMessage = () => {
                 <span className="inline-block px-4 py-1.5 mb-4 text-xs font-medium tracking-wider text-enabler-800 uppercase bg-enabler-100 rounded-full">
                   創業者からのメッセージ
                 </span>
-                <h1 className="text-4xl font-bold mb-4">ミッションと創業理念</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-4">ミッションと創業理念</h1>
                 <div className="w-20 h-1 bg-enabler-500 mx-auto mb-6 rounded-full"></div>
               </div>
             </MotionBox>

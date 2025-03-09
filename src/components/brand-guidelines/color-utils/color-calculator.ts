@@ -50,6 +50,16 @@ export const calculateColorForYear = (year: number) => {
   // Get the Fibonacci sum year index
   const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
+  // For founding year (2022), return the exact founding color
+  if (year === 2022) {
+    return {
+      year: 2022,
+      hex: '#22B6FF',
+      name: 'ディープブルー',
+      rgb: '34, 182, 255'
+    };
+  }
+  
   // Using the exponential formula with capped values to prevent overflow
   // The R value starts at 34 and approaches 224 (34 + 190)
   // The G value starts at 182 and approaches 245 (182 + 63)

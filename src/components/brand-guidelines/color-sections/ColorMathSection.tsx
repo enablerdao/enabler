@@ -78,7 +78,7 @@ B = 255（固定）
           >
             <div 
               className="w-12 h-12 rounded-md shadow-sm transition-transform group-hover:scale-110"
-              style={{ backgroundColor: foundingYearColor.hex }}
+              style={{ backgroundColor: "#22B6FF" }}  {/* Fixed to use the exact founding color hex */}
             ></div>
             <div className="opacity-0 group-hover:opacity-100 absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded px-2 py-1 whitespace-nowrap transition-opacity">
               2022年（創業）

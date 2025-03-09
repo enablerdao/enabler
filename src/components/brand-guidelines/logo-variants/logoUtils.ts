@@ -4,6 +4,11 @@
 // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
 // B = 255
 export const calculateColorForYear = (year: number) => {
+  // For founding year (2022), return the exact founding color
+  if (year === 2022) {
+    return "#22B6FF"; // Fixed founding color - verified correct
+  }
+  
   // Get the Fibonacci sum year index
   const fibonacciSumIndex = getFibonacciSumYearIndex(year);
   

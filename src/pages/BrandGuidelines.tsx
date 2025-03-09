@@ -14,56 +14,23 @@ import BrandAssetRules from '@/components/brand-guidelines/BrandAssetRules';
 import FixedColorValues from '@/components/brand-guidelines/FixedColorValues';
 import FAQContact from '@/components/brand-guidelines/FAQContact';
 import { companyInfo } from '@/lib/data';
+import { calculateColorForYear, generateColorsForYearRange } from '@/components/brand-guidelines/color-utils/color-calculator';
 
 const BrandGuidelines = () => {
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Calculate current year's color based on the new formula
-  // R = round(34 + 190 × (1 - 0.95^(y - 2022)))
-  // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
-  // B = 255
+  // Calculate current year's color
   const currentYear = new Date().getFullYear();
-  const baseYear = 2022; // When the first color was established
   
-  // Calculate RGB values based on the formula
-  const calculateColorForYear = (year: number) => {
-    const yearDiff = year - 2022;
-    
-    // Using the exponential formula
-    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
-    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
-    const b = 255;
-    
-    // Convert to HEX
-    const toHex = (value: number) => {
-      const hex = value.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-    
-    const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    
-    // Generate color name based on the values
-    let name = '';
-    if (r < 100) {
-      name = 'ディープブルー';
-    } else if (r < 150) {
-      name = 'ミディアムブルー';
-    } else if (r < 200) {
-      name = 'ライトブルー';
-    } else {
-      name = 'スカイブルー';
-    }
-    
-    return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
-  };
+  // Generate brand colors for Fibonacci years after 2022 (founding year)
+  // Fibonacci sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
+  // Years: 2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056, 2077, 2111...
+  const brandColors = generateColorsForYearRange(2022, currentYear + 20);
   
-  // Generate brand colors for years 2022-2031 (10 years)
-  const brandColors = Array.from({ length: 10 }, (_, i) => calculateColorForYear(2022 + i));
-  
-  // Get current year's color
-  const currentYearColor = brandColors.find(color => color.year === currentYear) || brandColors[0];
+  // Get current year's color - if not a Fibonacci year, it will return the color of the last Fibonacci year
+  const currentYearColor = calculateColorForYear(currentYear);
 
   return (
     <>

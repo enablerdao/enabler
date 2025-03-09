@@ -4,10 +4,13 @@
 // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
 // B = 255
 export const calculateColorForYear = (year: number) => {
-  const yearDiff = year - 2022;
+  // Get the Fibonacci year index
+  const fibonacciYearIndex = getFibonacciYearIndex(year);
   
   // Using the exponential formula with a capped maximum to prevent overflow
   // This ensures the formula works for years well beyond 2041
+  const yearDiff = fibonacciYearIndex;
+  
   const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
   const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
   const b = 255;
@@ -24,41 +27,45 @@ export const calculateColorForYear = (year: number) => {
 // Get founding year color (2022)
 export const foundingColor = '#22B6FF'; // Fixed founding color
 
-// Generate Fibonacci sequence-based accent color for each year
-export const generateFibonacciAccentColorForYear = (year: number) => {
-  // Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...
-  // Calculate Fibonacci number for the year offset (year - 2022)
-  const yearOffset = year - 2022;
+// Fibonacci sequence for years after 2022
+const fibonacciYears = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+
+// Function to check if a year corresponds to a Fibonacci sequence year after founding (2022)
+export const isFibonacciYear = (year: number): boolean => {
+  const yearsSinceFounding = year - 2022;
+  return fibonacciYears.includes(yearsSinceFounding);
+};
+
+// Get the index in the Fibonacci sequence for a given year
+// If not a Fibonacci year, returns the previous Fibonacci year index
+export const getFibonacciYearIndex = (year: number): number => {
+  const yearsSinceFounding = year - 2022;
   
-  // For very large year differences, calculate Fibonacci number
-  // using a more efficient method to prevent stack overflow
-  let fibValue = 1;
+  // If before founding year, return 0
+  if (yearsSinceFounding <= 0) return 0;
   
-  if (yearOffset <= 0) {
-    fibValue = 1;
-  } else if (yearOffset === 1) {
-    fibValue = 1;
-  } else {
-    // Use iterative approach for large numbers
-    let a = 1, b = 1;
-    for (let i = 2; i <= yearOffset; i++) {
-      const next = a + b;
-      a = b;
-      b = next;
-      fibValue = b;
-      
-      // Cap the Fibonacci value at a reasonable number to prevent overflow
-      if (fibValue > 1000) {
-        fibValue = 1000; // Cap the max segments to 1000
-        break;
-      }
+  // Find the highest Fibonacci index that doesn't exceed the years since founding
+  let fibIndex = 0;
+  for (let i = 0; i < fibonacciYears.length; i++) {
+    if (fibonacciYears[i] <= yearsSinceFounding) {
+      fibIndex = fibonacciYears[i];
+    } else {
+      break;
     }
   }
+  
+  return fibIndex;
+};
+
+// Generate Fibonacci sequence-based accent color for each year
+export const generateFibonacciAccentColorForYear = (year: number) => {
+  // Get the Fibonacci index for the year
+  const fibIndex = getFibonacciYearIndex(year);
   
   return {
     // Special color - a vivid purple
     specialColor: "#8B5CF6",
-    fibNumber: fibValue
+    fibNumber: fibIndex
   };
 };
 

@@ -1,10 +1,13 @@
 
+import { getFibonacciYearIndex, isFibonacciYear } from '../logo-variants/logoUtils';
+
 export const calculateColorForYear = (year: number) => {
-  const yearDiff = year - 2022;
+  // Get the Fibonacci year index
+  const fibonacciYearIndex = getFibonacciYearIndex(year);
   
   // Using the exponential formula with capped values to prevent overflow
-  const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
-  const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
+  const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, fibonacciYearIndex))));
+  const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, fibonacciYearIndex))));
   const b = 255;
   
   // Convert to HEX
@@ -31,10 +34,19 @@ export const calculateColorForYear = (year: number) => {
 };
 
 export const generateColorsForYearRange = (startYear: number, endYear: number) => {
+  // Only generate colors for Fibonacci sequence years after founding
   const colors = [];
   
-  for (let year = startYear; year <= endYear; year++) {
-    colors.push(calculateColorForYear(year));
+  // Always include the founding year
+  if (startYear <= 2022 && endYear >= 2022) {
+    colors.push(calculateColorForYear(2022));
+  }
+  
+  // Add Fibonacci years
+  for (let year = Math.max(2022, startYear); year <= endYear; year++) {
+    if (isFibonacciYear(year)) {
+      colors.push(calculateColorForYear(year));
+    }
   }
   
   return colors;

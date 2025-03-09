@@ -56,7 +56,6 @@ const FounderMessage = () => {
                   </div>
                 </MotionBox>
                 
-                <AboutEnabler />
                 <AboutStayFlow />
                 <FounderStory />
                 <ConnectLinks />

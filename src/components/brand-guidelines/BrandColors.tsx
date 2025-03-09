@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Palette, Copy, CheckCircle, ChevronDown } from 'lucide-react';
@@ -22,6 +21,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   const { toast } = useToast();
   const [copiedColorHex, setCopiedColorHex] = useState<string | null>(null);
   const [displayCount, setDisplayCount] = useState<number>(10);
+  const [maxYear, setMaxYear] = useState<number>(2022 + displayCount - 1);
   const currentYear = new Date().getFullYear();
 
   const copyToClipboard = (text: string, label: string) => {
@@ -45,9 +45,9 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
   const calculateColorForYear = (year: number) => {
     const yearDiff = year - 2022;
     
-    // Using the exponential formula
-    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
-    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
+    // Using the exponential formula with capped values to prevent overflow
+    const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
+    const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
     const b = 255;
     
     // Convert to HEX
@@ -75,24 +75,32 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
 
   // Generate additional colors dynamically
   const generateMoreColors = () => {
-    const startYear = 2022 + displayCount;
-    const additionalColors = Array.from({ length: 10 }, (_, i) => calculateColorForYear(startYear + i));
-    setDisplayCount(displayCount + 10);
-    return additionalColors;
+    const startYear = maxYear + 1;
+    const additionalYears = 10; // Add 10 more years
+    const endYear = startYear + additionalYears - 1;
+    
+    setMaxYear(endYear);
+    setDisplayCount(displayCount + additionalYears);
   };
 
   // Get all colors to display (initial + dynamically generated)
   const getAllColorsToDisplay = () => {
-    const initialColors = brandColors.slice(0, 10);
-    const additionalColors = [];
+    // Generate all years from 2022 up to maxYear
+    const allColors = [];
     
-    if (displayCount > 10) {
-      for (let i = 10; i < displayCount; i++) {
-        additionalColors.push(calculateColorForYear(2022 + i));
+    for (let year = 2022; year <= maxYear; year++) {
+      // Use pre-calculated values for the first 10 years if available
+      const existingColor = brandColors.find(color => color.year === year);
+      
+      if (existingColor) {
+        allColors.push(existingColor);
+      } else {
+        // Calculate color for additional years
+        allColors.push(calculateColorForYear(year));
       }
     }
     
-    return [...initialColors, ...additionalColors];
+    return allColors;
   };
 
   const colorsToDisplay = getAllColorsToDisplay();
@@ -180,7 +188,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
                 onClick={generateMoreColors}
               >
                 <ChevronDown className="w-4 h-4 mr-2" />
-                さらに{10}年分を表示
+                さらに{10}年分を表示 ({maxYear + 1} - {maxYear + 10}年)
               </button>
             </div>
           </div>

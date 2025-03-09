@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -22,9 +21,10 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   const calculateColorForYear = (year: number) => {
     const yearDiff = year - 2022;
     
-    // Using the exponential formula
-    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
-    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
+    // Using the exponential formula with a capped maximum to prevent overflow
+    // This ensures the formula works for years well beyond 2041
+    const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
+    const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
     const b = 255;
     
     // Convert to HEX
@@ -39,17 +39,32 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   // Generate Fibonacci sequence-based accent color for each year
   const generateFibonacciAccentColorForYear = (year: number) => {
     // Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34...
-    let a = 1, b = 1;
     // Calculate Fibonacci number for the year offset (year - 2022)
     const yearOffset = year - 2022;
+    
+    // For very large year differences, calculate Fibonacci number
+    // using a more efficient method to prevent stack overflow
     let fibValue = 1;
     
-    // Generate Fibonacci number corresponding to year offset
-    for (let i = 0; i < yearOffset; i++) {
-      const next = a + b;
-      a = b;
-      b = next;
-      fibValue = a;
+    if (yearOffset <= 0) {
+      fibValue = 1;
+    } else if (yearOffset === 1) {
+      fibValue = 1;
+    } else {
+      // Use iterative approach for large numbers
+      let a = 1, b = 1;
+      for (let i = 2; i <= yearOffset; i++) {
+        const next = a + b;
+        a = b;
+        b = next;
+        fibValue = b;
+        
+        // Cap the Fibonacci value at a reasonable number to prevent overflow
+        if (fibValue > 1000) {
+          fibValue = 1000; // Cap the max segments to 1000
+          break;
+        }
+      }
     }
     
     return {
@@ -69,10 +84,14 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
   // Create segments for the middle line based on fibonacci number
   const createMiddleLineSegments = () => {
     const totalSegments = fibonacciAccentInfo.fibNumber;
-    const segmentWidth = 40 / totalSegments; // Total width 40 divided by segments
+    
+    // For very large Fibonacci numbers, we need to limit the number of segments
+    // and adjust the segment width accordingly
+    const maxVisibleSegments = Math.min(totalSegments, 100); // Limit to 100 visible segments
+    const segmentWidth = 40 / maxVisibleSegments; // Total width 40 divided by segments
     
     const segments = [];
-    for (let i = 0; i < totalSegments; i++) {
+    for (let i = 0; i < maxVisibleSegments; i++) {
       // First segment is founding color, rest are special color
       const segmentColor = i === 0 ? foundingColor : fibonacciAccentInfo.specialColor;
       segments.push(

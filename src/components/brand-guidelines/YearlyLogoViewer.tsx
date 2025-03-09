@@ -8,7 +8,8 @@ import { useToast } from '@/hooks/use-toast';
 
 const YearlyLogoViewer: React.FC = () => {
   const [visibleYears, setVisibleYears] = useState(12);
-  const foundingYear = 2022;
+  const foundingYear = 2022; // Keep the actual founding year for reference
+  const startDisplayYear = 2025; // Start displaying from 2025
   const currentYear = new Date().getFullYear();
   const { toast } = useToast();
   
@@ -27,20 +28,26 @@ const YearlyLogoViewer: React.FC = () => {
     });
   }, [toast]);
   
-  // Generate years array from founding year to visible limit
+  // Generate years array from start display year to visible limit
   const years = Array.from(
     { length: Math.min(visibleYears, totalYears) }, 
-    (_, i) => foundingYear + i
+    (_, i) => startDisplayYear + i
   );
   
   return (
     <div className="mt-6 space-y-6">
-      <h3 className="text-lg font-semibold mb-4">ロゴ年次変遷（{foundingYear}年〜231年目以降）</h3>
-      <p className="text-sm text-gray-600 mb-4">※ブランドカラーは毎年変化します。色をクリックするとコピーできます。</p>
+      <h3 className="text-lg font-semibold mb-4">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        ※ブランドカラーは毎年変化します。色をクリックするとコピーできます。<br />
+        ※会社は2022年に創業しましたが、ロゴ表示は2025年から始まります。
+      </p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {years.map(year => {
-          const color = calculateColorForYear(year);
+          // For 2025 (first year), use the specified color
+          const color = year === 2025 
+            ? { hex: '#25b6ff', name: 'スカイブルー', rgb: '37, 182, 255' }
+            : calculateColorForYear(year);
           const specialAccent = calculateSpecialAccentColor(year);
           const yearsSinceFounding = year - foundingYear;
           
@@ -52,7 +59,7 @@ const YearlyLogoViewer: React.FC = () => {
               <div className="h-32 flex items-center justify-center mb-2 relative">
                 <LogoVariations variant="modern" size="md" year={year} />
                 <div className="absolute bottom-0 text-xs text-gray-500 bg-white/80 px-2 py-0.5 rounded">
-                  {year}年
+                  {year}年（創業から{yearsSinceFounding}年目）
                 </div>
               </div>
               

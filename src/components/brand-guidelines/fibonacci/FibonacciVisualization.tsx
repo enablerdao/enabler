@@ -102,9 +102,9 @@ const FibonacciVisualization: React.FC<FibonacciVisualizationProps> = ({
         >
           {generateFibonacciPositions(233, window.innerWidth / 2, window.innerHeight / 2).map((pos, index) => {
             // Generate color variations based on Fibonacci sequence and original color
-            // Adjust lightness based on index
+            // Start from 2025
             const adjustedColor = calculateSpecialAccentColor(
-              (selectedYear || 2025) + index
+              Math.max(2025, (selectedYear || 2025) + index)
             ).hex;
             
             return (

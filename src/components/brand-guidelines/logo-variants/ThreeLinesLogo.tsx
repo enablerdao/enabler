@@ -4,14 +4,14 @@ import { LogoVariantProps } from './types';
 import { calculateColorForYear, foundingColor, generateFibonacciAccentColorForYear, calculateGoldenRatio } from './logoUtils';
 
 const ThreeLinesLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().getFullYear() }) => {
-  // 現在の年のブランドカラーを取得
+  // Get current year brand color
   const currentYearColor = calculateColorForYear(year);
-  // 特定の年のフィボナッチアクセントカラー情報を取得
+  // Get fibonacci accent color info for the specific year
   const fibonacciAccentInfo = generateFibonacciAccentColorForYear(year);
-  // デフォルト幅60の黄金比セグメントを取得
+  // Get golden ratio segments for a default width of 60
   const goldenSegments = calculateGoldenRatio(60);
   
-  // 黄金比に基づいて真ん中の線の幅を計算
+  // Calculate the middle line width based on golden ratio
   const middleLineWidth = goldenSegments.segment1;
 
   return (
@@ -31,11 +31,11 @@ const ThreeLinesLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
         </linearGradient>
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-      {/* 第1線 - 設立カラーからの標準グラデーション */}
+      {/* First line - standard gradient from founding color */}
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-threelines-${year})`}/>
-      {/* 中央線 - 黄金比に基づいた短い幅 */}
+      {/* Middle line - shorter width based on golden ratio with special accent color */}
       <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill={`url(#middleLineGradient-threelines-${year})`}/>
-      {/* 第3線 - 逆グラデーション */}
+      {/* Third line - reverse gradient */}
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-threelines-${year})`}/>
     </>
   );

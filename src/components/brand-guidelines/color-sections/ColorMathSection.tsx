@@ -8,7 +8,7 @@ import SpecialColorFormula from './math-components/SpecialColorFormula';
 import SpecialColorExamplesTable from './math-components/SpecialColorExamplesTable';
 import SpecialAccentVisualization from './math-components/SpecialAccentVisualization';
 import ColorSummary from './math-components/ColorSummary';
-import FibonacciCalculator from './math-components/FibonacciCalculator';
+import { calculateFibonacciSums } from './math-components/FibonacciCalculator';
 
 interface ColorMathSectionProps {
   copyToClipboard: (text: string, label: string) => void;
@@ -20,8 +20,8 @@ const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, fo
   const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584];
   const foundingYear = 2022;
   
-  // Use the FibonacciCalculator component to calculate the Fibonacci sums
-  const { fibonacciSums } = FibonacciCalculator({ fibonacciSequence });
+  // Use the utility function to calculate Fibonacci sums
+  const fibonacciSums = calculateFibonacciSums(fibonacciSequence);
   
   return (
     <div className="mb-6 md:mb-10">

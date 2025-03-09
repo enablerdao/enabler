@@ -7,7 +7,7 @@ const SpecialAccentColorIntro: React.FC = () => {
       <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 border-b pb-2 mt-12">特別な周年のアクセントカラー</h3>
       
       <p className="text-base mb-4 leading-relaxed">
-        2025年は特別なブルーカラー (#2BBCFF) の年とし、2026年から始まるフィボナッチ数列の累積和（1周目、2周目、3周目…）の節目の年に特別なアクセントカラーを使用します。
+        2025年は特別な赤色 (#ea384c) の年とし、2026年から始まるフィボナッチ数列の累積和（1周目、2周目、3周目…）の節目の年に特別なアクセントカラーを使用します。
       </p>
       
       <p className="text-base mb-4 leading-relaxed">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { calculateSpecialAccentColor } from '../../color-utils/color-calculator';
 
@@ -11,9 +10,9 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
   fibonacciSums, 
   foundingYear 
 }) => {
-  // Special years starting with 2025 (blue) and then Fibonacci years
+  // Special years starting with 2025 (red) and then Fibonacci years
   const specialYears = [
-    { year: 2025, cycle: "特別年", hue: 198, colorName: "ブルー系" },
+    { year: 2025, cycle: "特別年", hue: 354, colorName: "レッド系" },
     { year: 2026, cycle: "1周目", hue: Math.round(1 * 137.5) % 360, colorName: getColorName(Math.round(1 * 137.5) % 360) },
     { year: 2028, cycle: "2周目", hue: Math.round(2 * 137.5) % 360, colorName: getColorName(Math.round(2 * 137.5) % 360) },
     { year: 2031, cycle: "3周目", hue: Math.round(3 * 137.5) % 360, colorName: getColorName(Math.round(3 * 137.5) % 360) },
@@ -63,7 +62,7 @@ const SpecialColorExamplesTable: React.FC<SpecialColorExamplesTableProps> = ({
         <ul className="list-disc pl-5 space-y-2 text-sm">
           <li><span className="font-semibold">上部の線:</span> 創業カラーから現在のブランドカラーへのグラデーション。成長の軌跡を表します。</li>
           <li><span className="font-semibold">中央の線:</span> 創業カラーから特別アクセントカラーへのグラデーション。黄金比に基づく長さで調和を表します。</li>
-          <li><span className="font-semibold">下部の線:</span> 現在のブランドカラーから創業カラーへの逆グラデーション。原点を忘れない姿勢を表します。</li>
+          <li><span className="font-semibold">下部の線:</span> 現在のブランドカラーから創業カラーへの逆グラデーション。原点を忘れない姿勢を表しま��。</li>
         </ul>
       </div>
     </div>

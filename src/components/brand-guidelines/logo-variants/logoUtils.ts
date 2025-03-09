@@ -1,4 +1,3 @@
-
 // Calculate color based on year using the formula with Fibonacci sums
 // R = round(34 + 190 × (1 - 0.95^(y - 2022)))
 // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
@@ -103,10 +102,10 @@ export const getFibonacciYearIndex = (year: number): number => {
 
 // Generate Fibonacci sequence-based accent color for each year
 export const generateFibonacciAccentColorForYear = (year: number) => {
-  // Special case for 2025 - use a specific blue color
+  // Special case for 2025 - use a specific red color
   if (year === 2025) {
     return {
-      specialColor: "#2BBCFF", // Special blue color for 2025
+      specialColor: "#ea384c", // Special red color for 2025
       fibNumber: 1
     };
   }

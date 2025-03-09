@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface LogoVariationsProps {
-  variant: 'modern' | 'monochrome' | 'gradient' | 'outline';
+  variant: 'modern' | 'monochrome' | 'gradient' | 'outline' | 'original' | 'consistent';
   size: 'sm' | 'md' | 'lg';
   year?: number;
 }
@@ -95,6 +95,33 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
           <rect x="15" y="33" width="40" height="3" rx="1.5" stroke={yearColor} fill="none" strokeWidth="0.5"/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" stroke={yearColor} fill="none" strokeWidth="0.5"/>
           <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" stroke={yearColor} fill="none" strokeWidth="0.5">ENABLER</text>
+        </>
+      )}
+      
+      {variant === 'original' && (
+        <>
+          <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
+          <rect x="15" y="25" width="60" height="3" rx="1.5" fill="#22B6FF"/>
+          <rect x="15" y="33" width="40" height="3" rx="1.5" fill="#22B6FF"/>
+          <rect x="15" y="41" width="60" height="3" rx="1.5" fill="#22B6FF"/>
+          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill="#22B6FF">ENABLER</text>
+        </>
+      )}
+      
+      {variant === 'consistent' && (
+        <>
+          <defs>
+            <linearGradient id={`consistentGradient-${year}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={yearColor} />
+              <stop offset="50%" stopColor={`${yearColor}DD`} />
+              <stop offset="100%" stopColor={yearColor} />
+            </linearGradient>
+          </defs>
+          <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
+          <rect x="15" y="20" width="170" height="30" rx="4" stroke={`url(#consistentGradient-${year})`} fill="none" strokeWidth="1.5"/>
+          <rect x="25" y="35" width="40" height="2" rx="1" fill={yearColor}/>
+          <text x="75" y="40" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="bold" fill={yearColor}>ENABLER</text>
+          <circle cx="160" cy="35" r="8" fill={yearColor} fillOpacity="0.2" stroke={yearColor} strokeWidth="1"/>
         </>
       )}
     </svg>

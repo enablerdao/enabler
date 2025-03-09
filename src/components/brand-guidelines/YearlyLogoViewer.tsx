@@ -7,7 +7,7 @@ import { calculateColorForYear, calculateSpecialAccentColor } from './color-util
 import { useToast } from '@/hooks/use-toast';
 
 const YearlyLogoViewer: React.FC = () => {
-  const [visibleYears, setVisibleYears] = useState(10);
+  const [visibleYears, setVisibleYears] = useState(12);
   const foundingYear = 2022;
   const currentYear = new Date().getFullYear();
   const { toast } = useToast();
@@ -16,7 +16,7 @@ const YearlyLogoViewer: React.FC = () => {
   const totalYears = 1000;
   
   const handleLoadMore = useCallback(() => {
-    setVisibleYears(prev => prev + 10);
+    setVisibleYears(prev => prev + 12);
   }, []);
   
   const copyToClipboard = useCallback((text: string, label: string) => {
@@ -58,38 +58,34 @@ const YearlyLogoViewer: React.FC = () => {
               
               <div className="text-center w-full mt-3">
                 <div className="flex justify-between items-center gap-4">
-                  {/* Brand color - larger square with white text */}
-                  <div className="flex-1 flex flex-col items-center">
-                    <div 
-                      className="w-16 h-16 rounded-md flex items-center justify-center mb-2 relative cursor-pointer group transition-all hover:shadow-md"
-                      style={{ backgroundColor: color.hex }}
-                      onClick={() => copyToClipboard(color.hex, "ブランドカラー")}
-                    >
-                      <span className="text-white text-xs font-medium drop-shadow-sm">
-                        ブランド
-                      </span>
-                      <Copy size={14} className="absolute top-1 right-1 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <p className="text-gray-600 text-xs cursor-pointer hover:text-gray-900" onClick={() => copyToClipboard(color.hex, "ブランドカラー")}>
+                  {/* Brand color - larger rectangle with color code inside */}
+                  <div 
+                    className="flex-1 h-24 rounded-md flex flex-col items-center justify-center cursor-pointer group transition-all hover:shadow-md relative"
+                    style={{ backgroundColor: color.hex }}
+                    onClick={() => copyToClipboard(color.hex, "ブランドカラー")}
+                  >
+                    <span className="text-white text-sm font-medium drop-shadow-sm mb-1">
+                      ブランド
+                    </span>
+                    <span className="text-white text-xs bg-black/20 px-2 py-1 rounded-sm">
                       {color.hex}
-                    </p>
+                    </span>
+                    <Copy size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   
-                  {/* Special accent color - larger square with white text */}
-                  <div className="flex-1 flex flex-col items-center">
-                    <div 
-                      className="w-16 h-16 rounded-md flex items-center justify-center mb-2 cursor-pointer group transition-all hover:shadow-md" 
-                      style={{ backgroundColor: specialAccent.hex }}
-                      onClick={() => copyToClipboard(specialAccent.hex, "特別カラー")}
-                    >
-                      <span className="text-white text-xs font-medium drop-shadow-sm">
-                        特別
-                      </span>
-                      <Copy size={14} className="absolute top-1 right-1 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <p className="text-gray-600 text-xs cursor-pointer hover:text-gray-900" onClick={() => copyToClipboard(specialAccent.hex, "特別カラー")}>
+                  {/* Special accent color - larger rectangle with color code inside */}
+                  <div 
+                    className="flex-1 h-24 rounded-md flex flex-col items-center justify-center cursor-pointer group transition-all hover:shadow-md relative" 
+                    style={{ backgroundColor: specialAccent.hex }}
+                    onClick={() => copyToClipboard(specialAccent.hex, "特別カラー")}
+                  >
+                    <span className="text-white text-sm font-medium drop-shadow-sm mb-1">
+                      特別
+                    </span>
+                    <span className="text-white text-xs bg-black/20 px-2 py-1 rounded-sm">
                       {specialAccent.hex}
-                    </p>
+                    </span>
+                    <Copy size={14} className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
               </div>

@@ -46,7 +46,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           {/* Logo and color evolution visualization */}
           <div className="mb-5 md:mb-8">
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ブランドカラーの進化と一貫性</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 mb-3 md:mb-5 bg-gray-50 p-3 md:p-4 rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-5 mb-3 md:mb-5 bg-gray-50 p-3 md:p-4 rounded-lg">
               <div className="flex flex-col items-center">
                 <p className="text-xs md:text-sm font-semibold mb-1 md:mb-2">2022 設立時</p>
                 <div className="bg-white p-2 md:p-3 rounded-lg shadow-sm flex justify-center items-center mb-2 md:mb-3 h-16 md:h-20">
@@ -110,7 +110,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
               各年度ごとに計算されるテーマカラーは、その年のプロジェクトやキャンペーンに使用されます。
               2025年に公式に統一されたブランドカラーは、特に重要な節目となりました。
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 mb-3 md:mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-4 mb-3 md:mb-4">
               {brandColors.map((color, index) => (
                 <div key={index} className={`bg-white rounded-lg p-2 md:p-3 shadow-sm ${color.year === 2025 ? 'border-2 border-blue-300' : ''}`}>
                   <div 

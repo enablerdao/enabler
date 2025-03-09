@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
-import { Calculator, Copy, CheckCircle, InfoIcon } from 'lucide-react';
+import { Calculator, Copy, CheckCircle, InfoIcon, Plus, Minus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
 
@@ -20,6 +20,8 @@ interface FixedColorValuesProps {
 const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesProps) => {
   const { toast } = useToast();
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
+  const [customYear, setCustomYear] = useState<number>(2031);
+  const [customColors, setCustomColors] = useState<ColorInfo[]>([]);
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -35,12 +37,46 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
     }, 2000);
   };
 
-  // Helper function to convert HEX to RGB
-  const hexToRgb = (hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? 
-      `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
-      '';
+  // Function to calculate color for any given year
+  const calculateColorForYear = (year: number) => {
+    const yearDiff = year - 2022;
+    const r = Math.min(34 + yearDiff * 3, 224);
+    const g = Math.min(182 + yearDiff * 2, 245);
+    const b = 255;
+    
+    // Convert to HEX
+    const toHex = (value: number) => {
+      const hex = value.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    
+    const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    
+    // Generate color name based on the values
+    let name = '';
+    if (r < 100) {
+      name = 'ディープブルー';
+    } else if (r < 150) {
+      name = 'ミディアムブルー';
+    } else if (r < 200) {
+      name = 'ライトブルー';
+    } else {
+      name = 'スカイブルー';
+    }
+    
+    return { year, hex, name, rgb: `${r}, ${g}, ${b}` };
+  };
+
+  const addCustomYear = () => {
+    const newColor = calculateColorForYear(customYear);
+    setCustomColors([...customColors, newColor]);
+    setCustomYear(customYear + 1);
+  };
+
+  const decreaseCustomYear = () => {
+    if (customYear > 2031) {
+      setCustomYear(customYear - 1);
+    }
   };
 
   return (
@@ -117,7 +153,7 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
                 <pre>R = min(34 + (y - 2022) * 3, 224)</pre>
                 <pre>G = min(182 + (y - 2022) * 2, 245)</pre>
                 <pre>B = 255</pre>
-                <pre>※ yは年度 (2022 ≤ y ≤ 2030)</pre>
+                <pre>※ y：年度</pre>
               </div>
               <button 
                 className="text-xs md:text-sm px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center transition-colors"
@@ -131,29 +167,80 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
             </div>
           </div>
           
-          {/* Color progression section */}
+          {/* Color progression section - Improved for mobile */}
           <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
             <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center">
               年度別ブランドカラー (2022-2030)
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-3">
               {brandColors.map(color => (
                 <div 
                   key={color.year}
-                  className={`flex items-center space-x-2 p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100
+                  className={`flex items-center p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100
                     ${color.year === new Date().getFullYear() ? 'bg-blue-50 border border-blue-200' : 'bg-white'}`}
                   onClick={() => copyToClipboard(color.hex, `${color.year}年カラー`)}
                 >
                   <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: color.hex }}></div>
-                  <div className="overflow-hidden">
-                    <p className="text-xs font-medium truncate">{color.year}年</p>
+                  <div className="ml-2 overflow-hidden flex-1">
+                    <p className="text-xs font-medium whitespace-nowrap">{color.year}年</p>
                     <p className="text-xs text-gray-600 font-mono truncate">{color.hex}</p>
-                    <p className="text-xs text-gray-500 truncate">RGB({color.rgb})</p>
+                    <p className="text-xs text-gray-500 truncate hidden sm:block">RGB({color.rgb})</p>
                   </div>
-                  <Copy className="w-3.5 h-3.5 ml-auto text-gray-400 flex-shrink-0" />
+                  <Copy className="w-3.5 h-3.5 ml-1 text-gray-400 flex-shrink-0" />
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Custom year colors section */}
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 flex items-center justify-between">
+              <span>追加年度カラー</span>
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={decreaseCustomYear}
+                  className="p-1 bg-white rounded-md shadow-sm hover:bg-gray-100 transition-colors"
+                >
+                  <Minus className="w-4 h-4 text-gray-500" />
+                </button>
+                <span className="text-sm">{customYear}年</span>
+                <button 
+                  onClick={addCustomYear}
+                  className="p-1 bg-white rounded-md shadow-sm hover:bg-gray-100 transition-colors"
+                >
+                  <Plus className="w-4 h-4 text-gray-500" />
+                </button>
+              </div>
+            </h3>
+            
+            {customColors.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3">
+                {customColors.map(color => (
+                  <div 
+                    key={color.year}
+                    className="flex items-center p-2 rounded-lg shadow-sm cursor-pointer transition-colors hover:bg-gray-100 bg-white"
+                    onClick={() => copyToClipboard(color.hex, `${color.year}年カラー`)}
+                  >
+                    <div className="w-8 h-8 rounded-md flex-shrink-0" style={{ backgroundColor: color.hex }}></div>
+                    <div className="ml-2 overflow-hidden flex-1">
+                      <p className="text-xs font-medium whitespace-nowrap">{color.year}年</p>
+                      <p className="text-xs text-gray-600 font-mono truncate">{color.hex}</p>
+                      <p className="text-xs text-gray-500 truncate hidden sm:block">RGB({color.rgb})</p>
+                    </div>
+                    <Copy className="w-3.5 h-3.5 ml-1 text-gray-400 flex-shrink-0" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div 
+                className="bg-white rounded-lg p-3 text-center cursor-pointer hover:bg-gray-100 transition-colors"
+                onClick={addCustomYear}
+              >
+                <p className="text-sm text-gray-500 flex items-center justify-center">
+                  <Plus className="w-4 h-4 mr-1" /> {customYear}年のカラーを追加
+                </p>
+              </div>
+            )}
           </div>
           
           {/* Logo variants with color schemes */}

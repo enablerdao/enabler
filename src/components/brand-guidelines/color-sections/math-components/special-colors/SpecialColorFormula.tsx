@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const SpecialColorFormula: React.FC = () => {
   return (
     <div className="mb-6">
-      <h4 className="text-lg font-semibold mb-3 mt-5">特別カラーの計算方法</h4>
+      <h4 className="text-lg font-semibold mb-3 mt-5">アクセントカラーの計算方法</h4>
       
       <div className="bg-gray-50 p-4 rounded-lg mb-5">
         <motion.div
@@ -27,7 +27,7 @@ V（明度）= 1（固定）
         </motion.div>
         
         <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-100 text-blue-700 italic text-sm">
-          「毎年同じだと飽きちゃうよね」ということで、節目の年には特別な色も登場します。
+          「毎年同じだと飽きちゃうよね」ということで、節目の年にはアクセントカラーも登場します。
           2025年は緑色 (#4CAF50)、これからもフィボナッチ数列の年（1,2,3,5,8...）に
           新しい色が加わります。
         </div>

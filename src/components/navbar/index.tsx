@@ -18,6 +18,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '/blog', isPage: true },
+    { name: 'Company', href: '/company-info', isPage: true },
+    { name: 'Press', href: '/press', isPage: true },
     { name: 'Contact', href: '#contact' },
   ];
 

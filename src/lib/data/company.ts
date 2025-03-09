@@ -8,7 +8,7 @@ export const companyInfo: CompanyInfo = {
   slogan: "デジタルでも、リアルでも。テクノロジーと空間づくりで毎日をもっと豊かに。",
   mission: "テクノロジーで、一人ひとりが自然に可能性を広げられる社会をつくる。",
   vision: "誰もが自分らしく活躍し、ワクワクする未来を共に叶える。",
-  address: "東京",
+  address: "東京都渋谷区",
   email: "contact@enablerhq.com",
   phone: "",
   established: "2022年",

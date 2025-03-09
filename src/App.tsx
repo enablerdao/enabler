@@ -13,6 +13,7 @@ import Terms from './pages/Terms';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Sitemap from './pages/Sitemap';
 import Press from './pages/Press';
+import CompanyInfo from './pages/CompanyInfo';
 import BrandGuidelines from './pages/BrandGuidelines';
 import { Toaster } from './components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -38,6 +39,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/press" element={<Press />} />
+          <Route path="/company-info" element={<CompanyInfo />} />
           <Route path="/brand-guidelines" element={<BrandGuidelines />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

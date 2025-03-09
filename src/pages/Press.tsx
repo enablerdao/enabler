@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -116,7 +115,7 @@ const Press = () => {
                     
                     <div className="text-gray-700 space-y-4">
                       <p>
-                        Enabler株式会社（本社：東京都渋谷区、代表取締役：{companyInfo.ceo}）は本日、新しいブランドロゴを発表しました。新ロゴは当社の成長と進化するビジョンを反映し、よりデジタル時代に適した洗練されたデザインとなっています。
+                        Enabler株式会社（本社：{companyInfo.address}、代表取締役：{companyInfo.ceo}）は本日、新しいブランドロゴを発表しました。新ロゴは当社の成長と進化するビジョンを反映し、よりデジタル時代に適した洗練されたデザインとなっています。
                       </p>
                       <p>
                         2022年の創業時から使用してきた初代ロゴは、当社の立ち上げ期の精神を体現し、多くの方々に親しまれてきました。新ロゴは初代ロゴのエッセンスを維持しながらも、より現代的なデザイン言語を採用し、スマートデバイスやさまざまなデジタルプラットフォームでの視認性を向上させています。
@@ -171,10 +170,7 @@ const Press = () => {
                         今回調達した資金は、「StayFlow」のさらなる機能拡充と、国内市場でのマーケティング活動の強化に活用される予定です。具体的には、AIを活用した新機能の開発、パートナーシップの拡大、および全国規模のプロモーションキャンペーンを計画しています。
                       </p>
                       <p>
-                        イーストベンチャーズのパートナー、鈴木一郎氏は「Enabler社のサービスは、その革新的なアプローチとユーザー体験の質の高さで市場に差別化されています。彼らのビジョンと実行力に共感し、今回の投資を決定しました。今後の成長と社会的インパクトの拡大を楽しみにしています」とコメントしています。
-                      </p>
-                      <p>
-                        代表取締役の{companyInfo.ceo}は「今回の資金調達により、私たちのサービスをより多くの人々に届け、社会的価値を創出する取り組みを加速できることを嬉しく思います。イーストベンチャーズの支援を受け、次のステージに進むための基盤を固めていきます」と述べています。
+                        代表取締役の{companyInfo.ceo}は「今回の資金調達により、私たちのサービスをより多くの人々に届け、社会的価値を創出する取り組みを加速できることを嬉しく思います。新たな支援を受け、次のステージに進むための基盤を固めていきます」と述べています。
                       </p>
                     </div>
                   </div>
@@ -184,7 +180,7 @@ const Press = () => {
                       <Download size={16} className="mr-2" />
                       プレスリリースPDFをダウンロード
                     </a>
-                    <Link to="/" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    <Link to="/company-info" className="inline-flex items-center bg-enabler-600 hover:bg-enabler-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                       <ExternalLink size={16} className="mr-2" />
                       会社情報を見る
                     </Link>

@@ -33,7 +33,7 @@ const Index = () => {
         <div className="my-1">
           <Testimonials />
         </div>
-        <div className="my-1">
+        <div className="my-5">
           <LatestNews />
         </div>
         <div className="my-1">

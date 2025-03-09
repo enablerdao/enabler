@@ -25,6 +25,20 @@ const news = [
     date: '2023年6月5日',
     excerpt: 'AIの開発精度が飛躍的に向上し、ウェブ開発の効率化が進んでいます。当社が活用している最新のAIツールと、オープンソースによる新しい開発モデルをご紹介します。詳細は後日あらためてご案内いたします。',
     category: 'テクノロジー'
+  },
+  {
+    id: 4,
+    title: '新しいパートナーシップの発表：グローバル展開への第一歩',
+    date: '2023年5月28日',
+    excerpt: '当社は新たな国際パートナーとの提携を発表しました。この提携により、サービスのグローバル展開が加速します。詳細と今後の展望についてご紹介します。',
+    category: 'パートナーシップ'
+  },
+  {
+    id: 5,
+    title: '新サービス「TasteFund」ベータ版リリースのお知らせ',
+    date: '2023年5月15日',
+    excerpt: '飲食店向け新サービス「TasteFund」のベータ版をリリースしました。飲食店オーナー様向けの資金調達を支援する新しいプラットフォームについて詳しくご説明します。',
+    category: '新サービス'
   }
 ];
 
@@ -35,33 +49,43 @@ const LatestNews = () => {
         <MotionBox>
           <div className="flex justify-between items-center mb-10">
             <h2 className="text-3xl font-bold">最新ニュース</h2>
-            <Link to="/blog" className="text-enabler-600 hover:text-enabler-700 flex items-center gap-1 text-sm font-medium">
+            <Link to="/blog" className="text-enabler-600 hover:text-enabler-700 flex items-center gap-1 text-sm font-medium hidden sm:flex">
               すべてのニュースを見る <ArrowRight size={16} />
             </Link>
           </div>
         </MotionBox>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {news.map((item, index) => (
-            <MotionBox key={item.id} delay={index * 100}>
-              <div className="bg-white rounded-xl shadow-subtle overflow-hidden hover:shadow-hover transition-all duration-300 h-full">
-                <div className="p-6">
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="inline-block px-2 py-1 text-xs font-semibold bg-enabler-100 text-enabler-800 rounded-full whitespace-nowrap">{item.category}</span>
-                    <div className="flex items-center text-gray-500 text-xs">
-                      <CalendarDays size={14} className="mr-1 flex-shrink-0" />
-                      <span className="whitespace-nowrap">{item.date}</span>
+        <div className="relative">
+          <div className="overflow-x-auto hide-scrollbar pb-6">
+            <div className="flex gap-6 w-max">
+              {news.map((item, index) => (
+                <MotionBox key={item.id} delay={index * 100}>
+                  <div className="bg-white rounded-xl shadow-subtle overflow-hidden hover:shadow-hover transition-all duration-300 h-full w-[300px]">
+                    <div className="p-6">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className="inline-block px-2 py-1 text-xs font-semibold bg-enabler-100 text-enabler-800 rounded-full whitespace-nowrap">{item.category}</span>
+                        <div className="flex items-center text-gray-500 text-xs">
+                          <CalendarDays size={14} className="mr-1 flex-shrink-0" />
+                          <span className="whitespace-nowrap">{item.date}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-bold mb-3 line-clamp-2">{item.title}</h3>
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.excerpt}</p>
+                      <Link to={`/blog/${item.id}`} className="text-enabler-600 hover:text-enabler-700 text-sm font-medium flex items-center">
+                        続きを読む <ArrowRight size={14} className="ml-1 flex-shrink-0" />
+                      </Link>
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold mb-3 line-clamp-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.excerpt}</p>
-                  <Link to={`/blog/${item.id}`} className="text-enabler-600 hover:text-enabler-700 text-sm font-medium flex items-center">
-                    続きを読む <ArrowRight size={14} className="ml-1 flex-shrink-0" />
-                  </Link>
-                </div>
-              </div>
-            </MotionBox>
-          ))}
+                </MotionBox>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-8 sm:hidden text-center">
+          <Link to="/blog" className="text-enabler-600 hover:text-enabler-700 flex items-center gap-1 text-sm font-medium justify-center mx-auto">
+            すべてのニュースを見る <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

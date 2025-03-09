@@ -21,13 +21,8 @@ const MonochromeLogo: React.FC<LogoVariantProps> = ({ size, year = new Date().ge
           <stop offset="0%" stopColor={foundingColor} />
           <stop offset="100%" stopColor={fibonacciAccentInfo.specialColor} />
         </linearGradient>
-        <radialGradient id={`backgroundGlow-mono-${year}`} cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
-          <stop offset="0%" stopColor={`${foundingColor}30`} />
-          <stop offset="100%" stopColor="#ffffff00" />
-        </radialGradient>
       </defs>
       <rect width="200" height="70" fill="#fff" fillOpacity="0"/>
-      <ellipse cx="100" cy="35" rx="90" ry="30" fill={`url(#backgroundGlow-mono-${year})`} />
       <rect x="15" y="25" width="60" height="3" rx="1.5" fill={currentYearColor}/>
       <rect x="15" y="33" width={middleLineWidth} height="3" rx="1.5" fill={`url(#middleLineGradient-mono-${year})`}/>
       <rect x="15" y="41" width="60" height="3" rx="1.5" fill={currentYearColor}/>

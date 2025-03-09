@@ -61,14 +61,14 @@ const YearlyLogoViewer: React.FC = () => {
   );
   
   return (
-    <div className="mt-6 space-y-6">
-      <h3 className="text-lg font-semibold mb-4">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
-      <p className="text-sm text-gray-600 mb-4">
+    <div className="mt-4 space-y-4">
+      <h3 className="text-lg font-semibold mb-3">ロゴ年次変遷（{startDisplayYear}年〜）</h3>
+      <p className="text-sm text-gray-600 mb-3">
         ※ブランドカラーは毎年変化します。色をクリックするとコピーできます。<br />
         ※会社は2022年に創業しましたが、ロゴ表示は2025年から始まります。
       </p>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {years.map(year => {
           // For 2025 (first year), use the specified color
           const color = year === 2025 
@@ -91,7 +91,7 @@ const YearlyLogoViewer: React.FC = () => {
       </div>
       
       {visibleYears < totalYears && (
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-3">
           <Button 
             variant="outline" 
             onClick={handleLoadMore}

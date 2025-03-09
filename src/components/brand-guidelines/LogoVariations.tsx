@@ -9,6 +9,7 @@ import OutlineLogo from './logo-variants/OutlineLogo';
 import OriginalLogo from './logo-variants/OriginalLogo';
 import ConsistentLogo from './logo-variants/ConsistentLogo';
 import FoundingLogo from './logo-variants/FoundingLogo';
+import ThreeLinesLogo from './logo-variants/ThreeLinesLogo';
 
 const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = new Date().getFullYear() }) => {
   const sizeClasses = {
@@ -36,6 +37,7 @@ const LogoVariations: React.FC<LogoVariationsProps> = ({ variant, size, year = n
       {variant === 'outline' && <OutlineLogo size={size} year={year} />}
       {variant === 'original' && <OriginalLogo size={size} year={year} />}
       {variant === 'consistent' && <ConsistentLogo size={size} year={year} />}
+      {variant === 'threeLines' && <ThreeLinesLogo size={size} year={year} />}
     </svg>
   );
 };

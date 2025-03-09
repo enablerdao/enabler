@@ -4,10 +4,18 @@ export interface LogoVariantProps {
   year?: number;
 }
 
-export type LogoVariant = 'modern' | 'monochrome' | 'gradient' | 'outline' | 'original' | 'consistent' | 'foundingLogo';
+export type LogoVariantType = 
+  | 'modern' 
+  | 'monochrome' 
+  | 'gradient' 
+  | 'outline' 
+  | 'original'
+  | 'consistent'
+  | 'foundingLogo'
+  | 'threeLines';
 
 export interface LogoVariationsProps {
-  variant: LogoVariant;
+  variant: LogoVariantType;
   size: 'sm' | 'md' | 'lg';
   year?: number;
 }

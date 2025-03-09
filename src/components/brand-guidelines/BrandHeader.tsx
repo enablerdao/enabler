@@ -4,7 +4,7 @@ import { MotionBox } from '@/components/ui/motion-box';
 import LogoVariations from './LogoVariations';
 
 const BrandHeader = () => {
-  // Get current year
+  // 現在の年を取得
   const currentYear = new Date().getFullYear();
   
   return (
@@ -17,7 +17,11 @@ const BrandHeader = () => {
           {currentYear}年度版 • ブランドの一貫性と認知度向上のために
         </p>
         <div className="w-full max-w-4xl mx-auto px-2 md:px-0">
-          <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex justify-center items-center h-96 md:h-[28rem] lg:h-[32rem]">
+          <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
+            {/* 3本線のみのロゴを追加 */}
+            <div className="w-40 md:w-48 lg:w-56 mb-8">
+              <LogoVariations variant="threeLines" size="lg" year={currentYear} />
+            </div>
             <div className="w-72 md:w-96 lg:w-[30rem]">
               <LogoVariations variant="modern" size="lg" year={currentYear} />
             </div>

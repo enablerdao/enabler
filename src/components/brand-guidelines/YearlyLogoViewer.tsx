@@ -38,27 +38,39 @@ const YearlyLogoViewer: React.FC = () => {
               key={year} 
               className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex flex-col items-center"
             >
-              <div className="h-24 flex items-center justify-center mb-2">
+              <div className="h-32 flex items-center justify-center mb-2 relative">
                 <LogoVariations variant="modern" size="md" year={year} />
+                <div className="absolute bottom-0 text-xs text-gray-500 bg-white/80 px-2 py-0.5 rounded">
+                  {year}年
+                </div>
               </div>
-              <div className="text-center w-full">
-                <p className="font-medium">{year}年</p>
-                <div className="flex justify-between items-center mt-1.5 px-2 text-xs">
-                  <div className="flex flex-col items-center">
+              
+              <div className="text-center w-full mt-3">
+                <div className="flex justify-between items-center gap-4">
+                  {/* Brand color - larger circle with white text */}
+                  <div className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-4 h-4 rounded-full mb-1" 
+                      className="w-14 h-14 rounded-full flex items-center justify-center mb-2 relative" 
                       style={{ backgroundColor: color.hex }}
-                    ></div>
-                    <p className="text-gray-600">ブランドカラー</p>
-                    <p className="text-gray-500">{color.hex}</p>
+                    >
+                      <span className="text-white text-xs font-medium drop-shadow-sm">
+                        ブランド
+                      </span>
+                    </div>
+                    <p className="text-gray-600 text-xs">{color.hex}</p>
                   </div>
-                  <div className="flex flex-col items-center">
+                  
+                  {/* Special accent color - larger circle with white text */}
+                  <div className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-4 h-4 rounded-full mb-1" 
+                      className="w-14 h-14 rounded-full flex items-center justify-center mb-2" 
                       style={{ backgroundColor: specialAccent.hex }}
-                    ></div>
-                    <p className="text-gray-600">特別カラー</p>
-                    <p className="text-gray-500">{specialAccent.hex}</p>
+                    >
+                      <span className="text-white text-xs font-medium drop-shadow-sm">
+                        特別
+                      </span>
+                    </div>
+                    <p className="text-gray-600 text-xs">{specialAccent.hex}</p>
                   </div>
                 </div>
               </div>

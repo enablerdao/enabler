@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { Palette } from 'lucide-react';
@@ -6,24 +7,26 @@ import { companyInfo } from '@/lib/data';
 import { calculateColorForYear } from './color-utils/color-calculator';
 import FoundingColorSection from './color-sections/FoundingColorSection';
 import ColorMathSection from './color-sections/ColorMathSection';
+
 interface ColorInfo {
   year: number;
   hex: string;
   name: string;
   rgb: string;
 }
+
 interface BrandColorsProps {
   currentYearColor: ColorInfo;
   brandColors: ColorInfo[];
 }
+
 const BrandColors = ({
   currentYearColor,
   brandColors
 }: BrandColorsProps) => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const currentYear = new Date().getFullYear();
+  
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast({
@@ -34,7 +37,9 @@ const BrandColors = ({
 
   // Get founding year color (2022)
   const foundingYearColor = brandColors.find(color => color.year === 2022) || currentYearColor;
-  return <MotionBox delay={400}>
+  
+  return (
+    <MotionBox delay={400}>
       <section className="mb-8 md:mb-14 px-0 md:px-4">
         <div className="flex items-center mb-4 md:mb-6">
           <Palette className="text-enabler-600 mr-3" size={24} />
@@ -51,6 +56,8 @@ const BrandColors = ({
           <ColorMathSection copyToClipboard={copyToClipboard} foundingYearColor={foundingYearColor} />
         </div>
       </section>
-    </MotionBox>;
+    </MotionBox>
+  );
 };
+
 export default BrandColors;

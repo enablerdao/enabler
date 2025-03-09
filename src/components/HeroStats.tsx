@@ -19,7 +19,6 @@ const HeroStats = () => {
             <MotionBox 
               key={stat.label}
               delay={index * 100}
-              className="text-center"
             >
               <h3 className="text-4xl font-bold text-enabler-600 mb-2">{stat.value}</h3>
               <p className="text-gray-600 text-sm">{stat.label}</p>

@@ -45,13 +45,17 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans text-left;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight text-left;
+  }
+  
+  p {
+    @apply text-left;
   }
 }
 
@@ -108,6 +112,11 @@
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  
+  /* Center alignment exception classes */
+  .text-center-important {
+    @apply text-center !important;
   }
 }
 

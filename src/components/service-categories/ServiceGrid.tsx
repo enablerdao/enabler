@@ -10,7 +10,7 @@ interface ServiceGridProps {
 export const ServiceGrid: React.FC<ServiceGridProps> = ({ services }) => {
   if (services.length === 0) {
     return (
-      <div className="text-center py-10">
+      <div className="py-10">
         <p className="text-gray-500">検索条件に一致するサービスがありません。</p>
       </div>
     );

@@ -41,17 +41,17 @@ const ContactSection = () => {
     <section id="contact" className="section-padding">
       <div className="container mx-auto px-6">
         <MotionBox>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">お問い合わせ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">お問い合わせ</h2>
         </MotionBox>
         
         <MotionBox delay={200}>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-12 max-w-2xl">
             サービスに関するご質問やご相談など、お気軽にお問い合わせください。
             担当者が迅速にご対応いたします。
           </p>
         </MotionBox>
         
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl">
           <MotionBox delay={300}>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
@@ -112,7 +112,7 @@ const ContactSection = () => {
                 ></textarea>
               </div>
               
-              <div className="flex justify-center">
+              <div className="flex">
                 <button
                   type="submit"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-enabler-600 text-white font-medium transition-all duration-200 hover:bg-enabler-700 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"

@@ -34,36 +34,36 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
 
   return (
     <MotionBox delay={400}>
-      <section className="mb-6 md:mb-12 px-4 md:px-0">
-        <div className="flex items-center mb-3 md:mb-5">
-          <Palette className="text-enabler-600 mr-2 md:mr-3" size={24} />
+      <section className="mb-8 md:mb-14 px-6 md:px-0">
+        <div className="flex items-center mb-4 md:mb-6">
+          <Palette className="text-enabler-600 mr-3" size={24} />
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">3. ブランドカラー</h2>
         </div>
-        <div className="bg-white p-4 md:p-6 rounded-xl shadow-subtle">
-          <p className="text-base md:text-lg mb-4 md:mb-5 leading-relaxed">
+        <div className="bg-white p-5 md:p-8 rounded-xl shadow-subtle">
+          <p className="text-base md:text-lg mb-5 md:mb-6 leading-relaxed">
             Enablerのブランドカラーは創業年を起点に年数経過で変化します。
             2025年に公式ブランドカラーとして統一され、以降のマーケティング資料やプロダクトデザインに反映されています。
           </p>
           
-          <div className="mb-5 md:mb-8">
-            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ブランドカラーの進化と一貫性</h3>
-            <p className="text-base mb-3 leading-relaxed">
+          <div className="mb-6 md:mb-10">
+            <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-5 border-b pb-2">ブランドカラーの進化と一貫性</h3>
+            <p className="text-base mb-4 leading-relaxed">
               2025年に統一されたブランドアイデンティティは、すべての製品とサービスで一貫して維持され、視認性と認知度を向上させています。
             </p>
             
             {/* 現在のカラーを大きく表示 */}
-            <div className="bg-gray-50 p-4 rounded-lg mb-4">
-              <h4 className="text-base font-semibold mb-2 text-center">現在のブランドカラー ({currentYearColor.year}年)</h4>
+            <div className="bg-gray-50 p-5 rounded-lg mb-5">
+              <h4 className="text-base font-semibold mb-3 text-center">現在のブランドカラー ({currentYearColor.year}年)</h4>
               <div 
-                className="h-24 md:h-32 w-full rounded-lg mb-3 cursor-pointer relative group"
+                className="h-28 md:h-36 w-full rounded-lg mb-4 cursor-pointer relative group"
                 style={{ backgroundColor: currentYearColor.hex }}
                 onClick={() => copyToClipboard(currentYearColor.hex, `${currentYearColor.name}`)}
               >
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Copy className="text-white w-8 h-8" />
+                  <Copy className="text-white w-10 h-10" />
                 </div>
               </div>
-              <div className="flex justify-between items-center bg-white p-3 rounded-md">
+              <div className="flex justify-between items-center bg-white p-4 rounded-md">
                 <div>
                   <p className="text-base font-medium">{currentYearColor.name}</p>
                   <p className="text-sm text-gray-600">{currentYearColor.year}年</p>
@@ -76,12 +76,41 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
             </div>
           </div>
           
-          <div className="mb-5 md:mb-8">
-            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">数学的な色の変化表現（漸近的変化）</h3>
-            <p className="text-base mb-3 md:mb-4 leading-relaxed">
+          {/* ロゴのプレビュー - 年度別 */}
+          <div className="mb-6 md:mb-10">
+            <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">年度別ロゴプレビュー</h3>
+            <p className="text-base mb-4 leading-relaxed">
+              ブランドカラーの変化に応じたロゴの見え方を年度別に表示しています。これにより、一貫したブランドイメージの進化を確認できます。
+            </p>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
+              {brandColors.map((color, index) => (
+                <div key={index} className={`bg-white rounded-lg p-3 shadow-sm ${color.year === 2025 ? 'border-2 border-blue-300' : ''}`}>
+                  <div className="bg-gray-50 p-2 rounded-lg mb-2 flex justify-center items-center">
+                    <LogoVariations variant="modern" size="sm" year={color.year} />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm font-medium">{color.year}年</p>
+                    <div 
+                      className="h-8 w-full rounded mt-2 mb-1"
+                      style={{ backgroundColor: color.hex }}
+                    ></div>
+                    <p className="text-xs font-mono bg-gray-50 rounded px-1 py-0.5 mt-1 cursor-pointer" 
+                       onClick={() => copyToClipboard(color.hex, `${color.year}年 ${color.name}`)}>
+                      {color.hex}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="mb-6 md:mb-10">
+            <h3 className="text-lg md:text-xl font-semibold mb-4 border-b pb-2">数学的な色の変化表現（漸近的変化）</h3>
+            <p className="text-base mb-4 leading-relaxed">
               色の変化は以下の関数で表され、無限に近づきながらも最大値に到達することはありません。これはEnablerが「常に可能性を追求し続ける」ことを意味しています。
             </p>
-            <div className="bg-gray-50 p-4 rounded-lg mb-4">
+            <div className="bg-gray-50 p-4 rounded-lg mb-5">
               <pre className="text-sm md:text-base font-mono overflow-x-auto p-4 bg-gray-100 rounded-lg">
 {`R = ${companyInfo.colorFormula.r}
 G = ${companyInfo.colorFormula.g}
@@ -96,8 +125,8 @@ B = ${companyInfo.colorFormula.b}
               </button>
             </div>
             
-            <h4 className="text-lg font-semibold mb-2 mt-6">フィボナッチ数列と黄金角の特別カラー</h4>
-            <p className="text-base mb-3 md:mb-4 leading-relaxed">
+            <h4 className="text-lg font-semibold mb-3 mt-6">フィボナッチ数列と黄金角の特別カラー</h4>
+            <p className="text-base mb-4 leading-relaxed">
               {companyInfo.fibonacci}
             </p>
 
@@ -112,16 +141,16 @@ B = ${companyInfo.colorFormula.b}
               </div>
             )}
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 mb-4 md:mb-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-5">
               {brandColors.map((color, index) => (
                 <div key={index} className={`bg-white rounded-lg p-3 shadow-sm ${color.year === 2025 ? 'border-2 border-blue-300' : ''}`}>
                   <div 
-                    className="h-16 md:h-20 rounded-lg mb-2 cursor-pointer relative group"
+                    className="h-20 md:h-24 rounded-lg mb-2 cursor-pointer relative group"
                     style={{ backgroundColor: color.hex }}
                     onClick={() => copyToClipboard(color.hex, `${color.year}年 ${color.name}`)}
                   >
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Copy className="text-white w-5 h-5" />
+                      <Copy className="text-white w-6 h-6" />
                     </div>
                     {color.year === 2025 && (
                       <div className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full px-1.5 py-0.5">
@@ -142,18 +171,18 @@ B = ${companyInfo.colorFormula.b}
             </div>
           </div>
           
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="text-lg font-semibold mb-3 text-center">カラーパレット</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+          <div className="bg-gray-50 p-5 rounded-lg">
+            <h4 className="text-lg font-semibold mb-4 text-center">カラーパレット</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
               {/* メインカラー */}
-              <div className="bg-white p-3 rounded-lg shadow-sm">
+              <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div 
-                  className="h-20 rounded-lg mb-3 cursor-pointer relative group"
+                  className="h-24 md:h-28 rounded-lg mb-3 cursor-pointer relative group"
                   style={{ backgroundColor: companyInfo.currentColor }}
                   onClick={() => copyToClipboard(companyInfo.currentColor, 'メインカラー')}
                 >
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Copy className="text-white w-6 h-6" />
+                    <Copy className="text-white w-8 h-8" />
                   </div>
                 </div>
                 <h5 className="text-base font-medium mb-1">メインカラー（スカイブルー）</h5>
@@ -165,14 +194,14 @@ B = ${companyInfo.colorFormula.b}
               </div>
               
               {/* アクセントカラー */}
-              <div className="bg-white p-3 rounded-lg shadow-sm">
+              <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div 
-                  className="h-20 rounded-lg mb-3 cursor-pointer relative group"
+                  className="h-24 md:h-28 rounded-lg mb-3 cursor-pointer relative group"
                   style={{ backgroundColor: companyInfo.accentColor }}
                   onClick={() => copyToClipboard(companyInfo.accentColor, 'アクセントカラー')}
                 >
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Copy className="text-white w-6 h-6" />
+                    <Copy className="text-white w-8 h-8" />
                   </div>
                 </div>
                 <h5 className="text-base font-medium mb-1">アクセントカラー（若草色）</h5>
@@ -184,15 +213,15 @@ B = ${companyInfo.colorFormula.b}
               </div>
               
               {/* 補助カラー */}
-              <div className="bg-white p-3 rounded-lg shadow-sm">
-                <div className="flex h-20 mb-3 rounded-lg overflow-hidden">
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="flex h-24 md:h-28 mb-3 rounded-lg overflow-hidden">
                   <div 
                     className="w-1/2 cursor-pointer relative group"
                     style={{ backgroundColor: companyInfo.supportingColors.white }}
                     onClick={() => copyToClipboard(companyInfo.supportingColors.white, 'ホワイト')}
                   >
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Copy className="text-gray-400 w-6 h-6" />
+                      <Copy className="text-gray-400 w-8 h-8" />
                     </div>
                   </div>
                   <div 
@@ -201,7 +230,7 @@ B = ${companyInfo.colorFormula.b}
                     onClick={() => copyToClipboard(companyInfo.supportingColors.silver, 'シルバー')}
                   >
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Copy className="text-white w-6 h-6" />
+                      <Copy className="text-white w-8 h-8" />
                     </div>
                   </div>
                 </div>

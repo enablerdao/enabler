@@ -10,6 +10,8 @@ export const bRankServices: Service[] = [
     domain: 'getaifit.com',
     goal: '初回体験トレーニング100件提供',
     description: 'AIが身体データを分析し、最適なトレーニングプランと栄養アドバイスを提供。リアルタイムでフォームチェックも可能。',
+    mission: 'パーソナライズされたトレーニングを通じて、人々の健康と自己実現をサポートする',
+    vision: '誰もが自分のベストな身体と自信を手に入れられる未来を創る',
     features: [
       { 
         title: 'トレーニング一覧',
@@ -39,6 +41,8 @@ export const bRankServices: Service[] = [
     domain: 'tasktrusthq.com',
     goal: '新規マッチング件数100件突破',
     description: '日常の家事や雑用を依頼できるシェアリングサービス。信頼性の高いヘルパーと安全に取引可能。',
+    mission: '日常のあらゆるタスクを安心・安全にマッチングし、人々の負担を軽減する',
+    vision: '信頼できる繋がりで、もっと豊かで快適な暮らしを実現する',
     features: [
       { 
         title: 'タスク一覧',

@@ -1,4 +1,3 @@
-
 import { Service } from '../types/service';
 
 export const aRankServices: Service[] = [
@@ -11,6 +10,8 @@ export const aRankServices: Service[] = [
     domain: 'skillityapp.com',
     goal: '登録スキル数500件、ユーザー数300名突破',
     description: '個人のスキルやノウハウを売買できるマーケットプレイス。ビジネス、クリエイティブ、テクノロジーなど多様なカテゴリーを提供。',
+    mission: '個人のスキルとノウハウを価値ある資産に変え、豊かなつながりを生み出す',
+    vision: 'すべての人が自分の能力を活かし、互いに高め合える社会を実現する',
     features: [
       { 
         title: 'スキル一覧',
@@ -69,6 +70,8 @@ export const aRankServices: Service[] = [
     domain: 'matchsenseapp.com',
     goal: 'マッチング成功事例を20件以上獲得',
     description: 'AIが価値観や生活スタイルを分析し、最適なパートナー候補を紹介。従来のマッチングよりも高い成婚率を実現。',
+    mission: 'AIで価値観を深く理解し、本当に合うパートナーとの出会いを提供する',
+    vision: '誰もが安心して、自分らしく幸せなパートナーシップを築ける社会を実現する',
     features: [
       { 
         title: 'マッチング一覧',
@@ -98,6 +101,8 @@ export const aRankServices: Service[] = [
     domain: 'travelmatehq.com',
     goal: 'AIレコメンド精度向上、初期フィードバック100件収集',
     description: 'AIが旅行者の好みや予算に合わせたオーダーメイドの旅行プランを提案。地元の穴場スポットや体験も紹介。',
+    mission: 'AIの力で旅行のプランニングをパーソナライズし、一生の思い出を創る',
+    vision: '一人ひとりが自分らしく旅を楽しめる世界を実現する',
     features: [
       { 
         title: 'プラン一覧',

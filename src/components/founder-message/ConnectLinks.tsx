@@ -80,10 +80,10 @@ const ConnectLinks = () => {
               <Github size={18} className="text-gray-600 group-hover:text-enabler-600" />
               <span>GitHub: YukiHamada</span>
             </a>
-            <a href="https://yukihamada.jp" target="_blank" rel="noopener noreferrer" 
+            <a href="https://yukihamadajp" target="_blank" rel="noopener noreferrer" 
               className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors border border-gray-200 group">
               <ExternalLink size={18} className="text-gray-600 group-hover:text-enabler-600" />
-              <span>yukihamada.jp</span>
+              <span>yukihamadajp</span>
             </a>
           </div>
           

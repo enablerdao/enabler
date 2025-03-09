@@ -4,6 +4,7 @@ import { MotionBox } from '@/components/ui/motion-box';
 import { Palette, Copy, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
+import { companyInfo } from '@/lib/data';
 
 interface ColorInfo {
   year: number;
@@ -40,7 +41,7 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
         </div>
         <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-3 md:mb-5 leading-relaxed">
-            Enablerのブランドカラーは会社設立時から一貫して使用されており、企業全体のアイデンティティを形成する重要な要素です。
+            Enablerのブランドカラーは創業年を起点に年数経過で変化します。
             2025年に公式ブランドカラーとして統一され、以降のマーケティング資料やプロダクトデザインに反映されています。
           </p>
           
@@ -73,10 +74,10 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
                 </div>
                 <div 
                   className="h-5 md:h-6 w-16 md:w-20 rounded-md shadow-sm cursor-pointer flex items-center justify-center group relative"
-                  style={{ backgroundColor: color2025.hex }}
-                  onClick={() => copyToClipboard(color2025.hex, color2025.name)}
+                  style={{ backgroundColor: companyInfo.currentColor }}
+                  onClick={() => copyToClipboard(companyInfo.currentColor, '2025年ブランドカラー')}
                 >
-                  <span className="text-xs text-white group-hover:opacity-0 transition-opacity">{color2025.hex}</span>
+                  <span className="text-xs text-white group-hover:opacity-0 transition-opacity">{companyInfo.currentColor}</span>
                   <Copy className="w-3 h-3 text-white absolute opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
@@ -106,11 +107,30 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           </div>
           
           <div className="mb-5 md:mb-8">
-            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">年度別ブランドカラー</h3>
+            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">数学的な色の変化表現（漸近的変化）</h3>
             <p className="text-base mb-3 md:mb-4 leading-relaxed">
-              各年度ごとに計算されるテーマカラーは、その年のプロジェクトやキャンペーンに使用されます。
-              2025年に公式に統一されたブランドカラーは、特に重要な節目となりました。
+              色の変化は以下の関数で表され、無限に近づきながらも最大値に到達することはありません。これはEnablerが「常に可能性を追求し続ける」ことを意味しています。
             </p>
+            <div className="bg-gray-50 p-3 rounded-lg mb-4">
+              <pre className="text-sm font-mono overflow-x-auto p-3 bg-gray-100 rounded-lg">
+{`R = ${companyInfo.colorFormula.r}
+G = ${companyInfo.colorFormula.g}
+B = ${companyInfo.colorFormula.b}
+※ y：年度`}
+              </pre>
+              <button 
+                className="mt-2 text-xs md:text-sm px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center"
+                onClick={() => copyToClipboard(`R = ${companyInfo.colorFormula.r}\nG = ${companyInfo.colorFormula.g}\nB = ${companyInfo.colorFormula.b}`, '色計算式')}
+              >
+                <Copy className="w-3.5 h-3.5 mr-1.5" /> 計算式をコピー
+              </button>
+            </div>
+            
+            <h4 className="text-lg font-semibold mb-2">フィボナッチ数列の採用</h4>
+            <p className="text-base mb-3 md:mb-4 leading-relaxed">
+              {companyInfo.fibonacci}
+            </p>
+            
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-4 mb-3 md:mb-4">
               {brandColors.map((color, index) => (
                 <div key={index} className={`bg-white rounded-lg p-2 md:p-3 shadow-sm ${color.year === 2025 ? 'border-2 border-blue-300' : ''}`}>
@@ -142,9 +162,60 @@ const BrandColors = ({ currentYearColor, brandColors }: BrandColorsProps) => {
           </div>
           
           <div className="bg-gray-50 p-3 rounded-lg">
-            <h4 className="text-base md:text-lg font-semibold mb-2">ブランドカラーの使用ガイドライン</h4>
+            <h4 className="text-base md:text-lg font-semibold mb-2">ブランドカラーパレット</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+              <div className="bg-white p-2 rounded-lg shadow-sm">
+                <div className="flex items-center mb-1">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: companyInfo.currentColor }}></div>
+                  <h5 className="text-sm font-medium">メインカラー（スカイブルー）</h5>
+                </div>
+                <p className="text-xs text-gray-600">数式で動的に変化（上記参照）</p>
+                <p className="text-xs font-mono bg-gray-50 rounded px-1 py-0.5 mt-1 cursor-pointer"
+                   onClick={() => copyToClipboard(companyInfo.currentColor, 'メインカラー')}>
+                  {companyInfo.currentColor}
+                </p>
+              </div>
+              
+              <div className="bg-white p-2 rounded-lg shadow-sm">
+                <div className="flex items-center mb-1">
+                  <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: companyInfo.accentColor }}></div>
+                  <h5 className="text-sm font-medium">アクセントカラー（若草色）</h5>
+                </div>
+                <p className="text-xs text-gray-600">成長、生命力、安心感</p>
+                <p className="text-xs font-mono bg-gray-50 rounded px-1 py-0.5 mt-1 cursor-pointer"
+                   onClick={() => copyToClipboard(companyInfo.accentColor, 'アクセントカラー')}>
+                  {companyInfo.accentColor}
+                </p>
+              </div>
+              
+              <div className="bg-white p-2 rounded-lg shadow-sm">
+                <div className="flex items-center mb-1">
+                  <div className="flex">
+                    <div className="w-4 h-4 rounded-l-full" style={{ backgroundColor: companyInfo.supportingColors.white }}></div>
+                    <div className="w-4 h-4 rounded-r-full" style={{ backgroundColor: companyInfo.supportingColors.silver }}></div>
+                  </div>
+                  <h5 className="text-sm font-medium ml-2">補助カラー</h5>
+                </div>
+                <div className="flex justify-between mt-1">
+                  <div className="flex-1">
+                    <p className="text-xs text-gray-600">透明性、誠実さ</p>
+                    <p className="text-xs font-mono bg-gray-50 rounded px-1 py-0.5 mt-1 cursor-pointer"
+                       onClick={() => copyToClipboard(companyInfo.supportingColors.white, 'ホワイト')}>
+                      {companyInfo.supportingColors.white}
+                    </p>
+                  </div>
+                  <div className="flex-1 ml-1">
+                    <p className="text-xs text-gray-600">調和、技術</p>
+                    <p className="text-xs font-mono bg-gray-50 rounded px-1 py-0.5 mt-1 cursor-pointer"
+                       onClick={() => copyToClipboard(companyInfo.supportingColors.silver, 'シルバー')}>
+                      {companyInfo.supportingColors.silver}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <ul className="text-sm space-y-1.5 pl-5 list-disc">
-              <li>2025年に統一されたブランドカラー（{color2025.hex}）は、公式コミュニケーションで優先的に使用してください。</li>
+              <li>2025年に統一されたブランドカラー（{companyInfo.currentColor}）は、公式コミュニケーションで優先的に使用してください。</li>
               <li>現在の年度カラー（{currentYearColor.hex}）は、当年度のキャンペーンや限定的な資料で使用してください。</li>
               <li>すべてのプロダクトとサービスで一貫したカラースキームを維持してください。</li>
               <li>デジタルとプリントメディアでは、正確なカラーコードを使用してカラーの統一性を確保してください。</li>

@@ -12,6 +12,7 @@ import LogoVariants from './color-utils/LogoVariants';
 import ColorPalette from './color-utils/ColorPalette';
 import GradientExamples from './color-utils/GradientExamples';
 import { ColorInfo } from './color-utils/types';
+import { companyInfo } from '@/lib/data';
 
 interface FixedColorValuesProps {
   currentYearColor: ColorInfo;
@@ -39,11 +40,13 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
     }, 2000);
   };
 
-  // Function to calculate color for any given year
+  // Function to calculate color for any given year using the new formula
   const calculateColorForYear = (year: number) => {
     const yearDiff = year - 2022;
-    const r = Math.min(34 + yearDiff * 3, 224);
-    const g = Math.min(182 + yearDiff * 2, 245);
+    
+    // Using the exponential formula: R = round(34 + 190 × (1 - 0.95^(y - 2022)))
+    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
+    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
     const b = 255;
     
     // Convert to HEX
@@ -144,7 +147,30 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
           </div>
           
           {/* Color formula section */}
-          <ColorFormula onCopy={copyToClipboard} />
+          <div className="bg-gray-50 p-3 md:p-4 rounded-lg mb-4 md:mb-6">
+            <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 flex items-center">
+              <InfoIcon className="w-5 h-5 mr-2 text-blue-500" />
+              年度カラー計算式
+            </h3>
+            <div className="bg-white p-3 rounded-lg shadow-sm">
+              <p className="text-sm md:text-base mb-2">Enablerのブランドカラーは、以下の計算式に基づいて年ごとに変化します：</p>
+              <div className="font-mono bg-gray-100 p-2 rounded text-sm mb-3 overflow-x-auto">
+                <pre>{companyInfo.colorFormula.r}</pre>
+                <pre>{companyInfo.colorFormula.g}</pre>
+                <pre>{companyInfo.colorFormula.b}</pre>
+                <pre>※ y：年度</pre>
+              </div>
+              <button 
+                className="text-xs md:text-sm px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center transition-colors"
+                onClick={() => copyToClipboard(
+                  `${companyInfo.colorFormula.r}\n${companyInfo.colorFormula.g}\n${companyInfo.colorFormula.b}`, 
+                  '色計算式'
+                )}
+              >
+                <Copy className="w-3.5 h-3.5 mr-1.5" /> 計算式をコピー
+              </button>
+            </div>
+          </div>
           
           {/* Color progression section */}
           <ColorProgression 
@@ -180,5 +206,13 @@ const FixedColorValues = ({ currentYearColor, brandColors }: FixedColorValuesPro
     </MotionBox>
   );
 };
+
+const InfoIcon = ({ className }: { className?: string }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="12" y1="16" x2="12" y2="12"></line>
+    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+  </svg>
+);
 
 export default FixedColorValues;

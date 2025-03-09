@@ -2,6 +2,7 @@
 import React from 'react';
 import { MotionBox } from '@/components/ui/motion-box';
 import { BookOpen } from 'lucide-react';
+import { companyInfo } from '@/lib/data';
 
 const BrandStory = () => {
   return (
@@ -13,7 +14,7 @@ const BrandStory = () => {
         </div>
         <div className="bg-white p-8 rounded-xl shadow-subtle">
           <p className="text-lg mb-4 leading-relaxed">
-            「Enabler（イネブラ）」は、人々が持つ可能性をテクノロジーの力で優しく引き出し、実現するために2022年に誕生しました。
+            {companyInfo.brandStory}
           </p>
           <p className="text-lg leading-relaxed">
             誰もが持っている可能性の種を育て、未来をともに創るパートナーとして、あたたかな視点で寄り添い続けています。

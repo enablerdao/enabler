@@ -14,15 +14,16 @@ import BrandAssetRules from '@/components/brand-guidelines/BrandAssetRules';
 import FixedColorValues from '@/components/brand-guidelines/FixedColorValues';
 import FAQContact from '@/components/brand-guidelines/FAQContact';
 import LogoEvolution from '@/components/brand-guidelines/LogoEvolution';
+import { companyInfo } from '@/lib/data';
 
 const BrandGuidelines = () => {
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
   }, []);
 
-  // Calculate current year's color based on the formula
-  // R = min(34 + (y - 2022) * 3, 224)
-  // G = min(182 + (y - 2022) * 2, 245)
+  // Calculate current year's color based on the new formula
+  // R = round(34 + 190 × (1 - 0.95^(y - 2022)))
+  // G = round(182 + 63 × (1 - 0.95^(y - 2022)))
   // B = 255
   const currentYear = new Date().getFullYear();
   const baseYear = 2022; // When the first color was established
@@ -30,8 +31,10 @@ const BrandGuidelines = () => {
   // Calculate RGB values based on the formula
   const calculateColorForYear = (year: number) => {
     const yearDiff = year - 2022;
-    const r = Math.min(34 + yearDiff * 3, 224);
-    const g = Math.min(182 + yearDiff * 2, 245);
+    
+    // Using the exponential formula
+    const r = Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff)));
+    const g = Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff)));
     const b = 255;
     
     // Convert to HEX
@@ -71,6 +74,9 @@ const BrandGuidelines = () => {
     { year: 2052, name: '30周年', description: '設立30周年記念デザイン' },
     { year: 2062, name: '40周年', description: '設立40周年記念デザイン' },
   ];
+
+  // Get Fibonacci years for special designs
+  const fibonacciYears = [2023, 2024, 2025, 2027, 2030, 2035, 2043, 2056];
 
   return (
     <>

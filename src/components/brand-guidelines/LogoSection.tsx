@@ -4,6 +4,7 @@ import { MotionBox } from '@/components/ui/motion-box';
 import { Info, Copy, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import LogoVariations from './LogoVariations';
+import { companyInfo } from '@/lib/data';
 
 interface ColorInfo {
   year: number;
@@ -55,7 +56,7 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
         </div>
         <div className="bg-white p-3 md:p-6 rounded-xl shadow-subtle">
           <p className="text-base md:text-lg mb-3 md:mb-5 leading-relaxed">
-            Enablerのロゴは企業アイデンティティの中核を成す要素です。ロゴは会社のブランドとして一貫して使用され、ブランド価値を強化します。
+            {companyInfo.logoDescription}
             現在は{currentYearColor.year}年のブランドカラー（{currentYearColor.name}: {currentYearColor.hex}）を使用しています。
           </p>
           
@@ -144,14 +145,17 @@ const LogoSection = ({ currentYearColor }: LogoSectionProps) => {
                 </pre>
               </div>
             </div>
+            <p className="text-sm text-gray-600 mb-3">
+              {companyInfo.gradientMeaning}
+            </p>
           </div>
           
           <div className="mb-3 md:mb-5">
             <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 border-b pb-2">ロゴ使用ガイドライン</h3>
             <ul className="list-disc pl-5 space-y-1.5">
-              <li className="text-sm md:text-base">ブランドカラー：{currentYearColor.hex}（{currentYearColor.year}年に設定、年次で自動更新）</li>
-              <li className="text-sm md:text-base">ロゴ使用時の余白：ロゴの高さの1/3程度を空け、他の要素との重なりを避ける。</li>
-              <li className="text-sm md:text-base">ロゴの変形は厳禁。アスペクト比を維持してサイズ変更すること。</li>
+              <li className="text-sm md:text-base">現在のブランドカラー（2025年）：{companyInfo.currentColor}</li>
+              <li className="text-sm md:text-base">{companyInfo.logoUsageGuidelines}</li>
+              <li className="text-sm md:text-base">ロゴの変形や色の自由な変更は厳禁。</li>
               <li className="text-sm md:text-base">常に公式バリエーションのいずれかを使用し、会社のブランドの一貫性を保つこと。</li>
             </ul>
           </div>

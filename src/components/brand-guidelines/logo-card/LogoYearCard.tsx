@@ -123,6 +123,10 @@ const LogoYearCard: React.FC<LogoYearCardProps> = ({
               無限に進化し続ける設計になっています。
             </p>
             <p className="text-2xs mt-1">
+              長期的な例: 2608年のRGB値は (224, 245, 255)、HEX: #E0F5FF となり、
+              非常に薄い青色になりますが、完全に白色（#FFFFFF）になることはありません。
+            </p>
+            <p className="text-2xs mt-1">
               特別カラーは黄金角（137.5°）に基づき計算され、フィボナッチ数列の累積和の年にのみ色が変化します。
             </p>
           </div>

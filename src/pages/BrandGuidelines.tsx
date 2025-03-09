@@ -26,8 +26,8 @@ const BrandGuidelines = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-20 pb-16 bg-gradient-to-b from-blue-50/50 to-white">
-        <div className="container mx-auto px-6">
+      <main className="pt-16 md:pt-20 pb-12 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6">
           <BrandHeader />
           <BrandStory />
           <LogoSection fixedHex={fixedHex} />

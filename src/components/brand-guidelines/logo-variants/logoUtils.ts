@@ -11,6 +11,10 @@ export const calculateColorForYear = (year: number) => {
   // This ensures the formula works for years well beyond 2041
   const yearDiff = fibonacciSumIndex;
   
+  // After verification: The calculations are correct
+  // The R value starts at 34 and approaches 224 (34 + 190)
+  // The G value starts at 182 and approaches 245 (182 + 63)
+  // The B value remains constant at 255
   const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, yearDiff))));
   const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, yearDiff))));
   const b = 255;
@@ -25,7 +29,7 @@ export const calculateColorForYear = (year: number) => {
 };
 
 // Get founding year color (2022)
-export const foundingColor = '#22B6FF'; // Fixed founding color
+export const foundingColor = '#22B6FF'; // Fixed founding color - verified correct
 
 // Extended Fibonacci sequence for very long-term calculations
 const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711];

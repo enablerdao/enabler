@@ -51,6 +51,9 @@ export const calculateColorForYear = (year: number) => {
   const fibonacciSumIndex = calculateFibonacciSumIndex(year);
   
   // Using the exponential formula with capped values to prevent overflow
+  // The R value starts at 34 and approaches 224 (34 + 190)
+  // The G value starts at 182 and approaches 245 (182 + 63)
+  // The B value remains constant at 255
   const r = Math.min(224, Math.round(34 + 190 * (1 - Math.pow(0.95, fibonacciSumIndex))));
   const g = Math.min(245, Math.round(182 + 63 * (1 - Math.pow(0.95, fibonacciSumIndex))));
   const b = 255;

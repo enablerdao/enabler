@@ -29,7 +29,6 @@ const LogoEvolutionViewer = lazy(() => import('./pages/LogoEvolutionViewer'));
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
       staleTime: 5 * 60 * 1000, // 5分間はキャッシュを使用
       cacheTime: 10 * 60 * 1000 // 10分間キャッシュを保持
     }

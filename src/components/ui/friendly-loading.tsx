@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Loader, Robot, Ghost } from 'lucide-react';
+import { Loader, Bot, Ghost } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FriendlyLoadingProps {
@@ -31,7 +31,7 @@ export const FriendlyLoading: React.FC<FriendlyLoadingProps> = ({
     message || messages[Math.floor(Math.random() * messages.length)]
   );
 
-  const Icon = variant === 'robot' ? Robot : variant === 'ghost' ? Ghost : Loader;
+  const Icon = variant === 'robot' ? Bot : variant === 'ghost' ? Ghost : Loader;
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 p-6">

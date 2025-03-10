@@ -128,13 +128,34 @@ export const sRankServices: Service[] = [
     id: 1,
     rank: 'S',
     nameEn: 'PetPals',
-    nameJp: '',
-    marketSize: '',
+    nameJp: 'ペットパルズ - ペットケアプラットフォーム',
+    marketSize: '約1.5兆円規模',
     domain: 'petpalsapp.com',
-    goal: '',
-    description: '',
-    features: [],
-    color: '#673ab7'
+    goal: '登録ペットオーナー数1,000人、ケア提供者500人達成',
+    description: '愛するペットのためのトータルケアプラットフォーム。散歩代行、ペットシッター、グルーミング、健康管理など、ペットに関するあらゆるサービスをワンストップで提供します。',
+    features: [
+      { 
+        title: 'ペットシッターマッチング',
+        description: '信頼できるペットシッターとペットオーナーをAIでマッチング。安心して愛犬・愛猫を預けられます。'
+      },
+      { 
+        title: '散歩代行サービス',
+        description: '忙しい時でもペットの運動不足を解消。GPSトラッキングで散歩ルートもリアルタイムで確認できます。'
+      },
+      { 
+        title: '健康管理アプリ',
+        description: 'ワクチン接種や健康診断の記録、食事管理など、ペットの健康状態を一元管理できます。'
+      },
+      { 
+        title: 'グルーミング予約',
+        description: '近くのプロのグルーマーを検索し、簡単に予約。評価やレビューも確認できます。'
+      }
+    ],
+    color: '#673ab7',
+    mission: 'ペットとその家族に、より豊かで健康的な生活を提供する',
+    vision: 'テクノロジーの力で、すべてのペットが最高のケアを受けられる社会を実現する',
+    catchphrase: '愛するペットに、最高のケアを。',
+    category: 'LIFE_COMMUNITY'
   },
   {
     id: 3,

@@ -34,9 +34,9 @@ const calculateBackgroundColor = (accentColorHex: string): string => {
   // Apply golden angle (137.5 degrees) to get background color hue
   const backgroundHue = (h + 137.5) % 360;
   
-  // Very low saturation and high value for a very light pastel
-  const backgroundSat = 0.12; // Even lower saturation for a very subtle bg
-  const backgroundVal = 0.98; // Higher value for an even lighter bg
+  // Even lower saturation and higher value for an extremely light pastel
+  const backgroundSat = 0.08; // Reduced saturation for a more subtle bg
+  const backgroundVal = 0.99; // Higher value for an even lighter bg
   
   // Convert HSV back to RGB
   const c = backgroundVal * backgroundSat;
@@ -90,7 +90,7 @@ const BackgroundColorTheory: React.FC = () => {
       <p className="mb-3">
         アクセントカラーに合わせた美しい背景色は「黄金角カラー調和法」で算出します。
         アクセントカラーの色相に黄金角（137.5°）を加えた色相を使用し、
-        彩度を極めて低く（S=0.12）、明度を高く（V=0.98）設定することで、目に優しいパステルカラーが得られます。
+        彩度を極めて低く（S=0.08）、明度を高く（V=0.99）設定することで、目に優しいパステルカラーが得られます。
       </p>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">

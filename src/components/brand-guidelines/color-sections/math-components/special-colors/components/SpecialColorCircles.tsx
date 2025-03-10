@@ -103,19 +103,22 @@ const SpecialColorCircles: React.FC<SpecialColorCirclesProps> = ({
             onMouseLeave={() => setHoveredColor(null)}
           >
             <div 
-              className="w-28 h-28 rounded-full mb-3 flex items-center justify-center cursor-pointer transition-transform hover:scale-110 shadow-md"
+              className="w-28 h-28 rounded-full mb-3 flex items-center justify-center cursor-pointer transition-transform hover:scale-110 shadow-md relative"
               style={{ backgroundColor: color }}
               onClick={() => copyColorToClipboard(color, `${year}年（${name}）`)}
             >
-              {hoveredColor === color && (
+              {hoveredColor === color ? (
                 <div className="bg-black bg-opacity-70 text-white px-2 py-1 rounded">
                   <Copy className="w-4 h-4" />
                 </div>
+              ) : (
+                <div className="flex flex-col items-center text-white text-center">
+                  <span className="font-bold text-sm">{year}年</span>
+                  <span className="text-xs">{name}</span>
+                  <span className="text-xs font-mono mt-1">{color}</span>
+                </div>
               )}
             </div>
-            <p className="text-center font-medium">{year}年</p>
-            <p className="text-center">{name}</p>
-            <p className="text-center text-sm font-mono">{color}</p>
           </div>
         ))}
       </div>

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { calculateSpecialAccentColor } from '@/components/brand-guidelines/color-utils/color-calculator';
 
 interface SpecialColorCirclesProps {
   specialYearColors: Array<{year: number; color: string; name: string}>;
@@ -75,8 +76,74 @@ const SpecialColorCircles: React.FC<SpecialColorCirclesProps> = ({
     document.addEventListener('touchend', handleTouchEnd);
   };
 
+  // Generate future colors dynamically based on the Fibonacci sequence
+  const generateFutureColors = (baseColors: Array<{year: number; color: string; name: string}>, count: number) => {
+    if (baseColors.length === 0) return [];
+    
+    // Sort by year
+    const sortedBaseColors = [...baseColors].sort((a, b) => a.year - b.year);
+    
+    // Find latest milestone years to determine the pattern
+    const lastKnownYear = sortedBaseColors[sortedBaseColors.length - 1].year;
+    
+    // Generate Fibonacci sequence dynamically
+    const fibSequence = [1, 1];
+    while (fibSequence.length < 50) {
+      const nextFib = fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2];
+      fibSequence.push(nextFib);
+    }
+    
+    // Generate future milestone years
+    const futureColors = [];
+    let currentYear = lastKnownYear;
+    let currentIndex = sortedBaseColors.length;
+    
+    for (let i = 0; i < count; i++) {
+      // Calculate next milestone year
+      if (currentIndex < fibSequence.length) {
+        const nextFib = fibSequence[currentIndex];
+        const prevFib = fibSequence[currentIndex - 1];
+        currentYear += nextFib;
+        
+        // Get color details based on the color calculator utility
+        const colorDetails = calculateSpecialAccentColor(currentYear);
+        
+        // Generate color name based on HSL
+        const hue = parseInt(colorDetails.hsl.split(',')[0]);
+        let colorName = getColorNameFromHue(hue);
+        
+        futureColors.push({
+          year: currentYear,
+          color: colorDetails.hex,
+          name: `${colorName}色`
+        });
+        
+        currentIndex++;
+      }
+    }
+    
+    return futureColors;
+  };
+  
+  // Helper function to get Japanese color name from hue
+  const getColorNameFromHue = (hue: number): string => {
+    if (hue >= 0 && hue < 20) return "赤";
+    if (hue >= 20 && hue < 40) return "オレンジ";
+    if (hue >= 40 && hue < 70) return "黄";
+    if (hue >= 70 && hue < 150) return "緑";
+    if (hue >= 150 && hue < 200) return "シアン";
+    if (hue >= 200 && hue < 260) return "青";
+    if (hue >= 260 && hue < 290) return "インディゴ";
+    if (hue >= 290 && hue < 330) return "マゼンタ";
+    return "赤紫";
+  };
+
   // Generate more color elements for unlimited scrolling effect
-  const extendedColors = [...specialYearColors, ...specialYearColors, ...specialYearColors]; // Triple the items for more scrolling
+  // Extend with dynamically generated colors based on the Fibonacci pattern
+  const extendedColors = [
+    ...specialYearColors, 
+    ...generateFutureColors(specialYearColors, 50)
+  ];
 
   return (
     <div className="relative">

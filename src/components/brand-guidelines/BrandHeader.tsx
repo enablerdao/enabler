@@ -35,13 +35,13 @@ const BrandHeader = () => {
       <AnimatePresence>
         {isVisible && (
           <motion.div 
-            className="text-center mb-10 md:mb-16 px-6 md:px-10 min-h-[50vh] flex flex-col items-center justify-center"
+            className="text-center mb-10 md:mb-16 px-6 md:px-10 min-h-[70vh] flex flex-col items-center justify-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-5 text-gray-900"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-gray-900"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -49,7 +49,7 @@ const BrandHeader = () => {
               Enabler ブランドガイドライン
             </motion.h1>
             <motion.p 
-              className="text-sm md:text-base text-gray-600 mb-5 md:mb-8"
+              className="text-base md:text-lg text-gray-600 mb-8 md:mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -57,17 +57,17 @@ const BrandHeader = () => {
               {currentYear}年度版 • みんなで同じ方向を向くための道しるべ
             </motion.p>
             <motion.div 
-              className="w-full max-w-4xl mx-auto px-2 md:px-0"
+              className="w-full max-w-5xl mx-auto px-2 md:px-0"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9, duration: 0.8 }}
             >
-              <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
+              <div className="p-6 md:p-10 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
                 <motion.div 
-                  className="w-60 md:w-72 lg:w-80 mb-8"
+                  className="w-72 md:w-96 lg:w-[30rem] mb-10"
                   animate={{ 
-                    y: [0, -5, 0],
-                    filter: ["drop-shadow(0 0 0px rgba(34, 182, 255, 0))", "drop-shadow(0 0 10px rgba(34, 182, 255, 0.6))", "drop-shadow(0 0 0px rgba(34, 182, 255, 0))"],
+                    y: [0, -8, 0],
+                    filter: ["drop-shadow(0 0 0px rgba(34, 182, 255, 0))", "drop-shadow(0 0 15px rgba(34, 182, 255, 0.7))", "drop-shadow(0 0 0px rgba(34, 182, 255, 0))"],
                   }}
                   transition={{ 
                     duration: 5, 
@@ -78,12 +78,12 @@ const BrandHeader = () => {
                   <LogoVariations variant="threeLines" size="lg" year={currentYear} />
                 </motion.div>
                 <motion.div 
-                  className="w-[22rem] md:w-[32rem] lg:w-[40rem]"
+                  className="w-[26rem] md:w-[36rem] lg:w-[42rem]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5, duration: 1 }}
                   whileHover={{ 
-                    scale: 1.03,
+                    scale: 1.05,
                     transition: { duration: 0.3 }
                   }}
                 >
@@ -91,7 +91,7 @@ const BrandHeader = () => {
                 </motion.div>
                 
                 <motion.p 
-                  className="text-sm text-gray-500 mt-6"
+                  className="text-sm text-gray-500 mt-8"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2, duration: 0.8 }}

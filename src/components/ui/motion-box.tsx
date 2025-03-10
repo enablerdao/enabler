@@ -31,7 +31,7 @@ export const MotionBox = ({ children, className, delay = 0, slideIn = false }: M
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px',
+        rootMargin: '0px 0px -50px 0px', // Changed to have more sensitivity
       }
     );
 
@@ -48,12 +48,12 @@ export const MotionBox = ({ children, className, delay = 0, slideIn = false }: M
 
   // Animation variants for slide-in effect
   const variants = {
-    hidden: { opacity: 0, y: slideIn ? 100 : 30 },
+    hidden: { opacity: 0, y: slideIn ? 80 : 30 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.9,
         ease: "easeOut"
       }
     }

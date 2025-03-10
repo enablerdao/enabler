@@ -33,6 +33,7 @@ const LogoSection = ({
   const [showThirdLine, setShowThirdLine] = useState(false);
   const [showText, setShowText] = useState(false);
   const [logoComplete, setLogoComplete] = useState(false);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   // Start the animation sequence when component mounts
   useEffect(() => {
@@ -52,16 +53,20 @@ const LogoSection = ({
     animationSequence();
   }, []);
 
+  const toggleSection = (section: string) => {
+    setExpandedSection(prev => prev === section ? null : section);
+  };
+
   return (
     <MotionBox delay={300}>
       <section className="mb-6 md:mb-12 md:px-0 px-0">
-        <div className="flex items-center mb-3 md:mb-5">
+        <div className="flex items-center mb-4 md:mb-6">
           <Info className="text-enabler-600 mr-2 md:mr-3" size={24} />
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">2. ロゴについて</h2>
         </div>
         
-        <div className="bg-white p-4 md:p-6 rounded-xl shadow-subtle px-[13px] mx-0">
-          <div className="w-full max-w-md mx-auto mb-8 h-[150px] flex items-center justify-center">
+        <div className="bg-white p-5 md:p-7 rounded-xl shadow-subtle px-[14px] mx-0">
+          <div className="w-full max-w-md mx-auto mb-10 h-[180px] flex items-center justify-center">
             <motion.svg
               viewBox="0 0 200 70"
               className="w-full h-auto"
@@ -70,8 +75,12 @@ const LogoSection = ({
             >
               <defs>
                 <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor={foundingBlue} />
-                  <stop offset="100%" stopColor={currentYearColor.hex} />
+                  <stop offset="0%" stopColor={foundingBlue}>
+                    <animate attributeName="stop-color" values={`${foundingBlue};${currentYearColor.hex};${foundingBlue}`} dur="8s" repeatCount="indefinite"/>
+                  </stop>
+                  <stop offset="100%" stopColor={currentYearColor.hex}>
+                    <animate attributeName="stop-color" values={`${currentYearColor.hex};${foundingBlue};${currentYearColor.hex}`} dur="8s" repeatCount="indefinite"/>
+                  </stop>
                 </linearGradient>
                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="2" result="blur" />
@@ -157,44 +166,94 @@ const LogoSection = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
+                className="space-y-6"
               >
-                <Collapsible className="mb-6">
-                  <CollapsibleTrigger asChild>
-                    <Button variant="ghost" className="w-full flex justify-between items-center py-2 text-left">
-                      <span className="text-lg font-semibold">ロゴの3本線の意味</span>
-                      <Info size={20} className="text-gray-400" />
-                    </Button>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="p-4 bg-gray-50 rounded-lg mt-2">
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li className="text-sm md:text-base"><strong>上の線</strong>: 創業から現在への成長の軌跡</li>
-                      <li className="text-sm md:text-base"><strong>中央の線</strong>: 黄金比に基づく調和の表現</li>
-                      <li className="text-sm md:text-base"><strong>下の線</strong>: 原点への敬意と初心</li>
-                    </ul>
-                  </CollapsibleContent>
-                </Collapsible>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="bg-blue-50/50 rounded-lg p-4 border border-blue-100"
+                >
+                  <div 
+                    className="flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleSection('meaning')}
+                  >
+                    <h3 className="text-lg font-semibold text-blue-800">ロゴの3本線の意味</h3>
+                    <motion.div
+                      animate={{ rotate: expandedSection === 'meaning' ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Info size={20} className="text-blue-500" />
+                    </motion.div>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {expandedSection === 'meaning' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <ul className="list-disc pl-5 space-y-2 mt-3">
+                          <li className="text-sm md:text-base"><strong>上の線</strong>: 創業から現在への成長の軌跡</li>
+                          <li className="text-sm md:text-base"><strong>中央の線</strong>: 黄金比に基づく調和の表現</li>
+                          <li className="text-sm md:text-base"><strong>下の線</strong>: 原点への敬意と初心</li>
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-                <Collapsible className="mb-6">
-                  <CollapsibleTrigger asChild>
-                    <Button variant="ghost" className="w-full flex justify-between items-center py-2 text-left">
-                      <span className="text-lg font-semibold">ロゴ使用ガイドライン</span>
-                      <Info size={20} className="text-gray-400" />
-                    </Button>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="p-4 bg-gray-50 rounded-lg mt-2">
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li className="text-sm md:text-base">適切な余白を設け、他の要素と重ならないように</li>
-                      <li className="text-sm md:text-base">変形せず、公式の比率を維持</li>
-                      <li className="text-sm md:text-base">公式カラーガイドラインに従って使用</li>
-                    </ul>
-                  </CollapsibleContent>
-                </Collapsible>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  className="bg-purple-50/50 rounded-lg p-4 border border-purple-100"
+                >
+                  <div 
+                    className="flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleSection('guidelines')}
+                  >
+                    <h3 className="text-lg font-semibold text-purple-800">ロゴ使用ガイドライン</h3>
+                    <motion.div
+                      animate={{ rotate: expandedSection === 'guidelines' ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Info size={20} className="text-purple-500" />
+                    </motion.div>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {expandedSection === 'guidelines' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <ul className="list-disc pl-5 space-y-2 mt-3">
+                          <li className="text-sm md:text-base">適切な余白を設け、他の要素と重ならないように</li>
+                          <li className="text-sm md:text-base">変形せず、公式の比率を維持</li>
+                          <li className="text-sm md:text-base">公式カラーガイドラインに従って使用</li>
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-4">毎年進化するロゴデザイン（2022年〜）</h3>
-                  <p className="text-sm text-gray-600 mb-4">フィボナッチ数列に基づき、横スクロールで無限にロゴの変化を確認できます</p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-lg border border-blue-100"
+                >
+                  <h3 className="text-lg font-semibold mb-4 text-indigo-900">毎年進化するロゴデザイン（2022年〜）</h3>
+                  <p className="text-sm text-indigo-700 mb-4">フィボナッチ数列に基づき、横スクロールで無限にロゴの変化を確認できます</p>
                   <InfiniteLogoScroller />
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>

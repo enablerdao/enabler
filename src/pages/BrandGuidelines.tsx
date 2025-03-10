@@ -160,6 +160,9 @@ const BrandGuidelines = () => {
     })
   };
 
+  // Only show footer on the last slide
+  const showFooter = currentSlide === slides.length - 1;
+
   return (
     <>
       <Navbar />
@@ -205,7 +208,20 @@ const BrandGuidelines = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      
+      {/* Conditional footer rendering */}
+      <AnimatePresence>
+        {showFooter && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

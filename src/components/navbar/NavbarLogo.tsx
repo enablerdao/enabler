@@ -21,7 +21,7 @@ const NavbarLogo: React.FC<NavbarLogoProps> = ({ scrolled }) => {
       className="flex items-center"
     >
       <Link to="/" className="flex items-center">
-        <div className={scrolled ? "w-32" : "w-40"}>
+        <div className={scrolled ? "w-36" : "w-44"}>
           <LogoVariations variant="modern" size={scrolled ? "sm" : "md"} year={currentYear} />
         </div>
       </Link>

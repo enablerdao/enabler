@@ -39,9 +39,9 @@ const BrandHeader = () => {
         </p>
         <div className="w-full max-w-4xl mx-auto px-2 md:px-0">
           <div className="p-5 md:p-8 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
-            {/* 3本線のみのロゴを追加 - サイズを大きく */}
+            {/* 3本線のみのロゴを追加 - さらにサイズを大きく */}
             <motion.div 
-              className="w-52 md:w-64 lg:w-72 mb-8"
+              className="w-60 md:w-72 lg:w-80 mb-8"
               animate={{ 
                 y: [0, -5, 0],
                 rotate: [0, 1, 0, -1, 0],
@@ -55,7 +55,7 @@ const BrandHeader = () => {
               <LogoVariations variant="threeLines" size="lg" year={currentYear} />
             </motion.div>
             <motion.div 
-              className="w-80 md:w-[28rem] lg:w-[36rem]"
+              className="w-[22rem] md:w-[32rem] lg:w-[40rem]"
               whileHover={{ 
                 scale: 1.03,
                 transition: { duration: 0.3 }

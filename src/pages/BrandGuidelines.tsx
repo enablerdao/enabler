@@ -85,13 +85,19 @@ const BrandGuidelines = () => {
       <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <BrandHeader />
-          <BrandStory />
-          <LogoSection currentYearColor={currentYearColor} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <BrandStory />
+            <LogoSection currentYearColor={currentYearColor} />
+          </div>
           <BrandColors currentYearColor={currentYearColor} brandColors={brandColors} />
-          <Typography />
-          <PhotosAndIllustrations />
-          <VoiceAndTone />
-          <BrandAssetRules />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <Typography />
+            <PhotosAndIllustrations />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <VoiceAndTone />
+            <BrandAssetRules />
+          </div>
           <FAQContact />
         </div>
       </main>

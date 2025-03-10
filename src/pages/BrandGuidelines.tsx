@@ -22,9 +22,25 @@ const BrandGuidelines = () => {
   const [brandColors, setBrandColors] = useState<any[]>([]);
   // State to store current year's color
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
+  // State to track if user has scrolled past header
+  const [scrolledPastHeader, setScrolledPastHeader] = useState(false);
   
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
+  }, []);
+
+  // Set up scroll listener to track when user scrolls past header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.8) {
+        setScrolledPastHeader(true);
+      } else {
+        setScrolledPastHeader(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Effect to update the year and recalculate colors when needed
@@ -82,11 +98,17 @@ const BrandGuidelines = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
-          {/* Header Section */}
-          <BrandHeader />
-          
+      <main className="bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
+        {/* Animated Header Section that fills the screen initially */}
+        <BrandHeader />
+        
+        {/* Main Content - Only visible after scrolling past header */}
+        <motion.div
+          className="container mx-auto px-4 sm:px-6 md:px-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: scrolledPastHeader ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
           {/* Main Content - Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />
@@ -110,7 +132,7 @@ const BrandGuidelines = () => {
           
           {/* FAQ & Contact */}
           <FAQContact />
-        </div>
+        </motion.div>
       </main>
       <Footer />
     </>

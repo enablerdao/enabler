@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Toaster } from './components/ui/toaster';
@@ -30,7 +31,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000, // 5分間はキャッシュを使用
-      cacheTime: 10 * 60 * 1000 // 10分間キャッシュを保持
+      gcTime: 10 * 60 * 1000 // 10分間キャッシュを保持
     }
   }
 });

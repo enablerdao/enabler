@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Toaster } from './components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { LoadingSpinner } from './components/ui/loading-spinner';
+import { FriendlyLoading } from './components/ui/friendly-loading';
 import './App.css';
 
 // Import the Index page eagerly as it's the landing page
@@ -26,7 +26,15 @@ const CompanyInfo = lazy(() => import('./pages/CompanyInfo'));
 const BrandGuidelines = lazy(() => import('./pages/BrandGuidelines'));
 const LogoEvolutionViewer = lazy(() => import('./pages/LogoEvolutionViewer'));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      staleTime: 5 * 60 * 1000, // 5分間はキャッシュを使用
+      cacheTime: 10 * 60 * 1000 // 10分間キャッシュを保持
+    }
+  }
+});
 
 function App() {
   return (
@@ -35,7 +43,7 @@ function App() {
         <Router>
           <Suspense fallback={
             <div className="flex h-screen w-full items-center justify-center">
-              <LoadingSpinner size="lg" text="読み込み中..." />
+              <FriendlyLoading variant="robot" size="lg" />
             </div>
           }>
             <Routes>

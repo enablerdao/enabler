@@ -1,10 +1,14 @@
 
 import React from 'react';
+import { FriendlyLoading } from '../ui/friendly-loading';
 
 export const ServiceLoadingIndicator = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-pulse">読み込み中...</div>
+      <FriendlyLoading 
+        variant="robot"
+        size="lg"
+      />
     </div>
   );
 };

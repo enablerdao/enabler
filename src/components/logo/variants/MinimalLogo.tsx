@@ -9,9 +9,9 @@ interface MinimalLogoProps {
 
 const MinimalLogo: React.FC<MinimalLogoProps> = ({ size, circleRef }) => {
   const sizeClasses = {
-    sm: 'w-24 h-9',
-    md: 'w-32 h-12',
-    lg: 'w-40 h-14',
+    sm: 'w-32 h-12', // Increased from w-24 h-9
+    md: 'w-40 h-16', // Increased from w-32 h-12
+    lg: 'w-52 h-20', // Increased from w-40 h-14
   };
   
   return (

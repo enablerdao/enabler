@@ -10,7 +10,7 @@ const calculateFibonacciSumIndex = (year: number): number => {
   const adjustedYear = yearsSinceFounding - 4;
   
   // Fibonacci sequence - extended for very long-term calculations
-  const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269];
+  const fibonacciSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025];
   
   // Fibonacci sums (cumulative sums)
   const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
@@ -44,8 +44,8 @@ const isFibonacciSumYear = (year: number): boolean => {
   // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
   const adjustedYear = yearsSinceFounding - 4;
   
-  // Fibonacci sequence - extended for very long-term calculations
-  const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269];
+  // Fibonacci sequence - adjusted to have two 1s at the beginning (1, 1, 2, 3, 5...)
+  const fibonacciSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025];
   
   // Fibonacci sums
   const fibonacciSums = fibonacciSequence.reduce((acc: number[], curr, i) => {
@@ -125,19 +125,37 @@ export const calculateSpecialAccentColor = (year: number) => {
     return {
       hex: '#E54D4D', // Red color for 2026
       hsl: '0, 76%, 60%',
-      fibNumber: 1
+      fibNumber: 2
     };
   } else if (year === 2028) {
     return {
       hex: '#A24DE5', // Purple color for 2028
       hsl: '275, 76%, 60%',
-      fibNumber: 2
-    };
-  } else if (year === 2033) {
-    return {
-      hex: '#E5D24D', // Yellow color for 2033
-      hsl: '50, 76%, 60%',
       fibNumber: 3
+    };
+  } else if (year === 2031) {
+    return {
+      hex: '#E5D24D', // Yellow color for 2031 (changed from 2033)
+      hsl: '50, 76%, 60%',
+      fibNumber: 5
+    };
+  } else if (year === 2036) {
+    return {
+      hex: '#4D9FE5', // Blue color for 2036
+      hsl: '210, 76%, 60%',
+      fibNumber: 8
+    };
+  } else if (year === 2044) {
+    return {
+      hex: '#E57A4D', // Orange color for 2044
+      hsl: '20, 76%, 60%',
+      fibNumber: 13
+    };
+  } else if (year === 2057) {
+    return {
+      hex: '#4DE5A2', // Turquoise color for 2057
+      hsl: '155, 76%, 60%',
+      fibNumber: 21
     };
   }
   
@@ -240,8 +258,14 @@ const getSpecialBackgroundColor = (year: number) => {
       return '#F2FCE2'; // Soft green for red accent
     case 2028:
       return '#FEF7CD'; // Soft yellow for purple accent
-    case 2033:
-      return '#E5DEFF'; // Soft purple for yellow accent
+    case 2031:
+      return '#E5DEFF'; // Soft purple for yellow accent (changed from 2033)
+    case 2036:
+      return '#FEF2E5'; // Soft peach for blue accent
+    case 2044:
+      return '#E5F0FE'; // Soft blue for orange accent
+    case 2057:
+      return '#FCE2F2'; // Soft pink for turquoise accent
     default:
       return null;
   }
@@ -303,7 +327,7 @@ const hsvToHex = (h: number, s: number, v: number): string => {
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
   const m = v - c;
   
-  let r = 0, g = 0, b = 0;
+  let r, g, b;
   
   if (h >= 0 && h < 60) {
     [r, g, b] = [c, x, 0];

@@ -5,6 +5,8 @@ import { Toaster } from './components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { FriendlyLoading } from './components/ui/friendly-loading';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
 
 // Import the Index page eagerly as it's the landing page
@@ -42,8 +44,12 @@ function App() {
       <LanguageProvider>
         <Router>
           <Suspense fallback={
-            <div className="flex h-screen w-full items-center justify-center">
-              <FriendlyLoading variant="robot" size="lg" />
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <div className="flex-grow flex items-center justify-center">
+                <FriendlyLoading variant="robot" size="lg" />
+              </div>
+              <Footer />
             </div>
           }>
             <Routes>

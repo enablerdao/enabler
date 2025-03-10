@@ -5,7 +5,6 @@ import ColorEvolutionIntro from './math-components/color-evolution/ColorEvolutio
 import ColorFormula from './math-components/color-evolution/ColorFormula';
 import ColorEvolutionVisualization from './math-components/color-evolution/ColorEvolutionVisualization';
 import SpecialAccentColorIntro from './math-components/special-colors/SpecialAccentColorIntro';
-import SpecialColorFormula from './math-components/special-colors/SpecialColorFormula';
 import SpecialColorExamplesTable from './math-components/special-colors/SpecialColorExamplesTable';
 import SpecialAccentVisualization from './math-components/special-colors/SpecialAccentVisualization';
 import ColorSummary from './math-components/summary/ColorSummary';
@@ -15,7 +14,10 @@ interface ColorMathSectionProps {
   foundingYearColor: any;
 }
 
-const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, foundingYearColor }) => {
+const ColorMathSection: React.FC<ColorMathSectionProps> = ({ 
+  copyToClipboard, 
+  foundingYearColor 
+}) => {
   // Generate Fibonacci numbers sequence - extended for long-term calculations
   const fibonacciSequence = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584];
   const foundingYear = 2022;
@@ -35,8 +37,6 @@ const ColorMathSection: React.FC<ColorMathSectionProps> = ({ copyToClipboard, fo
       />
       
       <SpecialAccentColorIntro />
-      
-      <SpecialColorFormula />
       
       <SpecialColorExamplesTable 
         fibonacciSums={fibonacciSums} 

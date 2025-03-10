@@ -65,7 +65,7 @@ const BrandHeader = () => {
   }, []);
   
   return (
-    <div className="min-h-[100vh] flex flex-col items-center justify-center overflow-hidden relative">
+    <div className="min-h-[90vh] flex flex-col items-center justify-center overflow-hidden relative">
       <AnimatePresence>
         {showContent && (
           <motion.div 
@@ -91,7 +91,7 @@ const BrandHeader = () => {
                 {currentYear}年度版 • みんなで同じ方向を向くための道しるべ
               </motion.p>
               
-              <div className="w-full max-w-3xl mx-auto px-2 md:px-0 relative h-[300px] md:h-[400px]">
+              <div className="w-full max-w-md mx-auto px-2 md:px-0 relative h-[200px] md:h-[250px]">
                 <svg
                   viewBox="0 0 300 150"
                   className="w-full h-full"
@@ -113,13 +113,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showFirstLine && (
                       <motion.rect 
-                        x="50" 
+                        x="75" 
                         y="50" 
-                        height="5" 
-                        rx="2.5" 
+                        height="4" 
+                        rx="2" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 150 }}
+                        animate={{ width: 120 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -129,13 +129,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showSecondLine && (
                       <motion.rect 
-                        x="50" 
-                        y="70" 
-                        height="5" 
-                        rx="2.5" 
+                        x="75" 
+                        y="65" 
+                        height="4" 
+                        rx="2" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 93 }}
+                        animate={{ width: 74 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -145,13 +145,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showThirdLine && (
                       <motion.rect 
-                        x="50" 
-                        y="90" 
-                        height="5" 
-                        rx="2.5" 
+                        x="75" 
+                        y="80" 
+                        height="4" 
+                        rx="2" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 150 }}
+                        animate={{ width: 120 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -161,10 +161,10 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showText && (
                       <motion.text 
-                        x="210" 
-                        y="75" 
+                        x="205" 
+                        y="70" 
                         fontFamily="Consolas, monospace" 
-                        fontSize="28" 
+                        fontSize="24" 
                         letterSpacing="1" 
                         fontWeight="bold" 
                         fill="url(#logoGradient)"
@@ -175,56 +175,6 @@ const BrandHeader = () => {
                       >
                         ENABLER
                       </motion.text>
-                    )}
-                  </AnimatePresence>
-                  
-                  {/* Golden Ratio Overlay - Only appears after initial animation */}
-                  <AnimatePresence>
-                    {initialAnimationComplete && (
-                      <>
-                        <motion.path
-                          d="M 50,70 L 143,70"
-                          stroke="#E5D24D"
-                          strokeWidth="1"
-                          strokeDasharray="4,4"
-                          fill="none"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.5, duration: 0.8 }}
-                        />
-                        <motion.circle
-                          cx="143"
-                          cy="70"
-                          r="3"
-                          fill="#E5D24D"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.7, duration: 0.8 }}
-                        />
-                        <motion.text
-                          x="146"
-                          y="65"
-                          fontSize="8"
-                          fill="#666"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.9, duration: 0.8 }}
-                        >
-                          0.618
-                        </motion.text>
-                        
-                        {/* Fibonacci Spiral Hint */}
-                        <motion.path
-                          d="M 50,50 Q 50,90 90,90 T 90,50 Z"
-                          stroke="#A24DE5"
-                          strokeWidth="1"
-                          fill="none"
-                          strokeDasharray="2,2"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 0.5 }}
-                          transition={{ delay: 1.1, duration: 0.8 }}
-                        />
-                      </>
                     )}
                   </AnimatePresence>
                 </svg>
@@ -325,3 +275,4 @@ const BrandHeader = () => {
 };
 
 export default BrandHeader;
+

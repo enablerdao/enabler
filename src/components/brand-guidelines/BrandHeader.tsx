@@ -65,7 +65,7 @@ const BrandHeader = () => {
   }, []);
   
   return (
-    <div className="min-h-[90vh] flex flex-col items-center justify-center overflow-hidden relative">
+    <div className="min-h-[80vh] flex flex-col items-center justify-center overflow-hidden relative">
       <AnimatePresence>
         {showContent && (
           <motion.div 
@@ -91,9 +91,9 @@ const BrandHeader = () => {
                 {currentYear}年度版 • みんなで同じ方向を向くための道しるべ
               </motion.p>
               
-              <div className="w-full max-w-md mx-auto px-2 md:px-0 relative h-[200px] md:h-[250px]">
+              <div className="w-full max-w-lg mx-auto px-2 md:px-0 relative h-[180px] md:h-[220px]">
                 <svg
-                  viewBox="0 0 300 150"
+                  viewBox="0 0 400 200"
                   className="w-full h-full"
                   xmlns="http://www.w3.org/2000/svg"
                   preserveAspectRatio="xMidYMid meet"
@@ -113,13 +113,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showFirstLine && (
                       <motion.rect 
-                        x="75" 
-                        y="50" 
-                        height="4" 
-                        rx="2" 
+                        x="100" 
+                        y="70" 
+                        height="5" 
+                        rx="2.5" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 120 }}
+                        animate={{ width: 140 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -129,13 +129,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showSecondLine && (
                       <motion.rect 
-                        x="75" 
-                        y="65" 
-                        height="4" 
-                        rx="2" 
+                        x="100" 
+                        y="90" 
+                        height="5" 
+                        rx="2.5" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 74 }}
+                        animate={{ width: 90 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -145,13 +145,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showThirdLine && (
                       <motion.rect 
-                        x="75" 
-                        y="80" 
-                        height="4" 
-                        rx="2" 
+                        x="100" 
+                        y="110" 
+                        height="5" 
+                        rx="2.5" 
                         fill="url(#logoGradient)"
                         initial={{ width: 0 }}
-                        animate={{ width: 120 }}
+                        animate={{ width: 140 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -161,10 +161,10 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showText && (
                       <motion.text 
-                        x="205" 
-                        y="70" 
+                        x="250" 
+                        y="95" 
                         fontFamily="Consolas, monospace" 
-                        fontSize="24" 
+                        fontSize="28" 
                         letterSpacing="1" 
                         fontWeight="bold" 
                         fill="url(#logoGradient)"
@@ -172,6 +172,7 @@ const BrandHeader = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
+                        textAnchor="middle"
                       >
                         ENABLER
                       </motion.text>
@@ -275,4 +276,3 @@ const BrandHeader = () => {
 };
 
 export default BrandHeader;
-

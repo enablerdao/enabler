@@ -191,8 +191,8 @@ const LogoSection = ({
                 </Collapsible>
 
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-4">ロゴ年次変遷（2022年〜）</h3>
-                  <p className="text-sm text-gray-600 mb-4">横スクロールで無限にロゴの変化を確認できます</p>
+                  <h3 className="text-lg font-semibold mb-4">毎年進化するロゴデザイン（2022年〜）</h3>
+                  <p className="text-sm text-gray-600 mb-4">フィボナッチ数列に基づき、横スクロールで無限にロゴの変化を確認できます</p>
                   <InfiniteLogoScroller />
                 </div>
               </motion.div>

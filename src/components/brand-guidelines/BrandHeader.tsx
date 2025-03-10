@@ -64,7 +64,7 @@ const BrandHeader = () => {
             >
               <div className="p-6 md:p-10 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
                 <motion.div 
-                  className="w-72 md:w-96 lg:w-[30rem] mb-10"
+                  className="w-[42rem] md:w-[52rem] lg:w-[60rem]" // Approximately doubled from previous size
                   animate={{ 
                     y: [0, -8, 0],
                     filter: ["drop-shadow(0 0 0px rgba(34, 182, 255, 0))", "drop-shadow(0 0 15px rgba(34, 182, 255, 0.7))", "drop-shadow(0 0 0px rgba(34, 182, 255, 0))"],
@@ -77,27 +77,6 @@ const BrandHeader = () => {
                 >
                   <LogoVariations variant="threeLines" size="lg" year={currentYear} />
                 </motion.div>
-                <motion.div 
-                  className="w-[26rem] md:w-[36rem] lg:w-[42rem]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.5, duration: 1 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <LogoVariations variant="modern" size="lg" year={currentYear} />
-                </motion.div>
-                
-                <motion.p 
-                  className="text-sm text-gray-500 mt-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 2, duration: 0.8 }}
-                >
-                  © {currentYear} Enabler, Inc. All rights reserved.
-                </motion.p>
               </div>
             </motion.div>
           </motion.div>

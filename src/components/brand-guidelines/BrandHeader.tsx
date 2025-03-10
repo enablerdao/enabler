@@ -101,10 +101,10 @@ const BrandHeader = () => {
                   <defs>
                     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#22B6FF" />
-                      <stop offset="100%" stopColor="#3B82F6" />
+                      <stop offset="100%" stopColor="#22B6FF" />
                     </linearGradient>
                     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="2" result="blur" />
+                      <feGaussianBlur stdDeviation="3" result="blur" />
                       <feComposite in="SourceGraphic" in2="blur" operator="over" />
                     </filter>
                   </defs>
@@ -113,11 +113,11 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showFirstLine && (
                       <motion.rect 
-                        x="125" 
+                        x="100" 
                         y="85" 
-                        height="6" 
-                        rx="3" 
-                        fill="url(#logoGradient)"
+                        height="10" 
+                        rx="5" 
+                        fill="#22B6FF"
                         initial={{ width: 0 }}
                         animate={{ width: 150 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -129,13 +129,14 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showSecondLine && (
                       <motion.rect 
-                        x="125" 
-                        y="110" 
-                        height="6" 
-                        rx="3" 
-                        fill="url(#logoGradient)"
+                        x="260" 
+                        y="85" 
+                        height="10" 
+                        rx="5" 
+                        fill="#22B6FF"
                         initial={{ width: 0 }}
                         animate={{ width: 95 }}
+                        style={{ opacity: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -145,13 +146,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showThirdLine && (
                       <motion.rect 
-                        x="125" 
-                        y="135" 
-                        height="6" 
-                        rx="3" 
-                        fill="url(#logoGradient)"
+                        x="100" 
+                        y="155" 
+                        height="10" 
+                        rx="5" 
+                        fill="#22B6FF"
                         initial={{ width: 0 }}
-                        animate={{ width: 150 }}
+                        animate={{ width: 200 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     )}
@@ -161,13 +162,13 @@ const BrandHeader = () => {
                   <AnimatePresence>
                     {showText && (
                       <motion.text 
-                        x="300" 
+                        x="265" 
                         y="115" 
                         fontFamily="Consolas, monospace" 
-                        fontSize="30" 
-                        letterSpacing="1" 
+                        fontSize="40" 
+                        letterSpacing="2" 
                         fontWeight="bold" 
-                        fill="url(#logoGradient)"
+                        fill="#22B6FF"
                         filter="url(#glow)"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

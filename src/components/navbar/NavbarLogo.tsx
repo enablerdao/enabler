@@ -10,7 +10,6 @@ interface NavbarLogoProps {
 }
 
 const NavbarLogo: React.FC<NavbarLogoProps> = ({ scrolled }) => {
-  // Get current year
   const currentYear = new Date().getFullYear();
   
   return (
@@ -21,7 +20,7 @@ const NavbarLogo: React.FC<NavbarLogoProps> = ({ scrolled }) => {
       className="flex items-center"
     >
       <Link to="/" className="flex items-center">
-        <div className={scrolled ? "w-36" : "w-44"}>
+        <div className={scrolled ? "w-44" : "w-52"}> {/* Increased from w-36/w-44 to w-44/w-52 (approximately 120%) */}
           <LogoVariations variant="modern" size={scrolled ? "sm" : "md"} year={currentYear} />
         </div>
       </Link>

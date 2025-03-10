@@ -1,3 +1,4 @@
+
 import { getFibonacciYearIndex, isFibonacciYear } from '../logo-variants/logoUtils';
 
 // Calculate Fibonacci sum for a given year since founding
@@ -6,8 +7,8 @@ const calculateFibonacciSumIndex = (year: number): number => {
   if (year === 2025) return 1;
   
   const yearsSinceFounding = year - 2022;
-  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
-  const adjustedYear = yearsSinceFounding - 4;
+  // 3 is the offset to make 2025 the first Fibonacci sum year (2022 + 3 = 2025)
+  const adjustedYear = yearsSinceFounding - 3;
   
   // Fibonacci sequence - extended for very long-term calculations
   const fibonacciSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025];
@@ -41,8 +42,8 @@ const isFibonacciSumYear = (year: number): boolean => {
   if (year === 2025) return true;
   
   const yearsSinceFounding = year - 2022;
-  // 4 is the offset to make 2026 the first Fibonacci sum year (2022 + 4 = 2026)
-  const adjustedYear = yearsSinceFounding - 4;
+  // 3 is the offset to make 2025 the first Fibonacci sum year (2022 + 3 = 2025)
+  const adjustedYear = yearsSinceFounding - 3;
   
   // Fibonacci sequence - adjusted to have two 1s at the beginning (1, 1, 2, 3, 5...)
   const fibonacciSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025];
@@ -127,33 +128,33 @@ export const calculateSpecialAccentColor = (year: number) => {
       hsl: '0, 76%, 60%',
       fibNumber: 2
     };
-  } else if (year === 2028) {
+  } else if (year === 2027) {
     return {
-      hex: '#A24DE5', // Purple color for 2028
+      hex: '#A24DE5', // Purple color for 2027
       hsl: '275, 76%, 60%',
       fibNumber: 3
     };
-  } else if (year === 2031) {
+  } else if (year === 2029) {
     return {
-      hex: '#E5D24D', // Yellow color for 2031 (changed from 2033)
+      hex: '#E5D24D', // Yellow color for 2029 (changed from 2033)
       hsl: '50, 76%, 60%',
       fibNumber: 5
     };
-  } else if (year === 2036) {
+  } else if (year === 2032) {
     return {
-      hex: '#4D9FE5', // Blue color for 2036
+      hex: '#4D9FE5', // Blue color for 2032
       hsl: '210, 76%, 60%',
       fibNumber: 8
     };
-  } else if (year === 2044) {
+  } else if (year === 2037) {
     return {
-      hex: '#E57A4D', // Orange color for 2044
+      hex: '#E57A4D', // Orange color for 2037
       hsl: '20, 76%, 60%',
       fibNumber: 13
     };
-  } else if (year === 2057) {
+  } else if (year === 2045) {
     return {
-      hex: '#4DE5A2', // Turquoise color for 2057
+      hex: '#4DE5A2', // Turquoise color for 2045
       hsl: '155, 76%, 60%',
       fibNumber: 21
     };

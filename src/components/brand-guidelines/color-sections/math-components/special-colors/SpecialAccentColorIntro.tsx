@@ -30,40 +30,40 @@ const SpecialAccentColorIntro: React.FC = () => {
   const specialYearColors = [
     { year: 2025, color: "#4CAF50", name: "緑色" },
     { year: 2026, color: "#E54D4D", name: "赤色" },
-    { year: 2028, color: "#A24DE5", name: "紫色" },
-    { year: 2031, color: "#E5D24D", name: "黄色" },
-    { year: 2036, color: "#4D9FE5", name: "青色" },
-    { year: 2044, color: "#E57A4D", name: "オレンジ色" },
-    { year: 2057, color: "#4DE5A2", name: "ターコイズ色" },
-    { year: 2078, color: "#E54D9F", name: "ピンク色" },
-    { year: 2112, color: "#8FE54D", name: "黄緑色" },
-    { year: 2167, color: "#4D4DE5", name: "インディゴ色" },
-    { year: 2256, color: "#E5E54D", name: "イエロー色" },
-    { year: 2400, color: "#BC4DE5", name: "マゼンタ色" },
+    { year: 2027, color: "#A24DE5", name: "紫色" },
+    { year: 2029, color: "#E5D24D", name: "黄色" },
+    { year: 2032, color: "#4D9FE5", name: "青色" },
+    { year: 2037, color: "#E57A4D", name: "オレンジ色" },
+    { year: 2045, color: "#4DE5A2", name: "ターコイズ色" },
+    { year: 2058, color: "#E54D9F", name: "ピンク色" },
+    { year: 2079, color: "#8FE54D", name: "黄緑色" },
+    { year: 2113, color: "#4D4DE5", name: "インディゴ色" },
+    { year: 2168, color: "#E5E54D", name: "イエロー色" },
+    { year: 2312, color: "#BC4DE5", name: "マゼンタ色" },
   ];
 
   // 節目となる年のフィボナッチ数と対応する年のリスト
   const fibonacciMilestones = [
     { fib: 1, year: 2025, description: "最初の節目" },
-    { fib: 2, year: 2026, description: "2年目の節目" },
-    { fib: 3, year: 2028, description: "3番目の節目" },
-    { fib: 5, year: 2031, description: "5番目の節目" },
-    { fib: 8, year: 2036, description: "8番目の節目" },
-    { fib: 13, year: 2044, description: "13番目の節目" },
-    { fib: 21, year: 2057, description: "21番目の節目" },
-    { fib: 34, year: 2078, description: "34番目の節目" },
-    { fib: 55, year: 2112, description: "55番目の節目" },
-    { fib: 89, year: 2167, description: "89番目の節目" },
-    { fib: 144, year: 2256, description: "144番目の節目" },
-    { fib: 233, year: 2400, description: "233番目の節目" },
-    { fib: 377, year: 2622, description: "377番目の節目" },
-    { fib: 610, year: 2966, description: "610番目の節目" },
-    { fib: 987, year: 3500, description: "987番目の節目" },
-    { fib: 1597, year: 4334, description: "1597番目の節目" },
-    { fib: 2584, year: 5775, description: "2584番目の節目" },
-    { fib: 4181, year: 7872, description: "4181番目の節目" },
-    { fib: 6765, year: 10953, description: "6765番目の節目" },
-    { fib: 10946, year: 15631, description: "10946番目の節目" },
+    { fib: 1, year: 2026, description: "2番目の節目" },
+    { fib: 2, year: 2027, description: "3番目の節目" },
+    { fib: 3, year: 2029, description: "4番目の節目" },
+    { fib: 5, year: 2032, description: "5番目の節目" },
+    { fib: 8, year: 2037, description: "6番目の節目" },
+    { fib: 13, year: 2045, description: "7番目の節目" },
+    { fib: 21, year: 2058, description: "8番目の節目" },
+    { fib: 34, year: 2079, description: "9番目の節目" },
+    { fib: 55, year: 2113, description: "10番目の節目" },
+    { fib: 89, year: 2168, description: "11番目の節目" },
+    { fib: 144, year: 2257, description: "12番目の節目" },
+    { fib: 233, year: 2401, description: "13番目の節目" },
+    { fib: 377, year: 2624, description: "14番目の節目" },
+    { fib: 610, year: 2957, description: "15番目の節目" },
+    { fib: 987, year: 3444, description: "16番目の節目" },
+    { fib: 1597, year: 4183, description: "17番目の節目" },
+    { fib: 2584, year: 5382, description: "18番目の節目" },
+    { fib: 4181, year: 7128, description: "19番目の節目" },
+    { fib: 6765, year: 9573, description: "20番目の節目" },
   ];
 
   // Regular brand colors by year - expanded for more years
@@ -123,7 +123,7 @@ const SpecialAccentColorIntro: React.FC = () => {
         
         <CollapsibleContent>
           <p className="text-lg my-5 leading-relaxed">
-            アクセントカラーは節目となる年（フィボナッチ数列の年：1,2,3,5,8...）に変更され、次の節目が来るまで固定されます。これらの特別な色は「黄金角（約137.5度）」という、自然界の法則から生まれます。ひまわりの種やパイナップルの模様と同じ原理です。
+            アクセントカラーは節目となる年（フィボナッチ数列の年：1,1,2,3,5,8...）に変更され、次の節目が来るまで固定されます。これらの特別な色は「黄金角（約137.5度）」という、自然界の法則から生まれます。ひまわりの種やパイナップルの模様と同じ原理です。
           </p>
         </CollapsibleContent>
       </Collapsible>

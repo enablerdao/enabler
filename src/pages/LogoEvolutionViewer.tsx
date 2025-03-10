@@ -41,6 +41,18 @@ const LogoEvolutionViewer: React.FC = () => {
               <span>2025年特別アクセント: #4CAF50</span>
             </div>
           </div>
+          <div className="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-100">
+            <h3 className="text-sm font-medium mb-1">フィボナッチ節目の年：</h3>
+            <div className="flex flex-wrap gap-1 text-xs">
+              <span className="px-2 py-1 bg-gray-100 rounded">1: 2025年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">1: 2026年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">2: 2027年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">3: 2029年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">5: 2032年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">8: 2037年</span>
+              <span className="px-2 py-1 bg-gray-100 rounded">13: 2045年</span>
+            </div>
+          </div>
         </div>
         
         <div className="my-8">

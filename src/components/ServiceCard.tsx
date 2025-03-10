@@ -7,6 +7,7 @@ import { Award, Loader } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { fibonacciFloatVariants } from './simple-illustration/animation-variants';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { getServiceProgress, getServiceETA, getAIActivityStatus, getServiceTasks, rankBorderMap } from './service-card/utils';
 import { ServiceCardHeader } from './service-card/ServiceCardHeader';
 import { ServiceProgress } from './service-card/ServiceProgress';
@@ -23,6 +24,7 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const delayBase = 100;
   const staggerDelay = index * 50;
+  const { t } = useLanguage();
   
   const progress = getServiceProgress(service.id);
   const eta = getServiceETA(service.id);
@@ -43,17 +45,25 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           rankBorderMap[service.rank],
           isPortfolio && "border-amber-300 border-2"
         )}
+        tabIndex={0}
+        aria-labelledby={`service-title-${service.id}`}
       >
         {isPortfolio && (
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center whitespace-nowrap z-10">
-            <Award size={14} className="mr-1" /> 厳選コレクション
+            <Award size={14} className="mr-1" aria-hidden="true" /> 
+            <span>厳選コレクション</span>
           </div>
         )}
         
         <ServiceCardHeader service={service} />
         
         <Link to={`/services/${service.id}`}>
-          <h3 className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors mt-3">{service.nameEn}</h3>
+          <h3 
+            id={`service-title-${service.id}`}
+            className="text-lg font-bold mb-1 group-hover:text-enabler-600 transition-colors mt-3"
+          >
+            {service.nameEn}
+          </h3>
         </Link>
         <p className="text-sm text-gray-600 mb-3">{service.nameJp}</p>
         
@@ -83,8 +93,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             variants={fibonacciFloatVariants}
             animate="float"
             custom={service.id % 5}
+            aria-label="AI powered"
           >
-            <Loader size={12} className="animate-spin mr-1" />
+            <Loader size={12} className="animate-spin mr-1" aria-hidden="true" />
             <span className="opacity-75">AI</span>
           </motion.div>
         )}

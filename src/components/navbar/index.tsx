@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
   );
 
   return (
-    <nav className={navbarClasses}>
+    <nav className={navbarClasses} aria-label="Main Navigation">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <NavbarLogo scrolled={scrolled} />
@@ -77,6 +77,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           <MobileMenuButton 
             isOpen={isOpen} 
             onClick={() => setIsOpen(!isOpen)} 
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           />
         </div>
       </div>
@@ -86,6 +88,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         navLinks={navLinks} 
         onItemClick={() => setIsOpen(false)}
         menuRef={menuRef}
+        id="mobile-menu"
+        aria-hidden={!isOpen}
       />
     </nav>
   );

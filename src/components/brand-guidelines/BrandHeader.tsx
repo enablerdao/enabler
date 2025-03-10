@@ -14,21 +14,6 @@ const BrandHeader = () => {
   const [showThirdLine, setShowThirdLine] = useState(false);
   const [showText, setShowText] = useState(false);
   const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
-  const [showContent, setShowContent] = useState(true);
-  
-  // Set up scroll listener to hide content when user scrolls
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setShowContent(false);
-      } else {
-        setShowContent(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   // Update the year when the component mounts and set interval to check for year changes
   useEffect(() => {
@@ -66,138 +51,130 @@ const BrandHeader = () => {
   
   return (
     <div className="min-h-[75vh] flex flex-col items-center justify-center overflow-hidden relative">
-      <AnimatePresence>
-        {showContent && (
-          <motion.div 
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
+        <div className="text-center px-6 md:px-10 flex flex-col items-center justify-center">
+          <motion.h1 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-gray-900"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <div className="text-center px-6 md:px-10 flex flex-col items-center justify-center">
-              <motion.h1 
-                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-gray-900"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
-                Enabler ブランドガイドライン
-              </motion.h1>
-              <motion.p 
-                className="text-base md:text-lg text-gray-600 mb-8 md:mb-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-              >
-                {currentYear}年度版 • みんなで同じ方向を向くための道しるべ
-              </motion.p>
+            Enabler ブランドガイドライン
+          </motion.h1>
+          <motion.p 
+            className="text-base md:text-lg text-gray-600 mb-8 md:mb-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          >
+            {currentYear}年度版 • みんなで同じ方向を向くための道しるべ
+          </motion.p>
+          
+          <div className="w-full max-w-2xl mx-auto px-2 md:px-0 relative h-[160px] md:h-[200px]">
+            <svg
+              viewBox="0 0 500 250"
+              className="w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#22B6FF" />
+                  <stop offset="100%" stopColor="#22B6FF" />
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
               
-              <div className="w-full max-w-2xl mx-auto px-2 md:px-0 relative h-[160px] md:h-[200px]">
-                <svg
-                  viewBox="0 0 500 250"
-                  className="w-full h-full"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <defs>
-                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#22B6FF" />
-                      <stop offset="100%" stopColor="#22B6FF" />
-                    </linearGradient>
-                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="3" result="blur" />
-                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                  </defs>
-                  
-                  {/* First line with animation */}
-                  <AnimatePresence>
-                    {showFirstLine && (
-                      <motion.rect 
-                        x="100" 
-                        y="85" 
-                        height="10" 
-                        rx="5" 
-                        fill="#22B6FF"
-                        initial={{ width: 0 }}
-                        animate={{ width: 150 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      />
-                    )}
-                  </AnimatePresence>
-                  
-                  {/* Second line with animation */}
-                  <AnimatePresence>
-                    {showSecondLine && (
-                      <motion.rect 
-                        x="260" 
-                        y="85" 
-                        height="10" 
-                        rx="5" 
-                        fill="#22B6FF"
-                        initial={{ width: 0 }}
-                        animate={{ width: 95 }}
-                        style={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      />
-                    )}
-                  </AnimatePresence>
-                  
-                  {/* Third line with animation */}
-                  <AnimatePresence>
-                    {showThirdLine && (
-                      <motion.rect 
-                        x="100" 
-                        y="155" 
-                        height="10" 
-                        rx="5" 
-                        fill="#22B6FF"
-                        initial={{ width: 0 }}
-                        animate={{ width: 200 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      />
-                    )}
-                  </AnimatePresence>
-                  
-                  {/* Text with animation */}
-                  <AnimatePresence>
-                    {showText && (
-                      <motion.text 
-                        x="265" 
-                        y="115" 
-                        fontFamily="Consolas, monospace" 
-                        fontSize="40" 
-                        letterSpacing="2" 
-                        fontWeight="bold" 
-                        fill="#22B6FF"
-                        filter="url(#glow)"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        textAnchor="middle"
-                      >
-                        ENABLER
-                      </motion.text>
-                    )}
-                  </AnimatePresence>
-                </svg>
-              </div>
+              {/* First line with animation */}
+              <AnimatePresence>
+                {showFirstLine && (
+                  <motion.rect 
+                    x="100" 
+                    y="85" 
+                    height="10" 
+                    rx="5" 
+                    fill="#22B6FF"
+                    initial={{ width: 0 }}
+                    animate={{ width: 150 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
               
-              <motion.div
-                className="text-sm text-gray-500 mt-4 max-w-xl text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
-                transition={{ delay: 1.3, duration: 0.8 }}
-              >
-                <p>↓ スクロールして詳細を見る ↓</p>
-              </motion.div>
-            </div>
+              {/* Second line with animation */}
+              <AnimatePresence>
+                {showSecondLine && (
+                  <motion.rect 
+                    x="260" 
+                    y="85" 
+                    height="10" 
+                    rx="5" 
+                    fill="#22B6FF"
+                    initial={{ width: 0 }}
+                    animate={{ width: 95 }}
+                    style={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
+              
+              {/* Third line with animation */}
+              <AnimatePresence>
+                {showThirdLine && (
+                  <motion.rect 
+                    x="100" 
+                    y="155" 
+                    height="10" 
+                    rx="5" 
+                    fill="#22B6FF"
+                    initial={{ width: 0 }}
+                    animate={{ width: 200 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
+              
+              {/* Text with animation */}
+              <AnimatePresence>
+                {showText && (
+                  <motion.text 
+                    x="265" 
+                    y="115" 
+                    fontFamily="Consolas, monospace" 
+                    fontSize="40" 
+                    letterSpacing="2" 
+                    fontWeight="bold" 
+                    fill="#22B6FF"
+                    filter="url(#glow)"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    textAnchor="middle"
+                  >
+                    ENABLER
+                  </motion.text>
+                )}
+              </AnimatePresence>
+            </svg>
+          </div>
+          
+          <motion.div
+            className="text-sm text-gray-500 mt-4 max-w-xl text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: initialAnimationComplete ? 1 : 0 }}
+            transition={{ delay: 1.3, duration: 0.8 }}
+          >
+            <p>↓ スクロールして詳細を見る ↓</p>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      </div>
       
       {/* This content appears after scrolling past the header */}
       <AnimatePresence>
-        {!showContent && initialAnimationComplete && (
+        {initialAnimationComplete && (
           <motion.div 
             className="w-full pt-28"
             initial={{ opacity: 0, y: 50 }}

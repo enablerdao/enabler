@@ -64,7 +64,7 @@ const BrandHeader = () => {
             >
               <div className="p-6 md:p-10 rounded-xl bg-white shadow-subtle flex flex-col justify-center items-center">
                 <motion.div 
-                  className="w-[52rem] md:w-[64rem] lg:w-[76rem]" // Increased size further from previous
+                  className="w-[62rem] md:w-[77rem] lg:w-[91rem]" // Increased by 120% from w-[52rem]/w-[64rem]/w-[76rem]
                   animate={{ 
                     y: [0, -8, 0],
                     filter: ["drop-shadow(0 0 0px rgba(34, 182, 255, 0))", "drop-shadow(0 0 15px rgba(34, 182, 255, 0.7))", "drop-shadow(0 0 0px rgba(34, 182, 255, 0))"],

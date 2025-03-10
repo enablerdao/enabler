@@ -20,6 +20,15 @@ const translations = {
     pointsProgram: 'Points Program',
     contact: 'Contact',
     language: 'Language',
+    loading: 'Loading...',
+    search: 'Search',
+    viewDetails: 'View Details',
+    allCategories: 'All Categories',
+    stayTravel: 'Stay & Travel',
+    lifeCommunity: 'Life & Community',
+    workProductivity: 'Work & Productivity',
+    healthWellness: 'Health & Wellness',
+    investGrow: 'Investment & Growth',
     // Add more translations as needed
   },
   ja: {
@@ -32,6 +41,15 @@ const translations = {
     pointsProgram: 'ポイントプログラム',
     contact: 'お問い合わせ',
     language: '言語',
+    loading: '読み込み中...',
+    search: '検索',
+    viewDetails: '詳細を見る',
+    allCategories: 'すべて',
+    stayTravel: '滞在・旅行',
+    lifeCommunity: '生活・コミュニティ',
+    workProductivity: '仕事・生産性',
+    healthWellness: '健康・ウェルネス',
+    investGrow: '投資・成長',
     // Add more translations as needed
   },
 };

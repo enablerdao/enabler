@@ -12,6 +12,7 @@ import PartnerLogos from '@/components/PartnerLogos';
 import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
 import { useEffect } from 'react';
+import SEO from '../components/SEO';
 
 const Index = () => {
   useEffect(() => {
@@ -20,26 +21,27 @@ const Index = () => {
 
   return (
     <div className="overflow-hidden">
+      <SEO />
       <Navbar />
-      <main className="mx-1">
+      <main className="mx-auto px-4 sm:px-6 lg:px-8">
         <Hero />
         <HeroStats />
-        <div className="my-1">
+        <div className="my-8 sm:my-12 md:my-16">
           <AboutSection />
         </div>
-        <div className="my-1">
+        <div className="my-8 sm:my-12 md:my-16">
           <ServiceCategories />
         </div>
-        <div className="my-1">
+        <div className="my-8 sm:my-12 md:my-16">
           <Testimonials />
         </div>
-        <div className="my-5">
+        <div className="my-8 sm:my-12 md:my-16">
           <LatestNews />
         </div>
-        <div className="my-1">
+        <div className="my-8 sm:my-12 md:my-16">
           <PartnerLogos />
         </div>
-        <div className="my-1">
+        <div className="my-8 sm:my-12 md:my-16">
           <ContactSection />
         </div>
       </main>

@@ -12,16 +12,20 @@ interface MobileNavProps {
   navLinks: NavLink[];
   onItemClick: () => void;
   menuRef: React.RefObject<HTMLDivElement>;
+  id?: string;
+  'aria-hidden'?: boolean;
 }
 
 const MobileNav: React.FC<MobileNavProps> = ({ 
   isOpen, 
   navLinks, 
   onItemClick,
-  menuRef 
+  menuRef,
+  id,
+  'aria-hidden': ariaHidden
 }) => {
   return (
-    <div ref={menuRef}>
+    <div ref={menuRef} id={id} aria-hidden={ariaHidden}>
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -25,6 +25,7 @@ const Press = lazy(() => import('./pages/Press'));
 const CompanyInfo = lazy(() => import('./pages/CompanyInfo'));
 const BrandGuidelines = lazy(() => import('./pages/BrandGuidelines'));
 const LogoEvolutionViewer = lazy(() => import('./pages/LogoEvolutionViewer'));
+const Questionnaire = lazy(() => import('./pages/Questionnaire'));
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/company-info" element={<CompanyInfo />} />
               <Route path="/brand-guidelines" element={<BrandGuidelines />} />
               <Route path="/logo-evolution-viewer" element={<LogoEvolutionViewer />} />
+              <Route path="/questionnaire" element={<Questionnaire />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

@@ -8,6 +8,7 @@ import MobileMenuButton from './MobileMenuButton';
 import NavbarLogo from './NavbarLogo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Menu } from 'lucide-react';
 
 const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +16,17 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
-  // Define navigation links with translations
-  const navLinks: NavLink[] = [
+  // Define primary navigation links with translations
+  const primaryNavLinks: NavLink[] = [
     { name: t('home'), href: '/', isPage: true },
+    { name: t('brand'), href: '/brand-guidelines', isPage: true },
     { name: t('services'), href: '/#services', isPage: false },
     { name: t('blog'), href: '/blog', isPage: true },
+  ];
+  
+  // Secondary links for the sitemap dropdown
+  const secondaryNavLinks: NavLink[] = [
     { name: t('company'), href: '/company-info', isPage: true },
-    { name: t('brand'), href: '/brand-guidelines', isPage: true },
     { name: t('press'), href: '/press', isPage: true },
     { name: t('pointsProgram'), href: '/points-program', isPage: true },
     { name: t('contact'), href: '/#contact', isPage: false },
@@ -68,7 +73,10 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           <NavbarLogo scrolled={scrolled} />
           
           <div className="flex items-center gap-6">
-            <DesktopNavItems navLinks={navLinks} />
+            <DesktopNavItems 
+              primaryNavLinks={primaryNavLinks} 
+              secondaryNavLinks={secondaryNavLinks}
+            />
             <div className="hidden md:block">
               <LanguageSwitcher />
             </div>
@@ -85,7 +93,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
       <MobileNav 
         isOpen={isOpen} 
-        navLinks={navLinks} 
+        primaryNavLinks={primaryNavLinks}
+        secondaryNavLinks={secondaryNavLinks}
         onItemClick={() => setIsOpen(false)}
         menuRef={menuRef}
         id="mobile-menu"

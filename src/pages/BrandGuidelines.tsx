@@ -10,6 +10,9 @@ import BrandColors from '@/components/brand-guidelines/BrandColors';
 import Typography from '@/components/brand-guidelines/Typography';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import ImageGuidelinesSection from '@/components/brand-guidelines/image-guidelines/ImageGuidelinesSection';
+import DownloadableResources from '@/components/brand-guidelines/downloads/DownloadableResources';
+import FAQSection from '@/components/brand-guidelines/faq/FAQSection';
+import SearchBar from '@/components/brand-guidelines/search/SearchBar';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 import { motion } from 'framer-motion';
 
@@ -67,6 +70,10 @@ const BrandGuidelines = () => {
           animate={{ opacity: scrolledPastHeader ? 1 : 0 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Search Bar */}
+          <div className="mb-8 mt-4 max-w-2xl mx-auto">
+            <SearchBar />
+          </div>
           {/* Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />
@@ -84,6 +91,12 @@ const BrandGuidelines = () => {
           
           {/* Photos & Illustrations */}
           <ImageGuidelinesSection />
+          
+          {/* Downloadable Resources */}
+          <DownloadableResources />
+          
+          {/* FAQ Section */}
+          <FAQSection />
         </motion.div>
       </main>
       <Footer />

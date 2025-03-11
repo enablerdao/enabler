@@ -52,11 +52,13 @@ const BrandGuidelines = () => {
     <>
       <Navbar />
       <main className="bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
-        {/* Header Section - Fixed position with padding to ensure content starts below */}
-        <BrandHeader />
+        {/* Header Section */}
+        <div className="pt-16 md:pt-20">
+          <BrandHeader />
+        </div>
         
         {/* Main Content - with proper spacing from the header */}
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 mt-8">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-4 pb-12">
           {/* Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />

@@ -18,7 +18,7 @@ const LogoCard: React.FC<LogoCardProps> = ({
   const foundingYear = 2022;
   const foundingColor = calculateColorForYear(foundingYear);
   
-  // 特別な年の場合、アクセントカラーに基づいて背景色を計算
+  // 特別な年の場合のみ、アクセントカラーに基づいて背景色を計算
   const backgroundColorData = isSpecialYear ? calculateBackgroundColor(accentColor.hex) : null;
   
   // ズームレベルに基づいてカードの幅を計算
@@ -67,8 +67,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
         width: getCardWidth(),
         height: getCardHeight(),
         padding: zoomLevel <= 1 ? '8px' : `${Math.max(3, zoomLevel - 1) * 4}px`,
-        // 特別な年の場合のみ、背景色を適用
-        backgroundColor: isSpecialYear && backgroundColorData ? backgroundColorData.hex : 'white'
+        // 特別な年の場合のみ、背景色を適用（かつ詳細表示モードの場合のみ）
+        backgroundColor: isSpecialYear && backgroundColorData && shouldShowDetails() ? backgroundColorData.hex : 'white'
       }}
     >
       {shouldShowDetails() && (

@@ -14,81 +14,22 @@ import DownloadableResources from '@/components/brand-guidelines/downloads/Downl
 import FAQSection from '@/components/brand-guidelines/faq/FAQSection';
 import SearchBar from '@/components/brand-guidelines/search/SearchBar';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
-import { motion } from 'framer-motion';
 
 const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     // ページビューのログを記録
     logActivity('pageView', { path: '/brand-guidelines' });
     
-    // 今年のブランドカラーを計算
-    const yearColor = calculateColorForYear(currentYear);
-    setCurrentYearColor(yearColor);
+    // 今年のブランドカラーを計算（即時設定）
+    setCurrentYearColor(calculateColorForYear(currentYear));
     
-    // ロード時間のシミュレーション（短くして1回だけ表示されるようにする）
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200); // 2000msから1200msに短縮
-    
-    return () => clearTimeout(timer);
+    // ローディング表示を完全に削除
   }, [currentYear]);
 
-  // ローディング中はロゴアニメーションを表示
-  if (loading || !currentYearColor) {
-    return (
-      <>
-        <Navbar />
-        <div className="flex-grow flex items-center justify-center min-h-[calc(100vh-64px)]">
-          {/* ロボットの代わりにロゴアニメーションを表示 */}
-          <div className="p-6 flex flex-col items-center">
-            <motion.div 
-              className="w-48 h-48 relative"
-              initial={{ opacity: 0.8 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, repeat: Infinity, repeatType: "reverse" }}
-            >
-              <svg viewBox="0 0 200 70" className="w-full" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#22B6FF" />
-                    <stop offset="100%" stopColor="#4CAF50" />
-                  </linearGradient>
-                </defs>
-                <motion.rect 
-                  x="15" y="20" width="60" height="3" rx="1.5" 
-                  fill="url(#loadingGradient)"
-                  initial={{ width: 0 }}
-                  animate={{ width: 60 }}
-                  transition={{ duration: 1.2, repeat: Infinity, repeatType: "reverse" }}
-                />
-                <motion.rect 
-                  x="15" y="30" width="37" height="3" rx="1.5" 
-                  fill="url(#loadingGradient)"
-                  initial={{ width: 0 }}
-                  animate={{ width: 37 }}
-                  transition={{ duration: 1.2, delay: 0.2, repeat: Infinity, repeatType: "reverse" }}
-                />
-                <motion.rect 
-                  x="15" y="40" width="60" height="3" rx="1.5" 
-                  fill="url(#loadingGradient)"
-                  initial={{ width: 0 }}
-                  animate={{ width: 60 }}
-                  transition={{ duration: 1.2, delay: 0.4, repeat: Infinity, repeatType: "reverse" }}
-                />
-              </svg>
-            </motion.div>
-            <p className="text-gray-600 mt-4 animate-pulse">ロード中...</p>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
+  // 現在の年のブランドカラーがない場合はコンテンツをすぐに表示
   return (
     <>
       <Navbar />
@@ -108,11 +49,11 @@ const BrandGuidelines = () => {
           {/* Brand Story in a single column */}
           <div className="space-y-10 mb-12">
             <BrandStory />
-            <LogoSection currentYearColor={currentYearColor} />
+            <LogoSection currentYearColor={currentYearColor || calculateColorForYear(currentYear)} />
           </div>
           
           {/* Brand Colors */}
-          <BrandColors currentYearColor={currentYearColor} brandColors={[]} />
+          <BrandColors currentYearColor={currentYearColor || calculateColorForYear(currentYear)} brandColors={[]} />
           
           {/* Typography & Voice */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

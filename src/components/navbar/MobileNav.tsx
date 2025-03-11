@@ -12,6 +12,8 @@ interface MobileNavProps {
   primaryNavLinks: NavLink[];
   secondaryNavLinks: NavLink[];
   onItemClick: () => void;
+  onServiceClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onContactClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   menuRef: React.RefObject<HTMLDivElement>;
   id?: string;
   'aria-hidden'?: boolean;
@@ -22,11 +24,23 @@ const MobileNav: React.FC<MobileNavProps> = ({
   primaryNavLinks,
   secondaryNavLinks,
   onItemClick,
+  onServiceClick,
+  onContactClick,
   menuRef,
   id,
   'aria-hidden': ariaHidden
 }) => {
   const allLinks = [...primaryNavLinks, ...secondaryNavLinks];
+  
+  const handleNavLinkClick = (link: NavLink, e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (link.name === 'サービス' || link.name === 'Services') {
+      onServiceClick?.(e);
+    } else if (link.name === 'お問い合わせ' || link.name === 'Contact') {
+      onContactClick?.(e);
+    } else {
+      onItemClick();
+    }
+  };
   
   return (
     <div ref={menuRef} id={id} aria-hidden={ariaHidden}>
@@ -65,7 +79,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
                     <a
                       href={link.href}
                       className="block text-gray-700 hover:text-enabler-600 text-sm font-medium py-2 flex items-center"
-                      onClick={onItemClick}
+                      onClick={(e) => handleNavLinkClick(link, e)}
                     >
                       <Sparkles className="mr-2 text-enabler-500" size={14} />
                       {link.name}
@@ -110,7 +124,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
                     <a
                       href={link.href}
                       className="block text-gray-700 hover:text-enabler-600 text-sm font-medium py-2 flex items-center"
-                      onClick={onItemClick}
+                      onClick={(e) => handleNavLinkClick(link, e)}
                     >
                       <ChevronRight className="mr-2 text-enabler-500" size={14} />
                       {link.name}

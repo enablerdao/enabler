@@ -9,11 +9,15 @@ import { menuItemVariants } from './animation-variants';
 interface DesktopNavItemsProps {
   primaryNavLinks: NavLink[];
   secondaryNavLinks: NavLink[];
+  onServiceClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onContactClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({ 
   primaryNavLinks, 
-  secondaryNavLinks 
+  secondaryNavLinks,
+  onServiceClick,
+  onContactClick
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,6 +35,14 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDropdownOpen]);
+
+  const handleNavLinkClick = (link: NavLink, e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (link.name === 'サービス' || link.name === 'Services') {
+      onServiceClick?.(e);
+    } else if (link.name === 'お問い合わせ' || link.name === 'Contact') {
+      onContactClick?.(e);
+    }
+  };
 
   return (
     <div className="hidden md:flex items-center space-x-8">
@@ -76,6 +88,7 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({
             <a
               href={link.href}
               className="text-gray-700 transition-all duration-200 text-sm font-medium flex items-center gap-1"
+              onClick={(e) => handleNavLinkClick(link, e)}
             >
               {hoveredIndex === index && (
                 <motion.span
@@ -140,7 +153,10 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({
                     <a
                       href={link.href}
                       className="text-gray-700 hover:text-enabler-600 text-sm flex items-center gap-1"
-                      onClick={() => setIsDropdownOpen(false)}
+                      onClick={(e) => {
+                        handleNavLinkClick(link, e);
+                        setIsDropdownOpen(false);
+                      }}
                     >
                       <ChevronRight size={14} className="text-enabler-500" />
                       {link.name}

@@ -13,8 +13,12 @@ import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
 import { useEffect } from 'react';
 import SEO from '../components/SEO';
+import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 
 const Index = () => {
+  const currentYear = new Date().getFullYear();
+  const brandColor = calculateColorForYear(currentYear);
+  
   useEffect(() => {
     logActivity('pageView', { path: '/' });
   }, []);
@@ -24,8 +28,8 @@ const Index = () => {
       <SEO />
       <Navbar />
       <main className="mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <HeroStats />
+        <Hero brandColor={brandColor} />
+        <HeroStats brandColor={brandColor} />
         <div className="my-8 sm:my-12 md:my-16">
           <AboutSection />
         </div>

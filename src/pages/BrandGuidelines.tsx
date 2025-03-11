@@ -9,6 +9,10 @@ import LogoSection from '@/components/brand-guidelines/LogoSection';
 import BrandColors from '@/components/brand-guidelines/BrandColors';
 import Typography from '@/components/brand-guidelines/Typography';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
+import ImageGuidelinesSection from '@/components/brand-guidelines/image-guidelines/ImageGuidelinesSection';
+import DownloadableResources from '@/components/brand-guidelines/downloads/DownloadableResources';
+import FAQSection from '@/components/brand-guidelines/faq/FAQSection';
+import SearchBar from '@/components/brand-guidelines/search/SearchBar';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 import { FriendlyLoading } from '@/components/ui/friendly-loading';
 
@@ -55,6 +59,10 @@ const BrandGuidelines = () => {
         
         {/* Main Content - with proper spacing from the header */}
         <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-4 pb-12">
+          {/* Search Bar */}
+          <div className="mb-8 mt-4 max-w-2xl mx-auto">
+            <SearchBar />
+          </div>
           {/* Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />
@@ -69,6 +77,15 @@ const BrandGuidelines = () => {
             <Typography />
             <VoiceAndTone />
           </div>
+          
+          {/* Photos & Illustrations */}
+          <ImageGuidelinesSection />
+          
+          {/* Downloadable Resources */}
+          <DownloadableResources />
+          
+          {/* FAQ Section */}
+          <FAQSection />
         </div>
       </main>
       <Footer />

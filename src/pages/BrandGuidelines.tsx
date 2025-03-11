@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { logActivity } from '@/lib/logger';
 import Navbar from '@/components/Navbar';
@@ -10,7 +9,6 @@ import BrandColors from '@/components/brand-guidelines/BrandColors';
 import Typography from '@/components/brand-guidelines/Typography';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
-import { FriendlyLoading } from '@/components/ui/friendly-loading';
 
 const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
@@ -27,21 +25,18 @@ const BrandGuidelines = () => {
     // Simulating loading time
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2秒後に読み込み完了
+    }, 2000);
     
     return () => clearTimeout(timer);
   }, [currentYear]);
 
-  // Loading state - カスタムロゴアニメーションを使用
+  // ローディング状態 - アニメーション付きの3本線ロゴを表示
   if (loading || !currentYearColor) {
     return (
       <>
         <Navbar />
         <div className="pt-16 md:pt-20">
-          <BrandHeader />
-          <div className="flex justify-center items-center h-64">
-            <FriendlyLoading message="ブランドカラーを計算中..." />
-          </div>
+          <BrandHeader loading={true} />
         </div>
         <Footer />
       </>

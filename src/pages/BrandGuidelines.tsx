@@ -10,12 +10,12 @@ import BrandColors from '@/components/brand-guidelines/BrandColors';
 import Typography from '@/components/brand-guidelines/Typography';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
-import { motion } from 'framer-motion';
+import { FriendlyLoading } from '@/components/ui/friendly-loading';
 
 const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
-  const [scrolledPastHeader, setScrolledPastHeader] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
@@ -24,28 +24,21 @@ const BrandGuidelines = () => {
     const yearColor = calculateColorForYear(currentYear);
     setCurrentYearColor(yearColor);
     
-    // Set up scroll listener
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.6) {
-        setScrolledPastHeader(true);
-      } else {
-        setScrolledPastHeader(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Simulating loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2秒後に読み込み完了
+    
+    return () => clearTimeout(timer);
   }, [currentYear]);
 
-  // Loading state
-  if (!currentYearColor) {
+  // Loading state - カスタムロゴアニメーションを使用
+  if (loading || !currentYearColor) {
     return (
       <>
         <Navbar />
         <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
-          <div className="container mx-auto px-4 flex justify-center items-center h-64">
-            <p className="text-lg text-gray-500">ブランドガイドラインを読み込み中...</p>
-          </div>
+          <BrandHeader />
         </main>
         <Footer />
       </>
@@ -60,12 +53,7 @@ const BrandGuidelines = () => {
         <BrandHeader />
         
         {/* Main Content */}
-        <motion.div
-          className="container mx-auto px-4 sm:px-6 md:px-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: scrolledPastHeader ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12">
           {/* Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />
@@ -80,7 +68,7 @@ const BrandGuidelines = () => {
             <Typography />
             <VoiceAndTone />
           </div>
-        </motion.div>
+        </div>
       </main>
       <Footer />
     </>

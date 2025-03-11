@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import InfiniteLogoScroller from '../infinite-scroller/InfiniteLogoScroller';
+import InfiniteLogoScroller from '@/components/brand-guidelines/InfiniteLogoScroller';
 
 const InfiniteScrollerSection: React.FC = () => {
   return (

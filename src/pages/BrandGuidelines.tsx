@@ -64,8 +64,8 @@ const BrandGuidelines = () => {
             <SearchBar />
           </div>
           
-          {/* Story & Logo - Now in a single column */}
-          <div className="space-y-8 mb-12">
+          {/* Brand Story in a single column */}
+          <div className="space-y-10 mb-12">
             <BrandStory />
             <LogoSection currentYearColor={currentYearColor} />
           </div>

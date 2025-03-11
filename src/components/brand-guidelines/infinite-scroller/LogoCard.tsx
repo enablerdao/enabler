@@ -95,7 +95,7 @@ const LogoCard: React.FC<LogoCardProps> = ({
         style={{ 
           position: 'relative',
           minHeight: zoomLevel <= 1 ? '70px' : (zoomLevel === 2 ? '80px' : 'auto'),
-          backgroundColor: zoomLevel > 2 && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
+          backgroundColor: shouldShowDetails() && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
         }}
       >
         {/* For zoom level <= 2, we'll add a year display at the top */}

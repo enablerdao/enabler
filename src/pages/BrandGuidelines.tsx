@@ -37,9 +37,12 @@ const BrandGuidelines = () => {
     return (
       <>
         <Navbar />
-        <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
+        <div className="pt-16 md:pt-20">
           <BrandHeader />
-        </main>
+          <div className="flex justify-center items-center h-64">
+            <FriendlyLoading message="ブランドカラーを計算中..." />
+          </div>
+        </div>
         <Footer />
       </>
     );
@@ -49,13 +52,11 @@ const BrandGuidelines = () => {
     <>
       <Navbar />
       <main className="bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
-        {/* Header Section */}
-        <div className="pt-16 md:pt-20">
-          <BrandHeader />
-        </div>
+        {/* Header Section - Fixed position with padding to ensure content starts below */}
+        <BrandHeader />
         
-        {/* Main Content - moved down to appear after the header */}
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12">
+        {/* Main Content - with proper spacing from the header */}
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 mt-8">
           {/* Story & Logo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <BrandStory />

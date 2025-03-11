@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import SEO from '../components/SEO';
 import OGImage from '../components/OGImage';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
+import ReactDOMServer from 'react-dom/server';
 
 const Index = () => {
   const currentYear = new Date().getFullYear();
@@ -24,13 +25,13 @@ const Index = () => {
     logActivity('pageView', { path: '/' });
   }, []);
 
+  // Render OGImage to string and encode for use in meta tag
+  const ogImageSvg = ReactDOMServer.renderToStaticMarkup(<OGImage />);
+  const encodedOgImage = `data:image/svg+xml,${encodeURIComponent(ogImageSvg)}`;
+
   return (
     <div className="overflow-hidden">
-      <SEO 
-        ogImage={`data:image/svg+xml,${encodeURIComponent(
-          OGImage({}).props.children
-        )}`}
-      />
+      <SEO ogImage={encodedOgImage} />
       <Navbar />
       <main className="mx-auto px-4 sm:px-6 lg:px-8">
         <Hero brandColor={brandColor} />

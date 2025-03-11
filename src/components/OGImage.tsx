@@ -24,7 +24,7 @@ const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
       
       {/* Decorative elements */}
       <circle cx={width * 0.85} cy={height * 0.3} r={height * 0.2} 
-        fill={`${brandColor}20`} />
+        fill={`${brandColor.hex}20`} />
       <circle cx={width * 0.2} cy={height * 0.8} r={height * 0.15} 
         fill={`${foundingColor}15`} />
       
@@ -32,14 +32,14 @@ const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
       <defs>
         <linearGradient id="topBarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor={foundingColor} />
-          <stop offset="100%" stopColor={brandColor} />
+          <stop offset="100%" stopColor={brandColor.hex} />
         </linearGradient>
         <linearGradient id="middleBarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor={foundingColor} />
           <stop offset="100%" stopColor="#4CAF50" />
         </linearGradient>
         <linearGradient id="bottomBarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={brandColor} />
+          <stop offset="0%" stopColor={brandColor.hex} />
           <stop offset="100%" stopColor={foundingColor} />
         </linearGradient>
       </defs>

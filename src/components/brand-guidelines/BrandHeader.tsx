@@ -56,16 +56,14 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ loading = false }) => {
               </linearGradient>
             </defs>
             
-            {/* 3本のバー - loading時はアニメーション付き */}
+            {/* 3本のバー */}
             <motion.rect 
               x="16" y="40" width="162" height="8" rx="4" 
               fill="url(#topBarGradient)" 
               initial={{ width: 0 }}
-              animate={{ width: loading ? [0, 162, 0] : 162 }}
+              animate={{ width: 162 }}
               transition={{ 
-                duration: 2,
-                repeat: loading ? Infinity : 0,
-                repeatType: "loop",
+                duration: 1,
                 ease: "easeInOut"
               }}
             />
@@ -74,12 +72,10 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ loading = false }) => {
               x="16" y="60" width="100" height="8" rx="4" 
               fill="url(#middleBarGradient)" 
               initial={{ width: 0 }}
-              animate={{ width: loading ? [0, 100, 0] : 100 }}
+              animate={{ width: 100 }}
               transition={{ 
-                duration: 2,
+                duration: 1,
                 delay: 0.2,
-                repeat: loading ? Infinity : 0,
-                repeatType: "loop",
                 ease: "easeInOut"
               }}
             />
@@ -88,32 +84,28 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ loading = false }) => {
               x="16" y="80" width="162" height="8" rx="4" 
               fill="url(#bottomBarGradient)" 
               initial={{ width: 0 }}
-              animate={{ width: loading ? [0, 162, 0] : 162 }}
+              animate={{ width: 162 }}
               transition={{ 
-                duration: 2,
+                duration: 1,
                 delay: 0.4,
-                repeat: loading ? Infinity : 0,
-                repeatType: "loop",
                 ease: "easeInOut"
               }}
             />
             
-            {/* ENABLERロゴテキスト - loading時は非表示 */}
-            {!loading && (
-              <motion.text 
-                x="198" y="84" 
-                fontFamily="Montserrat, sans-serif" 
-                fontSize="48" 
-                fontWeight="bold" 
-                fill="url(#topBarGradient)" 
-                textAnchor="start"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                ENABLER
-              </motion.text>
-            )}
+            {/* ENABLERロゴテキスト */}
+            <motion.text 
+              x="198" y="84" 
+              fontFamily="Montserrat, sans-serif" 
+              fontSize="48" 
+              fontWeight="bold" 
+              fill="url(#topBarGradient)" 
+              textAnchor="start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              ENABLER
+            </motion.text>
           </svg>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -35,6 +36,11 @@ const SEO: React.FC<SEOProps> = ({
     ? 'イネブラ, Enabler, イノベーション, テクノロジー, サービス, 日本, スタートアップ'
     : 'Enabler, Innovation, Technology, Services, Japan, Startup';
   
+  // Handle SVG image if provided as data URL
+  const imageUrl = ogImage.startsWith('data:') 
+    ? ogImage 
+    : `${baseUrl}${ogImage}`;
+  
   return (
     <Helmet>
       <html lang={language} />
@@ -47,14 +53,14 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title || defaultTitle} />
       <meta property="og:description" content={description || defaultDescription} />
-      <meta property="og:image" content={`${baseUrl}${ogImage}`} />
+      <meta property="og:image" content={imageUrl} />
       
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title || defaultTitle} />
       <meta property="twitter:description" content={description || defaultDescription} />
-      <meta property="twitter:image" content={`${baseUrl}${ogImage}`} />
+      <meta property="twitter:image" content={imageUrl} />
     </Helmet>
   );
 };

@@ -13,6 +13,7 @@ import Testimonials from '@/components/Testimonials';
 import { logActivity } from '@/lib/logger';
 import { useEffect } from 'react';
 import SEO from '../components/SEO';
+import OGImage from '../components/OGImage';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 
 const Index = () => {
@@ -25,7 +26,11 @@ const Index = () => {
 
   return (
     <div className="overflow-hidden">
-      <SEO />
+      <SEO 
+        ogImage={`data:image/svg+xml,${encodeURIComponent(
+          OGImage({}).props.children
+        )}`}
+      />
       <Navbar />
       <main className="mx-auto px-4 sm:px-6 lg:px-8">
         <Hero brandColor={brandColor} />

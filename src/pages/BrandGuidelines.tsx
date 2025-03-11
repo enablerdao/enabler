@@ -57,14 +57,15 @@ const BrandGuidelines = () => {
           <BrandHeader />
         </div>
         
-        {/* Main Content - with proper spacing from the header */}
+        {/* Main Content */}
         <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-4 pb-12">
           {/* Search Bar */}
           <div className="mb-8 mt-4 max-w-2xl mx-auto">
             <SearchBar />
           </div>
-          {/* Story & Logo */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          
+          {/* Story & Logo - Now in a single column */}
+          <div className="space-y-8 mb-12">
             <BrandStory />
             <LogoSection currentYearColor={currentYearColor} />
           </div>

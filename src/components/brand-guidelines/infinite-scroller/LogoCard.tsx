@@ -18,48 +18,45 @@ const LogoCard: React.FC<LogoCardProps> = ({
   const foundingYear = 2022;
   const foundingColor = calculateColorForYear(foundingYear);
   
-  // Calculate background color based on accent color if it's a special year
+  // 特別な年の場合、アクセントカラーに基づいて背景色を計算
   const backgroundColorData = isSpecialYear ? calculateBackgroundColor(accentColor.hex) : null;
   
-  // Calculate card width based on zoom level - increased for better visibility
+  // ズームレベルに基づいてカードの幅を計算
   const getCardWidth = () => {
     if (zoomLevel <= 1) {
-      return '180px'; // Much larger at lowest zoom
+      return '180px';
     } else if (zoomLevel === 2) {
-      return '200px'; // Larger at zoom level 2
+      return '200px';
     } else {
-      // For higher zoom levels, use increased base width
-      const baseWidth = 220; // Larger base width for zoom level 3
+      const baseWidth = 220;
       return `${baseWidth * (zoomLevel / 3)}px`;
     }
   };
   
-  // Calculate card height based on zoom level
+  // ズームレベルに基づいてカードの高さを計算
   const getCardHeight = () => {
     if (zoomLevel <= 1) {
-      return '160px'; // Taller height at lowest zoom
+      return '160px';
     } else if (zoomLevel === 2) {
-      return '180px'; // Moderate height at zoom level 2
+      return '180px';
     } else {
-      // Start with fixed height at zoom level 3, then scale proportionally
       return `${250 * (zoomLevel / 3)}px`;
     }
   };
   
-  // Determine if we should show detailed information based on zoom level
+  // ズームレベルに基づいて詳細情報を表示するかどうかを決定
   const shouldShowDetails = () => {
-    return zoomLevel >= 3; // Show details only at zoom level 3 and above
+    return zoomLevel >= 3;
   };
   
-  // Get logo size based on zoom level
+  // ズームレベルに基づいてロゴサイズを取得
   const getLogoSize = () => {
-    // Larger logos at all zoom levels
     if (zoomLevel <= 1) {
-      return '90%'; // Larger logo size at lowest zoom
+      return '90%';
     } else if (zoomLevel === 2) {
-      return '95%'; // Larger logo size
+      return '95%';
     } else {
-      return '100%'; // Regular logo size
+      return '100%';
     }
   };
   
@@ -70,6 +67,7 @@ const LogoCard: React.FC<LogoCardProps> = ({
         width: getCardWidth(),
         height: getCardHeight(),
         padding: zoomLevel <= 1 ? '8px' : `${Math.max(3, zoomLevel - 1) * 4}px`,
+        // 特別な年の場合のみ、背景色を適用
         backgroundColor: isSpecialYear && backgroundColorData ? backgroundColorData.hex : 'white'
       }}
     >
@@ -95,6 +93,7 @@ const LogoCard: React.FC<LogoCardProps> = ({
         style={{ 
           position: 'relative',
           minHeight: zoomLevel <= 1 ? '70px' : (zoomLevel === 2 ? '80px' : 'auto'),
+          // 特別な年かつ詳細表示の場合のみ背景色を適用
           backgroundColor: shouldShowDetails() && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
         }}
       >

@@ -9,6 +9,7 @@ import LogoSection from '@/components/brand-guidelines/LogoSection';
 import BrandColors from '@/components/brand-guidelines/BrandColors';
 import Typography from '@/components/brand-guidelines/Typography';
 import VoiceAndTone from '@/components/brand-guidelines/VoiceAndTone';
+import ImageGuidelinesSection from '@/components/brand-guidelines/image-guidelines/ImageGuidelinesSection';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 import { motion } from 'framer-motion';
 
@@ -80,6 +81,9 @@ const BrandGuidelines = () => {
             <Typography />
             <VoiceAndTone />
           </div>
+          
+          {/* Photos & Illustrations */}
+          <ImageGuidelinesSection />
         </motion.div>
       </main>
       <Footer />

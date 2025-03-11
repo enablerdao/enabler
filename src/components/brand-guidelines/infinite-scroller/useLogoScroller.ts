@@ -12,12 +12,12 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
   const getInitialYearCount = () => {
     // Exponentially increase the number of logos at lower zoom levels
     if (zoomLevel <= 1) {
-      return 150; // Significantly more logos at lowest zoom
+      return 40; // Fewer logos at lowest zoom for better visibility
     } else if (zoomLevel === 2) {
-      return 60; // Many logos at zoom level 2
+      return 30; // Fewer logos at zoom level 2 for better visibility
     } else {
       // Original behavior for higher zoom levels
-      const baseCount = 30;
+      const baseCount = 15;
       return baseCount * (6 - zoomLevel); // Inverse relationship: lower zoom = more logos
     }
   };
@@ -42,8 +42,8 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
     // If we're close to the end, add more years
     if (scrollWidth - (scrollLeft + clientWidth) < 500) {
       const lastYear = visibleYears[visibleYears.length - 1];
-      // Add many more logos at once when zoomed out
-      const newYearsCount = zoomLevel <= 1 ? 100 : (zoomLevel === 2 ? 50 : Math.max(10, Math.floor(50 / zoomLevel)));
+      // Add more logos at once when zoomed out, but fewer to keep performance good
+      const newYearsCount = zoomLevel <= 1 ? 30 : (zoomLevel === 2 ? 20 : Math.max(10, Math.floor(30 / zoomLevel)));
       const newYears = Array.from(
         { length: newYearsCount }, 
         (_, i) => lastYear + i + 1
@@ -65,7 +65,7 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollContainerRef.current) return;
     
-    const scrollAmount = 500; // Larger scroll amount
+    const scrollAmount = 300; // Smaller scroll amount for smoother navigation
     const currentScroll = scrollContainerRef.current.scrollLeft;
     
     scrollContainerRef.current.scrollTo({
@@ -105,62 +105,30 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
     });
   };
   
-  // Calculate container style based on zoom level
+  // Calculate container style - enforcing single row layout
   const getContainerStyle = () => {
-    if (zoomLevel <= 1) {
-      // For lowest zoom level, use dense grid layout with many tiny logos
-      return {
-        display: 'grid',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'auto' as const,
-        maxHeight: '400px',
-      };
-    } else if (zoomLevel === 2) {
-      // For zoom level 2, use a less dense grid but still compact
-      return {
-        display: 'grid',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'auto' as const,
-        maxHeight: '400px',
-      };
-    } else {
-      // For higher zoom levels (3+), keep horizontal layout
-      return {
-        display: 'flex',
-        flexDirection: 'row' as const,
-        flexWrap: 'nowrap' as const,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'hidden' as const,
-      };
-    }
+    return {
+      display: 'flex',
+      flexDirection: 'row' as const,
+      flexWrap: 'nowrap' as const,
+      gap: getGap(),
+      overflowX: 'auto' as const,
+      overflowY: 'hidden' as const,
+      height: '100%',
+      alignItems: 'center' as const, // Center align the items vertically
+      paddingLeft: '10px',
+      paddingRight: '10px'
+    };
   };
   
-  // Calculate card width based on zoom level
-  const getCardWidth = () => {
-    if (zoomLevel <= 1) {
-      return '60px'; // Much smaller at lowest zoom
-    } else if (zoomLevel === 2) {
-      return '120px'; // Still small at zoom level 2
-    } else {
-      // For higher zoom levels, use the original scaling formula with increased base width
-      const baseWidth = 180; // Base width for zoom level 3
-      return `${baseWidth * (zoomLevel / 3)}px`;
-    }
-  };
-  
-  // Calculate gap between cards
+  // Calculate gap between cards - increased for better spacing
   const getGap = () => {
     if (zoomLevel <= 1) {
-      return '2px'; // Minimal gap at lowest zoom
+      return '16px'; // Larger gap at lowest zoom for better separation
     } else if (zoomLevel === 2) {
-      return '4px'; // Small gap at zoom level 2
+      return '20px'; // Larger gap at zoom level 2
     } else {
-      return `${8 * (zoomLevel / 3)}px`; // Normal gap at higher zoom levels
+      return `${24 * (zoomLevel / 3)}px`; // Even larger gap at higher zoom levels
     }
   };
   

@@ -14,12 +14,12 @@ import DownloadableResources from '@/components/brand-guidelines/downloads/Downl
 import FAQSection from '@/components/brand-guidelines/faq/FAQSection';
 import SearchBar from '@/components/brand-guidelines/search/SearchBar';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
-import { motion } from 'framer-motion';
+import { FriendlyLoading } from '@/components/ui/friendly-loading';
 
 const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
-  const [scrolledPastHeader, setScrolledPastHeader] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     logActivity('pageView', { path: '/brand-guidelines' });
@@ -28,29 +28,25 @@ const BrandGuidelines = () => {
     const yearColor = calculateColorForYear(currentYear);
     setCurrentYearColor(yearColor);
     
-    // Set up scroll listener
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.6) {
-        setScrolledPastHeader(true);
-      } else {
-        setScrolledPastHeader(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Simulating loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2秒後に読み込み完了
+    
+    return () => clearTimeout(timer);
   }, [currentYear]);
 
-  // Loading state
-  if (!currentYearColor) {
+  // Loading state - カスタムロゴアニメーションを使用
+  if (loading || !currentYearColor) {
     return (
       <>
         <Navbar />
-        <main className="pt-16 md:pt-20 pb-8 md:pb-16 bg-gradient-to-b from-blue-50/50 to-white">
-          <div className="container mx-auto px-4 flex justify-center items-center h-64">
-            <p className="text-lg text-gray-500">ブランドガイドラインを読み込み中...</p>
+        <div className="pt-16 md:pt-20">
+          <BrandHeader />
+          <div className="flex justify-center items-center h-64">
+            <FriendlyLoading message="ブランドカラーを計算中..." />
           </div>
-        </main>
+        </div>
         <Footer />
       </>
     );
@@ -61,15 +57,12 @@ const BrandGuidelines = () => {
       <Navbar />
       <main className="bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
         {/* Header Section */}
-        <BrandHeader />
+        <div className="pt-16 md:pt-20">
+          <BrandHeader />
+        </div>
         
-        {/* Main Content */}
-        <motion.div
-          className="container mx-auto px-4 sm:px-6 md:px-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: scrolledPastHeader ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        {/* Main Content - with proper spacing from the header */}
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-4 pb-12">
           {/* Search Bar */}
           <div className="mb-8 mt-4 max-w-2xl mx-auto">
             <SearchBar />
@@ -97,7 +90,7 @@ const BrandGuidelines = () => {
           
           {/* FAQ Section */}
           <FAQSection />
-        </motion.div>
+        </div>
       </main>
       <Footer />
     </>

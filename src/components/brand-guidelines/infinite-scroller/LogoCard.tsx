@@ -21,15 +21,15 @@ const LogoCard: React.FC<LogoCardProps> = ({
   // Calculate background color based on accent color if it's a special year
   const backgroundColorData = isSpecialYear ? calculateBackgroundColor(accentColor.hex) : null;
   
-  // Calculate card width based on zoom level
+  // Calculate card width based on zoom level - increased for better visibility
   const getCardWidth = () => {
     if (zoomLevel <= 1) {
-      return '60px'; // Much smaller at lowest zoom
+      return '180px'; // Much larger at lowest zoom
     } else if (zoomLevel === 2) {
-      return '120px'; // Still small at zoom level 2
+      return '200px'; // Larger at zoom level 2
     } else {
-      // For higher zoom levels, use the original scaling formula with increased base width
-      const baseWidth = 180; // Base width for zoom level 3
+      // For higher zoom levels, use increased base width
+      const baseWidth = 220; // Larger base width for zoom level 3
       return `${baseWidth * (zoomLevel / 3)}px`;
     }
   };
@@ -37,12 +37,12 @@ const LogoCard: React.FC<LogoCardProps> = ({
   // Calculate card height based on zoom level
   const getCardHeight = () => {
     if (zoomLevel <= 1) {
-      return '40px'; // Very compact height at lowest zoom
+      return '160px'; // Taller height at lowest zoom
     } else if (zoomLevel === 2) {
-      return '100px'; // Moderate height at zoom level 2
+      return '180px'; // Moderate height at zoom level 2
     } else {
       // Start with fixed height at zoom level 3, then scale proportionally
-      return `${230 * (zoomLevel / 3)}px`;
+      return `${250 * (zoomLevel / 3)}px`;
     }
   };
   
@@ -53,11 +53,11 @@ const LogoCard: React.FC<LogoCardProps> = ({
   
   // Get logo size based on zoom level
   const getLogoSize = () => {
-    // Scale down more aggressively at lower zoom levels
+    // Larger logos at all zoom levels
     if (zoomLevel <= 1) {
-      return '70%'; // Smallest logo size
+      return '90%'; // Larger logo size at lowest zoom
     } else if (zoomLevel === 2) {
-      return '80%'; // Small logo size
+      return '95%'; // Larger logo size
     } else {
       return '100%'; // Regular logo size
     }
@@ -68,20 +68,20 @@ const LogoCard: React.FC<LogoCardProps> = ({
       className={`flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300 ${zoomLevel <= 2 ? 'hover:shadow-md' : ''}`}
       style={{ 
         width: getCardWidth(),
-        height: zoomLevel >= 3 ? getCardHeight() : 'auto',
-        padding: zoomLevel <= 1 ? '2px' : `${Math.max(1, zoomLevel - 1) * 2}px`,
+        height: getCardHeight(),
+        padding: zoomLevel <= 1 ? '8px' : `${Math.max(3, zoomLevel - 1) * 4}px`,
         backgroundColor: isSpecialYear && backgroundColorData ? backgroundColorData.hex : 'white'
       }}
     >
       {shouldShowDetails() && (
         <div className="flex justify-between items-center mb-2">
-          <h3 className={`font-semibold ${zoomLevel >= 4 ? 'text-lg' : 'text-sm'}`}>{year}年</h3>
+          <h3 className={`font-semibold ${zoomLevel >= 4 ? 'text-xl' : 'text-base'}`}>{year}年</h3>
           <div className="flex items-center gap-1">
             {year === 2025 && (
               <Badge variant="outline" className="text-[0.65rem] py-0 px-1 font-normal">開始</Badge>
             )}
             <div 
-              className={`rounded-full cursor-pointer ${zoomLevel >= 4 ? 'w-6 h-6' : 'w-4 h-4'}`}
+              className={`rounded-full cursor-pointer ${zoomLevel >= 4 ? 'w-6 h-6' : 'w-5 h-5'}`}
               style={{ backgroundColor: brandColor.hex }}
               onClick={() => onCopyColor(brandColor.hex, year)}
               title="クリックしてコピー"
@@ -91,21 +91,34 @@ const LogoCard: React.FC<LogoCardProps> = ({
       )}
       
       <div 
-        className={`${zoomLevel <= 2 ? 'p-1' : 'bg-gray-50 rounded-md p-2'} flex justify-center items-center ${zoomLevel <= 2 ? '' : 'flex-grow mb-2'}`}
+        className={`${zoomLevel <= 2 ? 'p-2' : 'bg-gray-50 rounded-md p-3'} flex justify-center items-center ${zoomLevel <= 2 ? '' : 'flex-grow mb-2'}`}
         style={{ 
           position: 'relative',
-          minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto'),
+          minHeight: zoomLevel <= 1 ? '70px' : (zoomLevel === 2 ? '80px' : 'auto'),
           backgroundColor: zoomLevel > 2 && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
         }}
       >
-        {/* For zoom level <= 2, we've removed the year label and only show the accent color indicator when needed */}
+        {/* For zoom level <= 2, we'll add a year display at the top */}
+        {zoomLevel <= 2 && (
+          <div 
+            className="absolute top-0 left-0 text-gray-500 font-mono"
+            style={{
+              fontSize: zoomLevel <= 1 ? '10px' : '12px',
+              padding: '4px'
+            }}
+          >
+            {year}
+          </div>
+        )}
+        
+        {/* Special year indicator */}
         {zoomLevel <= 2 && isSpecialYear && (
           <div 
-            className="absolute top-0 right-0 rounded-full" 
+            className="absolute top-1 right-1 rounded-full" 
             style={{ 
               backgroundColor: accentColor.hex,
-              width: zoomLevel <= 1 ? '3px' : '4px',
-              height: zoomLevel <= 1 ? '3px' : '4px'
+              width: zoomLevel <= 1 ? '8px' : '10px',
+              height: zoomLevel <= 1 ? '8px' : '10px'
             }}
             title={`${year}年 アクセントカラー: ${accentColor.hex}`}
           ></div>
@@ -137,10 +150,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-infinite-${year})`}/>
           <rect x="15" y="33" width="37" height="3" rx="1.5" fill={`url(#middleLineGradient-infinite-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-infinite-${year})`}/>
-          {/* Show "ENABLER" text only for zoom level > 1 */}
-          {zoomLevel > 1 && (
-            <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
-          )}
+          {/* Show "ENABLER" text for all zoom levels */}
+          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
         </svg>
       </div>
       

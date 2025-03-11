@@ -21,15 +21,15 @@ const LogoCard: React.FC<LogoCardProps> = ({
   // Calculate background color based on accent color if it's a special year
   const backgroundColorData = isSpecialYear ? calculateBackgroundColor(accentColor.hex) : null;
   
-  // Calculate card width based on zoom level
+  // Calculate card width based on zoom level - increased for better visibility
   const getCardWidth = () => {
     if (zoomLevel <= 1) {
-      return '60px'; // Much smaller at lowest zoom
+      return '90px'; // Larger at lowest zoom
     } else if (zoomLevel === 2) {
-      return '120px'; // Still small at zoom level 2
+      return '150px'; // Larger at zoom level 2
     } else {
-      // For higher zoom levels, use the original scaling formula with increased base width
-      const baseWidth = 180; // Base width for zoom level 3
+      // For higher zoom levels, use increased base width
+      const baseWidth = 200; // Larger base width for zoom level 3
       return `${baseWidth * (zoomLevel / 3)}px`;
     }
   };
@@ -37,12 +37,12 @@ const LogoCard: React.FC<LogoCardProps> = ({
   // Calculate card height based on zoom level
   const getCardHeight = () => {
     if (zoomLevel <= 1) {
-      return '40px'; // Very compact height at lowest zoom
+      return '80px'; // Taller height at lowest zoom
     } else if (zoomLevel === 2) {
-      return '100px'; // Moderate height at zoom level 2
+      return '150px'; // Moderate height at zoom level 2
     } else {
       // Start with fixed height at zoom level 3, then scale proportionally
-      return `${230 * (zoomLevel / 3)}px`;
+      return `${250 * (zoomLevel / 3)}px`;
     }
   };
   
@@ -55,9 +55,9 @@ const LogoCard: React.FC<LogoCardProps> = ({
   const getLogoSize = () => {
     // Scale down more aggressively at lower zoom levels
     if (zoomLevel <= 1) {
-      return '70%'; // Smallest logo size
+      return '85%'; // Larger logo size at lowest zoom
     } else if (zoomLevel === 2) {
-      return '80%'; // Small logo size
+      return '90%'; // Larger logo size
     } else {
       return '100%'; // Regular logo size
     }
@@ -68,8 +68,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
       className={`flex-shrink-0 bg-white rounded-lg shadow-sm border flex flex-col transition-all duration-300 ${zoomLevel <= 2 ? 'hover:shadow-md' : ''}`}
       style={{ 
         width: getCardWidth(),
-        height: zoomLevel >= 3 ? getCardHeight() : 'auto',
-        padding: zoomLevel <= 1 ? '2px' : `${Math.max(1, zoomLevel - 1) * 2}px`,
+        height: getCardHeight(),
+        padding: zoomLevel <= 1 ? '4px' : `${Math.max(2, zoomLevel - 1) * 3}px`,
         backgroundColor: isSpecialYear && backgroundColorData ? backgroundColorData.hex : 'white'
       }}
     >
@@ -94,18 +94,30 @@ const LogoCard: React.FC<LogoCardProps> = ({
         className={`${zoomLevel <= 2 ? 'p-1' : 'bg-gray-50 rounded-md p-2'} flex justify-center items-center ${zoomLevel <= 2 ? '' : 'flex-grow mb-2'}`}
         style={{ 
           position: 'relative',
-          minHeight: zoomLevel <= 1 ? '30px' : (zoomLevel === 2 ? '40px' : 'auto'),
+          minHeight: zoomLevel <= 1 ? '40px' : (zoomLevel === 2 ? '60px' : 'auto'),
           backgroundColor: zoomLevel > 2 && isSpecialYear && backgroundColorData ? backgroundColorData.hex : (zoomLevel <= 2 ? 'transparent' : '#f9fafb')
         }}
       >
-        {/* For zoom level <= 2, we've removed the year label and only show the accent color indicator when needed */}
+        {/* For zoom level <= 2, we'll add a year display at the top */}
+        {zoomLevel <= 2 && (
+          <div 
+            className="absolute top-0 left-0 text-[8px] text-gray-500 font-mono"
+            style={{
+              fontSize: zoomLevel <= 1 ? '6px' : '8px'
+            }}
+          >
+            {year}
+          </div>
+        )}
+        
+        {/* Special year indicator */}
         {zoomLevel <= 2 && isSpecialYear && (
           <div 
             className="absolute top-0 right-0 rounded-full" 
             style={{ 
               backgroundColor: accentColor.hex,
-              width: zoomLevel <= 1 ? '3px' : '4px',
-              height: zoomLevel <= 1 ? '3px' : '4px'
+              width: zoomLevel <= 1 ? '4px' : '5px',
+              height: zoomLevel <= 1 ? '4px' : '5px'
             }}
             title={`${year}年 アクセントカラー: ${accentColor.hex}`}
           ></div>
@@ -137,10 +149,8 @@ const LogoCard: React.FC<LogoCardProps> = ({
           <rect x="15" y="25" width="60" height="3" rx="1.5" fill={`url(#modernGradient-infinite-${year})`}/>
           <rect x="15" y="33" width="37" height="3" rx="1.5" fill={`url(#middleLineGradient-infinite-${year})`}/>
           <rect x="15" y="41" width="60" height="3" rx="1.5" fill={`url(#reverseGradient-infinite-${year})`}/>
-          {/* Show "ENABLER" text only for zoom level > 1 */}
-          {zoomLevel > 1 && (
-            <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
-          )}
+          {/* Show "ENABLER" text for all zoom levels */}
+          <text x="90" y="40" fontFamily="Consolas, monospace" fontSize="18" letterSpacing="0.5" fontWeight="bold" fill={`url(#modernGradient-infinite-${year})`}>ENABLER</text>
         </svg>
       </div>
       

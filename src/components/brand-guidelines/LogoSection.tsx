@@ -226,7 +226,9 @@ const LogoSection = ({
             >
               <h3 className="text-lg font-semibold mb-4 text-indigo-900">毎年進化するロゴデザイン（2022年〜）</h3>
               <p className="text-sm text-indigo-700 mb-4">フィボナッチ数列に基づき、横スクロールで無限にロゴの変化を確認できます</p>
-              <InfiniteLogoScroller />
+              <div className="h-[350px] md:h-[400px]">
+                <InfiniteLogoScroller />
+              </div>
             </motion.div>
           </motion.div>
         </div>

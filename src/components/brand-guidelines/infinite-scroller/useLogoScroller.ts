@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 
 export const useLogoScroller = (startingYear: number, initialZoomLevel: number) => {
@@ -105,50 +106,28 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
     });
   };
   
-  // Calculate container style based on zoom level
+  // Calculate container style based on zoom level - now always using flex row layout
   const getContainerStyle = () => {
-    if (zoomLevel <= 1) {
-      // For lowest zoom level, use dense grid layout with many tiny logos
-      return {
-        display: 'grid',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'auto' as const,
-        maxHeight: '400px',
-      };
-    } else if (zoomLevel === 2) {
-      // For zoom level 2, use a less dense grid but still compact
-      return {
-        display: 'grid',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${getCardWidth()}, 1fr))`,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'auto' as const,
-        maxHeight: '400px',
-      };
-    } else {
-      // For higher zoom levels (3+), keep horizontal layout
-      return {
-        display: 'flex',
-        flexDirection: 'row' as const,
-        flexWrap: 'nowrap' as const,
-        gap: getGap(),
-        overflowX: 'auto' as const,
-        overflowY: 'hidden' as const,
-      };
-    }
+    return {
+      display: 'flex',
+      flexDirection: 'row' as const,
+      flexWrap: 'nowrap' as const,
+      gap: getGap(),
+      overflowX: 'auto' as const,
+      overflowY: 'hidden' as const,
+      height: '100%'
+    };
   };
   
-  // Calculate card width based on zoom level
+  // Calculate card width based on zoom level - increased sizes for better visibility
   const getCardWidth = () => {
     if (zoomLevel <= 1) {
-      return '60px'; // Much smaller at lowest zoom
+      return '90px'; // Larger at lowest zoom
     } else if (zoomLevel === 2) {
-      return '120px'; // Still small at zoom level 2
+      return '150px'; // Larger at zoom level 2
     } else {
-      // For higher zoom levels, use the original scaling formula with increased base width
-      const baseWidth = 180; // Base width for zoom level 3
+      // For higher zoom levels, use increased base width
+      const baseWidth = 200; // Larger base width for zoom level 3
       return `${baseWidth * (zoomLevel / 3)}px`;
     }
   };
@@ -156,11 +135,11 @@ export const useLogoScroller = (startingYear: number, initialZoomLevel: number) 
   // Calculate gap between cards
   const getGap = () => {
     if (zoomLevel <= 1) {
-      return '2px'; // Minimal gap at lowest zoom
+      return '4px'; // Small gap at lowest zoom
     } else if (zoomLevel === 2) {
-      return '4px'; // Small gap at zoom level 2
+      return '8px'; // Medium gap at zoom level 2
     } else {
-      return `${8 * (zoomLevel / 3)}px`; // Normal gap at higher zoom levels
+      return `${12 * (zoomLevel / 3)}px`; // Larger gap at higher zoom levels
     }
   };
   

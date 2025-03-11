@@ -55,8 +55,10 @@ const LogoSection = ({
               toggleSection={toggleSection} 
             />
 
-            {/* Infinite Scroller Section */}
-            <InfiniteScrollerSection />
+            {/* Infinite Scroller Section - Now displays in a single column on all screen sizes */}
+            <div className="col-span-1 md:col-span-2 w-full">
+              <InfiniteScrollerSection />
+            </div>
           </motion.div>
         </div>
       </section>

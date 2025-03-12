@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { MotionBox } from './ui/motion-box';
 
@@ -37,21 +36,6 @@ const partners = [
     name: 'Supabase', 
     logo: 'https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png',
     alt: 'Supabase logo' 
-  },
-  { 
-    name: 'Netlify', 
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Netlify_logo.svg',
-    alt: 'Netlify logo' 
-  },
-  { 
-    name: 'IBM', 
-    logo: '/partners/ibm.svg',
-    alt: 'IBM logo' 
-  },
-  { 
-    name: 'Sony', 
-    logo: '/partners/sony.svg',
-    alt: 'Sony logo' 
   }
 ];
 

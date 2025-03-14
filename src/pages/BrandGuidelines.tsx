@@ -15,22 +15,50 @@ import FAQSection from '@/components/brand-guidelines/faq/FAQSection';
 import SearchBar from '@/components/brand-guidelines/search/SearchBar';
 import { calculateColorForYear } from '@/components/brand-guidelines/color-utils/color-calculator';
 import { calculateSpecialAccentColor } from '@/components/brand-guidelines/color-utils/color-calculator';
+import SEO from '../components/SEO';
+import OGImage from '../components/OGImage';
+import ReactDOMServer from 'react-dom/server';
+import FoundingColorSection from '@/components/brand-guidelines/color-sections/FoundingColorSection';
+import LogoVariations from '@/components/brand-guidelines/LogoVariations';
 
 const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
+  const [brandColors, setBrandColors] = useState<any[]>([]);
+  const foundingYearColor = { hex: "#22B6FF", rgb: { r: 34, g: 182, b: 255 } };
   
   useEffect(() => {
     // ページビューのログを記録
     logActivity('pageView', { path: '/brand-guidelines' });
     
     // 今年のブランドカラーを計算（即時設定）
-    setCurrentYearColor(calculateColorForYear(currentYear));
+    const yearColor = calculateColorForYear(currentYear);
+    setCurrentYearColor(yearColor);
+    
+    // ブランドカラーの履歴を計算
+    const colorHistory = [];
+    for (let year = 2022; year <= currentYear; year++) {
+      colorHistory.push({
+        year,
+        color: calculateColorForYear(year)
+      });
+    }
+    setBrandColors(colorHistory);
   }, [currentYear]);
+
+  // OG画像を生成
+  const ogImageSvg = ReactDOMServer.renderToStaticMarkup(<OGImage path="/brand-guidelines" />);
+  const encodedOgImage = `data:image/svg+xml,${encodeURIComponent(ogImageSvg)}`;
 
   // 現在の年のブランドカラーがない場合はコンテンツをすぐに表示
   return (
     <>
+      <SEO 
+        title="Enabler ブランドガイドライン"
+        description="イネブラー(Enabler)の公式ブランドガイドライン。ロゴ、カラー、タイポグラフィ、その他のブランド要素の正しい使用方法を解説。"
+        ogImage={encodedOgImage}
+        path="/brand-guidelines"
+      />
       <Navbar />
       <main className="bg-gradient-to-b from-blue-50/50 to-white min-h-screen">
         {/* Header Section */}
@@ -52,12 +80,24 @@ const BrandGuidelines = () => {
           </div>
           
           {/* Brand Colors */}
-          <BrandColors currentYearColor={currentYearColor || calculateColorForYear(currentYear)} brandColors={[]} />
+          <BrandColors 
+            currentYearColor={currentYearColor || calculateColorForYear(currentYear)} 
+            brandColors={brandColors} 
+          />
           
           {/* Typography & Voice */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <Typography />
             <VoiceAndTone />
+          </div>
+          
+          <FoundingColorSection foundingYearColor={foundingYearColor} />
+          
+          <div className="mt-8 mb-12">
+            <LogoVariations 
+              variant="standard" 
+              size="md"
+            />
           </div>
           
           {/* Photos & Illustrations */}

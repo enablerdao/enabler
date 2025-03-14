@@ -5,12 +5,32 @@ import { calculateColorForYear } from './brand-guidelines/color-utils/color-calc
 interface OGImageProps {
   width?: number;
   height?: number;
+  path?: string;
 }
 
-const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
+const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630, path = '/' }) => {
   const currentYear = new Date().getFullYear();
   const brandColor = calculateColorForYear(currentYear);
   const foundingColor = "#22B6FF";
+  
+  // パスに基づいてページタイトルを決定
+  const getTitle = () => {
+    if (path.includes('brand-guidelines')) {
+      return 'ブランドガイドライン';
+    }
+    return 'ENABLER';
+  };
+  
+  // パスに基づいてタグラインを決定
+  const getTagline = () => {
+    if (path.includes('brand-guidelines')) {
+      return 'ブランドの一貫性と発展性を両立';
+    }
+    return 'イノベーションで未来を創造する';
+  };
+  
+  const title = getTitle();
+  const tagline = getTagline();
   
   return (
     <svg 
@@ -52,7 +72,7 @@ const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
       <rect x={width * 0.2} y={height * 0.5} width={width * 0.2} height={height * 0.02} rx={height * 0.01} 
         fill="url(#bottomBarGradient)" />
       
-      {/* ENABLER text */}
+      {/* Title text with dynamic content */}
       <text 
         x={width * 0.43} 
         y={height * 0.47} 
@@ -61,10 +81,10 @@ const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
         fontWeight="bold" 
         fill="url(#topBarGradient)"
       >
-        ENABLER
+        {title}
       </text>
       
-      {/* Tagline text */}
+      {/* Tagline text with dynamic content */}
       <text 
         x={width * 0.5} 
         y={height * 0.6} 
@@ -74,7 +94,7 @@ const OGImage: React.FC<OGImageProps> = ({ width = 1200, height = 630 }) => {
         fill="#333333" 
         textAnchor="middle"
       >
-        イノベーションで未来を創造する
+        {tagline}
       </text>
     </svg>
   );

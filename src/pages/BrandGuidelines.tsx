@@ -25,7 +25,13 @@ const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
   const [brandColors, setBrandColors] = useState<any[]>([]);
-  const foundingYearColor = { hex: "#22B6FF", rgb: { r: 34, g: 182, b: 255 } };
+  // Fix the foundingYearColor definition by adding the missing properties
+  const foundingYearColor = { 
+    hex: "#22B6FF", 
+    rgb: { r: 34, g: 182, b: 255 },
+    year: 2022,
+    name: "ディープブルー"
+  };
   
   useEffect(() => {
     // ページビューのログを記録
@@ -94,8 +100,9 @@ const BrandGuidelines = () => {
           <FoundingColorSection foundingYearColor={foundingYearColor} />
           
           <div className="mt-8 mb-12">
+            {/* Fix the LogoVariations by using a valid variant from LogoVariantType enum */}
             <LogoVariations 
-              variant="standard" 
+              variant="modern" 
               size="md"
             />
           </div>

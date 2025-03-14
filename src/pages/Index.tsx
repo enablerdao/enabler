@@ -48,12 +48,12 @@ const Index = () => {
   }, [location.state]);
 
   // Render OGImage to string and encode for use in meta tag
-  const ogImageSvg = ReactDOMServer.renderToStaticMarkup(<OGImage path={location.pathname} />);
+  const ogImageSvg = ReactDOMServer.renderToStaticMarkup(<OGImage />);
   const encodedOgImage = `data:image/svg+xml,${encodeURIComponent(ogImageSvg)}`;
 
   return (
     <div className="overflow-hidden">
-      <SEO ogImage={encodedOgImage} path={location.pathname} />
+      <SEO ogImage={encodedOgImage} />
       <Navbar />
       <main className="mx-auto px-4 sm:px-6 lg:px-8">
         <Hero brandColor={brandColor} />

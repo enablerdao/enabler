@@ -2,7 +2,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
   title?: string;
@@ -17,15 +16,13 @@ const SEO: React.FC<SEOProps> = ({
   title,
   description,
   keywords,
-  ogImage,
+  ogImage = '/og-image.png',
   ogType = 'website',
-  path,
+  path = '',
 }) => {
   const { language } = useLanguage();
-  const location = useLocation();
-  const currentPath = path || location.pathname;
   const baseUrl = 'https://enablerhq.com';
-  const url = `${baseUrl}${currentPath}`;
+  const url = `${baseUrl}${path}`;
   
   const defaultTitle = language === 'ja' 
     ? 'Enabler - イノベーションで未来を創造する' 
@@ -40,9 +37,9 @@ const SEO: React.FC<SEOProps> = ({
     : 'Enabler, Innovation, Technology, Services, Japan, Startup';
   
   // Handle SVG image if provided as data URL
-  const imageUrl = ogImage?.startsWith('data:') 
+  const imageUrl = ogImage.startsWith('data:') 
     ? ogImage 
-    : `${baseUrl}${ogImage || '/og-image.png'}`;
+    : `${baseUrl}${ogImage}`;
   
   return (
     <Helmet>

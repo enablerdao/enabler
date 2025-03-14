@@ -30,6 +30,147 @@ export type Database = {
         }
         Relationships: []
       }
+      result_versions: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          result_id: string | null
+          version_number: number
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          result_id?: string | null
+          version_number: number
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          result_id?: string | null
+          version_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "result_versions_result_id_fkey"
+            columns: ["result_id"]
+            isOneToOne: false
+            referencedRelation: "task_results"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_results: {
+        Row: {
+          completeness: number | null
+          content: string
+          created_at: string
+          id: string
+          quality: number | null
+          relevance: number | null
+          task_id: string | null
+        }
+        Insert: {
+          completeness?: number | null
+          content: string
+          created_at?: string
+          id?: string
+          quality?: number | null
+          relevance?: number | null
+          task_id?: string | null
+        }
+        Update: {
+          completeness?: number | null
+          content?: string
+          created_at?: string
+          id?: string
+          quality?: number | null
+          relevance?: number | null
+          task_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_results_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_steps: {
+        Row: {
+          agent: string
+          completed_at: string | null
+          created_at: string
+          id: string
+          output: string | null
+          started_at: string | null
+          status: string
+          task_id: string | null
+        }
+        Insert: {
+          agent: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          output?: string | null
+          started_at?: string | null
+          status: string
+          task_id?: string | null
+        }
+        Update: {
+          agent?: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          output?: string | null
+          started_at?: string | null
+          status?: string
+          task_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_steps_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          id: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

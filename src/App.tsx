@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Toaster } from './components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -69,7 +69,9 @@ function App() {
               <Route path="/company-info" element={<CompanyInfo />} />
               <Route path="/brand-guidelines" element={<BrandGuidelines />} />
               <Route path="/logo-evolution-viewer" element={<LogoEvolutionViewer />} />
-              <Route path="*" element={<NotFound />} />
+              
+              {/* Add a public folder fallback route for direct access */}
+              <Route path="/*" element={<NotFound />} />
             </Routes>
           </Suspense>
           <Toaster />

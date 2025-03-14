@@ -25,10 +25,10 @@ const BrandGuidelines = () => {
   const [currentYear] = useState(new Date().getFullYear());
   const [currentYearColor, setCurrentYearColor] = useState<any>(null);
   const [brandColors, setBrandColors] = useState<any[]>([]);
-  // Fix the foundingYearColor definition by adding the missing properties
+  // Fix the foundingYearColor definition by making rgb a string instead of an object
   const foundingYearColor = { 
     hex: "#22B6FF", 
-    rgb: { r: 34, g: 182, b: 255 },
+    rgb: "34, 182, 255",
     year: 2022,
     name: "ディープブルー"
   };
